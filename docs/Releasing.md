@@ -271,6 +271,13 @@ Chromium report retains the tested asset hashes as a separate workflow
 artifact. These checks upload no website and change no public state; selecting
 `deploy: true` is the explicit publication action.
 
+The build uploads an intermediate `pages-build` artifact for three independent
+Node, Chromium and Firefox validation jobs. All three must pass before
+`publish-artifact` promotes that same build to the Pages or release artifact.
+Reports are retained by suite and run attempt, including each Firefox case's
+result and the runner CPU. A failed-job retry reuses the existing build and
+successful validation jobs; the intermediate artifact alone is not publishable.
+
 ## Package and publish
 
 - Update [CHANGELOG.md](../CHANGELOG.md), supported toolchain versions and known

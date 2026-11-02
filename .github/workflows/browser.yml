@@ -141,16 +141,23 @@ jobs:
         run: |
           node examples/browser/verify_browser.mjs \
             "${{ steps.firefox.outputs.firefox-path }}" \
-            build-em/examples/browser/dist
+            build-em/examples/browser/dist --report browser-firefox-worker.json
           node examples/browser/verify_browser.mjs \
             "${{ steps.firefox.outputs.firefox-path }}" \
-            build-em/examples/browser/dist --quickjs
+            build-em/examples/browser/dist --quickjs --report browser-firefox-quickjs.json
           node examples/browser/verify_browser.mjs \
             "${{ steps.firefox.outputs.firefox-path }}" \
-            build-em/examples/browser/dist --official
+            build-em/examples/browser/dist --official --report browser-firefox-official.json
           node examples/browser/verify_browser.mjs \
             "${{ steps.firefox.outputs.firefox-path }}" \
-            build-em/examples/browser/dist --cbench
+            build-em/examples/browser/dist --cbench --report browser-firefox-cbench.json
+      - name: Retain Firefox reports on success and failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-firefox-${{ matrix.profile }}-${{ github.run_attempt }}
+          path: browser-firefox-*.json
+          if-no-files-found: warn
       - name: Checked-in Unicorn corpus
         run: |
           python3 -m pip install --user unicorn==2.1.4 capstone==5.0.9

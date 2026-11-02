@@ -102,19 +102,6 @@ jobs:
           version: ${{ env.EMSCRIPTEN_VERSION }}
           actions-cache-folder: .cache/emsdk
 
-      - name: Set up Chromium
-        id: chrome
-        uses: browser-actions/setup-chrome@c785b87e244131f27c9f19c1a33e2ead956ab7ce # v1
-        with:
-          chrome-version: stable
-          install-dependencies: true
-
-      - name: Set up Firefox
-        id: firefox
-        uses: browser-actions/setup-firefox@0bc507ddf224827e3b1af68e014d5e42ab93e795 # v1
-        with:
-          firefox-version: latest
-
       - name: Install browser example toolchains
         run: |
           sudo apt-get update
@@ -174,52 +161,159 @@ jobs:
           python3 examples/c-bench/reference.py --output "$RUNNER_TEMP/c-bench-reference.json"
           cmp "$RUNNER_TEMP/c-bench-reference.json" build-pages/examples/browser/dist/c-bench-reference.json
           node examples/quickjs/run.mjs build-pages/examples/browser/dist light
-          node examples/quickjs/official-run.mjs build-pages/examples/browser/dist --runtime all --case all --report pages-official-node.json
-          DYNARMIC_JS_BROWSER_DIST=build-pages/examples/browser/dist node --test examples/browser/*.test.mjs examples/quickjs/*.test.mjs examples/quickjs/v86/*.test.mjs
 
       - name: Check the final Pages root
         run: npm run pages:check -- --dist build-pages/examples/browser/dist --strict
 
-      - name: Verify the artifact in Chromium and Firefox
+      # This is an intermediate artifact, never a Pages deployment candidate.
+      # Failed validation jobs can retry this exact build without recompiling it.
+      - name: Retain complete build for independent validation
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: pages-build
+          path: build-pages/examples/browser/dist
+          include-hidden-files: true
+          compression-level: 0
+          if-no-files-found: error
+          overwrite: true
+
+  validate:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [node, chromium, firefox]
+    steps:
+      - name: Check out validation sources
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          submodules: recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+
+      - name: Download the complete build
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: pages-build
+          path: build-pages/examples/browser/dist
+
+      - name: Record validation host
+        run: |
+          node --input-type=module - <<'NODE'
+          import {writeFileSync} from 'node:fs';
+          import {cpus, totalmem, platform, arch} from 'node:os';
+          writeFileSync('pages-environment.json', JSON.stringify({
+            node: process.version, platform: platform(), arch: arch(),
+            cpu: cpus()[0]?.model, logicalCpus: cpus().length, memoryBytes: totalmem(),
+          }, null, 2) + '\n');
+          NODE
+
+      - name: Set up Chromium
+        if: matrix.suite == 'chromium'
+        id: chrome
+        uses: browser-actions/setup-chrome@c785b87e244131f27c9f19c1a33e2ead956ab7ce # v1
+        with:
+          chrome-version: stable
+          install-dependencies: true
+
+      - name: Set up Firefox
+        if: matrix.suite == 'firefox'
+        id: firefox
+        uses: browser-actions/setup-firefox@0bc507ddf224827e3b1af68e014d5e42ab93e795 # v1
+        with:
+          firefox-version: latest
+
+      - name: Verify the official suite and JavaScript contracts in Node.js
+        if: matrix.suite == 'node'
+        shell: bash
+        run: |
+          node examples/quickjs/official-run.mjs build-pages/examples/browser/dist --runtime all --case all --report pages-official-node.json
+          DYNARMIC_JS_BROWSER_DIST=build-pages/examples/browser/dist node --test examples/browser/*.test.mjs examples/quickjs/*.test.mjs examples/quickjs/v86/*.test.mjs 2>&1 | tee pages-node-tests.log
+
+      - name: Verify the artifact in Chromium
+        if: matrix.suite == 'chromium'
         run: |
           node tests/browser/verify_interactions.mjs \
             "${{ steps.chrome.outputs.chrome-path }}" \
             build-pages/examples/browser/dist --report pages-browser-interactions.json
-          node examples/browser/verify_browser.mjs \
-            "${{ steps.firefox.outputs.firefox-path }}" \
-            build-pages/examples/browser/dist
           node tests/browser/verify_quickjs.mjs \
             "${{ steps.chrome.outputs.chrome-path }}" \
             build-pages/examples/browser/dist --report pages-quickjs-interactions.json
-          node examples/browser/verify_browser.mjs \
-            "${{ steps.firefox.outputs.firefox-path }}" \
-            build-pages/examples/browser/dist --quickjs
           node tests/browser/verify_official.mjs \
             "${{ steps.chrome.outputs.chrome-path }}" \
             build-pages/examples/browser/dist --report pages-official-browser.json
-          node examples/browser/verify_browser.mjs \
-            "${{ steps.firefox.outputs.firefox-path }}" \
-            build-pages/examples/browser/dist --official
           node tests/browser/verify_c_bench.mjs \
             "${{ steps.chrome.outputs.chrome-path }}" \
             build-pages/examples/browser/dist --report pages-c-bench-browser.json
+
+      - name: Verify the artifact in Firefox
+        if: matrix.suite == 'firefox'
+        run: |
           node examples/browser/verify_browser.mjs \
             "${{ steps.firefox.outputs.firefox-path }}" \
-            build-pages/examples/browser/dist --cbench
+            build-pages/examples/browser/dist --report pages-firefox-worker.json
+          node examples/browser/verify_browser.mjs \
+            "${{ steps.firefox.outputs.firefox-path }}" \
+            build-pages/examples/browser/dist --quickjs --report pages-firefox-quickjs.json
+          node examples/browser/verify_browser.mjs \
+            "${{ steps.firefox.outputs.firefox-path }}" \
+            build-pages/examples/browser/dist --official --report pages-firefox-official.json
+          node examples/browser/verify_browser.mjs \
+            "${{ steps.firefox.outputs.firefox-path }}" \
+            build-pages/examples/browser/dist --cbench --report pages-firefox-cbench.json
 
-      - name: Retain browser interaction evidence
+      - name: Retain validation evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: pages-browser-interactions
+          # Preserve failed attempts instead of colliding with a retry's report.
+          name: pages-validation-${{ matrix.suite }}-${{ github.run_attempt }}
           path: |
             pages-browser-interactions.json
             pages-quickjs-interactions.json
             pages-official-node.json
+            pages-node-tests.log
             pages-official-browser.json
             pages-official-browser-*.png
             pages-c-bench-browser.json
+            pages-firefox-*.json
+            pages-environment.json
           if-no-files-found: warn
+
+  publish-artifact:
+    needs: [build, validate]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out artifact validation tools
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install artifact validation tools
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Download the validated build
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: pages-build
+          path: build-pages/examples/browser/dist
+
+      - name: Check the exact artifact before publication
+        run: npm run pages:check -- --dist build-pages/examples/browser/dist --strict
 
       - name: Upload Pages artifact
         if: inputs.release != true
@@ -262,8 +356,8 @@ jobs:
   deploy:
     if: >-
       always() && github.event_name == 'workflow_dispatch' && inputs.deploy == true &&
-      (needs.build.result == 'success' || needs.release-artifact.result == 'success')
-    needs: [build, release-artifact]
+      (needs.publish-artifact.result == 'success' || needs.release-artifact.result == 'success')
+    needs: [publish-artifact, release-artifact]
     runs-on: ubuntu-latest
     concurrency:
       group: pages-deployment
