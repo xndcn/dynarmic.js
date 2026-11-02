@@ -100,7 +100,7 @@ jobs:
         uses: mymindstorm/setup-emsdk@6ab9eb1bda2574c4ddb79809fc9247783eaf9021 # v14
         with:
           version: ${{ env.EMSCRIPTEN_VERSION }}
-          actions-cache-folder: emsdk-cache
+          actions-cache-folder: .cache/emsdk
 
       - name: Set up Chromium
         id: chrome
@@ -125,6 +125,8 @@ jobs:
 
       - name: Build the complete release example
         run: |
+          git status --short --untracked-files=normal
+          test -z "$(git status --porcelain --untracked-files=all --ignore-submodules=none)"
           emcmake cmake -S . -B build-pages -G Ninja -DCMAKE_BUILD_TYPE=Release \
             -DBoost_INCLUDE_DIR="$RUNNER_TEMP/boost-headers" \
             -DDYNARMIC_JS_TESTS=OFF \

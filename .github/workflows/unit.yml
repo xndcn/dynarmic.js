@@ -20,7 +20,10 @@ jobs:
       - name: Browser input and failure handling
         run: node --test examples/browser/*.test.mjs
       - name: CMake configuration and archive provenance
-        run: node --test tests/cmake/*.test.mjs
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libboost-dev
+          node --test tests/cmake/*.test.mjs
       - name: Release archive and deployment integrity
         run: python3 -m unittest discover -s tests/release -v
       - name: CFG properties under ASan and UBSan
