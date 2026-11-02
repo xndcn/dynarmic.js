@@ -168,7 +168,7 @@ jobs:
       # This is an intermediate artifact, never a Pages deployment candidate.
       # Failed validation jobs can retry this exact build without recompiling it.
       - name: Retain complete build for independent validation
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: pages-build
           path: build-pages/examples/browser/dist
@@ -271,7 +271,7 @@ jobs:
 
       - name: Retain validation evidence
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           # Preserve failed attempts instead of colliding with a retry's report.
           name: pages-validation-${{ matrix.suite }}-${{ github.run_attempt }}
@@ -323,7 +323,7 @@ jobs:
 
       - name: Retain validated release site
         if: inputs.release == true
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: pages-dist
           path: build-pages/examples/browser/dist

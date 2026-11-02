@@ -84,7 +84,7 @@ jobs:
           TARBALL: ${{ steps.pack.outputs.tarball }}
         run: node tests/npm/smoke.mjs "$TARBALL" --report test-results/npm/node22.json
       - name: Retain validated installable package
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: npm-package
           path: ${{ steps.pack.outputs.tarball }}
@@ -92,7 +92,7 @@ jobs:
           if-no-files-found: error
       - name: Retain validation evidence even on failure
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: npm-validation
           path: test-results/npm/

@@ -91,7 +91,7 @@ jobs:
           node tests/bench/coremark/validate.mjs coremark.json
       - name: Retain CoreMark observations
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: coremark-${{ matrix.profile }}
           path: |
@@ -114,7 +114,7 @@ jobs:
             build-em/examples/browser/dist --report c-bench-browser.json
       - name: Retain browser interaction evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: browser-interactions-${{ matrix.profile }}
           path: |
@@ -133,7 +133,7 @@ jobs:
           node tests/bench/cache_population_run.mjs build-em/tests --runs 1 --output cache-population.json
           node tests/bench/cache_population_validate.mjs cache-population.json
       - name: Retain cache population samples
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: cache-population-${{ matrix.profile }}
           path: cache-population.json
@@ -153,7 +153,7 @@ jobs:
             build-em/examples/browser/dist --cbench --report browser-firefox-cbench.json
       - name: Retain Firefox reports on success and failure
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: browser-firefox-${{ matrix.profile }}-${{ github.run_attempt }}
           path: browser-firefox-*.json

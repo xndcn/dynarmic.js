@@ -71,7 +71,7 @@ jobs:
           node build-embedding/embedding_smoke.js
       - name: Retain regression commands, results and fuzz reproducers
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: strict-regression
           path: |
