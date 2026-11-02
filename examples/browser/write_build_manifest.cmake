@@ -1,5 +1,9 @@
 # Invoked by arm_jit POST_BUILD. Source revisions, dirty state and artifact
 # identities are observed after linking, not reconstructed by the collector.
+# Script mode does not inherit the parent project's policy settings. In
+# particular, CMP0012 must recognize ON/OFF as boolean constants on CMake 3.
+cmake_minimum_required(VERSION 3.16)
+
 foreach(variable BUILD_TYPE CXX_FLAGS CONFIG_FLAGS LINK_FLAGS CONFIG_LINK_FLAGS
     COMPILER_ID COMPILER_VERSION EMSCRIPTEN_VERSION PROFILE REGION_DIAGNOSTICS
     A64_REGION_FOCUS FOCUS_TEST_EXCEPTIONS EXAMPLES CONFIGURE_EMCC_CFLAGS SOURCE_ROOT

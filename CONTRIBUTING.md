@@ -34,7 +34,8 @@ instrumented measurements separate.
 
 ## Fast checks
 
-These checks need neither Emscripten nor initialized submodules:
+The benchmark protocol checks need an initialized Dynarmic submodule for source
+provenance; they do not need Emscripten. The standalone C++ check needs neither:
 
 ```sh
 node --test tests/bench/*.test.mjs

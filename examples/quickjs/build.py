@@ -125,6 +125,11 @@ def main():
     arm_engine = arm_dispatch_source(engine_path, cache, args.arm_dispatch)
     arm_sources = [arm_engine, *sources[1:]]
     arm_flags = ["-march=armv7-a", "-mfpu=vfpv3", "-mfloat-abi=softfp", "-m" + args.arm_isa, "-nostartfiles",
+                 # GCC's bundled stdint.h omits Newlib's __int64_t_defined
+                 # guard, which inttypes.h uses for PRI*64. Newlib 4 stdio.h
+                 # no longer includes sys/types.h indirectly; include the
+                 # public type header explicitly instead of inventing formats.
+                 "-include", "sys/types.h",
                  "-ffunction-sections", "-fdata-sections", "-Wl,--gc-sections", "-T", str(HERE / "link.ld")]
     if args.arm_dispatch == "threaded":
         arm_flags.append("-DDYNARMIC_QUICKJS_ARM_DISPATCH=1")
