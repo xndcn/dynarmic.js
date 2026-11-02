@@ -1,0 +1,48 @@
+{
+  "schema": "dynarmic.js/qemu-wasm-coremark-comparison-v1",
+  "qemuSource": {
+    "repository": "https://github.com/ktock/qemu-wasm",
+    "revision": "0ef7b4e2814b231705d8371dd7997f5b72e70baf",
+    "runtime": "official prebuilt raspi3ap runtime; QEMU emulator version 8.2.0"
+  },
+  "workload": {
+    "architecture": "aarch64",
+    "iterations": 200000,
+    "expectedCrcfinal": 18819,
+    "guestSha256": "ba36aff1dd9b9364a2b3d4c812761389ab483ed01f7a1bb56e48f24394f86853",
+    "adapterSha256": "66c385ee536bfe6e5537813f7a4e8ea3e9bdb508b5624a6a39008b80e50e13d4"
+  },
+  "qemu": {
+    "runnerStatus": "timeout",
+    "runnerFailure": "timeout after 900000 ms",
+    "exitCode": null,
+    "wallMilliseconds": 900101.0758110001,
+    "durationSeconds": 364.169999,
+    "crcfinal": 62162,
+    "coreMarkPerSecond": 549.194059,
+    "executionValid": false
+  },
+  "dynarmicReference": {
+    "source": "/tmp/dynarmic-focused-region-performance-current-load/partial-analysis.json",
+    "completedPairs": 8,
+    "declaredPairs": 10,
+    "loadedHostPartialDiagnostic": true,
+    "sides": {
+      "baseline": {
+        "kernelMedianMs": 60415.299,
+        "coreMarkPerSecond": 3310.4197663575246
+      },
+      "candidate": {
+        "kernelMedianMs": 59844.082,
+        "coreMarkPerSecond": 3342.018012741845
+      }
+    }
+  },
+  "observedRateRatiosForDiagnosisOnly": {
+    "baseline": 6.027777817526472,
+    "candidate": 6.085313484321294
+  },
+  "performanceComparisonProduced": false,
+  "formalControlledComparison": false,
+  "reason": "qemu-wasm produced an incorrect final CRC; its observed execution rate is not a valid CoreMark performance result."
+}

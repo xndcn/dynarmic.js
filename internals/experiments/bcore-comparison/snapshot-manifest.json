@@ -1,0 +1,377 @@
+{
+  "schema": "dynarmic.js/bcore-research-snapshot-v1",
+  "baseRevision": "28bdfe42dee86457ede3f89916a338427aeb5618",
+  "purpose": "Historical research only; removed from supported examples, browser UI, and Pages CI. Extract into a detached checkout for replay.",
+  "restoredTrackedPaths": [
+    ".github/workflows/pages.yml",
+    "examples/browser/README.md",
+    "examples/browser/c-bench-app.js",
+    "examples/browser/c-bench-app.test.mjs",
+    "examples/browser/c-bench-protocol.js",
+    "examples/browser/c-bench-worker.js",
+    "examples/browser/index.html",
+    "examples/browser/package_source.py",
+    "examples/c-bench/README.md",
+    "examples/c-bench/guest.c",
+    "examples/c-bench/measure.mjs",
+    "tests/browser/package_source_test.py"
+  ],
+  "removedAddedPaths": [
+    "examples/browser/c-bench-bcore.test.mjs",
+    "examples/c-bench/OP1-CONFIG.md",
+    "examples/c-bench/bcore-host.cpp",
+    "examples/c-bench/bcore-tier.cpp",
+    "examples/c-bench/bcore/CMakeLists.txt",
+    "examples/c-bench/bcore/runtime.js",
+    "examples/c-bench/bcore/split-module.mjs",
+    "examples/c-bench/bcore/split-pre.js",
+    "examples/c-bench/bcore/tier-worker.js",
+    "examples/c-bench/build-bcore.py",
+    "examples/c-bench/licenses/libgcc-COPYING3.txt",
+    "examples/c-bench/licenses/libgcc-RUNTIME-LIBRARY-EXCEPTION.txt",
+    "examples/c-bench/licenses/libgcc-notices.md",
+    "examples/c-bench/link-bfin.ld",
+    "examples/c-bench/native/CMakeLists.txt",
+    "examples/c-bench/native/README.md",
+    "examples/c-bench/native/analyze.py",
+    "examples/c-bench/native/bcore.cpp",
+    "examples/c-bench/native/build.py",
+    "examples/c-bench/native/common.h",
+    "examples/c-bench/native/dynarmic.cpp",
+    "examples/c-bench/native/measure.py",
+    "examples/c-bench/setup-bcore.sh",
+    "examples/c-bench/start-bfin.S",
+    "examples/quickjs/bcore/README.md",
+    "examples/quickjs/bcore/analyze.mjs",
+    "examples/quickjs/bcore/analyze.test.mjs",
+    "examples/quickjs/bcore/build.py",
+    "examples/quickjs/bcore/compare.mjs",
+    "examples/quickjs/bcore/link.ld",
+    "examples/quickjs/bcore/run.mjs",
+    "examples/quickjs/bcore/start.S",
+    "examples/quickjs/bcore/worker.js",
+    "tests/browser/verify_bcore_bench.mjs"
+  ],
+  "files": {
+    ".github/workflows/pages.yml": {
+      "bytes": 9668,
+      "sha256": "84e33c9cf3726c21d55466864f3fb070bdffd6e25b6a165da61cc50eaaf5d8c3",
+      "mode": 436
+    },
+    "examples/browser/README.md": {
+      "bytes": 18270,
+      "sha256": "42c2aae0903cb3f0a107ecad2a4b1a49ce97417231a6e72ca46b172629d057f7",
+      "mode": 436
+    },
+    "examples/browser/c-bench-app.js": {
+      "bytes": 23313,
+      "sha256": "aeb2964a8bfbdf43d031f3f6269569c06c3b89012aa7a68041615d329e8df0a9",
+      "mode": 436
+    },
+    "examples/browser/c-bench-app.test.mjs": {
+      "bytes": 16072,
+      "sha256": "d1c4cd5801ff603b07a4ba154b20bff0c5015a7021bdc97ab099bb71fec523ca",
+      "mode": 436
+    },
+    "examples/browser/c-bench-bcore.test.mjs": {
+      "bytes": 691,
+      "sha256": "fc505c0bb1a36909502d64c26ac94a2cb1c22d1559788038b0de2c93c4064a68",
+      "mode": 436
+    },
+    "examples/browser/c-bench-protocol.js": {
+      "bytes": 10168,
+      "sha256": "267458d6ee726f476ef8f025eaa7bee1549a76d4fe5cf4d8fb18b9abb578cce4",
+      "mode": 436
+    },
+    "examples/browser/c-bench-worker.js": {
+      "bytes": 10758,
+      "sha256": "65a3259fcab070b0c7c92cb08772607b5b86ac18f6f6644eaa720795e5e147b3",
+      "mode": 436
+    },
+    "examples/browser/index.html": {
+      "bytes": 38574,
+      "sha256": "f9799f709fa260c868c0c3083e8533ecc27522ff8ad239987f292fa288360d5e",
+      "mode": 436
+    },
+    "examples/browser/package_source.py": {
+      "bytes": 34720,
+      "sha256": "f40a2c4b69f7e612166b28721e14e5b6d3e6f4af09035fdd02c44f34ce66d7f6",
+      "mode": 436
+    },
+    "examples/c-bench/OP1-CONFIG.md": {
+      "bytes": 5651,
+      "sha256": "521d91b2a37dcec2166a9a73c7886ce91117d3817ba624188f5c021ac5e3cdb9",
+      "mode": 436
+    },
+    "examples/c-bench/README.md": {
+      "bytes": 13009,
+      "sha256": "f2228c15f26114d6ec05a4514289211ca27df4dce285948351eaad7b61cd8087",
+      "mode": 436
+    },
+    "examples/c-bench/bcore-host.cpp": {
+      "bytes": 4191,
+      "sha256": "63e7d33d7f434e3d01e4ea751b094a01eacca321ce4ced4d82d0eb66cca84759",
+      "mode": 436
+    },
+    "examples/c-bench/bcore-tier.cpp": {
+      "bytes": 784,
+      "sha256": "bfe43d7a1cfcfee74097587f937452c5625e3d379687e4a9800244bd1f113235",
+      "mode": 436
+    },
+    "examples/c-bench/bcore/CMakeLists.txt": {
+      "bytes": 1252,
+      "sha256": "c76f9896816242071aadac2cabccb4b3d7247a1642cd2b6f565792d5b2c9ed68",
+      "mode": 436
+    },
+    "examples/c-bench/bcore/runtime.js": {
+      "bytes": 6003,
+      "sha256": "637eb4012e397d46ca852f40039baffe07ecfa10ac25e44c0cf4f29ccedc9798",
+      "mode": 436
+    },
+    "examples/c-bench/bcore/split-module.mjs": {
+      "bytes": 2508,
+      "sha256": "f8b1c616974a49e4e88c0b189693e39ecefdc16cd2560646343b190e62a81995",
+      "mode": 436
+    },
+    "examples/c-bench/bcore/split-pre.js": {
+      "bytes": 345,
+      "sha256": "79e0e06dac7f949bc77581df85e9bbd37c5ef83ce6976a5b03053cf5a5ffb108",
+      "mode": 436
+    },
+    "examples/c-bench/bcore/tier-worker.js": {
+      "bytes": 3241,
+      "sha256": "c33f82e2993e573f5cc679d51a1cdefa24dc0ae2b28b4c8eefa8f00912ad3ac0",
+      "mode": 436
+    },
+    "examples/c-bench/build-bcore.py": {
+      "bytes": 8844,
+      "sha256": "bff09ae18958c09e1fed4cd80181ff1b1050f192e7a31788f6efbcbdb4c32adf",
+      "mode": 436
+    },
+    "examples/c-bench/guest.c": {
+      "bytes": 994,
+      "sha256": "8024f4f156d430434483a179906f297db820fe438c0813acc3c087af44c70098",
+      "mode": 436
+    },
+    "examples/c-bench/licenses/libgcc-COPYING3.txt": {
+      "bytes": 35147,
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+      "mode": 436
+    },
+    "examples/c-bench/licenses/libgcc-RUNTIME-LIBRARY-EXCEPTION.txt": {
+      "bytes": 3324,
+      "sha256": "9d6b43ce4d8de0c878bf16b54d8e7a10d9bd42b75178153e3af6a815bdc90f74",
+      "mode": 436
+    },
+    "examples/c-bench/licenses/libgcc-notices.md": {
+      "bytes": 596,
+      "sha256": "36281cab79e9b8a0cdf6279259f10b52ee97cb7ca6362bf7bdcad6ef37b6a3aa",
+      "mode": 436
+    },
+    "examples/c-bench/link-bfin.ld": {
+      "bytes": 307,
+      "sha256": "570affe6a130f8694f5eb74b7b4b7196159eaf820e52a4a36a7c8d342aa74fff",
+      "mode": 436
+    },
+    "examples/c-bench/measure.mjs": {
+      "bytes": 8256,
+      "sha256": "af1b96079b1856124b120e1a129f648b720171b43709a33433f899111b121df3",
+      "mode": 436
+    },
+    "examples/c-bench/native/CMakeLists.txt": {
+      "bytes": 1315,
+      "sha256": "aa538520b154ec47d88ccb39a1784f7ec7e79b1adc734631bf42264f7be2e834",
+      "mode": 436
+    },
+    "examples/c-bench/native/README.md": {
+      "bytes": 4390,
+      "sha256": "1ef1f8d84f95dff2fc2ab1d079e0d4440f742a640c55456a03bec66b37689c57",
+      "mode": 436
+    },
+    "examples/c-bench/native/analyze.py": {
+      "bytes": 4364,
+      "sha256": "44daddd6cc0dc92d317d52122d6d8812609db351197787a1cff58ed2a5d704a1",
+      "mode": 436
+    },
+    "examples/c-bench/native/bcore.cpp": {
+      "bytes": 2628,
+      "sha256": "219ed9bcb003d9d00e2a87f22713c543780ddfd7dfe24e1aa72be161dbd663de",
+      "mode": 436
+    },
+    "examples/c-bench/native/build.py": {
+      "bytes": 4410,
+      "sha256": "736d5f84224eb75ce8531e81d2c3bde74a99f47e255db66bf8d34416d77b9079",
+      "mode": 436
+    },
+    "examples/c-bench/native/common.h": {
+      "bytes": 2563,
+      "sha256": "2ef738ecc1b735bb5c1edb213d9471e0dc78bd33ef309510f215eaaf84da50af",
+      "mode": 436
+    },
+    "examples/c-bench/native/dynarmic.cpp": {
+      "bytes": 3082,
+      "sha256": "1bc3d000bb3e8a776243c916c7699c3c815fe27e1d607c5ac38eff0a61ff6a07",
+      "mode": 436
+    },
+    "examples/c-bench/native/measure.py": {
+      "bytes": 5216,
+      "sha256": "3557ce7acc7e19531e147686d9ba9e3ff44bfbfb1ddbe5daf4ac4796ece0ec10",
+      "mode": 436
+    },
+    "examples/c-bench/setup-bcore.sh": {
+      "bytes": 1566,
+      "sha256": "4799983be0546be1da582bd97a96ddb7c846603219702eef817745955cf66895",
+      "mode": 436
+    },
+    "examples/c-bench/start-bfin.S": {
+      "bytes": 149,
+      "sha256": "933ad0be78425df70944e569c5b05c57ef86252ab83210a4b3c11565e676356c",
+      "mode": 436
+    },
+    "examples/quickjs/bcore/README.md": {
+      "bytes": 4149,
+      "sha256": "061643428095dbcb99ebeea6961d850b348b9fca2533421e1f15192f8e73b559",
+      "mode": 436
+    },
+    "examples/quickjs/bcore/analyze.mjs": {
+      "bytes": 17774,
+      "sha256": "807ed2308370e516ce1c03a1ef5ea216271a25ac3e3663903464a87b9348e62f",
+      "mode": 436
+    },
+    "examples/quickjs/bcore/analyze.test.mjs": {
+      "bytes": 9690,
+      "sha256": "39fe7973bef314de648c175e834c6215c40270014464fa2461bf00b9e74a4f14",
+      "mode": 436
+    },
+    "examples/quickjs/bcore/build.py": {
+      "bytes": 9994,
+      "sha256": "5045b816aa720ac13b19e288bfb5a67a9671d15e253ddef806add16cb39dfe07",
+      "mode": 436
+    },
+    "examples/quickjs/bcore/compare.mjs": {
+      "bytes": 12821,
+      "sha256": "a0d9b80fccb90f706b9df3912663cb33044a975ca475ddcd88347beaf72c2ac4",
+      "mode": 436
+    },
+    "examples/quickjs/bcore/link.ld": {
+      "bytes": 400,
+      "sha256": "139d474c31dafd14b3941efe415a28a9d4c94f6b039c4c6f034d009a681354bc",
+      "mode": 436
+    },
+    "examples/quickjs/bcore/run.mjs": {
+      "bytes": 2054,
+      "sha256": "46d52984b1a96fa7dcd03f621d314939b20792e45b51b295ae97836d59586088",
+      "mode": 436
+    },
+    "examples/quickjs/bcore/start.S": {
+      "bytes": 149,
+      "sha256": "74c8343eb467cbe4ca4277c56c64e003c228a40311751a32d4ad1cd116e04201",
+      "mode": 436
+    },
+    "examples/quickjs/bcore/worker.js": {
+      "bytes": 3810,
+      "sha256": "7c89cbb6ba8305737d07a94821b87d7432b4442991639136f32c41ab3a0fb750",
+      "mode": 436
+    },
+    "internals/measurements/2026-10-31-bcore-attribution/README.md": {
+      "bytes": 13248,
+      "sha256": "b40dba1c13a60fd2cdd330a1689e7413c7af184cfb1bbea51c5786f72e0b87ba",
+      "mode": 436
+    },
+    "internals/measurements/2026-10-31-bcore-attribution/analyze.py": {
+      "bytes": 3155,
+      "sha256": "38c5f709374148dea593ab572302060c9c63d2d8e9f7d9bdd30e370258b135b1",
+      "mode": 436
+    },
+    "internals/measurements/2026-10-31-bcore-attribution/build.py": {
+      "bytes": 5620,
+      "sha256": "207f6d8921d332b1836c55ab21d318bb8215c7d24f5adcf9bc29f440caa710c1",
+      "mode": 436
+    },
+    "internals/measurements/2026-10-31-bcore-attribution/measure.mjs": {
+      "bytes": 3677,
+      "sha256": "1d58cf2c782ae7b794595272ab38db962afeb8dc2404dc3bc5a74a4fc612fd93",
+      "mode": 436
+    },
+    "internals/measurements/2026-10-31-bcore-attribution/worker.js": {
+      "bytes": 3737,
+      "sha256": "e2554105f37c174f5cd439fe8552ee3c59fd8b6d1a7dfb0ae2adf1cbe47e769c",
+      "mode": 436
+    },
+    "internals/measurements/2026-10-31-bcore-c-bench-performance/README.md": {
+      "bytes": 7647,
+      "sha256": "71c14804689e8e5d084a849965583c5e8b75c184dd924661935f607dd8282d6f",
+      "mode": 436
+    },
+    "internals/measurements/2026-10-31-bcore-c-bench-performance/analyze.py": {
+      "bytes": 5386,
+      "sha256": "30a88588bed64498e80b410b01d27e8aca00b92ef985c8f146dca3ce689552dc",
+      "mode": 436
+    },
+    "internals/measurements/2026-10-31-bcore-web-defaults-performance/README.md": {
+      "bytes": 8950,
+      "sha256": "a91d413b6edda250225e6a6a822435ac8290db46be932be9a9a996eb198fa5b2",
+      "mode": 436
+    },
+    "internals/measurements/2026-10-31-bcore-web-defaults-performance/analyze.py": {
+      "bytes": 6421,
+      "sha256": "967e19e11d782b06f08fce5ddd63659e2ef7870d67373abdc4b1cf5544fcbc2a",
+      "mode": 436
+    },
+    "internals/measurements/2026-11-01-native-c-bench-performance/README.md": {
+      "bytes": 8344,
+      "sha256": "30f8f5f9951a881b03c537e0bdc4a9b0ecd033e736d6f587e31a13d4712e3415",
+      "mode": 436
+    },
+    "internals/measurements/2026-11-01-native-instruction-analysis/README.md": {
+      "bytes": 22614,
+      "sha256": "b5a4cfc222af4fc2c73af24a829dea977fb0e10fe1d6b1cebaacca90f85418af",
+      "mode": 436
+    },
+    "internals/measurements/2026-11-01-native-instruction-analysis/analyze.py": {
+      "bytes": 2766,
+      "sha256": "3c92d521bea5a3398f0177e87be75fcd51531a7ed423352a5440d0190306451f",
+      "mode": 436
+    },
+    "internals/measurements/2026-11-01-native-instruction-analysis/build.py": {
+      "bytes": 5257,
+      "sha256": "c7564087b9216ef165ed7d81e5774e30701829a49aef5652891d1d9e34ca0c74",
+      "mode": 436
+    },
+    "internals/measurements/2026-11-01-native-instruction-analysis/capture.h": {
+      "bytes": 2162,
+      "sha256": "0ef486168b1d883d0a741d1696788e5d1004bcc6c5c19f033661fdeae3191f5e",
+      "mode": 436
+    },
+    "internals/measurements/2026-11-01-native-instruction-analysis/measure.py": {
+      "bytes": 3232,
+      "sha256": "01a664b311346f7ddeecfe3202eeb3b9cce045c8abbe8ad394297973383c9d98",
+      "mode": 436
+    },
+    "internals/measurements/2026-11-01-native-instruction-analysis/pmu.h": {
+      "bytes": 2502,
+      "sha256": "568e14339bffcdb1bd8537a2838ab8804d7d012f7f726a789c87045c4030bb82",
+      "mode": 436
+    },
+    "internals/measurements/2026-11-01-native-instruction-analysis/rotate.h": {
+      "bytes": 1524,
+      "sha256": "329e3b6bf5207f46f1ef642bceca8c4151c223ba0f1589850be01ea52530142b",
+      "mode": 436
+    },
+    "internals/measurements/2026-11-02-quickjs-bcore-wasm/README.md": {
+      "bytes": 6857,
+      "sha256": "9c62b6cf3f2278fba292d71146ae624545115f116d7f245f414122861a8a8cae",
+      "mode": 436
+    },
+    "tests/browser/package_source_test.py": {
+      "bytes": 32327,
+      "sha256": "c85995ea6355dff5868fdd3e7fa3b1dd7b052462d669ef53eded3ca52fdc2c68",
+      "mode": 436
+    },
+    "tests/browser/verify_bcore_bench.mjs": {
+      "bytes": 7366,
+      "sha256": "3e44f7ab2e13db61eb1a89882cb59f14193c0e725759ad4ba93f63bcae166d08",
+      "mode": 436
+    }
+  }
+}

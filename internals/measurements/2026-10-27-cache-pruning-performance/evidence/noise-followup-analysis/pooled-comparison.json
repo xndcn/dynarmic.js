@@ -1,0 +1,235 @@
+{
+  "schema": "dynarmic.js/coremark-comparison-v1",
+  "durationQualified": true,
+  "pass": true,
+  "cases": [
+    {
+      "name": "a32-thunk",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 69365.9675,
+          "candidate": 69031.573,
+          "ratio": 0.9951792714489278,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 69440.3035155,
+          "candidate": 69133.5822415,
+          "ratio": 0.9955829502684773,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 84.06547900034653,
+          "candidate": 83.42863900018499,
+          "ratio": 0.9924244766373256,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 751278,
+          "candidate": 735561,
+          "ratio": 0.979079648279332,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "a32-page-table",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 32154.408,
+          "candidate": 32310.305999999997,
+          "ratio": 1.0048484176726251,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 32238.6714465,
+          "candidate": 32385.676413499998,
+          "ratio": 1.0045598953183896,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 85.4762914999148,
+          "candidate": 89.49699599999063,
+          "ratio": 1.0470388271358244,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 873161,
+          "candidate": 844554.5,
+          "ratio": 0.9672380007810701,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "a32-flat-window",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 25665.8475,
+          "candidate": 25473.0755,
+          "ratio": 0.9924891628846466,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 25756.4381785,
+          "candidate": 25553.200549499998,
+          "ratio": 0.9921092494392468,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 86.02500400000486,
+          "candidate": 86.87232150001304,
+          "ratio": 1.0098496653369309,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 820635,
+          "candidate": 804918,
+          "ratio": 0.9808477581385147,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "a64-thunk",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 63810.843,
+          "candidate": 63968.8585,
+          "ratio": 1.0024763111184725,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 63952.139203,
+          "candidate": 64087.290192,
+          "ratio": 1.0021133145925112,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 135.6138079999533,
+          "candidate": 138.90331249992852,
+          "ratio": 1.0242564127391536,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 652432,
+          "candidate": 619484,
+          "ratio": 0.949499717978272,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "a64-page-table",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 32638.214,
+          "candidate": 32530.6815,
+          "ratio": 0.9967053191084536,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 32766.711124,
+          "candidate": 32662.1827535,
+          "ratio": 0.9968099218104487,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 134.33346849997395,
+          "candidate": 146.88636100004615,
+          "ratio": 1.093445755851042,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 768021,
+          "candidate": 735073,
+          "ratio": 0.957100131376616,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "a64-flat-window",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 23938.66,
+          "candidate": 23580.555999999997,
+          "ratio": 0.9850407666928724,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 24084.55399,
+          "candidate": 23744.613699499998,
+          "ratio": 0.9858855476152414,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 130.95312750008253,
+          "candidate": 148.09063400013014,
+          "ratio": 1.1308674853911893,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 708917,
+          "candidate": 675969,
+          "ratio": 0.9535234731287302,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    }
+  ]
+}

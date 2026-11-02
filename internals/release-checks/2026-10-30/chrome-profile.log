@@ -1,0 +1,28 @@
+title: DONE PASS
+userAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/133.0.0.0 Safari/537.36
+--- output ---
+lcg   = 2932257054
+sieve = 283146
+pi*1e6 = 3141592
+---
+lcg   = 2932257054
+sieve = 283146
+pi*1e6 = 3141592
+
+--- status ---
+both guests match the native reference
+--- stats ---
+guest run time: 242 ms
+per kernel: lcg 128 ms, sieve 56 ms, pi 30 ms
+JIT module load: 17 ms
+blocks compiled: 7 (198893 bytes of wasm)
+engine compile+instantiate: 1.8 ms
+translate / opt / emit: 4.6 / 2.7 / 16.8 ms
+profile: dispatch 1541, cache 1535/7, regions 7, bytes 198893
+---
+guest run time: 355 ms
+per kernel: lcg 139 ms, sieve 89 ms, pi 32 ms
+blocks compiled: 7 (550367 bytes of wasm)
+engine compile+instantiate: 2.9 ms
+translate / opt / emit: 75.7 / 1.0 / 6.4 ms
+profile: dispatch 1541, cache 1535/7, regions 7, bytes 550367

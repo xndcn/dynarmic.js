@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An open-source WebAssembly backend for Dynarmic. Run ARM32, Thumb and AArch64 code in a browser Worker or Node.js. Compare QuickJS on ARM, QuickJS on Wasm and browser JavaScript, then build your own host.">
+<meta name="theme-color" content="#f5f6f2">
+<script>
+  try {
+    const theme = localStorage.getItem('dynarmic-theme');
+    if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+  } catch { /* System colors remain available when storage is blocked. */ }
+</script>
+<meta name="application-name" content="dynarmic.js">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://xndcn.github.io/dynarmic.js/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="dynarmic.js">
+<meta property="og:title" content="ARM code. Your browser. · dynarmic.js">
+<meta property="og:description" content="An open-source WebAssembly backend for Dynarmic. Try real ARM32 and AArch64 programs in your browser.">
+<meta property="og:url" content="https://xndcn.github.io/dynarmic.js/">
+<meta property="og:image" content="https://xndcn.github.io/dynarmic.js/social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ARM code. Your browser. An open-source WebAssembly backend for Dynarmic.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ARM code. Your browser. · dynarmic.js">
+<meta name="twitter:description" content="An open-source WebAssembly backend for Dynarmic. Try real ARM32 and AArch64 programs in your browser.">
+<meta name="twitter:image" content="https://xndcn.github.io/dynarmic.js/social-card.png">
+<meta name="twitter:image:alt" content="ARM code. Your browser. An open-source WebAssembly backend for Dynarmic.">
+<link rel="manifest" href="site.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>ARM code. Your browser. · dynarmic.js</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+<script src="site.js" defer></script>
+<script src="c-bench-protocol.js" defer></script>
+<script src="c-bench-app.js" defer></script>
+<script src="quickjs-workloads.js" defer></script>
+<script src="quickjs-app.js" defer></script>
+<script src="official-benchmarks-app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#c-bench">Skip to benchmarks</a>
+<header class="site-header">
+  <a class="wordmark" href="#" aria-label="dynarmic.js home"><span class="brand-symbol" aria-hidden="true">››</span>dynarmic<span>.js</span></a>
+  <nav aria-label="Main navigation">
+    <a href="#intro"><span class="nav-full">Intro</span><span class="nav-short">Intro</span></a><a href="#build"><span class="nav-full">Use the package</span><span class="nav-short">Start</span></a><a href="#c-bench"><span class="nav-full">C benchmarks</span><span class="nav-short">C lab</span></a><a href="#quickjs"><span class="nav-full">QuickJS benchmarks</span><span class="nav-short">QuickJS</span></a><a href="#architecture"><span class="nav-full">How it works</span><span class="nav-short">Architecture</span></a>
+    <a class="nav-source" href="https://github.com/xndcn/dynarmic.js">GitHub <span aria-hidden="true">↗</span></a>
+  </nav>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Color theme: system. Change to light theme." title="Change color theme">
+    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2v2m0 12v2M2 10h2m12 0h2M4.35 4.35l1.4 1.4m8.5 8.5 1.4 1.4m0-11.3-1.4 1.4m-8.5 8.5-1.4 1.4"/><circle cx="10" cy="10" r="3.25"/></svg>
+    <span id="theme-label">System</span>
+  </button>
+</header>
+<main>
+  <section id="intro" class="hero" aria-labelledby="title">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Open source / WebAssembly JIT</p>
+      <h1 id="title">ARM code.<br><em>Your browser.</em></h1>
+      <p class="lede">A JIT that speaks WebAssembly.</p>
+      <p class="hero-description">Translate ARM instructions into WebAssembly at runtime. Bring ARM32, Thumb and AArch64 code to a browser Worker or Node.js—with your memory, your services and your host.</p>
+      <div class="hero-actions"><a class="button-link" href="#build">Use the package <span aria-hidden="true">↗</span></a><a class="text-link" href="#c-bench">Explore the benchmarks <span aria-hidden="true">→</span></a></div>
+      <div class="hero-meta" role="group" aria-label="Release details"><span>v0.1.0-alpha.0</span><span>MIT</span><span>Built on <a href="https://github.com/lioncash/dynarmic">Dynarmic</a></span></div>
+    </div>
+    <figure class="engine" aria-labelledby="engine-caption">
+      <div class="engine-header"><span class="mono-label">Illustrated pipeline / Fig. 01</span><button id="pipeline-toggle" class="pipeline-toggle" type="button" aria-pressed="false" hidden>Pause motion</button></div>
+      <svg class="engine-map" viewBox="0 0 420 286" role="img" aria-labelledby="map-title map-desc">
+        <title id="map-title">From ARM instructions to WebAssembly</title>
+        <desc id="map-desc">ARM32, Thumb and AArch64 frontends feed Dynarmic's intermediate representation. The WebAssembly backend emits modules that execute in a browser Worker or Node.js.</desc>
+        <defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".7" fill="currentColor" opacity=".15"/></pattern></defs>
+        <rect width="420" height="286" fill="url(#grid)"/>
+        <g class="diagram-wires" fill="none" stroke="currentColor" stroke-width="1.3"><path class="pipeline-flow" d="M74 58V88H210M210 58V116M346 58V88H210V116"/><path class="pipeline-flow pipeline-flow-return" d="M210 190V226M210 226H110V246M210 226H310V246"/></g>
+        <g class="diagram-inputs"><rect x="24" y="20" width="100" height="38" rx="5"/><rect x="160" y="20" width="100" height="38" rx="5"/><rect x="296" y="20" width="100" height="38" rx="5"/><text x="74" y="44">ARM32</text><text x="210" y="44">Thumb</text><text x="346" y="44">AArch64</text></g>
+        <g class="diagram-core"><rect x="115" y="116" width="190" height="74" rx="8"/><text class="core-title" x="210" y="146">dynarmic.js</text><text class="core-subtitle" x="210" y="171">DECODE · OPTIMIZE · EMIT</text></g>
+        <g class="diagram-outputs"><rect x="46" y="246" width="128" height="30" rx="4"/><rect x="246" y="246" width="128" height="30" rx="4"/><text x="110" y="266">Browser Worker</text><text x="310" y="266">Node.js</text></g>
+        <circle class="diagram-node" cx="210" cy="88" r="4"/><circle class="diagram-node" cx="210" cy="226" r="4"/>
+      </svg>
+      <div class="translation-trace" role="group" aria-label="Conceptual instruction translation example">
+        <div><span>Guest / ARM32</span><code>add r0, r0, #1</code></div>
+        <div><span>Optimized IR</span><code>r0 ← r0 + 1</code></div>
+        <div><span>Wasm / simplified</span><code>i32.add</code></div>
+      </div>
+      <figcaption id="engine-caption">One instruction. Three representations.<br><span>A conceptual trace, not live telemetry.</span></figcaption>
+      <div class="engine-footer"><span class="mono-label">ARM → IR → WASM</span><a href="#architecture" aria-label="Explore the path: translation architecture">Explore the path <span aria-hidden="true">↓</span></a></div>
+    </figure>
+  </section>
+
+  <div class="capabilities" role="group" aria-label="Project at a glance">
+    <p><strong>ARM32 + AArch64</strong><span>Including ARM and Thumb</span></p>
+    <p><strong>Browser + Node.js</strong><span>One WebAssembly backend</span></p>
+    <p><strong>Three memory paths</strong><span>Callbacks, page table, flat window</span></p>
+    <p><strong>MIT</strong><span>Source available to inspect and extend</span></p>
+  </div>
+
+  <section id="build" class="build section" aria-labelledby="build-title">
+    <div class="build-copy">
+      <p class="eyebrow">01 / Use the package</p>
+      <h2 id="build-title">Start with <br><span>an import.</span></h2>
+      <p>Load ARM code, inspect registers, and handle guest services from JavaScript. The package brings its own Wasm runtime and TypeScript declarations.</p>
+      <p class="package-version"><span class="badge">Experimental</span><code>0.1.0-alpha.0</code></p>
+      <dl class="package-facts">
+        <div><dt>One factory</dt><dd><code>createEmulator()</code> for ARM32, Thumb and AArch64.</dd></div>
+        <div><dt>Ready to consume</dt><dd>No compiler, install script or runtime npm dependency once you have the tarball.</dd></div>
+        <div><dt>Your guest, your host</dt><dd>Bounded RAM, register access, stepping and SVC stops. Bring your own loader and guest services.</dd></div>
+      </dl>
+      <a class="text-link" href="https://github.com/xndcn/dynarmic.js/blob/main/docs/JavaScript.md">JavaScript API &amp; integration guide <span aria-hidden="true">↗</span></a>
+      <p class="hint">Node.js 22+ or a browser with Wasm SIMD, tail calls and BigInt. The alpha API may change; pin the exact version.</p>
+    </div>
+    <div class="package-guide">
+      <div class="package-install">
+        <h3>01 / Install a release package</h3>
+        <p>Choose a version from <a href="https://github.com/xndcn/dynarmic.js/releases">GitHub Releases</a> and download its <code>.tgz</code> package, then install the file in your application. If your version has no release yet, <a href="https://github.com/xndcn/dynarmic.js/blob/main/docs/Releasing.md#npm-package">build a local tarball</a>. Use the filename of your chosen version below.</p>
+        <div class="build-terminal"><div class="terminal-heading"><span class="mono-label">In your application</span><button type="button" class="copy-button" disabled data-copy="npm-install-command" data-copy-label="Package install command" aria-label="Copy package install command">Copy</button></div><pre id="npm-install-command"><code>npm install ./dynarmic.js-0.1.0-alpha.0.tgz</code></pre></div>
+        <p class="hint">To run this entire site locally, download the matching <code>-pages.tar.gz</code>, extract it, and run <code>python3 -m http.server 8000</code> inside that directory. Open <code>http://localhost:8000/</code>. All demo engines are included.</p>
+      </div>
+      <p id="copy-status" class="copy-status" role="status" aria-live="polite" aria-atomic="true"></p>
+      <details class="package-example" open>
+        <summary><span><strong>02 / Node.js</strong><small>Three ARM instructions. One answer.</small></span></summary>
+        <div class="package-example-body">
+          <p>Save as <code>hello.mjs</code>, then run <code>node hello.mjs</code>. <code>svc</code> returns control to your JavaScript host; it does not call an operating system.</p>
+          <div class="build-terminal"><div class="terminal-heading"><span class="mono-label">hello.mjs / ARM32</span><button type="button" class="copy-button" disabled data-copy="npm-node-example" data-copy-label="Node.js example" aria-label="Copy complete Node.js example">Copy</button></div><pre id="npm-node-example"><code>import {createEmulator} from 'dynarmic.js';
+
+const cpu = await createEmulator({
+  architecture: 'a32', memorySize: 65536,
+});
+try {
+  // mov r0, #40; add r0, r0, #2; svc #7
+  cpu.writeMemory(0x1000, Uint8Array.of(
+    0x28, 0x00, 0xa0, 0xe3,
+    0x02, 0x00, 0x80, 0xe2,
+    0x07, 0x00, 0x00, 0xef,
+  ));
+  cpu.setPC(0x1000);
+  const result = cpu.run({maxTicks: 1000});
+  if (result.reason !== 'svc') {
+    throw new Error(`Guest stopped: ${result.reason}`);
+  }
+  console.log(result.reason, result.svc, cpu.getRegister(0));
+} finally {
+  cpu.dispose();
+}</code></pre><p class="terminal-output"><span aria-hidden="true">↳</span> Expected output: svc 7 42</p></div>
+          <p class="hint">CommonJS: use <code>await import('dynarmic.js')</code> inside an async function. A32 register values use <code>number</code>; A64 uses <code>bigint</code>.</p>
+        </div>
+      </details>
+      <details class="package-example" id="npm-browser-example">
+        <summary><span><strong>03 / Browser Worker + Vite</strong><small>AArch64 execution, off the main thread.</small></span></summary>
+        <div class="package-example-body">
+          <p>In a Vite application with the local package installed, add these files. Keep your existing plugins and set <code>worker.format</code> to <code>'es'</code> in your Vite config. Load <code>main.js</code> from an HTML module script.</p>
+          <div class="build-terminal"><div class="terminal-heading"><span class="mono-label">vite.config.js</span><button type="button" class="copy-button" disabled data-copy="npm-vite-config" data-copy-label="Vite configuration" aria-label="Copy Vite module Worker configuration">Copy</button></div><pre id="npm-vite-config"><code>export default {
+  worker: {format: 'es'},
+};</code></pre></div>
+          <div class="build-terminal"><div class="terminal-heading"><span class="mono-label">index.html</span><button type="button" class="copy-button" disabled data-copy="npm-vite-html" data-copy-label="HTML entry" aria-label="Copy HTML module entry">Copy</button></div><pre id="npm-vite-html"><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;dynarmic.js example&lt;/title&gt;
+&lt;p&gt;Open the browser console to see the guest result.&lt;/p&gt;
+&lt;script type="module" src="./main.js"&gt;&lt;/script&gt;
+&lt;/html&gt;</code></pre></div>
+          <div class="build-terminal"><div class="terminal-heading"><span class="mono-label">main.js</span><button type="button" class="copy-button" disabled data-copy="npm-vite-main" data-copy-label="Browser entry" aria-label="Copy browser Worker entry">Copy</button></div><pre id="npm-vite-main"><code>const worker = new Worker(
+  new URL('./worker.js', import.meta.url),
+  {type: 'module'},
+);
+worker.onmessage = ({data}) =&gt; {
+  console.log(data); // {reason: 'svc', value: '42'}
+  worker.terminate();
+};
+worker.onerror = (error) =&gt; {
+  console.error(error.message);
+  worker.terminate();
+};</code></pre></div>
+          <div class="build-terminal"><div class="terminal-heading"><span class="mono-label">worker.js / AArch64</span><button type="button" class="copy-button" disabled data-copy="npm-vite-worker" data-copy-label="AArch64 Worker example" aria-label="Copy complete AArch64 Worker example">Copy</button></div><pre id="npm-vite-worker"><code>import {createEmulator} from 'dynarmic.js';
+import wasmURL from 'dynarmic.js/runtime.wasm?url';
+
+const cpu = await createEmulator({
+  architecture: 'a64', memorySize: 65536,
+  wasmURL: new URL(wasmURL, self.location.href),
+});
+try {
+  // mov x0, #42; svc #0
+  cpu.writeMemory(0x1000, Uint8Array.of(
+    0x40, 0x05, 0x80, 0xd2,
+    0x01, 0x00, 0x00, 0xd4,
+  ));
+  cpu.setPC(0x1000n);
+  const result = cpu.run({maxTicks: 1000});
+  if (result.reason !== 'svc') {
+    throw new Error(`Guest stopped: ${result.reason}`);
+  }
+  postMessage({
+    reason: result.reason,
+    value: cpu.getRegister(0).toString(),
+  });
+} finally {
+  cpu.dispose();
+}</code></pre></div>
+          <p>Run <code>npx vite</code> and open the local URL. The console should show <code>{reason: 'svc', value: '42'}</code>. Vite copies and fingerprints the Wasm asset through the <code>?url</code> import.</p>
+          <p class="hint">For a production build, run <code>npx vite build</code>, then <code>npx vite preview</code>. Add <code>vite/client</code> types for TypeScript <code>?url</code> imports.</p>
+        </div>
+      </details>
+      <details class="package-example">
+        <summary><span><strong>Loading &amp; lifetime</strong><small>Asset URLs, budgets and cleanup.</small></span></summary>
+        <div class="package-example-body package-contract">
+          <p><strong>Choose how to load.</strong> Node finds the adjacent Wasm automatically. Without a bundler, host <code>index.js</code>, <code>runtime.mjs</code> and <code>runtime.wasm</code> together, then import the hosted <code>index.js</code> from your module Worker. Serve <code>.mjs</code> as JavaScript and <code>.wasm</code> as <code>application/wasm</code>.</p>
+          <p><strong>Move the asset when needed.</strong> Pass an absolute <code>wasmURL</code>, or supply <code>wasmBinary</code> as a <code>Uint8Array</code> or <code>ArrayBuffer</code>. Use one override at a time. The <a href="https://github.com/xndcn/dynarmic.js/blob/main/docs/JavaScript.md#loading-the-runtime">loading guide</a> covers CSP and custom asset hosts.</p>
+          <p><strong>Keep execution bounded.</strong> <code>run()</code> is synchronous. <code>maxTicks</code> is a cooperative budget checked at block boundaries, not a wall-clock deadline. Use a Worker and <code>worker.terminate()</code> for hard cancellation.</p>
+          <p><strong>Release each instance.</strong> Use <code>try/finally</code> with <code>cpu.dispose()</code>. Memory reads return copies; host writes invalidate translated code. Separate factories have separate CPU state and RAM.</p>
+        </div>
+      </details>
+      <details class="package-example" id="cpp-example">
+        <summary><span><strong>Need a custom C++ host?</strong><small>Own the memory map, callbacks and devices.</small></span></summary>
+        <div class="package-example-body">
+          <p>Use the <a href="https://github.com/xndcn/dynarmic.js/blob/main/docs/Embedding.md">C++ embedding guide</a> for custom devices and memory callbacks. Clone the recursive source and follow the <a href="https://github.com/xndcn/dynarmic.js/tree/main/examples/node">source-build Node example</a> to build <code>arm_jit</code> with Emscripten, CMake and Boost headers.</p>
+          <div class="build-terminal"><div class="terminal-heading"><span class="mono-label">Get the source</span><button type="button" class="copy-button" disabled data-copy="clone-command" data-copy-label="Clone commands" aria-label="Copy clone commands">Copy</button></div><pre id="clone-command"><code>git clone --recurse-submodules \
+  https://github.com/xndcn/dynarmic.js.git
+cd dynarmic.js</code></pre><div class="terminal-heading"><span class="mono-label">After building arm_jit</span><button type="button" class="copy-button" disabled data-copy="run-command" data-copy-label="Node.js command" aria-label="Copy source-build Node.js command">Copy</button></div><pre id="run-command"><code>node examples/node/hello.mjs</code></pre><p class="terminal-output"><span aria-hidden="true">↳</span> Expected: ARM32 and AArch64 both return 42.</p></div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="c-bench" class="c-bench section" aria-labelledby="c-bench-title">
+    <div class="section-heading"><div><p class="eyebrow">02 / C benchmarks</p><h2 id="c-bench-title">Same C.<br><span>Different execution paths.</span></h2></div><p class="section-intro">Five fixed workloads, built with the same compiler version and no libc. Compare ARM through dynarmic.js with x86 through v86, alongside a direct WebAssembly reference.</p></div>
+    <div class="c-bench-lab">
+      <div class="c-bench-topline"><span class="mono-label">C / fixed-work comparison</span><span class="local-label"><span aria-hidden="true">●</span> Measured here, on your device</span></div>
+      <div class="c-bench-paths" role="group" aria-label="C benchmark execution paths">
+        <div><span class="mono-label">A / ARM</span><h3>dynarmic.js</h3><p>C → ARM32 → Wasm JIT</p></div>
+        <div><span class="mono-label">B / x86</span><h3>v86</h3><p>C → x86 → Wasm JIT</p></div>
+        <div><span class="mono-label">C / Reference</span><h3>Direct Wasm</h3><p>C → WebAssembly</p></div>
+      </div>
+      <div class="c-bench-controls">
+        <div class="mode-control"><label for="c-bench-profile">Workload</label><select id="c-bench-profile"><option value="quick">Quick</option><option value="full">Extended</option></select></div>
+        <div class="mode-control"><label for="c-bench-case">Case</label><select id="c-bench-case"><option value="all">All five cases</option><option value="integer">Integer mix</option><option value="branch">Data-dependent branches</option><option value="stream">Sequential memory</option><option value="pointer">Random memory</option><option value="float">Float64 arithmetic</option></select></div>
+        <div class="actions"><button id="c-bench-run" class="button-link" type="button" disabled>Run comparison <span aria-hidden="true">→</span></button><button id="c-bench-stop" class="secondary" type="button" disabled>Stop</button></div>
+      </div>
+      <p id="c-bench-status" class="status" role="status" aria-live="polite" aria-atomic="true" data-state="idle">Ready. Keep this tab visible while the comparison runs.</p>
+      <div class="c-bench-meta"><p>3 fresh-engine rounds per path<span>Each round: 1 first run · 2 unmeasured warmups · 3 measured calls</span></p><button id="c-bench-export" class="secondary" type="button" disabled>Export JSON ↓</button></div>
+      <div id="c-bench-results" class="c-bench-results" role="region" aria-label="C benchmark measurements"><p class="hint">Choose a case or run all five. Inputs and work counts stay fixed across all three paths; every call must match its reference checksum.</p></div>
+      <noscript><p class="notice">Enable JavaScript to run the C comparison. Work executes locally in disposable Workers.</p></noscript>
+    </div>
+    <div class="c-bench-notes"><details><summary>How to read this comparison</summary><p>The main values summarize three independent engine instances: take the median of three measured calls in each round, then the median and range of those three round medians. First-run and loading times are shown separately. Runtime order rotates, and only one observation runs at a time.</p><p>Ratios pair observations from the same round. v86 / ARM above 1 favors dynarmic.js; ARM / direct Wasm above 1 favors the direct reference. Overall ratios give each selected case equal weight. Incomplete rounds and round medians below 0.1 ms do not produce ratios. The raw samples remain in the export.</p><p>Matching the source and compiler removes some differences; instruction sets, translation, memory access and browser scheduling still differ. This measures complete execution paths. Two warmups do not prove steady-state performance. Hiding this tab immediately stops the run and invalidates its timings.</p></details><a class="text-link" href="c-bench-source.c">Inspect the shared C source <span aria-hidden="true">↗</span></a></div>
+    <details class="benchmark-source" id="c-bench-source" data-source="c-bench-source.c" data-language="c">
+      <summary>View benchmark code <span>C · all five kernels</span></summary>
+      <div class="source-toolbar"><span class="source-language">C</span><button class="secondary source-copy" type="button" disabled>Copy code</button><a href="c-bench-source.c" download>Download source ↗</a><button class="secondary source-retry" type="button" hidden>Retry loading</button></div>
+      <p class="source-status hint" role="status" aria-live="polite">Open to read the source used by this benchmark.</p>
+      <pre tabindex="0" aria-label="C · all five kernels benchmark source"><code></code></pre>
+    </details>
+  </section>
+
+  <section id="quickjs" class="quickjs section" aria-labelledby="quickjs-title">
+    <div class="section-heading"><div><p class="eyebrow">03 / QuickJS benchmarks</p><h2 id="quickjs-title">One script.<br><span>Three engines.</span></h2></div><p class="section-intro">The engine inside the engine: QuickJS runs as an ARM32 program through dynarmic.js. Compare it with the same interpreter compiled directly to Wasm, and with your browser’s JavaScript engine.</p></div>
+    <div class="benchmark-paths" role="group" aria-label="QuickJS execution paths">
+      <article><span class="mono-label">A / ARM</span><h3>QuickJS on ARM</h3><p>JavaScript → QuickJS → ARM32 → Wasm JIT</p></article>
+      <article><span class="mono-label">B / Wasm</span><h3>QuickJS on Wasm</h3><p>JavaScript → QuickJS → WebAssembly</p></article>
+      <article><span class="mono-label">C / Browser</span><h3>Browser JavaScript</h3><p>JavaScript → your browser’s engine</p></article>
+    </div>
+    <div class="benchmark-picker"><div class="mode-control"><label for="quickjs-suite">Benchmark suite</label><select id="quickjs-suite" aria-controls="official-benchmarks quickjs-custom" disabled><option value="official">V8 v7 · 10 upstream cases</option><option value="custom">Custom · LCG, sieve &amp; π</option></select></div><p>Same source across all three paths. Custom kernels check fixed outputs; upstream cases retain their built-in checks.</p></div>
+    <div id="official-benchmarks" class="benchmark-panel" role="region" aria-label="V8 v7 benchmarks">
+      <p class="benchmark-description">The V8 v7 suite shipped in QuickJS extras: eight suites, ten cases, original timing windows and built-in correctness checks.</p>
+    <div class="official-lab">
+      <div class="official-toolbar"><div class="mode-control"><label for="official-case">Case</label><select id="official-case" disabled></select></div><div class="actions"><button id="official-run" class="button-link" type="button" disabled>Run selected <span aria-hidden="true">→</span></button><button id="official-run-all" class="secondary" type="button" disabled>Run all 10</button><button id="official-stop" class="secondary" type="button" disabled>Stop</button></div></div>
+      <p id="official-status" class="status" role="status" aria-live="polite" aria-atomic="true" data-state="idle">Loading the official benchmark inventory…</p>
+      <noscript><p class="notice">Enable JavaScript to select and run the benchmark cases. The original source remains available below.</p></noscript>
+      <button id="official-reload" class="secondary" type="button" hidden>Reload benchmark inventory</button>
+      <div class="official-meta"><span class="mono-label">QuickJS extras / V8 suite v7</span><span>Upstream sampling · 1 s warmup · ≥1 s measurement · ≥32 iterations</span><button id="official-export" class="secondary" type="button" disabled>Export JSON ↓</button></div>
+      <div id="official-results" class="official-results" role="region" aria-label="Official JavaScript benchmark results"><p class="hint">Run a case to compare the three engines. Timings use the original V8 v7 harness and its built-in checks. The full comparison runs 30 engine/case combinations and may take several minutes.</p></div>
+    </div>
+    <div class="official-notes"><p><strong>What stays official?</strong> The benchmark bodies, assertions, suite references and timing intent come from the pinned QuickJS extras archive. The page adds a Worker adapter so every case can be selected, cancelled and reported as JSON. Every case retains its original workloads, one-second warmup and at least 32 measured iterations. Most cases include upstream numerical assertions; RegExp and NavierStokes rely on their upstream completion checks rather than independent fixed-output verification in this page. Each Worker has a five-minute limit; Stop ends it immediately. Timing windows use the host’s monotonic clock. Complete-suite scores are shown separately from per-case timings.</p><a class="text-link" href="official-v8-upstream.js">Read the original JavaScript <span aria-hidden="true">↗</span></a></div>
+    <details class="benchmark-source" id="official-source" data-source="official-v8-upstream.js" data-language="javascript">
+      <summary>View benchmark code <span>JavaScript · original V8 v7 suite</span></summary>
+      <div class="source-toolbar"><span class="source-language">JavaScript</span><button class="secondary source-copy" type="button" disabled>Copy code</button><a href="official-v8-upstream.js" download>Download source ↗</a><button class="secondary source-retry" type="button" hidden>Retry loading</button></div>
+      <p class="source-status hint" role="status" aria-live="polite">Open to read the source used by this benchmark.</p>
+      <pre tabindex="0" aria-label="JavaScript · original V8 v7 suite benchmark source"><code></code></pre>
+    </details>
+    </div>
+    <div id="quickjs-custom" class="benchmark-panel" role="region" aria-label="Custom QuickJS benchmark" hidden>
+      <p class="benchmark-description">A special benchmark with three small kernels: unsigned integer mixing, a prime sieve and floating-point π approximation. Use Preview for a quick run or Extended for more work.</p>
+    <div class="q-lab">
+      <div class="q-topline"><span class="mono-label">Custom workload / LCG · sieve · π</span><span class="local-label"><span aria-hidden="true">●</span> Computed here, on your device</span></div>
+      <div class="custom-engine-status" aria-label="Custom workload engine status"><span>QuickJS on ARM <span id="q-badge-dynarmic" class="badge">Not run</span></span><span>QuickJS on Wasm <span id="q-badge-wasm" class="badge">Not run</span></span><span>Browser JS <span id="q-badge-native" class="badge">Not run</span></span></div>
+      <div class="q-controls"><div class="actions"><button id="quickjs-run" class="button-link" type="button" disabled>Run comparison <span aria-hidden="true">→</span></button><button id="quickjs-stop" class="secondary" type="button" disabled>Stop</button></div><div class="mode-control"><label for="quickjs-profile">Workload</label><select id="quickjs-profile"><option value="light">Preview</option><option value="full">Extended</option></select></div><p>LCG · Sieve · Pi<span>1 first pass + 1 warmup + 3 measured repeats</span></p></div>
+      <p id="quickjs-status" class="status" role="status" aria-live="polite" aria-atomic="true" data-state="idle">Ready. Three paths, one set of verified answers.</p>
+      <a id="quickjs-view-results" class="text-link q-jump" href="#quickjs-results" hidden>View results <span aria-hidden="true">↓</span></a>
+      <noscript><p class="notice">Enable JavaScript to run the comparison. All three paths execute locally in Workers.</p></noscript>
+      <div id="quickjs-results" class="q-results" hidden>
+        <div class="q-results-heading"><h3>Three paths. Measured here.</h3><button id="quickjs-export" class="secondary" type="button" disabled>Export JSON ↓</button></div>
+        <p id="q-measurement" class="hint">Repeated-pass median per kernel · milliseconds · lower is faster</p>
+        <div id="q-charts" class="q-charts" role="group" aria-label="Measured kernel timings"></div>
+        <div id="q-runtime-details" class="q-runtime-details"></div>
+      </div>
+    </div>
+    <div class="q-notes"><details><summary>What is being measured?</summary><p>Each engine runs the identical <a href="quickjs-workloads.js">JavaScript source</a> with identical inputs. The first pass is shown separately, followed by one unmeasured warmup and three measured repeats that reuse the engine. Charts show their median and range. All three measured samples are retained. Loading and engine initialization sit outside kernel timing; complete-call timings include different setup work, detailed with each result.</p><p>QuickJS interprets JavaScript in both builds. The ARM path also translates machine instructions into Wasm. This compares complete execution paths on your device, not isolated compiler overhead. Browser scheduling, timer precision and engine tiering affect the result; three samples are an exploration, not a performance claim. Keep this tab visible and avoid other heavy work.</p><p>LCG uses explicit unsigned 32-bit arithmetic; the sieve uses a Uint8Array; pi uses double-precision arithmetic. Every measured pass must match the fixed reference outputs. The C benchmarks above use different work counts; their times are not directly comparable.</p></details><div><span class="mono-label">From experiment to example</span><p>Build both QuickJS targets, inspect the host, and reproduce the comparison in Node.js.</p><a class="text-link" href="https://github.com/xndcn/dynarmic.js/tree/main/examples/quickjs">Explore the QuickJS example <span aria-hidden="true">↗</span></a></div></div>
+    <details class="benchmark-source" id="quickjs-source" data-source="quickjs-workloads.js" data-language="javascript">
+      <summary>View benchmark code <span>JavaScript · LCG, sieve &amp; π</span></summary>
+      <div class="source-toolbar"><span class="source-language">JavaScript</span><button class="secondary source-copy" type="button" disabled>Copy code</button><a href="quickjs-workloads.js" download>Download source ↗</a><button class="secondary source-retry" type="button" hidden>Retry loading</button></div>
+      <p class="source-status hint" role="status" aria-live="polite">Open to read the source used by this benchmark.</p>
+      <pre tabindex="0" aria-label="JavaScript · LCG, sieve &amp; π benchmark source"><code></code></pre>
+    </details>
+    </div>
+  </section>
+
+  <section id="architecture" class="architecture section" aria-labelledby="architecture-title">
+    <div class="section-heading"><div><p class="eyebrow">04 / Under the hood</p><h2 id="architecture-title">Two layers of compilation.<br><span>One execution path.</span></h2></div><p class="section-intro">Dynarmic itself is compiled to WebAssembly. At runtime, it translates your guest code into more WebAssembly.</p></div>
+    <div class="architecture-layout">
+      <div class="architecture-steps" role="group" aria-label="Translation stages">
+        <button type="button" class="stage-button" disabled data-stage="decode" aria-pressed="true" aria-controls="stage-detail"><span class="step-index">01</span><span><strong>Decode the guest</strong><small>ARM instructions → Dynarmic IR</small></span><span class="step-arrow" aria-hidden="true">↗</span></button>
+        <button type="button" class="stage-button" disabled data-stage="emit" aria-pressed="false" aria-controls="stage-detail"><span class="step-index">02</span><span><strong>Shape the WebAssembly</strong><small>Optimized IR → Wasm modules</small></span><span class="step-arrow" aria-hidden="true">↗</span></button>
+        <button type="button" class="stage-button" disabled data-stage="execute" aria-pressed="false" aria-controls="stage-detail"><span class="step-index">03</span><span><strong>Execute and reuse</strong><small>Shared table → cached translations</small></span><span class="step-arrow" aria-hidden="true">↗</span></button>
+        <a class="text-link architecture-guide" href="https://github.com/xndcn/dynarmic.js/blob/main/docs/Architecture.md">Read the architecture guide <span aria-hidden="true">↗</span></a>
+      </div>
+      <div id="stage-detail" class="stage-detail" role="region" aria-label="Selected translation stage" aria-live="polite" aria-atomic="true">
+        <div class="detail-heading"><span id="stage-label" class="mono-label">01 / Decode</span><span class="detail-type">Conceptual example</span></div>
+        <pre id="stage-code"><code><span class="code-comment">; ARM32 guest instruction</span>
+add r0, r0, #1
+
+<span class="code-comment">; Decoded operation, in pseudocode</span>
+r0 ← r0 + 1</code></pre>
+        <h3 id="stage-title">Start with the guest's instructions.</h3>
+        <p id="stage-description">Dynarmic's ARM32, Thumb and AArch64 frontends decode instructions into a shared intermediate representation. Optimizations work on that IR before the Wasm backend takes over.</p>
+      </div>
+    </div>
+    <noscript><p class="notice">Stage selection needs JavaScript. The architecture guide describes decoding, Wasm emission, caching and execution in full.</p></noscript>
+    <div class="contract-note"><span class="contract-mark" aria-hidden="true">↳</span><p><strong>You bring the machine.</strong> The backend translates instructions. Your C++ host supplies memory, devices and system services through Dynarmic's callbacks.</p><a class="text-link" href="https://github.com/xndcn/dynarmic.js/blob/main/docs/Embedding.md">Embedding guide <span aria-hidden="true">↗</span></a></div>
+  </section>
+  <section class="release-note" aria-labelledby="release-title"><div><p class="eyebrow">Built in the open</p><h2 id="release-title">Explore with the limits in view.</h2><p>The JavaScript package is an experimental alpha alongside the C++ backend. It provides a CPU and bounded RAM; applications supply their own guest services. Floating-point modes and exception fidelity have known gaps.</p><p>MIT. Package tarballs include matching source, build instructions and dependency notices; keep them available when redistributing the runtime.</p></div><div class="release-links"><a href="https://github.com/xndcn/dynarmic.js/blob/main/docs/Roadmap.md">Support &amp; limitations <span aria-hidden="true">↗</span></a><a href="https://github.com/xndcn/dynarmic.js/blob/main/docs/Releasing.md#npm-package">Package build &amp; release guide <span aria-hidden="true">↗</span></a><a href="https://github.com/xndcn/dynarmic.js/blob/main/CONTRIBUTING.md">Contribute to the project <span aria-hidden="true">↗</span></a></div></section>
+</main>
+<footer class="site-footer"><div class="footer-top"><a class="wordmark" href="#">dynarmic<span>.js</span></a><p>Different instructions. Shared possibilities.</p><a class="text-link" href="https://github.com/xndcn/dynarmic.js">View on GitHub <span aria-hidden="true">↗</span></a></div><div class="footer-bottom"><p>Experimental · MIT<br>Requires WebAssembly tail calls and SIMD.</p><nav aria-label="Project resources"><a href="source.tar.gz" download>Source archive</a><a href="LICENSE.txt">License</a><a href="THIRD_PARTY_NOTICES.md">Notices</a><a href="runtime-licenses.txt">Runtime licenses</a><a href="https://github.com/xndcn/dynarmic.js/blob/main/SECURITY.md">Security</a></nav></div></footer>
+</body>
+</html>

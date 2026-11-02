@@ -1,0 +1,87 @@
+Test project /home/xiong/workspace/dynarmic.js/build-native
+    Start 11: region_corpus
+1/1 Test #11: region_corpus ....................***Failed    9.87 sec
+[  1%] Built target fmt
+[  2%] Built target mcl
+[  4%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_a64.cpp.o
+[  4%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_a32.cpp.o
+[  4%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_a64_memory.cpp.o
+[  4%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_fp_a64.cpp.o
+[  5%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_packed.cpp.o
+[  5%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_saturation.cpp.o
+[  7%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_vector2.cpp.o
+[  7%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_vector3.cpp.o
+[  7%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_vector_a64.cpp.o
+[  8%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_vector_fp.cpp.o
+[  8%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_vector_qc.cpp.o
+[  8%] Linking CXX static library libdynarmic.a
+[ 98%] Built target dynarmic
+[100%] Linking CXX executable region_corpus
+[100%] Built target region_corpus
+recorded a32_conditional_backward blocks=4 entry_index=1 bytes=396
+recorded a64_single_block blocks=1 entry_index=0 bytes=113
+recorded a64_backward_conditional blocks=3 entry_index=1 bytes=202
+recorded a64_bl_ret_push_rsb blocks=3 entry_index=0 bytes=646
+recorded a64_max_64_blocks blocks=64 entry_index=0 bytes=523
+✔ synthetic identical corpora compare by descriptor and raw bytes (3.128994ms)
+✔ comparator rejects missing case (4.576726ms)
+✔ comparator rejects extra case (0.941464ms)
+✔ comparator rejects reordered descriptors (0.557589ms)
+✔ comparator rejects wrong entry_index (0.62817ms)
+✔ comparator rejects wrong entry descriptor (0.509095ms)
+✔ comparator rejects reordered cases (0.480226ms)
+✔ comparator rejects truncated raw module (0.669372ms)
+✔ comparator rejects one-byte raw module mutation even with unchanged metadata (0.630301ms)
+✔ comparator accepts identical output with honest post-change candidate provenance (0.673872ms)
+✔ comparator fails closed on malformed JSON (0.528374ms)
+✔ comparator fails closed on wrong schema (0.384155ms)
+✔ comparator fails closed on malformed revision (0.458014ms)
+✔ comparator fails closed on unpinned baseline revision (0.448658ms)
+✔ comparator fails closed on duplicate cases (0.436232ms)
+✔ comparator fails closed on malformed descriptor (0.37086ms)
+✔ comparator fails closed on negative entry index (0.404835ms)
+✔ comparator fails closed on out-of-range entry index (0.424983ms)
+✔ comparator fails closed on absolute Wasm path (0.591222ms)
+✔ comparator fails closed on traversal Wasm path (0.398319ms)
+✔ comparator fails closed on wrong module size (0.407425ms)
+✔ comparator fails closed on invalid Wasm header (0.516849ms)
+✔ comparator CLI returns zero for equality and nonzero for mutations (64.641603ms)
+✔ checked-in corpus has the five permanent cases and raw modules (1.897573ms)
+✔ native recorder refuses stale output instead of overwriting it (2.888722ms)
+✖ native recorder output exactly matches the checked-in pre-change corpus (0.8506ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 25
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 151.242006
+
+✖ failing tests:
+
+test at ../../../tests/tools/region_corpus.test.mjs:188:1
+✖ native recorder output exactly matches the checked-in pre-change corpus (0.8506ms)
+  Error: a32_conditional_backward: raw Wasm bytes differ (Buffer.equals failed)
+      at requireCondition (file:///home/xiong/workspace/dynarmic.js/tests/tools/region_corpus_compare.mjs:11:25)
+      at compareRegionCorpora (file:///home/xiong/workspace/dynarmic.js/tests/tools/region_corpus_compare.mjs:78:5)
+      at TestContext.<anonymous> (file:///home/xiong/workspace/dynarmic.js/tests/tools/region_corpus.test.mjs:194:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+CMake Error at /home/xiong/workspace/dynarmic.js/tests/tools/run_region_corpus.cmake:43 (message):
+  region corpus comparison failed: 1
+
+
+
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   9.88 sec
+
+The following tests FAILED:
+	 11 - region_corpus (Failed)
+Errors while running CTest

@@ -1,0 +1,11 @@
+{
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "cpu": "12th Gen Intel(R) Core(TM) i7-12700",
+  "baseRevision": "930278597e9a288fd1e835f2814644eca5fe289b",
+  "files": {
+    "tests/ir/integer_edge_test.cpp": "a42d2e7f2f77500930b5bd384c260e94eee4ee22f6a4ad4826b69d1bc9638550",
+    "tests/ir/integer_edge_test.mjs": "1354f59c94f457214a05f3a65a1e604649a4b5143115eb987637dbb2e7203edc",
+    "src/dynarmic/backend/wasm/emit_wasm_packed.cpp": "69a599399e88b399bd2c0b0ca4af84891d9f9afabdea7d9d4c4065255c4c7fdb",
+    "src/dynarmic/backend/wasm/emit_wasm_saturation.cpp": "3c10556f36b6fd8159fb19d0750c52166ea98abefbf05549417da28c2f777e5e"
+  }
+}

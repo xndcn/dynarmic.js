@@ -1,0 +1,1628 @@
+{
+  "method": "Read-only recomputation of retained records; no new performance measurement.",
+  "observations": 96,
+  "checksums": 576,
+  "labs": {
+    "chrome-s4": {
+      "diagWasm": "19cc6cfc2b11340e9868c3ee53603d69239a51c1ec56658eb112611f876cc5d6",
+      "sessions": [
+        {
+          "session": 0,
+          "start": "2026-11-01T17:38:49.699Z",
+          "end": "2026-11-01T17:38:55.468Z"
+        },
+        {
+          "session": 1,
+          "start": "2026-11-01T17:38:55.608Z",
+          "end": "2026-11-01T17:39:01.310Z"
+        },
+        {
+          "session": 2,
+          "start": "2026-11-01T17:39:01.449Z",
+          "end": "2026-11-01T17:39:07.177Z"
+        }
+      ],
+      "timingsMs": {
+        "integer/bcore/0": {
+          "samples": [
+            11.699999988079071,
+            11.900000035762787,
+            12
+          ],
+          "median": 11.900000035762787,
+          "min": 11.699999988079071,
+          "max": 12
+        },
+        "integer/bcore/8": {
+          "samples": [
+            47.59999996423721,
+            45.19999998807907,
+            43.30000001192093
+          ],
+          "median": 45.19999998807907,
+          "min": 43.30000001192093,
+          "max": 47.59999996423721
+        },
+        "integer/arm/-": {
+          "samples": [
+            7.199999988079071,
+            6.699999988079071,
+            6.899999976158142
+          ],
+          "median": 6.899999976158142,
+          "min": 6.699999988079071,
+          "max": 7.199999988079071
+        },
+        "branch/bcore/0": {
+          "samples": [
+            18,
+            17.69999998807907,
+            18
+          ],
+          "median": 18,
+          "min": 17.69999998807907,
+          "max": 18
+        },
+        "branch/bcore/8": {
+          "samples": [
+            47.09999996423721,
+            46.90000003576279,
+            45.89999997615814
+          ],
+          "median": 46.90000003576279,
+          "min": 45.89999997615814,
+          "max": 47.09999996423721
+        },
+        "branch/arm/-": {
+          "samples": [
+            11.399999976158142,
+            10.800000011920929,
+            11.399999976158142
+          ],
+          "median": 11.399999976158142,
+          "min": 10.800000011920929,
+          "max": 11.399999976158142
+        },
+        "stream/bcore/0": {
+          "samples": [
+            49.59999996423721,
+            45.89999997615814,
+            48.5
+          ],
+          "median": 48.5,
+          "min": 45.89999997615814,
+          "max": 49.59999996423721
+        },
+        "stream/bcore/8": {
+          "samples": [
+            98,
+            94.19999998807907,
+            93.60000002384186
+          ],
+          "median": 94.19999998807907,
+          "min": 93.60000002384186,
+          "max": 98
+        },
+        "stream/arm/-": {
+          "samples": [
+            13.899999976158142,
+            13.899999976158142,
+            14.5
+          ],
+          "median": 13.899999976158142,
+          "min": 13.899999976158142,
+          "max": 14.5
+        },
+        "pointer/bcore/0": {
+          "samples": [
+            22.100000023841858,
+            23,
+            22.19999998807907
+          ],
+          "median": 22.19999998807907,
+          "min": 22.100000023841858,
+          "max": 23
+        },
+        "pointer/bcore/8": {
+          "samples": [
+            38.200000047683716,
+            38.799999952316284,
+            36.5
+          ],
+          "median": 38.200000047683716,
+          "min": 36.5,
+          "max": 38.799999952316284
+        },
+        "pointer/arm/-": {
+          "samples": [
+            7,
+            7,
+            7.200000047683716
+          ],
+          "median": 7,
+          "min": 7,
+          "max": 7.200000047683716
+        }
+      },
+      "pairedRatios": {
+        "integer/overDynarmic": {
+          "samples": [
+            1.625000001034803,
+            1.7761194114829522,
+            1.7391304407918986
+          ],
+          "median": 1.7391304407918986,
+          "min": 1.625000001034803,
+          "max": 1.7761194114829522
+        },
+        "integer/overUnpromotedCP": {
+          "samples": [
+            0.24579831926196438,
+            0.2632743371438332,
+            0.27713625858420965
+          ],
+          "median": 0.2632743371438332,
+          "min": 0.24579831926196438,
+          "max": 0.27713625858420965
+        },
+        "branch/overDynarmic": {
+          "samples": [
+            1.578947371723249,
+            1.6388888859761104,
+            1.578947371723249
+          ],
+          "median": 1.578947371723249,
+          "min": 1.578947371723249,
+          "max": 1.6388888859761104
+        },
+        "branch/overUnpromotedCP": {
+          "samples": [
+            0.38216560538571775,
+            0.3773987201403463,
+            0.39215686294879626
+          ],
+          "median": 0.38216560538571775,
+          "min": 0.3773987201403463,
+          "max": 0.39215686294879626
+        },
+        "stream/overDynarmic": {
+          "samples": [
+            3.568345327288719,
+            3.3021582773300526,
+            3.3448275862068964
+          ],
+          "median": 3.3448275862068964,
+          "min": 3.3021582773300526,
+          "max": 3.568345327288719
+        },
+        "stream/overUnpromotedCP": {
+          "samples": [
+            0.5061224486146655,
+            0.4872611463053795,
+            0.5181623930304065
+          ],
+          "median": 0.5061224486146655,
+          "min": 0.4872611463053795,
+          "max": 0.5181623930304065
+        },
+        "pointer/overDynarmic": {
+          "samples": [
+            3.157142860548837,
+            3.2857142857142856,
+            3.083333311257539
+          ],
+          "median": 3.157142860548837,
+          "min": 3.083333311257539,
+          "max": 3.2857142857142856
+        },
+        "pointer/overUnpromotedCP": {
+          "samples": [
+            0.5785340313155813,
+            0.5927835058831474,
+            0.608219177755591
+          ],
+          "median": 0.5927835058831474,
+          "min": 0.5785340313155813,
+          "max": 0.608219177755591
+        }
+      }
+    },
+    "chrome-s5": {
+      "diagWasm": "4b886d71b1ebe0bda1cdfe44c6964c02fea33f77f2105519d825d9855a985937",
+      "sessions": [
+        {
+          "session": 0,
+          "start": "2026-11-01T18:31:33.726Z",
+          "end": "2026-11-01T18:31:39.695Z"
+        },
+        {
+          "session": 1,
+          "start": "2026-11-01T18:31:39.835Z",
+          "end": "2026-11-01T18:31:45.725Z"
+        },
+        {
+          "session": 2,
+          "start": "2026-11-01T18:31:45.867Z",
+          "end": "2026-11-01T18:31:51.652Z"
+        }
+      ],
+      "timingsMs": {
+        "integer/bcore/0": {
+          "samples": [
+            13.100000023841858,
+            12.800000011920929,
+            12.699999988079071
+          ],
+          "median": 12.800000011920929,
+          "min": 12.699999988079071,
+          "max": 13.100000023841858
+        },
+        "integer/bcore/8": {
+          "samples": [
+            43.69999998807907,
+            44.80000001192093,
+            47.30000001192093
+          ],
+          "median": 44.80000001192093,
+          "min": 43.69999998807907,
+          "max": 47.30000001192093
+        },
+        "integer/arm/-": {
+          "samples": [
+            6.899999976158142,
+            7,
+            7
+          ],
+          "median": 7,
+          "min": 6.899999976158142,
+          "max": 7
+        },
+        "branch/bcore/0": {
+          "samples": [
+            18.19999998807907,
+            17.19999998807907,
+            17.30000001192093
+          ],
+          "median": 17.30000001192093,
+          "min": 17.19999998807907,
+          "max": 18.19999998807907
+        },
+        "branch/bcore/8": {
+          "samples": [
+            48.19999998807907,
+            46.89999997615814,
+            46
+          ],
+          "median": 46.89999997615814,
+          "min": 46,
+          "max": 48.19999998807907
+        },
+        "branch/arm/-": {
+          "samples": [
+            11.199999988079071,
+            11.100000023841858,
+            10.800000011920929
+          ],
+          "median": 11.100000023841858,
+          "min": 10.800000011920929,
+          "max": 11.199999988079071
+        },
+        "stream/bcore/0": {
+          "samples": [
+            47.80000001192093,
+            45.39999997615814,
+            49.90000003576279
+          ],
+          "median": 47.80000001192093,
+          "min": 45.39999997615814,
+          "max": 49.90000003576279
+        },
+        "stream/bcore/8": {
+          "samples": [
+            95,
+            96.80000001192093,
+            102
+          ],
+          "median": 96.80000001192093,
+          "min": 95,
+          "max": 102
+        },
+        "stream/arm/-": {
+          "samples": [
+            13.299999952316284,
+            14.100000023841858,
+            13.800000011920929
+          ],
+          "median": 13.800000011920929,
+          "min": 13.299999952316284,
+          "max": 14.100000023841858
+        },
+        "pointer/bcore/0": {
+          "samples": [
+            24,
+            23.299999952316284,
+            22.899999976158142
+          ],
+          "median": 23.299999952316284,
+          "min": 22.899999976158142,
+          "max": 24
+        },
+        "pointer/bcore/8": {
+          "samples": [
+            36.19999998807907,
+            37.69999998807907,
+            36.5
+          ],
+          "median": 36.5,
+          "min": 36.19999998807907,
+          "max": 37.69999998807907
+        },
+        "pointer/arm/-": {
+          "samples": [
+            7,
+            7,
+            7
+          ],
+          "median": 7,
+          "min": 7,
+          "max": 7
+        }
+      },
+      "pairedRatios": {
+        "integer/overDynarmic": {
+          "samples": [
+            1.8985507346531645,
+            1.8285714302744185,
+            1.8142857125827245
+          ],
+          "median": 1.8285714302744185,
+          "min": 1.8142857125827245,
+          "max": 1.8985507346531645
+        },
+        "integer/overUnpromotedCP": {
+          "samples": [
+            0.2997711676754098,
+            0.28571428590435155,
+            0.2684989425978502
+          ],
+          "median": 0.28571428590435155,
+          "min": 0.2684989425978502,
+          "max": 0.2997711676754098
+        },
+        "branch/overDynarmic": {
+          "samples": [
+            1.6250000006652303,
+            1.5495495451472912,
+            1.601851851187534
+          ],
+          "median": 1.601851851187534,
+          "min": 1.5495495451472912,
+          "max": 1.6250000006652303
+        },
+        "branch/overUnpromotedCP": {
+          "samples": [
+            0.37759336084191564,
+            0.36673773980432367,
+            0.37608695678088977
+          ],
+          "median": 0.37608695678088977,
+          "min": 0.36673773980432367,
+          "max": 0.37759336084191564
+        },
+        "stream/overDynarmic": {
+          "samples": [
+            3.5939849761876306,
+            3.2198581488929605,
+            3.6159420284534347
+          ],
+          "median": 3.5939849761876306,
+          "min": 3.2198581488929605,
+          "max": 3.6159420284534347
+        },
+        "stream/overUnpromotedCP": {
+          "samples": [
+            0.5031578948623255,
+            0.4690082641587513,
+            0.4892156866251254
+          ],
+          "median": 0.4892156866251254,
+          "min": 0.4690082641587513,
+          "max": 0.5031578948623255
+        },
+        "pointer/overDynarmic": {
+          "samples": [
+            3.4285714285714284,
+            3.3285714217594693,
+            3.271428568022592
+          ],
+          "median": 3.3285714217594693,
+          "min": 3.271428568022592,
+          "max": 3.4285714285714284
+        },
+        "pointer/overUnpromotedCP": {
+          "samples": [
+            0.66298342563269,
+            0.618037134209121,
+            0.627397259620771
+          ],
+          "median": 0.627397259620771,
+          "min": 0.618037134209121,
+          "max": 0.66298342563269
+        }
+      }
+    },
+    "cq-cnt": {
+      "diagWasm": "eda50bef0be2b509efefacd8dd480a156522b3d137339a5b0916226f0383b0ca",
+      "sessions": [
+        {
+          "session": 0,
+          "start": "2026-11-01T18:32:30.017Z",
+          "end": "2026-11-01T18:32:31.368Z"
+        },
+        {
+          "session": 1,
+          "start": "2026-11-01T18:32:31.509Z",
+          "end": "2026-11-01T18:32:32.933Z"
+        },
+        {
+          "session": 2,
+          "start": "2026-11-01T18:32:33.067Z",
+          "end": "2026-11-01T18:32:34.401Z"
+        }
+      ],
+      "timingsMs": {
+        "integer/bcore/0": {
+          "samples": [
+            12.300000011920929,
+            11.800000011920929,
+            11.900000035762787
+          ],
+          "median": 11.900000035762787,
+          "min": 11.800000011920929,
+          "max": 12.300000011920929
+        },
+        "pointer/bcore/0": {
+          "samples": [
+            20.100000023841858,
+            20.900000035762787,
+            21.19999998807907
+          ],
+          "median": 20.900000035762787,
+          "min": 20.100000023841858,
+          "max": 21.19999998807907
+        }
+      },
+      "pairedRatios": {}
+    },
+    "cq-cnt2": {
+      "diagWasm": "eda50bef0be2b509efefacd8dd480a156522b3d137339a5b0916226f0383b0ca",
+      "sessions": [
+        {
+          "session": 0,
+          "start": "2026-11-01T18:46:57.983Z",
+          "end": "2026-11-01T18:46:59.570Z"
+        },
+        {
+          "session": 1,
+          "start": "2026-11-01T18:46:59.707Z",
+          "end": "2026-11-01T18:47:01.213Z"
+        },
+        {
+          "session": 2,
+          "start": "2026-11-01T18:47:01.348Z",
+          "end": "2026-11-01T18:47:02.803Z"
+        }
+      ],
+      "timingsMs": {
+        "branch/bcore/0": {
+          "samples": [
+            18,
+            16.80000001192093,
+            18
+          ],
+          "median": 18,
+          "min": 16.80000001192093,
+          "max": 18
+        },
+        "stream/bcore/0": {
+          "samples": [
+            46.80000001192093,
+            47.19999998807907,
+            45.69999998807907
+          ],
+          "median": 46.80000001192093,
+          "min": 45.69999998807907,
+          "max": 47.19999998807907
+        }
+      },
+      "pairedRatios": {}
+    },
+    "cq-reg": {
+      "diagWasm": "19cc6cfc2b11340e9868c3ee53603d69239a51c1ec56658eb112611f876cc5d6",
+      "sessions": [
+        {
+          "session": 0,
+          "start": "2026-11-01T18:32:24.053Z",
+          "end": "2026-11-01T18:32:25.353Z"
+        },
+        {
+          "session": 1,
+          "start": "2026-11-01T18:32:25.491Z",
+          "end": "2026-11-01T18:32:26.886Z"
+        },
+        {
+          "session": 2,
+          "start": "2026-11-01T18:32:27.019Z",
+          "end": "2026-11-01T18:32:28.352Z"
+        }
+      ],
+      "timingsMs": {
+        "integer/bcore/0": {
+          "samples": [
+            12,
+            11.899999976158142,
+            11.799999952316284
+          ],
+          "median": 11.899999976158142,
+          "min": 11.799999952316284,
+          "max": 12
+        },
+        "pointer/bcore/0": {
+          "samples": [
+            23.100000023841858,
+            22.900000035762787,
+            22.600000023841858
+          ],
+          "median": 22.900000035762787,
+          "min": 22.600000023841858,
+          "max": 23.100000023841858
+        }
+      },
+      "pairedRatios": {}
+    },
+    "cq-s5": {
+      "diagWasm": "4b886d71b1ebe0bda1cdfe44c6964c02fea33f77f2105519d825d9855a985937",
+      "sessions": [
+        {
+          "session": 0,
+          "start": "2026-11-01T18:32:36.053Z",
+          "end": "2026-11-01T18:32:37.387Z"
+        },
+        {
+          "session": 1,
+          "start": "2026-11-01T18:32:37.524Z",
+          "end": "2026-11-01T18:32:38.853Z"
+        },
+        {
+          "session": 2,
+          "start": "2026-11-01T18:32:38.989Z",
+          "end": "2026-11-01T18:32:40.419Z"
+        }
+      ],
+      "timingsMs": {
+        "integer/bcore/0": {
+          "samples": [
+            13.199999988079071,
+            12.900000035762787,
+            14.200000047683716
+          ],
+          "median": 13.199999988079071,
+          "min": 12.900000035762787,
+          "max": 14.200000047683716
+        },
+        "pointer/bcore/0": {
+          "samples": [
+            22.80000001192093,
+            23.399999976158142,
+            22.80000001192093
+          ],
+          "median": 22.80000001192093,
+          "min": 22.80000001192093,
+          "max": 23.399999976158142
+        }
+      },
+      "pairedRatios": {}
+    }
+  },
+  "node": {
+    "base": {
+      "wallSeconds": {
+        "samples": [
+          6.3,
+          6.27,
+          6.31,
+          6.41
+        ],
+        "median": 6.305,
+        "min": 6.27,
+        "max": 6.41
+      },
+      "rssMiB": {
+        "samples": [
+          879,
+          868,
+          874,
+          872
+        ],
+        "median": 873.0,
+        "min": 868,
+        "max": 879
+      }
+    },
+    "new": {
+      "wallSeconds": {
+        "samples": [
+          14.55,
+          14.44,
+          14.52,
+          14.51
+        ],
+        "median": 14.515,
+        "min": 14.44,
+        "max": 14.55
+      },
+      "rssMiB": {
+        "samples": [
+          1272,
+          1314,
+          1372,
+          1306
+        ],
+        "median": 1310.0,
+        "min": 1272,
+        "max": 1372
+      }
+    },
+    "base+h": {
+      "wallSeconds": {
+        "samples": [
+          6.41,
+          6.36,
+          6.3,
+          6.32
+        ],
+        "median": 6.34,
+        "min": 6.3,
+        "max": 6.41
+      },
+      "rssMiB": {
+        "samples": [
+          854,
+          874,
+          873,
+          880
+        ],
+        "median": 873.5,
+        "min": 854,
+        "max": 880
+      }
+    },
+    "new+h": {
+      "wallSeconds": {
+        "samples": [
+          14.54,
+          14.56,
+          14.59,
+          14.54
+        ],
+        "median": 14.55,
+        "min": 14.54,
+        "max": 14.59
+      },
+      "rssMiB": {
+        "samples": [
+          1333,
+          1341,
+          1399,
+          1318
+        ],
+        "median": 1337.0,
+        "min": 1318,
+        "max": 1399
+      }
+    }
+  },
+  "chrome": {
+    "Google Chrome 133.0.6943.53/base": {
+      "records": [
+        {
+          "round": 1,
+          "visit": 0,
+          "seconds": 8.6
+        },
+        {
+          "round": 1,
+          "visit": 1,
+          "seconds": 7.8
+        },
+        {
+          "round": 1,
+          "visit": 2,
+          "seconds": 7.8
+        },
+        {
+          "round": 2,
+          "visit": 0,
+          "seconds": 8.8
+        },
+        {
+          "round": 2,
+          "visit": 1,
+          "seconds": 7.8
+        },
+        {
+          "round": 2,
+          "visit": 2,
+          "seconds": 7.3
+        }
+      ],
+      "repeatVisitSeconds": {
+        "samples": [
+          7.8,
+          7.8,
+          7.8,
+          7.3
+        ],
+        "median": 7.8,
+        "min": 7.3,
+        "max": 7.8
+      }
+    },
+    "Google Chrome 133.0.6943.53/candidate": {
+      "records": [
+        {
+          "round": 1,
+          "visit": 0,
+          "seconds": 17.4
+        },
+        {
+          "round": 1,
+          "visit": 1,
+          "seconds": 16.8
+        },
+        {
+          "round": 1,
+          "visit": 2,
+          "seconds": 16.4
+        },
+        {
+          "round": 2,
+          "visit": 0,
+          "seconds": 16.7
+        },
+        {
+          "round": 2,
+          "visit": 1,
+          "seconds": 16.9
+        },
+        {
+          "round": 2,
+          "visit": 2,
+          "seconds": 16.3
+        }
+      ],
+      "repeatVisitSeconds": {
+        "samples": [
+          16.8,
+          16.4,
+          16.9,
+          16.3
+        ],
+        "median": 16.6,
+        "min": 16.3,
+        "max": 16.9
+      }
+    },
+    "Google Chrome for Testing 149.0.7827.55/base": {
+      "records": [
+        {
+          "round": 1,
+          "visit": 0,
+          "seconds": 8.4
+        },
+        {
+          "round": 1,
+          "visit": 1,
+          "seconds": 7.8
+        },
+        {
+          "round": 1,
+          "visit": 2,
+          "seconds": 7.3
+        },
+        {
+          "round": 2,
+          "visit": 0,
+          "seconds": 8.5
+        },
+        {
+          "round": 2,
+          "visit": 1,
+          "seconds": 7.8
+        },
+        {
+          "round": 2,
+          "visit": 2,
+          "seconds": 7.3
+        }
+      ],
+      "repeatVisitSeconds": {
+        "samples": [
+          7.8,
+          7.3,
+          7.8,
+          7.3
+        ],
+        "median": 7.55,
+        "min": 7.3,
+        "max": 7.8
+      }
+    },
+    "Google Chrome for Testing 149.0.7827.55/candidate": {
+      "records": [
+        {
+          "round": 1,
+          "visit": 0,
+          "seconds": 16.7
+        },
+        {
+          "round": 1,
+          "visit": 1,
+          "seconds": 16.4
+        },
+        {
+          "round": 1,
+          "visit": 2,
+          "seconds": 15.8
+        },
+        {
+          "round": 2,
+          "visit": 0,
+          "seconds": 17.1
+        },
+        {
+          "round": 2,
+          "visit": 1,
+          "seconds": 16.4
+        },
+        {
+          "round": 2,
+          "visit": 2,
+          "seconds": 16.4
+        }
+      ],
+      "repeatVisitSeconds": {
+        "samples": [
+          16.4,
+          15.8,
+          16.4,
+          16.4
+        ],
+        "median": 16.4,
+        "min": 15.8,
+        "max": 16.4
+      }
+    }
+  },
+  "chromeWarm": {
+    "149/base": {
+      "records": [
+        {
+          "round": 1,
+          "visit": 0,
+          "seconds": 405.5
+        },
+        {
+          "round": 1,
+          "visit": 1,
+          "seconds": 7.8
+        },
+        {
+          "round": 1,
+          "visit": 2,
+          "seconds": 7.3
+        },
+        {
+          "round": 2,
+          "visit": 0,
+          "seconds": 8.3
+        },
+        {
+          "round": 2,
+          "visit": 1,
+          "seconds": 7.8
+        },
+        {
+          "round": 2,
+          "visit": 2,
+          "seconds": 7.3
+        }
+      ],
+      "repeatVisitSeconds": {
+        "samples": [
+          7.8,
+          7.3,
+          7.8,
+          7.3
+        ],
+        "median": 7.55,
+        "min": 7.3,
+        "max": 7.8
+      }
+    },
+    "149/off": {
+      "records": [
+        {
+          "round": 1,
+          "visit": 0,
+          "seconds": 8.2
+        },
+        {
+          "round": 1,
+          "visit": 1,
+          "seconds": 7.8
+        },
+        {
+          "round": 1,
+          "visit": 2,
+          "seconds": 7.3
+        },
+        {
+          "round": 2,
+          "visit": 0,
+          "seconds": 8.3
+        },
+        {
+          "round": 2,
+          "visit": 1,
+          "seconds": 7.8
+        },
+        {
+          "round": 2,
+          "visit": 2,
+          "seconds": 7.3
+        }
+      ],
+      "repeatVisitSeconds": {
+        "samples": [
+          7.8,
+          7.3,
+          7.8,
+          7.3
+        ],
+        "median": 7.55,
+        "min": 7.3,
+        "max": 7.8
+      }
+    },
+    "149/h1000": {
+      "records": [
+        {
+          "round": 1,
+          "visit": 0,
+          "seconds": 9.2
+        },
+        {
+          "round": 1,
+          "visit": 1,
+          "seconds": 8.8
+        },
+        {
+          "round": 1,
+          "visit": 2,
+          "seconds": 8.8
+        },
+        {
+          "round": 2,
+          "visit": 0,
+          "seconds": 9.3
+        },
+        {
+          "round": 2,
+          "visit": 1,
+          "seconds": 8.8
+        },
+        {
+          "round": 2,
+          "visit": 2,
+          "seconds": 8.3
+        }
+      ],
+      "repeatVisitSeconds": {
+        "samples": [
+          8.8,
+          8.8,
+          8.8,
+          8.3
+        ],
+        "median": 8.8,
+        "min": 8.3,
+        "max": 8.8
+      }
+    },
+    "149/h4096": {
+      "records": [
+        {
+          "round": 1,
+          "visit": 0,
+          "seconds": 9.4
+        },
+        {
+          "round": 1,
+          "visit": 1,
+          "seconds": 8.3
+        },
+        {
+          "round": 1,
+          "visit": 2,
+          "seconds": 8.3
+        },
+        {
+          "round": 2,
+          "visit": 0,
+          "seconds": 9.5
+        },
+        {
+          "round": 2,
+          "visit": 1,
+          "seconds": 8.8
+        },
+        {
+          "round": 2,
+          "visit": 2,
+          "seconds": 8.3
+        }
+      ],
+      "repeatVisitSeconds": {
+        "samples": [
+          8.3,
+          8.3,
+          8.8,
+          8.3
+        ],
+        "median": 8.3,
+        "min": 8.3,
+        "max": 8.8
+      }
+    },
+    "149/h16384": {
+      "records": [
+        {
+          "round": 1,
+          "visit": 0,
+          "seconds": 8.8
+        },
+        {
+          "round": 1,
+          "visit": 1,
+          "seconds": 8.3
+        },
+        {
+          "round": 1,
+          "visit": 2,
+          "seconds": 7.8
+        },
+        {
+          "round": 2,
+          "visit": 0,
+          "seconds": 8.9
+        },
+        {
+          "round": 2,
+          "visit": 1,
+          "seconds": 8.3
+        },
+        {
+          "round": 2,
+          "visit": 2,
+          "seconds": 7.8
+        }
+      ],
+      "repeatVisitSeconds": {
+        "samples": [
+          8.3,
+          7.8,
+          8.3,
+          7.8
+        ],
+        "median": 8.05,
+        "min": 7.8,
+        "max": 8.3
+      }
+    },
+    "133/base": {
+      "records": [
+        {
+          "round": 1,
+          "visit": 0,
+          "seconds": 8.4
+        },
+        {
+          "round": 1,
+          "visit": 1,
+          "seconds": 7.8
+        },
+        {
+          "round": 1,
+          "visit": 2,
+          "seconds": 7.8
+        },
+        {
+          "round": 2,
+          "visit": 0,
+          "seconds": 8.8
+        },
+        {
+          "round": 2,
+          "visit": 1,
+          "seconds": 7.9
+        },
+        {
+          "round": 2,
+          "visit": 2,
+          "seconds": 7.8
+        }
+      ],
+      "repeatVisitSeconds": {
+        "samples": [
+          7.8,
+          7.8,
+          7.9,
+          7.8
+        ],
+        "median": 7.8,
+        "min": 7.8,
+        "max": 7.9
+      }
+    },
+    "133/off": {
+      "records": [
+        {
+          "round": 1,
+          "visit": 0,
+          "seconds": 8.2
+        },
+        {
+          "round": 1,
+          "visit": 1,
+          "seconds": 7.8
+        },
+        {
+          "round": 1,
+          "visit": 2,
+          "seconds": 7.8
+        },
+        {
+          "round": 2,
+          "visit": 0,
+          "seconds": 8.8
+        },
+        {
+          "round": 2,
+          "visit": 1,
+          "seconds": 7.9
+        },
+        {
+          "round": 2,
+          "visit": 2,
+          "seconds": 7.8
+        }
+      ],
+      "repeatVisitSeconds": {
+        "samples": [
+          7.8,
+          7.8,
+          7.9,
+          7.8
+        ],
+        "median": 7.8,
+        "min": 7.8,
+        "max": 7.9
+      }
+    },
+    "133/h1000": {
+      "records": [
+        {
+          "round": 1,
+          "visit": 0,
+          "seconds": 9.2
+        },
+        {
+          "round": 1,
+          "visit": 1,
+          "seconds": 9.3
+        },
+        {
+          "round": 1,
+          "visit": 2,
+          "seconds": 8.9
+        },
+        {
+          "round": 2,
+          "visit": 0,
+          "seconds": 9.8
+        },
+        {
+          "round": 2,
+          "visit": 1,
+          "seconds": 9.3
+        },
+        {
+          "round": 2,
+          "visit": 2,
+          "seconds": 8.8
+        }
+      ],
+      "repeatVisitSeconds": {
+        "samples": [
+          9.3,
+          8.9,
+          9.3,
+          8.8
+        ],
+        "median": 9.100000000000001,
+        "min": 8.8,
+        "max": 9.3
+      }
+    },
+    "133/h4096": {
+      "records": [
+        {
+          "round": 1,
+          "visit": 0,
+          "seconds": 9.4
+        },
+        {
+          "round": 1,
+          "visit": 1,
+          "seconds": 8.9
+        },
+        {
+          "round": 1,
+          "visit": 2,
+          "seconds": 8.3
+        },
+        {
+          "round": 2,
+          "visit": 0,
+          "seconds": 9.2
+        },
+        {
+          "round": 2,
+          "visit": 1,
+          "seconds": 8.8
+        },
+        {
+          "round": 2,
+          "visit": 2,
+          "seconds": 8.3
+        }
+      ],
+      "repeatVisitSeconds": {
+        "samples": [
+          8.9,
+          8.3,
+          8.8,
+          8.3
+        ],
+        "median": 8.55,
+        "min": 8.3,
+        "max": 8.9
+      }
+    },
+    "133/h16384": {
+      "records": [
+        {
+          "round": 1,
+          "visit": 0,
+          "seconds": 278.7
+        },
+        {
+          "round": 1,
+          "visit": 1,
+          "seconds": 8.4
+        },
+        {
+          "round": 1,
+          "visit": 2,
+          "seconds": 7.8
+        },
+        {
+          "round": 2,
+          "visit": 0,
+          "seconds": 8.7
+        },
+        {
+          "round": 2,
+          "visit": 1,
+          "seconds": 8.4
+        },
+        {
+          "round": 2,
+          "visit": 2,
+          "seconds": 7.8
+        }
+      ],
+      "repeatVisitSeconds": {
+        "samples": [
+          8.4,
+          7.8,
+          8.4,
+          7.8
+        ],
+        "median": 8.1,
+        "min": 7.8,
+        "max": 8.4
+      }
+    }
+  },
+  "nodeLoopOnly": {
+    "base": {
+      "samples": [
+        6.34,
+        6.44
+      ],
+      "median": 6.390000000000001,
+      "min": 6.34,
+      "max": 6.44
+    },
+    "l1000": {
+      "samples": [
+        7.29,
+        7.41
+      ],
+      "median": 7.35,
+      "min": 7.29,
+      "max": 7.41
+    },
+    "l4096": {
+      "samples": [
+        6.87,
+        6.93
+      ],
+      "median": 6.9,
+      "min": 6.87,
+      "max": 6.93
+    },
+    "l16384": {
+      "samples": [
+        6.92,
+        6.91
+      ],
+      "median": 6.915,
+      "min": 6.91,
+      "max": 6.92
+    }
+  },
+  "quickjs": {
+    "ratio": 2.194441834202351,
+    "bcoreTimeReductionForParity": 0.5443032554273711,
+    "bcoreTimeReductionForRatio1_2": 0.4531639065128453
+  },
+  "inputs": {
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/chrome-s4/experiment.json": {
+      "bytes": 1247,
+      "sha256": "da498120291a17a9ea109406ff5a2518c3c439b29b70ce7b1bcd377929c9410c"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/chrome-s4/reference.json": {
+      "bytes": 2619,
+      "sha256": "1ec94ac79cf3c1500da93240f9c6af607bca0b9527c3a63ff0a2b2330812343f"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/chrome-s4/session-0.json": {
+      "bytes": 10656,
+      "sha256": "adfd31d2cab97d51c8065a854b2f6f5d45af49653c1176022382955d1fd7c6b0"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/chrome-s4/session-1.json": {
+      "bytes": 10312,
+      "sha256": "0cccd1006ad5ba68ad3d1a9b1d7fc57f350d8744e19b08a16e9c34b7e0c67a02"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/chrome-s4/session-2.json": {
+      "bytes": 10509,
+      "sha256": "7178c5551aaaf56eb7dd898e4df534cbcbc33f9febc823d4f134fa1f2393c329"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/chrome-s5/experiment.json": {
+      "bytes": 1247,
+      "sha256": "003c563cf72c4fcd9633a017110dd528e0a539737733e286b6d223ef79964554"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/chrome-s5/reference.json": {
+      "bytes": 2619,
+      "sha256": "1ec94ac79cf3c1500da93240f9c6af607bca0b9527c3a63ff0a2b2330812343f"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/chrome-s5/session-0.json": {
+      "bytes": 10538,
+      "sha256": "6efd0f3675d8c8127e9bf5b00415a87d3e3b0b523a91723839e7c4a8e6039f8e"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/chrome-s5/session-1.json": {
+      "bytes": 10526,
+      "sha256": "7b10b36ac07ec32bb0e0e90a21da88ce7651696f45dde7e02905530c38e8f3f7"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/chrome-s5/session-2.json": {
+      "bytes": 10448,
+      "sha256": "9154a3d4f941d46b98814af87c503cd4f6d9ab8f811b5f4f2a5374d4d0694c9a"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-cnt/experiment.json": {
+      "bytes": 1247,
+      "sha256": "3c855c3ca3cd0237dd3e2fb5be393d83314efd6db141275f7dc6f6eb979ef874"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-cnt/reference.json": {
+      "bytes": 2619,
+      "sha256": "1ec94ac79cf3c1500da93240f9c6af607bca0b9527c3a63ff0a2b2330812343f"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-cnt/session-0.json": {
+      "bytes": 2181,
+      "sha256": "182f8164dc9c151e9e866055ee7b161f01676834b5e1633ced1af8aff7d2c7d4"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-cnt/session-1.json": {
+      "bytes": 2299,
+      "sha256": "c93e43d5244580a59011772fcb0847381398ec6af9050db69d84f5c8e4c5fa71"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-cnt/session-2.json": {
+      "bytes": 2201,
+      "sha256": "bd55853380cafd68944350a2d2dd4874169dcf741ec8344d8cece3dbee16dd5f"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-cnt2/experiment.json": {
+      "bytes": 1247,
+      "sha256": "3e0d35fdfb29bdf2479b834d47878bbcf0ae91b6815981bd7cac682c0b028b5f"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-cnt2/reference.json": {
+      "bytes": 2619,
+      "sha256": "1ec94ac79cf3c1500da93240f9c6af607bca0b9527c3a63ff0a2b2330812343f"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-cnt2/session-0.json": {
+      "bytes": 2241,
+      "sha256": "dc50a186b5d08eb6f16f600116b2d10999d0e894df30789945447da91db7cb36"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-cnt2/session-1.json": {
+      "bytes": 2263,
+      "sha256": "1ff93abd0e549c2951be93fdfdb946730359c8ceddbddbfac5aaa762f954f627"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-cnt2/session-2.json": {
+      "bytes": 2243,
+      "sha256": "b2305467ffc07ba4229b1864c6a165f6a8214f95bfb26028a85cbee3cc695e73"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-reg/experiment.json": {
+      "bytes": 1247,
+      "sha256": "0a74896ba37e3ea735fa6d2ac5b212c0a09d6f188e5aa00fbb9efe0250b4710a"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-reg/reference.json": {
+      "bytes": 2619,
+      "sha256": "1ec94ac79cf3c1500da93240f9c6af607bca0b9527c3a63ff0a2b2330812343f"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-reg/session-0.json": {
+      "bytes": 2172,
+      "sha256": "da4df38c933f55927f048d9ba0d3d3bb5e65495abf4ea15be5dcbb2699a0575c"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-reg/session-1.json": {
+      "bytes": 2270,
+      "sha256": "c0991d86caeb52e3e3322138e15a583df76af93697c7e23c47e41d04330a6883"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-reg/session-2.json": {
+      "bytes": 2204,
+      "sha256": "0e38bf0f43c0898695a5d9630b5cfea3a78a1d36b291f5f856d4eb5ae6592e33"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-s5/experiment.json": {
+      "bytes": 1247,
+      "sha256": "c98b5280ee246a9fb513c4233d0e2bb24101b23d4c36de62d18c5870a6e2d9a3"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-s5/reference.json": {
+      "bytes": 2619,
+      "sha256": "1ec94ac79cf3c1500da93240f9c6af607bca0b9527c3a63ff0a2b2330812343f"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-s5/session-0.json": {
+      "bytes": 2254,
+      "sha256": "1638cc1e2a1763d253678db85b8852d5e3e80bd0066348bda38694fbd8da2056"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-s5/session-1.json": {
+      "bytes": 2285,
+      "sha256": "07a442e3882e5538a2705f0a46cc28e0e3d4fb55ce53b72ccc8e9d961d8fdcb0"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/results/cq-s5/session-2.json": {
+      "bytes": 2204,
+      "sha256": "77cd4ead08921b49e20b5d979d5022e7c883143c811d89d1f79b1936fb1b68b2"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/node-boot.log": {
+      "bytes": 3528,
+      "sha256": "2782410932fdec1883ae9112ae09631e5342e0e64636cf7227c9a0ab9a91c98f"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/chrome.log": {
+      "bytes": 5188,
+      "sha256": "647fe19b7dbbb51874a12d2c131fc76a2eabea9393ef82727b798ca018f848d7"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/chrome-w.log": {
+      "bytes": 1708,
+      "sha256": "7d07a48b7b3b9812ffae6125c8fd47901a25404f311e8f7868e0a3dba7fda356"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/sweep3.log": {
+      "bytes": 234,
+      "sha256": "611c148a3c266baa7958984eda3fcc2e98098e68f33da569883673d46fdb240a"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/README.md": {
+      "bytes": 7997,
+      "sha256": "b48b6640ffb23f01bd754791ad64ba982a64701e24480585cd7076734a9213b0"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/wip-bcore.patch": {
+      "bytes": 42438,
+      "sha256": "b5c642197be4b64555035275a7f5ae76699753b329298918d3588d37c57c4063"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/wip-op1emu.patch": {
+      "bytes": 4518,
+      "sha256": "d4d29a30f2f74d8f4a159e9d0bb9e40c3ad6ddbbe0e456013f9a28fb479fe450"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/host.cpp": {
+      "bytes": 4738,
+      "sha256": "748180e4db6777b3f7c6eaef7567eb3f7ded324d863709e8e048578f636ef6bc"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/measure-lite.mjs": {
+      "bytes": 2847,
+      "sha256": "30537d80e9b51d7cee611b8d0e9db10fc8c175ba699a9b8c3f4614c91211eb82"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/lab/measure-quick.mjs": {
+      "bytes": 2782,
+      "sha256": "cfc04e60d62ddfc6507dda8c110e7188feafcd36c8506daea432f0eb2ebefe41"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/sweep2.sh": {
+      "bytes": 1410,
+      "sha256": "8eabcdd5774fe92aa6ba66980d8b85cd83f6353a38684eff95da7c7262beb095"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/sweep3.sh": {
+      "bytes": 1120,
+      "sha256": "c1e90ed0a3877ea402577c0bfecd8835737214b38f75dacbcafdf71ab820124d"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/native.sh": {
+      "bytes": 1339,
+      "sha256": "333b10f2774eb110c9b95d116612d2904e24099ba88e13dadd99ddc8ae4cedd3"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/web.sh": {
+      "bytes": 1894,
+      "sha256": "8ffe1b6a91fcd77f46240081d9f95ae538ffb3125d47d6dc5a18144ee6e8d248"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/bisect.log": {
+      "bytes": 711,
+      "sha256": "022019e44a02ba5c55f77469d271f3cb71de0ae533cef5967bd2bd7073870606"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/sweep.log": {
+      "bytes": 995,
+      "sha256": "d4c0ac1f8df6b158d789999627e8ce863135c26758777a09a4b3efe064df3614"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/sweep2.log": {
+      "bytes": 1986,
+      "sha256": "eddbfee2f9b110b874ca3e897d011f8c032bbe7efef5af27f34ee6c76356217b"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/commits/0001-perf-a-WebAssembly-copy-and-patch-block-keeps-its-CP.patch": {
+      "bytes": 77091,
+      "sha256": "2e1f1ebebc8bb9a8a2cc2132512f1e3f5b17f15d003eaef241d66cb318737885"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/commits/0002-perf-under-its-entry-guard-a-WebAssembly-block-s-lon.patch": {
+      "bytes": 18230,
+      "sha256": "df6e7fd9ddd2401eb8d85f238af87590f734ceb1b7c111c469d1f051a5250fcc"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/commits/0003-perf-a-WebAssembly-loop-through-calls-runs-as-one-re.patch": {
+      "bytes": 67413,
+      "sha256": "7fd52b12db74ec6ce6ab960ae6e497a1995010d9748960ac99e2e23059a5eb03"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/t0-gate/commits/0004-perf-a-WebAssembly-block-tests-its-tier-threshold-wh.patch": {
+      "bytes": 15971,
+      "sha256": "daead4459421413e1c22a6e0eb44f73fd5f5f36867ee50b0241712b604766bf8"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/web-cold6/notes.md": {
+      "bytes": 2885,
+      "sha256": "9d233b970e905c40b2bad463863c639e9b668659ddb6ddb315fc8a4376f8997e"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/web-cold6/research.md": {
+      "bytes": 34007,
+      "sha256": "dc2c0731a5d580a43b108d69e7abc66a138afeb0ec82e1e7eeaf03141927d0c5"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/web-cold6/proto/proto-nolb-pieces.patch": {
+      "bytes": 5323,
+      "sha256": "613f2c76506c08454dbd85b3fd499a7967d80ce29b9188a773f2ba95aa875611"
+    },
+    "/home/xiong/.local/share/op1-perf-keep/dynarmic-cmp/README.md": {
+      "bytes": 1821,
+      "sha256": "bb089a32b0ec0a0d1b21d045f0078c277caf60fdf34bec33535560f3b1b7c975"
+    },
+    "/home/xiong/workspace/dynarmic.js/internals/measurements/2026-11-02-quickjs-bcore-wasm/comparison.json": {
+      "bytes": 415148,
+      "sha256": "c717270246725a4f558b65619a646d2e34645d6d10be7d6f9384b1ba4ad88fe5"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+[  0%] Built target c_bench_example
+[  1%] Built target fmt
+[  2%] Built target mcl
+[ 87%] Built target dynarmic
+[ 88%] Built target arm_bench_jit
+[ 89%] Built target arm_jit
+[ 90%] Generating dist/quickjs-app.js
+[100%] Built target browser_page

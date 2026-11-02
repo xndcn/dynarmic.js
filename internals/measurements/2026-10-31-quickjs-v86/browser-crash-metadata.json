@@ -1,0 +1,10 @@
+{
+  "schema": "dynarmic.js/browser-interruption-diagnostic-v1",
+  "source": "/var/crash/_opt_google_chrome_chrome.1000.crash",
+  "date": "Sat Oct 31 08:53:29 2026",
+  "executable": "/opt/google/chrome/chrome",
+  "signal": 11,
+  "rendererProcess": true,
+  "benchmarkProfile": true,
+  "scope": "Sanitized metadata from the latest OS crash report. Confirms a benchmark Chromium renderer crash, but does not establish its cause or prove the same cause for both CDP timeouts. No benchmark result was available for either interrupted Worker."
+}

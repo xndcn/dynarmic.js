@@ -1,0 +1,11 @@
+command=tests/regress.sh --strict build-em build-native 
+invocation_cwd=/home/xiong/workspace/dynarmic.js
+source_root=/home/xiong/workspace/dynarmic.js
+strict=1
+em_build=/home/xiong/workspace/dynarmic.js/build-em
+native_build=/home/xiong/workspace/dynarmic.js/build-native
+coremark_workload=
+started=2026-10-31T07:05:18Z
+revision=2bd45b378e205baeffe797a3d5bc320769d53167
+upstream=a41c380246d3d9f9874f0f792d234dc0cc17c180
+exit_code=0

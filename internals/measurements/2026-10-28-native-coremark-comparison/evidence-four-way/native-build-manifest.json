@@ -1,0 +1,26 @@
+{
+  "schema": "dynarmic.js/native-coremark-host-build-v1",
+  "buildType": "Release",
+  "compiler": {
+    "id": "GNU",
+    "version": "12.3.0",
+    "path": "/usr/bin/c++"
+  },
+  "flags": {
+    "cxx": "",
+    "configuration": "-O3 -DNDEBUG"
+  },
+  "sources": {
+    "hostSha256": "ab8e4c5dc7f81f7fef76f1717bbbbe8845861ddd525e965b80156e9b305b2ae4",
+    "cmakeSha256": "cdbd4ca492a2cc17242dd43a04a0e41e6ff788e3bedb07e5358b62aa89b46e5d",
+    "manifestScriptSha256": "242834bc65add0cf8ebb749ec127383c78c73da767055a8a1ac24e2900de8502"
+  },
+  "revisions": {
+    "repositoryHead": "045107cd21d0e2bbd9fc8cf43baef74e5bea0a31",
+    "dynarmicRevision": "a41c380246d3d9f9874f0f792d234dc0cc17c180"
+  },
+  "artifact": {
+    "path": "/tmp/dynarmic-native-x64-coremark-four-way/a64_coremark_host",
+    "sha256": "a249e0a7cf161b3f5c59b6b10755f3904e53ce95139c126ea44c0213de96a039",
+    "bytes": 6504024  }
+}

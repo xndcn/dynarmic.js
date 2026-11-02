@@ -1,0 +1,57 @@
+[  1%] Built target fp_ref
+[  5%] Built target host_ref
+[ 11%] Built target guests
+[ 12%] Built target fmt
+[ 13%] Built target trace_ref
+[ 13%] Built target media_ref_log
+[ 14%] Built target crc_ref
+[ 15%] Built target probe_ref
+[ 16%] Built target neon_ref_log
+[ 16%] Built target neon3_ref_log
+[ 17%] Built target neon2_ref_log
+[ 17%] Built target neon6_ref
+[ 18%] Built target qc_ref
+[ 18%] Built target guests64
+[ 19%] Built target mcl
+[ 20%] Built target region_plan_test
+[ 20%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_vector_fp.cpp.o
+[ 20%] Linking CXX static library libdynarmic.a
+[ 86%] Built target dynarmic
+[ 87%] Linking CXX executable address_space_test
+[ 87%] Linking CXX executable region_selector_test
+[ 87%] Linking CXX executable arm_decoder_test
+[ 87%] Linking CXX executable region_selector_focus_test
+[ 87%] Built target region_selector_focus_test
+[ 87%] Linking CXX executable a64_region_focus_test
+[ 87%] Built target address_space_test
+[ 88%] Built target region_selector_test
+[ 89%] Linking CXX executable region_diagnostics_test
+[ 89%] Linking CXX executable smoke_ir
+[ 89%] Built target arm_decoder_test
+[ 90%] Linking CXX executable sat64_ir
+[ 90%] Built target region_diagnostics_test
+[ 90%] Built target smoke_ir
+[ 91%] Linking CXX executable wasm_binary_test
+[ 91%] Built target sat64_ir
+[ 91%] Linking CXX executable integer_edge_test
+[ 92%] Linking CXX executable vector_edge_test
+[ 93%] Built target a64_region_focus_test
+[ 93%] Built target wasm_binary_test
+[ 93%] Linking CXX executable fp_edge_test
+[ 93%] Linking CXX executable memory_edge_test
+[ 93%] Built target vector_edge_test
+[ 94%] Linking CXX executable fp16_ref
+[ 94%] Built target fp_edge_test
+[ 95%] Built target memory_edge_test
+[ 95%] Linking CXX executable neon4_ref
+[ 96%] Linking CXX executable neon5_ref
+[ 97%] Built target integer_edge_test
+[ 97%] Linking CXX executable block_dump
+[ 97%] Built target neon5_ref
+[ 97%] Linking CXX executable a32_decode
+[ 97%] Built target fp16_ref
+[ 97%] Linking CXX executable region_corpus
+[ 98%] Built target neon4_ref
+[ 98%] Built target a32_decode
+[ 99%] Built target region_corpus
+[100%] Built target block_dump

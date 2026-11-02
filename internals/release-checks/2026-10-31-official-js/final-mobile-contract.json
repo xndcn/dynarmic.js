@@ -1,0 +1,16 @@
+{
+  "kind": "presentation replay of previously completed 30 actual measurements",
+  "status": "PASS",
+  "checks": [
+    {
+      "width": 320,
+      "visibleEngineLabels": 30,
+      "noTableHorizontalScroll": true
+    },
+    {
+      "width": 390,
+      "visibleEngineLabels": 30,
+      "noTableHorizontalScroll": true
+    }
+  ]
+}

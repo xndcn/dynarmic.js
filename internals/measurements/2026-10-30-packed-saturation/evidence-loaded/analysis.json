@@ -1,0 +1,170 @@
+[
+  {
+    "name": "PackedSaturatedAddU8",
+    "medianMs": {
+      "baseline": 1327.3945230000002,
+      "candidate": 353.089274
+    },
+    "bytes": {
+      "baseline": 15113,
+      "candidate": 1033
+    },
+    "timeChangePercent": -73.39982440171633,
+    "byteChangePercent": -93.16482498511216,
+    "minMs": {
+      "baseline": 1308.708237,
+      "candidate": 343.05447
+    },
+    "maxMs": {
+      "baseline": 1516.977623,
+      "candidate": 445.306289
+    }
+  },
+  {
+    "name": "PackedSaturatedAddS8",
+    "medianMs": {
+      "baseline": 1321.948432,
+      "candidate": 366.60355100000004
+    },
+    "bytes": {
+      "baseline": 15113,
+      "candidate": 1033
+    },
+    "timeChangePercent": -72.26793858778902,
+    "byteChangePercent": -93.16482498511216,
+    "minMs": {
+      "baseline": 1303.3799210000002,
+      "candidate": 360.67181199999993
+    },
+    "maxMs": {
+      "baseline": 1450.713176,
+      "candidate": 442.025356
+    }
+  },
+  {
+    "name": "PackedSaturatedSubU8",
+    "medianMs": {
+      "baseline": 1337.774927,
+      "candidate": 378.779278
+    },
+    "bytes": {
+      "baseline": 15113,
+      "candidate": 1033
+    },
+    "timeChangePercent": -71.68587403193273,
+    "byteChangePercent": -93.16482498511216,
+    "minMs": {
+      "baseline": 1316.7756579999996,
+      "candidate": 357.49238000000014
+    },
+    "maxMs": {
+      "baseline": 1400.1562050000002,
+      "candidate": 420.9407550000001
+    }
+  },
+  {
+    "name": "PackedSaturatedSubS8",
+    "medianMs": {
+      "baseline": 1299.8918780000004,
+      "candidate": 377.0834849999999
+    },
+    "bytes": {
+      "baseline": 15113,
+      "candidate": 1033
+    },
+    "timeChangePercent": -70.99116538983408,
+    "byteChangePercent": -93.16482498511216,
+    "minMs": {
+      "baseline": 1290.718817,
+      "candidate": 357.4581019999998
+    },
+    "maxMs": {
+      "baseline": 1581.850665,
+      "candidate": 454.0434909999999
+    }
+  },
+  {
+    "name": "PackedSaturatedAddU16",
+    "medianMs": {
+      "baseline": 915.7194220000001,
+      "candidate": 358.89232100000004
+    },
+    "bytes": {
+      "baseline": 8457,
+      "candidate": 1097
+    },
+    "timeChangePercent": -60.80761067444085,
+    "byteChangePercent": -87.02849710299161,
+    "minMs": {
+      "baseline": 910.6462149999998,
+      "candidate": 354.98057800000015
+    },
+    "maxMs": {
+      "baseline": 1099.777,
+      "candidate": 408.26660600000014
+    }
+  },
+  {
+    "name": "PackedSaturatedAddS16",
+    "medianMs": {
+      "baseline": 822.0712130000002,
+      "candidate": 358.1103600000001
+    },
+    "bytes": {
+      "baseline": 8457,
+      "candidate": 1097
+    },
+    "timeChangePercent": -56.43803671300675,
+    "byteChangePercent": -87.02849710299161,
+    "minMs": {
+      "baseline": 809.868778,
+      "candidate": 354.54007400000023
+    },
+    "maxMs": {
+      "baseline": 986.487075,
+      "candidate": 397.43262900000036
+    }
+  },
+  {
+    "name": "PackedSaturatedSubU16",
+    "medianMs": {
+      "baseline": 937.3660669999999,
+      "candidate": 364.1182630000003
+    },
+    "bytes": {
+      "baseline": 8457,
+      "candidate": 1097
+    },
+    "timeChangePercent": -61.155169168290335,
+    "byteChangePercent": -87.02849710299161,
+    "minMs": {
+      "baseline": 908.8837760000006,
+      "candidate": 354.6942439999998
+    },
+    "maxMs": {
+      "baseline": 1083.4100940000008,
+      "candidate": 410.5380689999997
+    }
+  },
+  {
+    "name": "PackedSaturatedSubS16",
+    "medianMs": {
+      "baseline": 835.863539,
+      "candidate": 354.1310639999997
+    },
+    "bytes": {
+      "baseline": 8457,
+      "candidate": 1097
+    },
+    "timeChangePercent": -57.63290926367352,
+    "byteChangePercent": -87.02849710299161,
+    "minMs": {
+      "baseline": 818.3330139999998,
+      "candidate": 352.2587159999998
+    },
+    "maxMs": {
+      "baseline": 965.5964409999997,
+      "candidate": 422.3093439999998
+    }
+  }
+]

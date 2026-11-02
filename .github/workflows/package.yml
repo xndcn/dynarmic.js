@@ -1,0 +1,99 @@
+name: npm package acceptance
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 6.0.13
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+          install-dependencies: true
+      - uses: browser-actions/setup-firefox@v1
+        id: firefox
+        with:
+          firefox-version: latest
+      - name: Prepare build and test dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libboost-dev ninja-build
+          mkdir -p /tmp/boost-headers test-results/npm build-npm
+          cp -a /usr/include/boost /tmp/boost-headers/
+          npm ci --prefix tests/npm --ignore-scripts --no-audit --no-fund
+      - name: Packaging provenance regression checks
+        run: python3 -m unittest discover -s tests/npm -p 'test_*.py' -v
+      - name: Build and pack clean candidate
+        id: pack
+        run: |
+          emcmake cmake -S . -B build-package -G Ninja -DCMAKE_BUILD_TYPE=Release \
+            -DBoost_INCLUDE_DIR=/tmp/boost-headers \
+            -DDYNARMIC_JS_TESTS=OFF -DDYNARMIC_JS_EXAMPLES=OFF -DDYNARMIC_JS_NPM_PACKAGE=ON
+          cmake --build build-package --target dynarmic_package_runtime -j2
+          python3 packages/dynarmic/pack.py --build-dir build-package --output build-npm/package --require-clean
+          npm pack ./build-npm/package --pack-destination ./build-npm --json > test-results/npm/pack.json
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const [pack] = JSON.parse(fs.readFileSync('test-results/npm/pack.json'));
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `tarball=build-npm/${pack.filename}\n`);
+          NODE
+          node build-npm/package/verify.mjs --require-clean
+          node tests/npm/verify_package.mjs build-npm/package
+          sha256sum build-npm/*.tgz > test-results/npm/SHA256SUMS
+      - name: Node 24 and package consumers
+        env:
+          TARBALL: ${{ steps.pack.outputs.tarball }}
+        run: |
+          node tests/npm/smoke.mjs "$TARBALL" --report test-results/npm/node24.json
+          node tests/npm/verify_browser.mjs "$TARBALL" \
+            "${{ steps.chrome.outputs.chrome-path }}" --report test-results/npm/chromium.json
+          node tests/npm/verify_firefox.mjs "$TARBALL" \
+            "${{ steps.firefox.outputs.firefox-path }}" --report test-results/npm/firefox.json
+          node tests/npm/verify_tooling.mjs "$TARBALL" \
+            "${{ steps.chrome.outputs.chrome-path }}" --report test-results/npm/tooling.json
+          node tests/npm/verify_pages_examples.mjs "$TARBALL" \
+            "${{ steps.chrome.outputs.chrome-path }}" --report test-results/npm/pages-examples.json
+      - name: Rebuild distributed corresponding source
+        env:
+          TARBALL: ${{ steps.pack.outputs.tarball }}
+        run: python3 tests/npm/rebuild_source.py "$TARBALL" --boost-include /tmp/boost-headers --output build-npm/rebuild --report test-results/npm/rebuild.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Node 22 consumer
+        env:
+          TARBALL: ${{ steps.pack.outputs.tarball }}
+        run: node tests/npm/smoke.mjs "$TARBALL" --report test-results/npm/node22.json
+      - name: Retain validated installable package
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-package
+          path: ${{ steps.pack.outputs.tarball }}
+          compression-level: 0
+          if-no-files-found: error
+      - name: Retain validation evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-validation
+          path: test-results/npm/
+          if-no-files-found: error

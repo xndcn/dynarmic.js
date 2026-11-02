@@ -1,0 +1,690 @@
+{
+  "schema": "dynarmic.js/region-transfer-evidence-v1",
+  "source": "ec4701f20d2e53a133367e4048f3f0fc2b981c82",
+  "upstream": "a41c380246d3d9f9874f0f792d234dc0cc17c180",
+  "workloadSha256": "ad43250ce2139ab0d0fdbf1eac0bb1284e00fde62419d387accfe6348cca17aa",
+  "cases": [
+    {
+      "name": "a64-flat-window",
+      "architecture": "a64",
+      "memoryMode": "0",
+      "artifact": {
+        "jsSha256": "ed882e39e1587e8c5b47ab80e53a1e523ad9ebf03e70fc1bb0111c12ecdc2f33",
+        "wasmSha256": "6a036f57cf2ef87a50361f4053976b1330401bd0347ced63883eee7513a3feee"
+      },
+      "compile": {
+        "blocks": 111,
+        "bytes": 677583,
+        "translateMs": 83.90457500010962,
+        "optMs": 11.544807000056608,
+        "emitMs": 31.799168999998074,
+        "compileMs": 7.297955000017282,
+        "instMs": 1.5694609999973181,
+        "tableMs": 0.7512180000067019
+      },
+      "totals": {
+        "regionCount": 111,
+        "entryCount": "0x0000000011c62cab",
+        "transferCount": "0x0000000011c62c00",
+        "externalDirectCallCount": "0x0000000008b0bb52",
+        "rsbReturnCount": "0x000000000915709e",
+        "otherTailTransferCount": "0x0000000000000010"
+      },
+      "hotRegions": [
+        {
+          "regionId": 51,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x0000000000010b00",
+          "callerEntryPc": "0x0000000000010b00",
+          "entryCount": "0x0000000000030d3f",
+          "exitSiteCount": 10,
+          "transferCount": "0x0000000000030d3e",
+          "externalDirectCallCount": "0x0000000000030d3e",
+          "rsbReturnCount": "0x0000000000000000",
+          "otherTailTransferCount": "0x0000000000000000",
+          "exits": [
+            {
+              "exitSite": 0,
+              "exitBlockDescriptor": "0x0000000000010354",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000103d4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 1,
+              "exitBlockDescriptor": "0x0000000000010360",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x0000000000010020",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 2,
+              "exitBlockDescriptor": "0x00000000000103b8",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000103d0",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 3,
+              "exitBlockDescriptor": "0x0000000000010458",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x000000000001262c",
+              "count": "0x0000000000030d3e",
+              "lastDynamicTargetDescriptor": "0x000000000001262c",
+              "lastDynamicTargetPc": "0x000000000001262c"
+            },
+            {
+              "exitSite": 4,
+              "exitBlockDescriptor": "0x00000000000104c4",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000104d0",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 5,
+              "exitBlockDescriptor": "0x00000000000104dc",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000104f4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 6,
+              "exitBlockDescriptor": "0x0000000000010af8",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000125b4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 7,
+              "exitBlockDescriptor": "0x0000000000010b10",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000125b4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 8,
+              "exitBlockDescriptor": "0x0000000000010b24",
+              "kind": "rsb-return",
+              "staticTargetDescriptor": null,
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 9,
+              "exitBlockDescriptor": "0x0000000000010b24",
+              "kind": "other-tail-transfer",
+              "staticTargetDescriptor": null,
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            }
+          ]
+        },
+        {
+          "regionId": 53,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x0000000000010b18",
+          "callerEntryPc": "0x0000000000010b18",
+          "entryCount": "0x0000000000030d3f",
+          "exitSiteCount": 10,
+          "transferCount": "0x0000000000030d3d",
+          "externalDirectCallCount": "0x0000000000030d3d",
+          "rsbReturnCount": "0x0000000000000000",
+          "otherTailTransferCount": "0x0000000000000000",
+          "exits": [
+            {
+              "exitSite": 0,
+              "exitBlockDescriptor": "0x0000000000010354",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000103d4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 1,
+              "exitBlockDescriptor": "0x0000000000010360",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x0000000000010020",
+              "count": "0x0000000000030d3d",
+              "lastDynamicTargetDescriptor": "0x0000000000010020",
+              "lastDynamicTargetPc": "0x0000000000010020"
+            },
+            {
+              "exitSite": 2,
+              "exitBlockDescriptor": "0x00000000000103b8",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000103d0",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 3,
+              "exitBlockDescriptor": "0x0000000000010458",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x000000000001262c",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 4,
+              "exitBlockDescriptor": "0x00000000000104c4",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000104d0",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 5,
+              "exitBlockDescriptor": "0x00000000000104dc",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000104f4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 6,
+              "exitBlockDescriptor": "0x0000000000010af8",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000125b4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 7,
+              "exitBlockDescriptor": "0x0000000000010b10",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000125b4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 8,
+              "exitBlockDescriptor": "0x0000000000010b24",
+              "kind": "rsb-return",
+              "staticTargetDescriptor": null,
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 9,
+              "exitBlockDescriptor": "0x0000000000010b24",
+              "kind": "other-tail-transfer",
+              "staticTargetDescriptor": null,
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            }
+          ]
+        }
+      ],
+      "hotEdge": {
+        "callerEntryPc": "0x000000000001202c",
+        "exitBlockDescriptor": "0x0000000000012370",
+        "staticTargetDescriptor": "0x000000000001237c",
+        "count": "0x0000000002d036ff"
+      },
+      "topTransferRegions": [
+        {
+          "regionId": 33,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x000000000001202c",
+          "callerEntryPc": "0x000000000001202c",
+          "entryCount": "0x00000000054afb00",
+          "exitSiteCount": 19,
+          "transferCount": "0x00000000054afafb",
+          "externalDirectCallCount": "0x00000000054afafb",
+          "rsbReturnCount": "0x0000000000000000",
+          "otherTailTransferCount": "0x0000000000000000"
+        },
+        {
+          "regionId": 32,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x000000000001237c",
+          "callerEntryPc": "0x000000000001237c",
+          "entryCount": "0x0000000002dc6c00",
+          "exitSiteCount": 8,
+          "transferCount": "0x0000000002dc6bfe",
+          "externalDirectCallCount": "0x0000000000000000",
+          "rsbReturnCount": "0x0000000002dc6bfe",
+          "otherTailTransferCount": "0x0000000000000000"
+        },
+        {
+          "regionId": 25,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x000000000001262c",
+          "callerEntryPc": "0x000000000001262c",
+          "entryCount": "0x0000000001808584",
+          "exitSiteCount": 2,
+          "transferCount": "0x000000000180857b",
+          "externalDirectCallCount": "0x0000000000000000",
+          "rsbReturnCount": "0x000000000180857b",
+          "otherTailTransferCount": "0x0000000000000000"
+        },
+        {
+          "regionId": 38,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x000000000001209c",
+          "callerEntryPc": "0x000000000001209c",
+          "entryCount": "0x00000000016e3600",
+          "exitSiteCount": 19,
+          "transferCount": "0x00000000016e35fb",
+          "externalDirectCallCount": "0x00000000016200fc",
+          "rsbReturnCount": "0x00000000000c34ff",
+          "otherTailTransferCount": "0x0000000000000000"
+        },
+        {
+          "regionId": 35,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x00000000000123cc",
+          "callerEntryPc": "0x00000000000123cc",
+          "entryCount": "0x000000000155cc00",
+          "exitSiteCount": 8,
+          "transferCount": "0x000000000155cc00",
+          "externalDirectCallCount": "0x0000000000000000",
+          "rsbReturnCount": "0x000000000155cc00",
+          "otherTailTransferCount": "0x0000000000000000"
+        },
+        {
+          "regionId": 34,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x000000000001238c",
+          "callerEntryPc": "0x000000000001238c",
+          "entryCount": "0x00000000013d6200",
+          "exitSiteCount": 8,
+          "transferCount": "0x00000000013d6200",
+          "externalDirectCallCount": "0x0000000000000000",
+          "rsbReturnCount": "0x00000000013d6200",
+          "otherTailTransferCount": "0x0000000000000000"
+        },
+        {
+          "regionId": 36,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x00000000000122e8",
+          "callerEntryPc": "0x00000000000122e8",
+          "entryCount": "0x0000000000dbba00",
+          "exitSiteCount": 8,
+          "transferCount": "0x0000000000dbba00",
+          "externalDirectCallCount": "0x0000000000000000",
+          "rsbReturnCount": "0x0000000000dbba00",
+          "otherTailTransferCount": "0x0000000000000000"
+        },
+        {
+          "regionId": 44,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x00000000000105b8",
+          "callerEntryPc": "0x00000000000105b8",
+          "entryCount": "0x0000000000b10080",
+          "exitSiteCount": 3,
+          "transferCount": "0x0000000000b1007b",
+          "externalDirectCallCount": "0x0000000000aae5ff",
+          "rsbReturnCount": "0x0000000000061a7c",
+          "otherTailTransferCount": "0x0000000000000000"
+        }
+      ]
+    },
+    {
+      "name": "a64-page-table",
+      "architecture": "a64",
+      "memoryMode": "2",
+      "artifact": {
+        "jsSha256": "ed882e39e1587e8c5b47ab80e53a1e523ad9ebf03e70fc1bb0111c12ecdc2f33",
+        "wasmSha256": "6a036f57cf2ef87a50361f4053976b1330401bd0347ced63883eee7513a3feee"
+      },
+      "compile": {
+        "blocks": 111,
+        "bytes": 734066,
+        "translateMs": 72.58521300005577,
+        "optMs": 11.557933000021876,
+        "emitMs": 29.36060599998291,
+        "compileMs": 6.8970259999923655,
+        "instMs": 1.4574690000181363,
+        "tableMs": 0.6816839999983131
+      },
+      "totals": {
+        "regionCount": 111,
+        "entryCount": "0x0000000011c62cab",
+        "transferCount": "0x0000000011c62c00",
+        "externalDirectCallCount": "0x0000000008b0bb52",
+        "rsbReturnCount": "0x000000000915709e",
+        "otherTailTransferCount": "0x0000000000000010"
+      },
+      "hotRegions": [
+        {
+          "regionId": 51,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x0000000000010b00",
+          "callerEntryPc": "0x0000000000010b00",
+          "entryCount": "0x0000000000030d3f",
+          "exitSiteCount": 10,
+          "transferCount": "0x0000000000030d3e",
+          "externalDirectCallCount": "0x0000000000030d3e",
+          "rsbReturnCount": "0x0000000000000000",
+          "otherTailTransferCount": "0x0000000000000000",
+          "exits": [
+            {
+              "exitSite": 0,
+              "exitBlockDescriptor": "0x0000000000010354",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000103d4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 1,
+              "exitBlockDescriptor": "0x0000000000010360",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x0000000000010020",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 2,
+              "exitBlockDescriptor": "0x00000000000103b8",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000103d0",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 3,
+              "exitBlockDescriptor": "0x0000000000010458",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x000000000001262c",
+              "count": "0x0000000000030d3e",
+              "lastDynamicTargetDescriptor": "0x000000000001262c",
+              "lastDynamicTargetPc": "0x000000000001262c"
+            },
+            {
+              "exitSite": 4,
+              "exitBlockDescriptor": "0x00000000000104c4",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000104d0",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 5,
+              "exitBlockDescriptor": "0x00000000000104dc",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000104f4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 6,
+              "exitBlockDescriptor": "0x0000000000010af8",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000125b4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 7,
+              "exitBlockDescriptor": "0x0000000000010b10",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000125b4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 8,
+              "exitBlockDescriptor": "0x0000000000010b24",
+              "kind": "rsb-return",
+              "staticTargetDescriptor": null,
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 9,
+              "exitBlockDescriptor": "0x0000000000010b24",
+              "kind": "other-tail-transfer",
+              "staticTargetDescriptor": null,
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            }
+          ]
+        },
+        {
+          "regionId": 53,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x0000000000010b18",
+          "callerEntryPc": "0x0000000000010b18",
+          "entryCount": "0x0000000000030d3f",
+          "exitSiteCount": 10,
+          "transferCount": "0x0000000000030d3d",
+          "externalDirectCallCount": "0x0000000000030d3d",
+          "rsbReturnCount": "0x0000000000000000",
+          "otherTailTransferCount": "0x0000000000000000",
+          "exits": [
+            {
+              "exitSite": 0,
+              "exitBlockDescriptor": "0x0000000000010354",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000103d4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 1,
+              "exitBlockDescriptor": "0x0000000000010360",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x0000000000010020",
+              "count": "0x0000000000030d3d",
+              "lastDynamicTargetDescriptor": "0x0000000000010020",
+              "lastDynamicTargetPc": "0x0000000000010020"
+            },
+            {
+              "exitSite": 2,
+              "exitBlockDescriptor": "0x00000000000103b8",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000103d0",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 3,
+              "exitBlockDescriptor": "0x0000000000010458",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x000000000001262c",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 4,
+              "exitBlockDescriptor": "0x00000000000104c4",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000104d0",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 5,
+              "exitBlockDescriptor": "0x00000000000104dc",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000104f4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 6,
+              "exitBlockDescriptor": "0x0000000000010af8",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000125b4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 7,
+              "exitBlockDescriptor": "0x0000000000010b10",
+              "kind": "external-direct-call",
+              "staticTargetDescriptor": "0x00000000000125b4",
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 8,
+              "exitBlockDescriptor": "0x0000000000010b24",
+              "kind": "rsb-return",
+              "staticTargetDescriptor": null,
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            },
+            {
+              "exitSite": 9,
+              "exitBlockDescriptor": "0x0000000000010b24",
+              "kind": "other-tail-transfer",
+              "staticTargetDescriptor": null,
+              "count": "0x0000000000000000",
+              "lastDynamicTargetDescriptor": "0x0000000000000000",
+              "lastDynamicTargetPc": "0x0000000000000000"
+            }
+          ]
+        }
+      ],
+      "hotEdge": {
+        "callerEntryPc": "0x000000000001202c",
+        "exitBlockDescriptor": "0x0000000000012370",
+        "staticTargetDescriptor": "0x000000000001237c",
+        "count": "0x0000000002d036ff"
+      },
+      "topTransferRegions": [
+        {
+          "regionId": 33,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x000000000001202c",
+          "callerEntryPc": "0x000000000001202c",
+          "entryCount": "0x00000000054afb00",
+          "exitSiteCount": 19,
+          "transferCount": "0x00000000054afafb",
+          "externalDirectCallCount": "0x00000000054afafb",
+          "rsbReturnCount": "0x0000000000000000",
+          "otherTailTransferCount": "0x0000000000000000"
+        },
+        {
+          "regionId": 32,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x000000000001237c",
+          "callerEntryPc": "0x000000000001237c",
+          "entryCount": "0x0000000002dc6c00",
+          "exitSiteCount": 8,
+          "transferCount": "0x0000000002dc6bfe",
+          "externalDirectCallCount": "0x0000000000000000",
+          "rsbReturnCount": "0x0000000002dc6bfe",
+          "otherTailTransferCount": "0x0000000000000000"
+        },
+        {
+          "regionId": 25,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x000000000001262c",
+          "callerEntryPc": "0x000000000001262c",
+          "entryCount": "0x0000000001808584",
+          "exitSiteCount": 2,
+          "transferCount": "0x000000000180857b",
+          "externalDirectCallCount": "0x0000000000000000",
+          "rsbReturnCount": "0x000000000180857b",
+          "otherTailTransferCount": "0x0000000000000000"
+        },
+        {
+          "regionId": 38,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x000000000001209c",
+          "callerEntryPc": "0x000000000001209c",
+          "entryCount": "0x00000000016e3600",
+          "exitSiteCount": 19,
+          "transferCount": "0x00000000016e35fb",
+          "externalDirectCallCount": "0x00000000016200fc",
+          "rsbReturnCount": "0x00000000000c34ff",
+          "otherTailTransferCount": "0x0000000000000000"
+        },
+        {
+          "regionId": 35,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x00000000000123cc",
+          "callerEntryPc": "0x00000000000123cc",
+          "entryCount": "0x000000000155cc00",
+          "exitSiteCount": 8,
+          "transferCount": "0x000000000155cc00",
+          "externalDirectCallCount": "0x0000000000000000",
+          "rsbReturnCount": "0x000000000155cc00",
+          "otherTailTransferCount": "0x0000000000000000"
+        },
+        {
+          "regionId": 34,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x000000000001238c",
+          "callerEntryPc": "0x000000000001238c",
+          "entryCount": "0x00000000013d6200",
+          "exitSiteCount": 8,
+          "transferCount": "0x00000000013d6200",
+          "externalDirectCallCount": "0x0000000000000000",
+          "rsbReturnCount": "0x00000000013d6200",
+          "otherTailTransferCount": "0x0000000000000000"
+        },
+        {
+          "regionId": 36,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x00000000000122e8",
+          "callerEntryPc": "0x00000000000122e8",
+          "entryCount": "0x0000000000dbba00",
+          "exitSiteCount": 8,
+          "transferCount": "0x0000000000dbba00",
+          "externalDirectCallCount": "0x0000000000000000",
+          "rsbReturnCount": "0x0000000000dbba00",
+          "otherTailTransferCount": "0x0000000000000000"
+        },
+        {
+          "regionId": 44,
+          "frontend": "a64",
+          "callerEntryDescriptor": "0x00000000000105b8",
+          "callerEntryPc": "0x00000000000105b8",
+          "entryCount": "0x0000000000b10080",
+          "exitSiteCount": 3,
+          "transferCount": "0x0000000000b1007b",
+          "externalDirectCallCount": "0x0000000000aae5ff",
+          "rsbReturnCount": "0x0000000000061a7c",
+          "otherTailTransferCount": "0x0000000000000000"
+        }
+      ]
+    }
+  ]
+}

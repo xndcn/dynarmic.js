@@ -1,0 +1,163 @@
+{
+  "schema": "dynarmic.js/arm-tuning-static-review-v1",
+  "matrixSha256": "18bf6f016c73e587a1435039035ec164d88ffa28f410c02ae51bab95b3efb958",
+  "allElfImagesMatchBenchmarkedBinary": true,
+  "fixedControlUniqueHashCounts": {
+    "arm_jit.js": 1,
+    "arm_jit.wasm": 1,
+    "arm_bench_jit.js": 1,
+    "arm_bench_jit.wasm": 1,
+    "quickjs-wasm.js": 1,
+    "quickjs-wasm.wasm": 1,
+    "official-v8.js": 1,
+    "official-v8-adapter.js": 1,
+    "official-benchmarks.json": 1,
+    "quickjs-workloads.js": 1
+  },
+  "variants": [
+    {
+      "id": "o2-switch",
+      "binaryBytes": 683252,
+      "binarySha256": "aeba400ff697b77cef6b47019b1af4d373040a22e50e270040e283178a26d2f0",
+      "elfSha256": "8a0736894f051d93eeaaa7865e480f7d304c2a6393b7fbd8ef8f04877ac80205",
+      "function": "JS_CallInternal",
+      "functionAddress": "0001a448",
+      "functionBytes": 37444,
+      "movPcRegisterSites": 0,
+      "pcRelativeTableSites": 3,
+      "dispatchTable": null
+    },
+    {
+      "id": "o2-switch-lto",
+      "binaryBytes": 689892,
+      "binarySha256": "c0c1e255035795bed358187accb1c5c8132e782a5a929ce54402fd9df6abe8f3",
+      "elfSha256": "92aad586a39128df635778f32007c5cbf941c32eab46004527d73ab1b0d66713",
+      "function": "JS_CallInternal.lto_priv.0",
+      "functionAddress": "00025ea0",
+      "functionBytes": 37508,
+      "movPcRegisterSites": 0,
+      "pcRelativeTableSites": 3,
+      "dispatchTable": null
+    },
+    {
+      "id": "o2-threaded",
+      "binaryBytes": 685748,
+      "binarySha256": "1beab8c7beff675e86b597e4a4a55ea513d3d819c47b84df5c119d1bc8408a9d",
+      "elfSha256": "b39df7c1fe5c5f4e1c1ab855bf45daa7b57c47812e3e11150969b848d4aecaa8",
+      "function": "JS_CallInternal",
+      "functionAddress": "0001a448",
+      "functionBytes": 38948,
+      "movPcRegisterSites": 298,
+      "pcRelativeTableSites": 2,
+      "dispatchTable": "000a43e0 00000400 r dispatch_table.78"
+    },
+    {
+      "id": "o2-threaded-lto",
+      "binaryBytes": 692452,
+      "binarySha256": "ff45f698aed6d42dd379279991a04fd63c2e6db073ac48a89919eab8c990f70b",
+      "elfSha256": "d9d26975526a199b24c2a91a02a0c65cf4eb038a9628c0eb06d45e406f737490",
+      "function": "JS_CallInternal.lto_priv.0",
+      "functionAddress": "00025f18",
+      "functionBytes": 39076,
+      "movPcRegisterSites": 300,
+      "pcRelativeTableSites": 2,
+      "dispatchTable": "000a2778 00000400 r dispatch_table.78"
+    },
+    {
+      "id": "o3-switch",
+      "binaryBytes": 815516,
+      "binarySha256": "b3828fb67fb91091f47f8923a871cf2bde0fbd218964822f8300af039b2f4544",
+      "elfSha256": "5239be1961493099fc52dc26e4f93c66e8e7706f502451dfafbe1e53ac434845",
+      "function": "JS_CallInternal",
+      "functionAddress": "0001d570",
+      "functionBytes": 37828,
+      "movPcRegisterSites": 0,
+      "pcRelativeTableSites": 3,
+      "dispatchTable": null
+    },
+    {
+      "id": "o3-switch-lto",
+      "binaryBytes": 844108,
+      "binarySha256": "0428c880807144b209aa66a3451c682ed0d09bea63c8067830133e2acbb45bd7",
+      "elfSha256": "fd498003d3da5fe085832fe8a78afbcd0ae514913b80a053af58fde9e514c07e",
+      "function": "JS_CallInternal.lto_priv.0",
+      "functionAddress": "0002e650",
+      "functionBytes": 38216,
+      "movPcRegisterSites": 0,
+      "pcRelativeTableSites": 3,
+      "dispatchTable": null
+    },
+    {
+      "id": "o3-threaded",
+      "binaryBytes": 818588,
+      "binarySha256": "f029e29b64d565b74aa2719c130b3e15a38c10e78aaa2e2718ff0509d14d4610",
+      "elfSha256": "05375f2c28df7469c5185a296685436e01ab12cc03fe10304d04c34513e1c02f",
+      "function": "JS_CallInternal",
+      "functionAddress": "0001d710",
+      "functionBytes": 39452,
+      "movPcRegisterSites": 266,
+      "pcRelativeTableSites": 2,
+      "dispatchTable": "000c4b38 00000400 r dispatch_table.78"
+    },
+    {
+      "id": "o3-threaded-lto",
+      "binaryBytes": 847628,
+      "binarySha256": "756ced6c05fc4ca9992a490ab74eae5d0ba72cd184243102ea393e2c8a961c06",
+      "elfSha256": "5163548f121344191f1c598c214328b6242db00e9d1041fa09598d86ed62304a",
+      "function": "JS_CallInternal.lto_priv.0",
+      "functionAddress": "0002e650",
+      "functionBytes": 40044,
+      "movPcRegisterSites": 266,
+      "pcRelativeTableSites": 2,
+      "dispatchTable": "000c8ab0 00000400 r dispatch_table.78"
+    },
+    {
+      "id": "os-switch",
+      "binaryBytes": 524980,
+      "binarySha256": "bcb9dd3a81de4be42e254074206fa89fcb36ddb2edba6bc434686855dc199952",
+      "elfSha256": "718d5c6b282d50f59d535b5cc8d64cd133278341c1b9e0b3caa2e307fee437c4",
+      "function": "JS_CallInternal",
+      "functionAddress": "00018328",
+      "functionBytes": 26536,
+      "movPcRegisterSites": 0,
+      "pcRelativeTableSites": 3,
+      "dispatchTable": null
+    },
+    {
+      "id": "os-switch-lto",
+      "binaryBytes": 521132,
+      "binarySha256": "fef4ae03a69531622c62a3b81ca9438c3a249da9b3aec0d40f2f190f54622f26",
+      "elfSha256": "2acbde4f4340cb8cb6ec7b0137a9c73ed0745b859d0e640c9621ed8563fa73b8",
+      "function": "JS_CallInternal",
+      "functionAddress": "00021388",
+      "functionBytes": 26668,
+      "movPcRegisterSites": 0,
+      "pcRelativeTableSites": 3,
+      "dispatchTable": null
+    },
+    {
+      "id": "os-threaded",
+      "binaryBytes": 529140,
+      "binarySha256": "160dafc3e3fe4f52589715a3f15c6e6338fd4fe4b36e8beffca10456a67bef2d",
+      "elfSha256": "8649d610c9631c8e9e26fede6b8fc74c341b2c502bf72548534e45310a92271d",
+      "function": "JS_CallInternal",
+      "functionAddress": "00018328",
+      "functionBytes": 29668,
+      "movPcRegisterSites": 1,
+      "pcRelativeTableSites": 2,
+      "dispatchTable": "0007e08c 00000400 r dispatch_table.78"
+    },
+    {
+      "id": "os-threaded-lto",
+      "binaryBytes": 525292,
+      "binarySha256": "f7e9768c935c3118af2c88b218ba73c0ac3c2e6961ea50fa71755d1b18875721",
+      "elfSha256": "42de884d120b3800ed9356513e7b9876471bf68f145d11072307577d38458625",
+      "function": "JS_CallInternal",
+      "functionAddress": "00021330",
+      "functionBytes": 29776,
+      "movPcRegisterSites": 1,
+      "pcRelativeTableSites": 2,
+      "dispatchTable": "0007a67c 00000400 r dispatch_table.78"
+    }
+  ]
+}

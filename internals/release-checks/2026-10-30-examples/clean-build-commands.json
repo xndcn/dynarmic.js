@@ -1,0 +1,34 @@
+{
+  "source": "/home/xiong/workspace/dynarmic.js",
+  "build": "/tmp/dynarmic-examples-clean-bvdu40t4",
+  "commands": [
+    [
+      "emcmake",
+      "cmake",
+      "-S",
+      "/home/xiong/workspace/dynarmic.js",
+      "-B",
+      "/tmp/dynarmic-examples-clean-bvdu40t4",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DBoost_INCLUDE_DIR=/tmp/boost-headers",
+      "-DDYNARMIC_JS_TESTS=OFF",
+      "-DDYNARMIC_JS_EXAMPLES_REQUIRE_GUESTS=ON"
+    ],
+    [
+      "cmake",
+      "--build",
+      "/tmp/dynarmic-examples-clean-bvdu40t4",
+      "--target",
+      "browser_page",
+      "-j2"
+    ],
+    [
+      "node",
+      "/home/xiong/workspace/dynarmic.js/examples/node/hello.mjs",
+      "/tmp/dynarmic-examples-clean-bvdu40t4/examples/browser/dist"
+    ],
+    [
+      "/tmp/dynarmic-examples-clean-bvdu40t4/examples/browser/demo_host"
+    ]
+  ]
+}

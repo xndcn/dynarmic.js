@@ -1,0 +1,132 @@
+[
+  {
+    "round": 1,
+    "side": "baseline",
+    "command": [
+      "node",
+      "tests/ir/integer_edge_test.mjs",
+      "/tmp/integer-ir-baseline",
+      "--bench"
+    ],
+    "startedUnix": 1793334124.2562096,
+    "wallSeconds": 9.904682874679565,
+    "exitCode": 0
+  },
+  {
+    "round": 1,
+    "side": "candidate",
+    "command": [
+      "node",
+      "tests/ir/integer_edge_test.mjs",
+      "/tmp/integer-ir-candidate",
+      "--bench"
+    ],
+    "startedUnix": 1793334134.1614041,
+    "wallSeconds": 3.209482431411743,
+    "exitCode": 0
+  },
+  {
+    "round": 2,
+    "side": "candidate",
+    "command": [
+      "node",
+      "tests/ir/integer_edge_test.mjs",
+      "/tmp/integer-ir-candidate",
+      "--bench"
+    ],
+    "startedUnix": 1793334137.37109,
+    "wallSeconds": 3.1464576721191406,
+    "exitCode": 0
+  },
+  {
+    "round": 2,
+    "side": "baseline",
+    "command": [
+      "node",
+      "tests/ir/integer_edge_test.mjs",
+      "/tmp/integer-ir-baseline",
+      "--bench"
+    ],
+    "startedUnix": 1793334140.5181282,
+    "wallSeconds": 9.289207220077515,
+    "exitCode": 0
+  },
+  {
+    "round": 3,
+    "side": "baseline",
+    "command": [
+      "node",
+      "tests/ir/integer_edge_test.mjs",
+      "/tmp/integer-ir-baseline",
+      "--bench"
+    ],
+    "startedUnix": 1793334149.8077607,
+    "wallSeconds": 9.656869411468506,
+    "exitCode": 0
+  },
+  {
+    "round": 3,
+    "side": "candidate",
+    "command": [
+      "node",
+      "tests/ir/integer_edge_test.mjs",
+      "/tmp/integer-ir-candidate",
+      "--bench"
+    ],
+    "startedUnix": 1793334159.4649212,
+    "wallSeconds": 3.103926420211792,
+    "exitCode": 0
+  },
+  {
+    "round": 4,
+    "side": "candidate",
+    "command": [
+      "node",
+      "tests/ir/integer_edge_test.mjs",
+      "/tmp/integer-ir-candidate",
+      "--bench"
+    ],
+    "startedUnix": 1793334162.5692294,
+    "wallSeconds": 3.138627529144287,
+    "exitCode": 0
+  },
+  {
+    "round": 4,
+    "side": "baseline",
+    "command": [
+      "node",
+      "tests/ir/integer_edge_test.mjs",
+      "/tmp/integer-ir-baseline",
+      "--bench"
+    ],
+    "startedUnix": 1793334165.7080765,
+    "wallSeconds": 9.383034706115723,
+    "exitCode": 0
+  },
+  {
+    "round": 5,
+    "side": "baseline",
+    "command": [
+      "node",
+      "tests/ir/integer_edge_test.mjs",
+      "/tmp/integer-ir-baseline",
+      "--bench"
+    ],
+    "startedUnix": 1793334175.0920353,
+    "wallSeconds": 9.49608850479126,
+    "exitCode": 0
+  },
+  {
+    "round": 5,
+    "side": "candidate",
+    "command": [
+      "node",
+      "tests/ir/integer_edge_test.mjs",
+      "/tmp/integer-ir-candidate",
+      "--bench"
+    ],
+    "startedUnix": 1793334184.5883849,
+    "wallSeconds": 3.16286301612854,
+    "exitCode": 0
+  }
+]

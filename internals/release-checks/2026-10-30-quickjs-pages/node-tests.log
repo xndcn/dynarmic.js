@@ -1,0 +1,46 @@
+✔ runs both architectures in every memory mode and shows exact-reference results (5.890144ms)
+✔ HTTP failure, rejected fetch and empty reference fail cleanly and permit retry (4.106685ms)
+✔ startup, execution, unreadable-message and postMessage errors discard Workers and permit retries (3.312376ms)
+✔ mismatch, unexpected halt, Worker error and malformed reply never pass (3.325324ms)
+✔ caught runtime failures discard poisoned modules before the next guest or rerun (1.854825ms)
+✔ a rerun clears previous success and statistics before fetching (0.887595ms)
+✔ Stop aborts a pending fetch, re-enables controls and allows a fresh run (1.223178ms)
+✔ Stop terminates a synchronous guest Worker, ignores its late replies and permits retry (5.611416ms)
+✔ the whole run deadline covers stalled fetches and stalled Workers (1.965263ms)
+✔ file URLs and missing browser capabilities fail with actionable feedback (2.082715ms)
+✔ reports failures to a same-origin smoke driver, preserves query and refuses foreign callbacks (1.537268ms)
+✔ QuickJS missing manifest, invalid JSON, missing workload and Worker script failure cannot pass (28.301282ms)
+✔ QuickJS rejects wrong outputs, mismatched runtimes and malformed timing protocols (13.408478ms)
+✔ QuickJS refuses missing or malformed host provenance and exports the actual host build record (3.211034ms)
+✔ QuickJS cancellation and the whole-run deadline cover both fetch and synchronous execution (7.281341ms)
+✔ cancelled QuickJS Workers cannot overwrite a retry or its completed results with queued progress (1.748587ms)
+✔ the two labs exclude each other even for direct handler calls and release the lock on cancellation (2.004687ms)
+✔ Firefox runner waits for profile writes on graceful shutdown before reporting success (227.21734ms)
+✔ Firefox QuickJS mode launches only the comparison and waits for its report (207.736837ms)
+✔ Firefox runner kills a browser that ignores SIGTERM and cleans its profile (1614.474839ms)
+✔ Firefox runner handles startup failure without waiting for the report timeout (50.450554ms)
+✔ Firefox runner checks the complete page bundle before starting a browser (90.126285ms)
+✔ Firefox runner handles early browser exit and cleans its profile (75.372237ms)
+✔ Firefox runner still waits for browser closure after a failed page report (207.432893ms)
+✔ Chrome smoke rejects invalid arguments before discovery (107.829718ms)
+✔ Chrome smoke handles malformed or empty target discovery (413.554501ms)
+✔ Chrome smoke bounds connection and request failures (279.373238ms)
+✔ Chrome smoke still recognizes a passing page and prints its output (45.742831ms)
+✔ Chrome smoke does not accept a previous DONE title while navigation is stalled (2433.277108ms)
+✔ Worker rejects oversized or malformed requests before changing guest memory (6.228584ms)
+✔ Worker loads a maximum-size binary entirely within guest RAM (0.97634ms)
+✔ Worker retries a failed module load and reuses a later successful instance (1.192717ms)
+✔ Worker rejects concurrent requests during module loading without replacing the running guest (1.145498ms)
+✔ Worker identifies missing Wasm features before loading the module (2.266989ms)
+✔ Worker rejects empty input without loading Wasm and permits a valid retry (0.994421ms)
+✔ Worker releases the request lock after initialization errors and guest faults (1.478448ms)
+✔ Worker reports a Wasm runtime trap as an ordinary failure reply (1.367105ms)
+✔ Worker reports compile counters only from the active JIT instance (1.601707ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3339.542583

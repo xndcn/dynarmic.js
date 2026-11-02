@@ -1,0 +1,103 @@
+{
+  "status": "pass",
+  "originalTarball": "/home/xiong/workspace/dynarmic.js/build-npm/dynarmic.js-0.1.0-alpha.0.tgz",
+  "sha256": "634dc62a8ebb1471131c4f78d5979931126dcf5bbfe81af8fc49173a604d9bdf",
+  "sourceArchiveSha256": "39ba8f7d803be1c56a9b641d14c311184eecae12c9d1a77bc2726cd4927d5e7c",
+  "sourceHasGitMetadata": false,
+  "rebuiltRuntime": {
+    "runtime.mjs": {
+      "sha256": "4b0f99d67d98d99e2fba659b5d5f84f31c3c3e70194e853fefef2cc6419c01b9",
+      "bytes": 25234
+    },
+    "runtime.wasm": {
+      "sha256": "99a67451e0e0d7e6e91af221be843659af9891fcc51ed9816f422b66471f1a5b",
+      "bytes": 2246426
+    }
+  },
+  "consumer": {
+    "status": "pass",
+    "environment": "v24.19.0",
+    "checks": [
+      "a32: step, SVC, resume and zero budget",
+      "a32: memory copies, boundaries and input validation",
+      "a32: code cache invalidation",
+      "a32: cooperative budget interrupts a guest loop",
+      "a32: data and instruction faults, boundary access and recovery",
+      "a32: Thumb state and SVC resume",
+      "a64: step, SVC, resume and zero budget",
+      "a64: memory copies, boundaries and input validation",
+      "a64: code cache invalidation",
+      "a64: cooperative budget interrupts a guest loop",
+      "a64: data and instruction faults, boundary access and recovery",
+      "a64: BigInt arithmetic and fault addresses retain all 64 bits",
+      "independent live instances and idempotent disposal",
+      "Node file URL and supplied Buffer, ArrayBuffer and offset Uint8Array",
+      "Custom HTTP asset URL, 404 rejection and successful retry",
+      "Invalid Wasm initialization rejects without breaking subsequent instances",
+      "Invalid architecture, memory, URL and mutually exclusive loader options reject",
+      "RAM allocation grows Wasm memory without stale host views"
+    ],
+    "tarballSha256": "4d1705d958bd1ee4ad7ae5c9c112d18b95f27395d0dd53aeeaa28332d2e3519e"
+  },
+  "commands": [
+    {
+      "argv": [
+        "node",
+        "verify.mjs"
+      ],
+      "cwd": "/home/xiong/workspace/dynarmic.js/build-npm/rebuild-verified/unpacked/package"
+    },
+    {
+      "argv": [
+        "emcmake",
+        "cmake",
+        "-S",
+        "/home/xiong/workspace/dynarmic.js/build-npm/rebuild-verified/source/dynarmic.js",
+        "-B",
+        "/home/xiong/workspace/dynarmic.js/build-npm/rebuild-verified/build",
+        "-G",
+        "Ninja",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DBoost_INCLUDE_DIR=/tmp/boost-headers",
+        "-DDYNARMIC_JS_TESTS=OFF",
+        "-DDYNARMIC_JS_EXAMPLES=OFF",
+        "-DDYNARMIC_JS_NPM_PACKAGE=ON"
+      ],
+      "cwd": "/home/xiong/workspace/dynarmic.js/build-npm/rebuild-verified"
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "/home/xiong/workspace/dynarmic.js/build-npm/rebuild-verified/build",
+        "--target",
+        "dynarmic_package_runtime",
+        "-j2"
+      ],
+      "cwd": "/home/xiong/workspace/dynarmic.js/build-npm/rebuild-verified"
+    },
+    {
+      "argv": [
+        "npm",
+        "pack",
+        "/home/xiong/workspace/dynarmic.js/build-npm/rebuild-verified/consumer-package",
+        "--pack-destination",
+        "/home/xiong/workspace/dynarmic.js/build-npm/rebuild-verified",
+        "--json",
+        "--ignore-scripts"
+      ],
+      "cwd": "/home/xiong/workspace/dynarmic.js/build-npm/rebuild-verified"
+    },
+    {
+      "argv": [
+        "node",
+        "/home/xiong/workspace/dynarmic.js/build-npm/rebuild-verified/source/dynarmic.js/tests/npm/smoke.mjs",
+        "/home/xiong/workspace/dynarmic.js/build-npm/rebuild-verified/dynarmic.js-0.1.0-alpha.0.tgz",
+        "--report",
+        "/home/xiong/workspace/dynarmic.js/build-npm/rebuild-verified/consumer.json"
+      ],
+      "cwd": "/home/xiong/workspace/dynarmic.js/build-npm/rebuild-verified"
+    }
+  ],
+  "note": "Runtime rebuilt from distributed recursive source and tested through a private local tarball. Byte identity is not claimed."
+}

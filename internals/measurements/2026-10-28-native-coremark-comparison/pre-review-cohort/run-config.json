@@ -1,0 +1,161 @@
+{
+  "schema": "dynarmic.js/native-coremark-comparison-config-v1",
+  "startedAt": "2026-10-28T06:18:23.855Z",
+  "iterations": 200000,
+  "runsPerImplementation": 5,
+  "affinity": "0,2,4,6",
+  "timeoutMilliseconds": 180000,
+  "execution": "one fresh process per sample; three implementations rotate within each round",
+  "timing": "CoreMark CLOCK_MONOTONIC wrapping-u32 microseconds around iterate; separate whole-process wall time",
+  "durationPolicy": "fixed 200000-iteration comparison; samples below ten seconds are retained but not duration-qualified",
+  "commands": {
+    "x86Native": [
+      "/tmp/dynarmic-native-coremark-linux-v3/coremark_x86_64"
+    ],
+    "qemuUser": [
+      "/usr/bin/qemu-aarch64-static",
+      "/tmp/dynarmic-native-coremark-linux-v3/coremark_aarch64"
+    ],
+    "dynarmicNative": [
+      "/tmp/dynarmic-native-x64-coremark/a64_coremark_host",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "2"
+    ]
+  },
+  "plan": [
+    {
+      "sequence": 0,
+      "round": 0,
+      "implementation": "x86Native"
+    },
+    {
+      "sequence": 1,
+      "round": 0,
+      "implementation": "qemuUser"
+    },
+    {
+      "sequence": 2,
+      "round": 0,
+      "implementation": "dynarmicNative"
+    },
+    {
+      "sequence": 3,
+      "round": 1,
+      "implementation": "qemuUser"
+    },
+    {
+      "sequence": 4,
+      "round": 1,
+      "implementation": "dynarmicNative"
+    },
+    {
+      "sequence": 5,
+      "round": 1,
+      "implementation": "x86Native"
+    },
+    {
+      "sequence": 6,
+      "round": 2,
+      "implementation": "dynarmicNative"
+    },
+    {
+      "sequence": 7,
+      "round": 2,
+      "implementation": "x86Native"
+    },
+    {
+      "sequence": 8,
+      "round": 2,
+      "implementation": "qemuUser"
+    },
+    {
+      "sequence": 9,
+      "round": 3,
+      "implementation": "x86Native"
+    },
+    {
+      "sequence": 10,
+      "round": 3,
+      "implementation": "qemuUser"
+    },
+    {
+      "sequence": 11,
+      "round": 3,
+      "implementation": "dynarmicNative"
+    },
+    {
+      "sequence": 12,
+      "round": 4,
+      "implementation": "qemuUser"
+    },
+    {
+      "sequence": 13,
+      "round": 4,
+      "implementation": "dynarmicNative"
+    },
+    {
+      "sequence": 14,
+      "round": 4,
+      "implementation": "x86Native"
+    }
+  ],
+  "artifacts": {
+    "x86Native": {
+      "path": "/tmp/dynarmic-native-coremark-linux-v3/coremark_x86_64",
+      "sha256": "213b8e26ef79812bada9285c270eaf96045b703ea9530ea30dead5604485d709",
+      "bytes": 1421880
+    },
+    "qemuUser": {
+      "path": "/tmp/dynarmic-native-coremark-linux-v3/coremark_aarch64",
+      "sha256": "7cf5ba7e8293c9839d96a39b87001c02ea28273a01f6ba4c06b912ccd6b5761c",
+      "bytes": 1592616
+    },
+    "qemuExecutable": {
+      "path": "/usr/bin/qemu-aarch64-static",
+      "sha256": "5f0dc411dcf208a2946db2f07a3ecfee9e4bad1c20ba21197e4d1637de845b21",
+      "bytes": 5624384
+    },
+    "dynarmicHost": {
+      "path": "/tmp/dynarmic-native-x64-coremark/a64_coremark_host",
+      "sha256": "a249e0a7cf161b3f5c59b6b10755f3904e53ce95139c126ea44c0213de96a039",
+      "bytes": 6504024
+    },
+    "a64Guest": {
+      "path": "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "sha256": "8f96e0f0f3beb9a5fb8765405926655c182bfcdfe93a8f99dc6ea32dec227ab1",
+      "bytes": 196620
+    }
+  },
+  "workload": {
+    "linuxManifest": {
+      "path": "/tmp/dynarmic-native-coremark-linux-v3/linux-manifest.json",
+      "sha256": "8c4daf9153f986908d2d36b8d20e52f1defbd14806ea4be03c48a54df8a26d50",
+      "bytes": 4950
+    },
+    "baseManifest": {
+      "path": "/tmp/dynarmic-coremark-long/manifest.json",
+      "sha256": "4076aed57606318db796d4bfbe5f8cbc8aef4eeddc7e662f5619a554c289053c",
+      "bytes": 6454
+    },
+    "upstreamRevision": "1f483d5b8316753a742cbf5590caf5bd0a4e4777",
+    "dynarmicMemoryMode": 2,
+    "guestLoadAddress": "0x10000"
+  },
+  "provenance": {
+    "repositoryHead": "15705f3b1b46342e1c7de277f754609507f0ad29",
+    "dynarmicRevision": "a41c380246d3d9f9874f0f792d234dc0cc17c180",
+    "qemuVersion": "qemu-aarch64 version 6.2.0 (Debian 1:6.2+dfsg-2ubuntu6.30)",
+    "compiler": "clang version 22.1.8\nTarget: x86_64-unknown-linux6.8.0-gnu2.35.0\nThread model: posix\nInstalledDir: /home/xiong/.local/lib/python3.10/site-packages/ziglang",
+    "node": "v24.19.0",
+    "uname": "Linux xiong-HP-Pro-Tower-ZHAN-99-G9-Desktop-PC 6.8.0-138-generic #138~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:43:15 UTC  x86_64 x86_64 x86_64 GNU/Linux",
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12700",
+    "logicalCpus": 20,
+    "scripts": {
+      "collect.mjs": "4cdf8c24c77407fd9d09f63efb14203e28b8321d415275ac1972284a7e2cdbde",
+      "compare.mjs": "f1bd3eaa5bfdd07e0dd0e0c585066fc174628979ff1588b79a112452aee834b8",
+      "build_linux_coremark.py": "4a9358e25d9741be7f47cc48b509d423480d1d34ed43e58b9227fa9fd82fd5a3"
+    },
+    "nativeHostSource": "ab8e4c5dc7f81f7fef76f1717bbbbe8845861ddd525e965b80156e9b305b2ae4",
+    "nativeHostCmake": "cccee56459e8a1eca7957680a504b325c06d05cc2146172a06e8ce3c17b0c6b4"
+  }
+}

@@ -1,0 +1,20 @@
+after
+2026-10-28T06:36:30.223Z
+Linux xiong-HP-Pro-Tower-ZHAN-99-G9-Desktop-PC 6.8.0-138-generic #138~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:43:15 UTC  x86_64 x86_64 x86_64 GNU/Linux
+loadavg: 1.79 1.77 1.9
+PID COMMAND         %CPU %MEM
+3577420 chrome          35.4  2.1
+  10220 ChatGPT          7.4  3.5
+   9807 ChatGPT          5.7  0.5
+3569617 claude           4.8  1.2
+ 202089 claude           3.4  1.6
+1282464 gnome-shell      3.1  2.9
+  65382 chrome           2.9  0.7
+   5444 feishu           2.3  1.9
+   5262 feishu           2.1  1.1
+3554018 codex            2.0  0.7
+3579532 chrome           2.0  0.4
+   4358 Xorg             1.8  0.2
+  19240 firefox          1.8  4.4
+   5764 terminator       1.7  0.2
+   6198 herdr            1.7  0.1

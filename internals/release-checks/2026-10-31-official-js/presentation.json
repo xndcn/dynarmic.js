@@ -1,0 +1,345 @@
+{
+  "harnessSha256": "450a8390cff25ba6d51fd1d71d7fd6bb11afa163c2ed63ad5b5842f4e37ac1be",
+  "schema": "dynarmic.js/presentation-replay-review-v1",
+  "kind": "presentation-replay; no benchmark workload executed",
+  "reviewedAt": "2026-10-30T17:01:04.328Z",
+  "sourceHashes": {
+    "index.html": "1a2c9dd8409552bae815a970c82e4192a9cc538145db3941b76ec490eee1788c",
+    "styles.css": "fc67703d9409d96c3edf38897ef6956516706ce767037258362c11de4526264d",
+    "official-benchmarks-app.js": "c6abbc0cdce10df38e805157751483392c77a155348f3bcca40fdcdc38e63930"
+  },
+  "measurementProvenance": {
+    "path": "test-results/official-v8/browser-chromium.json",
+    "sha256": "44b07090c55046df112e430844f3b672439a0e3805dc491fad8715e6fc72f2a5",
+    "status": "pass",
+    "startedAt": "2026-10-30T16:48:16.498Z",
+    "finishedAt": "2026-10-30T16:55:44.479Z",
+    "note": "All 30 archived Worker replies are replayed unchanged. Parent test later failed in its cancellation check; this report does not convert that test failure into a pass."
+  },
+  "checks": [
+    {
+      "check": "expanded details and summary focus survive the next measurement render",
+      "open": [
+        "all",
+        "Richards/Richards"
+      ],
+      "focus": "Richards/Richards"
+    },
+    {
+      "check": "table region focus and 90px horizontal scroll survive render"
+    },
+    {
+      "check": "all 30 archived results preserved byte-for-byte at object level",
+      "count": 30
+    }
+  ],
+  "viewports": [
+    {
+      "name": "small",
+      "width": 320,
+      "theme": "light",
+      "layout": {
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "tableClient": 254,
+        "tableScroll": 254,
+        "cellCount": 30
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "#official-run > span[aria-hidden=\"true\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "textContrast": {
+        "total": 132,
+        "min": 5.773694157480817,
+        "fails": []
+      },
+      "expanded": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              [
+                "#official-run > span[aria-hidden=\"true\"]"
+              ]
+            ]
+          }
+        ],
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "textContrast": {
+          "total": 571,
+          "min": 5.773694157480817,
+          "fails": []
+        }
+      }
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "theme": "light",
+      "layout": {
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "tableClient": 324,
+        "tableScroll": 324,
+        "cellCount": 30
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "#official-run > span[aria-hidden=\"true\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "textContrast": {
+        "total": 132,
+        "min": 5.773694157480817,
+        "fails": []
+      },
+      "expanded": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              [
+                "#official-run > span[aria-hidden=\"true\"]"
+              ]
+            ]
+          }
+        ],
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "textContrast": {
+          "total": 571,
+          "min": 5.773694157480817,
+          "fails": []
+        }
+      }
+    },
+    {
+      "name": "desktop",
+      "width": 1440,
+      "theme": "light",
+      "layout": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "tableClient": 1147,
+        "tableScroll": 1147,
+        "cellCount": 30
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "#official-run > span[aria-hidden=\"true\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "textContrast": {
+        "total": 102,
+        "min": 5.773694157480817,
+        "fails": []
+      },
+      "expanded": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              [
+                "#official-run > span[aria-hidden=\"true\"]"
+              ]
+            ]
+          }
+        ],
+        "clientWidth": 1425,
+        "scrollWidth": 1425,
+        "textContrast": {
+          "total": 541,
+          "min": 5.773694157480817,
+          "fails": []
+        }
+      }
+    },
+    {
+      "name": "small-dark",
+      "width": 320,
+      "theme": "dark",
+      "layout": {
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "tableClient": 254,
+        "tableScroll": 254,
+        "cellCount": 30
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "#official-run > span[aria-hidden=\"true\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "textContrast": {
+        "total": 132,
+        "min": 8.041473921808265,
+        "fails": []
+      },
+      "expanded": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              [
+                "#official-run > span[aria-hidden=\"true\"]"
+              ]
+            ]
+          }
+        ],
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "textContrast": {
+          "total": 571,
+          "min": 8.041473921808265,
+          "fails": []
+        }
+      }
+    },
+    {
+      "name": "mobile-dark",
+      "width": 390,
+      "theme": "dark",
+      "layout": {
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "tableClient": 324,
+        "tableScroll": 324,
+        "cellCount": 30
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "#official-run > span[aria-hidden=\"true\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "textContrast": {
+        "total": 132,
+        "min": 8.041473921808265,
+        "fails": []
+      },
+      "expanded": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              [
+                "#official-run > span[aria-hidden=\"true\"]"
+              ]
+            ]
+          }
+        ],
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "textContrast": {
+          "total": 571,
+          "min": 8.041473921808265,
+          "fails": []
+        }
+      }
+    },
+    {
+      "name": "desktop-dark",
+      "width": 1440,
+      "theme": "dark",
+      "layout": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "tableClient": 1147,
+        "tableScroll": 1147,
+        "cellCount": 30
+      },
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "#official-run > span[aria-hidden=\"true\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "textContrast": {
+        "total": 102,
+        "min": 8.041473921808265,
+        "fails": []
+      },
+      "expanded": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              [
+                "#official-run > span[aria-hidden=\"true\"]"
+              ]
+            ]
+          }
+        ],
+        "clientWidth": 1425,
+        "scrollWidth": 1425,
+        "textContrast": {
+          "total": 541,
+          "min": 8.041473921808265,
+          "fails": []
+        }
+      }
+    }
+  ],
+  "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/133.0.0.0 Safari/537.36"
+}

@@ -1,0 +1,208 @@
+TAP version 13
+# Subtest: runs both architectures in every memory mode and shows exact-reference results
+ok 1 - runs both architectures in every memory mode and shows exact-reference results
+  ---
+  duration_ms: 10.436252
+  type: 'test'
+  ...
+# Subtest: HTTP failure, rejected fetch and empty reference fail cleanly and permit retry
+ok 2 - HTTP failure, rejected fetch and empty reference fail cleanly and permit retry
+  ---
+  duration_ms: 6.386776
+  type: 'test'
+  ...
+# Subtest: startup, execution, unreadable-message and postMessage errors discard Workers and permit retries
+ok 3 - startup, execution, unreadable-message and postMessage errors discard Workers and permit retries
+  ---
+  duration_ms: 5.18685
+  type: 'test'
+  ...
+# Subtest: mismatch, unexpected halt, Worker error and malformed reply never pass
+ok 4 - mismatch, unexpected halt, Worker error and malformed reply never pass
+  ---
+  duration_ms: 6.161465
+  type: 'test'
+  ...
+# Subtest: caught runtime failures discard poisoned modules before the next guest or rerun
+ok 5 - caught runtime failures discard poisoned modules before the next guest or rerun
+  ---
+  duration_ms: 2.817171
+  type: 'test'
+  ...
+# Subtest: a rerun clears previous success and statistics before fetching
+ok 6 - a rerun clears previous success and statistics before fetching
+  ---
+  duration_ms: 0.876544
+  type: 'test'
+  ...
+# Subtest: Stop aborts a pending fetch, re-enables controls and allows a fresh run
+ok 7 - Stop aborts a pending fetch, re-enables controls and allows a fresh run
+  ---
+  duration_ms: 1.001986
+  type: 'test'
+  ...
+# Subtest: Stop terminates a synchronous guest Worker, ignores its late replies and permits retry
+ok 8 - Stop terminates a synchronous guest Worker, ignores its late replies and permits retry
+  ---
+  duration_ms: 6.485866
+  type: 'test'
+  ...
+# Subtest: the whole run deadline covers stalled fetches and stalled Workers
+ok 9 - the whole run deadline covers stalled fetches and stalled Workers
+  ---
+  duration_ms: 2.934958
+  type: 'test'
+  ...
+# Subtest: file URLs and missing browser capabilities fail with actionable feedback
+ok 10 - file URLs and missing browser capabilities fail with actionable feedback
+  ---
+  duration_ms: 2.913585
+  type: 'test'
+  ...
+# Subtest: reports failures to a same-origin smoke driver, preserves query and refuses foreign callbacks
+ok 11 - reports failures to a same-origin smoke driver, preserves query and refuses foreign callbacks
+  ---
+  duration_ms: 2.377735
+  type: 'test'
+  ...
+# Subtest: Firefox runner waits for profile writes on graceful shutdown before reporting success
+ok 12 - Firefox runner waits for profile writes on graceful shutdown before reporting success
+  ---
+  duration_ms: 228.722872
+  type: 'test'
+  ...
+# Subtest: Firefox runner kills a browser that ignores SIGTERM and cleans its profile
+ok 13 - Firefox runner kills a browser that ignores SIGTERM and cleans its profile
+  ---
+  duration_ms: 1606.517498
+  type: 'test'
+  ...
+# Subtest: Firefox runner handles startup failure without waiting for the report timeout
+ok 14 - Firefox runner handles startup failure without waiting for the report timeout
+  ---
+  duration_ms: 49.723431
+  type: 'test'
+  ...
+# Subtest: Firefox runner checks the complete page bundle before starting a browser
+ok 15 - Firefox runner checks the complete page bundle before starting a browser
+  ---
+  duration_ms: 80.226128
+  type: 'test'
+  ...
+# Subtest: Firefox runner handles early browser exit and cleans its profile
+ok 16 - Firefox runner handles early browser exit and cleans its profile
+  ---
+  duration_ms: 80.101382
+  type: 'test'
+  ...
+# Subtest: Firefox runner still waits for browser closure after a failed page report
+ok 17 - Firefox runner still waits for browser closure after a failed page report
+  ---
+  duration_ms: 212.189085
+  type: 'test'
+  ...
+# Subtest: Chrome smoke rejects invalid arguments before discovery
+ok 18 - Chrome smoke rejects invalid arguments before discovery
+  ---
+  duration_ms: 110.312294
+  type: 'test'
+  ...
+# Subtest: Chrome smoke handles malformed or empty target discovery
+ok 19 - Chrome smoke handles malformed or empty target discovery
+  ---
+  duration_ms: 419.344912
+  type: 'test'
+  ...
+# Subtest: Chrome smoke bounds connection and request failures
+ok 20 - Chrome smoke bounds connection and request failures
+  ---
+  duration_ms: 267.541118
+  type: 'test'
+  ...
+# Subtest: Chrome smoke still recognizes a passing page and prints its output
+ok 21 - Chrome smoke still recognizes a passing page and prints its output
+  ---
+  duration_ms: 44.19223
+  type: 'test'
+  ...
+# Subtest: Worker rejects oversized or malformed requests before changing guest memory
+ok 22 - Worker rejects oversized or malformed requests before changing guest memory
+  ---
+  duration_ms: 6.890045
+  type: 'test'
+  ...
+# Subtest: Worker loads a maximum-size binary entirely within guest RAM
+ok 23 - Worker loads a maximum-size binary entirely within guest RAM
+  ---
+  duration_ms: 1.039205
+  type: 'test'
+  ...
+# Subtest: Worker retries a failed module load and reuses a later successful instance
+ok 24 - Worker retries a failed module load and reuses a later successful instance
+  ---
+  duration_ms: 1.198011
+  type: 'test'
+  ...
+# Subtest: Worker rejects concurrent requests during module loading without replacing the running guest
+ok 25 - Worker rejects concurrent requests during module loading without replacing the running guest
+  ---
+  duration_ms: 1.126515
+  type: 'test'
+  ...
+# Subtest: Worker identifies missing Wasm features before loading the module
+ok 26 - Worker identifies missing Wasm features before loading the module
+  ---
+  duration_ms: 4.230703
+  type: 'test'
+  ...
+# Subtest: Worker rejects empty input without loading Wasm and permits a valid retry
+ok 27 - Worker rejects empty input without loading Wasm and permits a valid retry
+  ---
+  duration_ms: 1.334286
+  type: 'test'
+  ...
+# Subtest: Worker releases the request lock after initialization errors and guest faults
+ok 28 - Worker releases the request lock after initialization errors and guest faults
+  ---
+  duration_ms: 1.239665
+  type: 'test'
+  ...
+# Subtest: Worker reports a Wasm runtime trap as an ordinary failure reply
+ok 29 - Worker reports a Wasm runtime trap as an ordinary failure reply
+  ---
+  duration_ms: 1.14701
+  type: 'test'
+  ...
+# Subtest: Worker reports compile counters only from the active JIT instance
+ok 30 - Worker reports compile counters only from the active JIT instance
+  ---
+  duration_ms: 1.027453
+  type: 'test'
+  ...
+# Subtest: strict browser configuration reports each missing prerequisite before compilation
+ok 31 - strict browser configuration reports each missing prerequisite before compilation
+  ---
+  duration_ms: 465.813694
+  type: 'test'
+  ...
+# Subtest: native reference capture preserves exact stdout and spaced executable/output paths
+ok 32 - native reference capture preserves exact stdout and spaced executable/output paths
+  ---
+  duration_ms: 74.559696
+  type: 'test'
+  ...
+# Subtest: native reference failures remove partial or stale output and fail the build
+ok 33 - native reference failures remove partial or stale output and fail the build
+  ---
+  duration_ms: 128.844583
+  type: 'test'
+  ...
+1..33
+# tests 33
+# suites 0
+# pass 33
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2315.498709

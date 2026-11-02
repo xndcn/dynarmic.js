@@ -1,0 +1,30 @@
+{
+  "name": "dynarmic.js",
+  "version": "0.1.0-alpha.0",
+  "description": "Run ARM32, Thumb and AArch64 guest code with a WebAssembly JIT in Node.js and browser Workers",
+  "type": "module",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {"types": "./index.d.ts", "import": "./index.js", "default": "./index.js"},
+    "./runtime.wasm": "./runtime.wasm",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js", "index.d.ts", "runtime.mjs", "runtime.wasm",
+    "runtime-build-manifest.json", "source.tar.gz", "source-manifest.json",
+    "runtime-licenses.txt", "THIRD_PARTY_NOTICES.md", "REBUILD.md", "verify.mjs"
+  ],
+  "scripts": {
+    "prepack": "node verify.mjs",
+    "prepublishOnly": "node verify.mjs --require-clean"
+  },
+  "engines": {"node": ">=22"},
+  "sideEffects": false,
+  "license": "MIT",
+  "repository": {"type": "git", "url": "git+https://github.com/xndcn/dynarmic.js.git", "directory": "packages/dynarmic"},
+  "homepage": "https://github.com/xndcn/dynarmic.js#readme",
+  "bugs": {"url": "https://github.com/xndcn/dynarmic.js/issues"},
+  "keywords": ["arm", "aarch64", "thumb", "webassembly", "wasm", "jit", "emulator"],
+  "publishConfig": {"access": "public", "tag": "next"}
+}

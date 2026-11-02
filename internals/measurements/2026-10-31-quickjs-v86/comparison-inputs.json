@@ -1,0 +1,88 @@
+{
+  "schema": "dynarmic.js/v86-quickjs-inputs-v1",
+  "v86": {
+    "version": "0.5.473+g315b2b0",
+    "revision": "315b2b0b758703ef0e6cc7b4088d6068f83f3c20",
+    "url": "https://registry.npmjs.org/v86/-/v86-0.5.473.tgz",
+    "archiveIntegrity": "sha512-mNHB0DXDmfxn0CrlqCmlgMR1W7aKuD+sHmSctLcTROOwpOvbE4qsAhmaE6Vy+riQfcE4PfA2xvW59/ZXsYnHNw==",
+    "archive": {
+      "bytes": 4218519,
+      "sha256": "364ab67a68c1d83646e2ddf7caf73c24574694a132b2b43689ad0f72e7242636"
+    },
+    "build": "official npm release; JIT enabled; explicit v86.wasm with no fallback"
+  },
+  "artifacts": {
+    "arm-bench-build-manifest.json": {
+      "bytes": 1512,
+      "sha256": "e0aec425135bf433da3cba9f0600c44902ca65c3d09a672aa2901febca7e5add"
+    },
+    "arm_bench_jit.js": {
+      "bytes": 25400,
+      "sha256": "ff2cf9ac1f6c4097539dedcb0c7c2e158067f7309a266a901cef8cd05290dbe2"
+    },
+    "arm_bench_jit.wasm": {
+      "bytes": 2250806,
+      "sha256": "6ef0ecb11f8f633af9f9e3eec027404f0c055fac8b21066a577b44a854dd3d8b"
+    },
+    "index.html": {
+      "bytes": 80,
+      "sha256": "527f51ece21386393ed92c4b4560f23cd9710c6d16d0f6f35aabdd7c44e895fd"
+    },
+    "libv86.js": {
+      "bytes": 359857,
+      "sha256": "e257912c4a1129e36a86c1e2df69904ab969d87bffd24aa6676e84d6ddffc1c6"
+    },
+    "official-benchmarks-worker.js": {
+      "bytes": 5488,
+      "sha256": "e872a7066f7d963cc99d4b596b21ed30817b0244446109fac41f8eec717ca1b6"
+    },
+    "official-benchmarks.json": {
+      "bytes": 3450,
+      "sha256": "0ff4d09a59ffe52c01fdedeb9b3299f71d694bd314c7616020ebaa61fbc93fc5"
+    },
+    "official-v8-adapter.js": {
+      "bytes": 5898,
+      "sha256": "14ac511bfd497c6686c901919a6f8222e53501d7e835b47af976ffa4874ab9ff"
+    },
+    "official-v8.js": {
+      "bytes": 458563,
+      "sha256": "87f7553a974678a422e9d9d245f6b3ac80f86a503d17224d3dd33c38819400da"
+    },
+    "quickjs-arm.bin": {
+      "bytes": 683252,
+      "sha256": "aeba400ff697b77cef6b47019b1af4d373040a22e50e270040e283178a26d2f0"
+    },
+    "quickjs-manifest.json": {
+      "bytes": 10884,
+      "sha256": "2d808518d9746d4fbad0f22bb8a56f8c46c2b801003b1576cfa66ef801135e85"
+    },
+    "quickjs-workloads.js": {
+      "bytes": 3108,
+      "sha256": "cff32113b074e4a0ede55920f1b4ac8a29bbf4996f2c9deb321f7e45f8c6c31e"
+    },
+    "quickjs-x86-manifest.json": {
+      "bytes": 11500,
+      "sha256": "266c879d46f0552a843ad0a33f59baaacd0ef4929779c150d33217b24228e135"
+    },
+    "quickjs-x86.elf": {
+      "bytes": 802512,
+      "sha256": "3d34593217da03ae0285b48f67473084591b19defcbe41633616de10a75f8d2c"
+    },
+    "v86-LICENSE.txt": {
+      "bytes": 1306,
+      "sha256": "3f61ba65e3215b09ef264ba8d777d73c19644309fbb705967634eb5147e500a0"
+    },
+    "v86-runtime.js": {
+      "bytes": 4501,
+      "sha256": "1f4d209e76426290acbafeacddd514244d3911e35f7794645b699f3e5ec2a4e0"
+    },
+    "v86-worker.js": {
+      "bytes": 1756,
+      "sha256": "dd1d9c65f92cd0b7ea2b8e3089294f160c37b11ac2955dfac3bf2d2f21e44ba1"
+    },
+    "v86.wasm": {
+      "bytes": 2007347,
+      "sha256": "2f0c4150f266415b754a84a32e6f8e4c975a1d3abb94c78b047fa30027db1ef1"
+    }
+  }
+}

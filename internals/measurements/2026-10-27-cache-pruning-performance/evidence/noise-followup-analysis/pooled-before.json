@@ -1,0 +1,2236 @@
+{
+  "schema": "dynarmic.js/coremark-workload-v1",
+  "timestamp": "2026-10-27T06:28:50.489Z",
+  "node": "v24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "runtime": {
+    "nodeOptions": "",
+    "cpuAffinity": "0,2,4,6"
+  },
+  "host": {
+    "platform": "linux",
+    "release": "6.8.0-138-generic",
+    "arch": "x64",
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12700",
+    "cpus": 20
+  },
+  "git": {
+    "revision": "b0aa3d1bf1e0a75af81c3bdd064a7204c3266c39",
+    "upstream": "a41c380246d3d9f9874f0f792d234dc0cc17c180",
+    "dirty": false
+  },
+  "build": {
+    "type": "Release",
+    "profile": false,
+    "compilerId": "Clang",
+    "compilerVersion": "24.0.0",
+    "emscriptenVersion": "\"6.0.13\"",
+    "cxxFlags": "",
+    "configCxxFlags": "-O3 -DNDEBUG",
+    "linkFlags": "",
+    "configLinkFlags": ""
+  },
+  "artifact": {
+    "jsSha256": "8fd2c38c325be2c1ddf7343f2b501137a8a40a5dc6dd8d0774ccda82ccbc1792",
+    "wasmSha256": "534cdb04a84c08c9fd55543208f9c7c8338d769ac9326aa1940f2d96d651e487"
+  },
+  "workload": {
+    "schema": "dynarmic.js/coremark-build-v1",
+    "revision": "1f483d5b8316753a742cbf5590caf5bd0a4e4777",
+    "iterations": 200000,
+    "dataSize": 2000,
+    "contexts": 1,
+    "sources": {
+      "a32/link.ld": "ead892341b03782cfb38ebf679620600a5c9fee70f429e5e320ae76f8dc23b41",
+      "a32/start.S": "61b62dcd88bd08aa1c579ffe2bdb0d1e8497ec84de84307f1418a0281b649c3b",
+      "a64/include/math.h": "2131a130299bb02e0cb99e4a6e2eb676d06b6b05015b2925d7e9aa87c3784e2e",
+      "a64/include/string.h": "cd96033fd1ba48b80854febf7acfd64403aff69f4dd49c120c9eedf55de8c0a1",
+      "a64/link.ld": "f5f5e02bfc1978aca3e08c9f0e8fb2acabe7699bf237105014f4bbb5d22bb7aa",
+      "a64/start.S": "6d3011ef944a5aceadeb822c976a108f19eb4da773d4ef84b9158b716138adb7",
+      "port/build.py": "d3c0c712f80b1240866b8d05e8444fa32e13e59a52aca5c4ba302cee1d95c2b3",
+      "port/core_portme.c": "b2d8d0cb6ac4cdc43e0e366f3a259b707fa715bf926739fec40655fba3373695",
+      "port/core_portme.h": "6a5feb460110da19fa9ae0c1773fd1ad956765a02191bd12860c1a8ad1dac009",
+      "upstream/barebones/cvt.c": "7c57eaa23c780cd707db2304365d1ded372fd73dd107f16bdd091d9dd16fd742",
+      "upstream/barebones/ee_printf.c": "535ba1feaa731d69e6f45117b9a79ef58291619248505c67aec916571612abdc",
+      "upstream/core_list_join.c": "ca00e4e010ece47d7f040cb92aa50a95345a00d3171b59d088f6b243be06ce7b",
+      "upstream/core_main.c": "17884c93c5b94378eb0ff02b4df3725756cf2addb9b8cbcaa6200a4649ff5ca7",
+      "upstream/core_matrix.c": "ecdff717b5a5c4907d221a606760e25499899cbf617582c05d40db71c91351e4",
+      "upstream/core_state.c": "f4b84bb0a3452c45a4daa664ab502bfdccbd31cb57d93e9ac490c60937717a4e",
+      "upstream/core_util.c": "a3fbfcb9bb943b638624b8ece01c5836dd56a96d7bcde2697b248d077447327f",
+      "upstream/coremark.h": "42642b9a06c7ed2b3bd9eda971b7c3868c4f5d27bf7ef6c4bba11291a0c2598a"
+    },
+    "compilers": {
+      "a32": "arm-none-eabi-gcc (15:10.3-2021.07-4) 10.3.1 20210621 (release)\nCopyright (C) 2020 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "a64": "clang version 22.1.8\nTarget: x86_64-unknown-linux6.8.0-gnu2.35.0\nThread model: posix\nInstalledDir: /home/xiong/.local/lib/python3.10/site-packages/ziglang",
+      "native": "cc (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0\nCopyright (C) 2022 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+    },
+    "flags": {
+      "a32": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp",
+      "a64": "-target aarch64-freestanding -O2",
+      "native": "-O2"
+    },
+    "commands": {
+      "a32": [
+        "arm-none-eabi-gcc",
+        "-O2",
+        "-mcpu=cortex-a15",
+        "-marm",
+        "-mfpu=vfpv3",
+        "-mfloat-abi=softfp",
+        "-DCOMPILER_FLAGS=\"-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\"",
+        "-DITERATIONS=200000",
+        "-DTOTAL_DATA_SIZE=2000",
+        "-DPERFORMANCE_RUN=1",
+        "-DMAIN_HAS_NOARGC=1",
+        "-I/home/xiong/workspace/dynarmic.js/tests/bench/coremark",
+        "-I/tmp/dynarmic-coremark-source",
+        "-ffreestanding",
+        "-nostdlib",
+        "-Dmain=guest_main",
+        "-T",
+        "/home/xiong/workspace/dynarmic.js/tests/guest/link.ld",
+        "/home/xiong/workspace/dynarmic.js/tests/guest/start.S",
+        "/tmp/dynarmic-coremark-source/core_list_join.c",
+        "/tmp/dynarmic-coremark-source/core_main.c",
+        "/tmp/dynarmic-coremark-source/core_matrix.c",
+        "/tmp/dynarmic-coremark-source/core_state.c",
+        "/tmp/dynarmic-coremark-source/core_util.c",
+        "/tmp/dynarmic-coremark-source/barebones/cvt.c",
+        "/tmp/dynarmic-coremark-long/ee_printf.c",
+        "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/core_portme.c",
+        "-lgcc",
+        "-o",
+        "/tmp/dynarmic-coremark-long/a32.elf"
+      ],
+      "a64": [
+        "python3",
+        "-m",
+        "ziglang",
+        "cc",
+        "-target",
+        "aarch64-freestanding",
+        "-O2",
+        "-DCOMPILER_FLAGS=\"-target aarch64-freestanding -O2\"",
+        "-DITERATIONS=200000",
+        "-DTOTAL_DATA_SIZE=2000",
+        "-DPERFORMANCE_RUN=1",
+        "-DMAIN_HAS_NOARGC=1",
+        "-I/home/xiong/workspace/dynarmic.js/tests/bench/coremark",
+        "-I/tmp/dynarmic-coremark-source",
+        "-ffreestanding",
+        "-nostdlib",
+        "-Dmain=guest_main",
+        "-I/home/xiong/workspace/dynarmic.js/tests/guest64/include",
+        "-T",
+        "/home/xiong/workspace/dynarmic.js/tests/guest64/link.ld",
+        "/home/xiong/workspace/dynarmic.js/tests/guest64/start.S",
+        "/tmp/dynarmic-coremark-source/core_list_join.c",
+        "/tmp/dynarmic-coremark-source/core_main.c",
+        "/tmp/dynarmic-coremark-source/core_matrix.c",
+        "/tmp/dynarmic-coremark-source/core_state.c",
+        "/tmp/dynarmic-coremark-source/core_util.c",
+        "/tmp/dynarmic-coremark-source/barebones/cvt.c",
+        "/tmp/dynarmic-coremark-long/ee_printf.c",
+        "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/core_portme.c",
+        "-o",
+        "/tmp/dynarmic-coremark-long/a64.elf"
+      ],
+      "native": [
+        "cc",
+        "-O2",
+        "-DCOMPILER_FLAGS=\"-O2\"",
+        "-DITERATIONS=200000",
+        "-DTOTAL_DATA_SIZE=2000",
+        "-DPERFORMANCE_RUN=1",
+        "-DMAIN_HAS_NOARGC=1",
+        "-I/home/xiong/workspace/dynarmic.js/tests/bench/coremark",
+        "-I/tmp/dynarmic-coremark-source",
+        "-DHOST",
+        "/tmp/dynarmic-coremark-source/core_list_join.c",
+        "/tmp/dynarmic-coremark-source/core_main.c",
+        "/tmp/dynarmic-coremark-source/core_matrix.c",
+        "/tmp/dynarmic-coremark-source/core_state.c",
+        "/tmp/dynarmic-coremark-source/core_util.c",
+        "/tmp/dynarmic-coremark-source/barebones/cvt.c",
+        "/tmp/dynarmic-coremark-long/ee_printf.c",
+        "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/core_portme.c",
+        "-o",
+        "/tmp/dynarmic-coremark-long/coremark_host"
+      ]
+    },
+    "uartSourceSha256": "1be05078a3d9121bcfac8ddc67eadcccc4f7580c5968084c4a177274ee013e8b",
+    "artifacts": {
+      "a32": {
+        "file": "coremark_a32.bin",
+        "sha256": "6e06dc9c6cbd9b4c3e32cb32f6a0e31c8e6c73a6ecbde4b904167f23dca31f8d"
+      },
+      "a64": {
+        "file": "coremark_a64.bin",
+        "sha256": "8f96e0f0f3beb9a5fb8765405926655c182bfcdfe93a8f99dc6ea32dec227ab1"
+      },
+      "native": {
+        "file": "coremark_host",
+        "sha256": "53180426be095cc3f5ca764f24f0209e1d449c79e4129ad41f89ee3b58766a3a"
+      }
+    }
+  },
+  "workloadSha256": "ad43250ce2139ab0d0fdbf1eac0bb1284e00fde62419d387accfe6348cca17aa",
+  "methodology": {
+    "workload": "CoreMark 2K performance seeds, one context, fixed compile-time iterations",
+    "process": "one new module and JIT per sample; cases rotate between fresh-process rounds",
+    "timing": "Run wall time excludes module load, RAM setup and JIT construction; includes cold compilation and publication",
+    "kernel": "guest microsecond timer around CoreMark iterate; includes JIT misses and engine tiering; no steady-state claim",
+    "duration": "durationQualified requires every guest sample to meet the upstream 10-second minimum; not certification",
+    "reference": "native executable validates CRCs, including final CRC; native timing is not a performance comparison"
+  },
+  "collection": "Paired per case, case order rotated and build order alternated each round; every sample requires ten seconds",
+  "cases": [
+    {
+      "name": "a32-thunk",
+      "architecture": "a32",
+      "memoryMode": "thunk",
+      "runs": 10,
+      "samples": [
+        {
+          "haltReason": 16777216,
+          "runMs": 69115.740031,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 69045885\nTotal time (secs): 69.045885\nIterations/Sec   : 2896.624469\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 2896.624469 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 751278,
+            "translateMs": 25.21831099999919,
+            "optMs": 11.873115000279647,
+            "emitMs": 27.614892000110096,
+            "compileMs": 6.421523000002203,
+            "instMs": 1.3481279998959081,
+            "tableMs": 0.6327520001372164
+          },
+          "profile": null,
+          "process": 0,
+          "metrics": {
+            "ticks": 69045885,
+            "seconds": 69.045885,
+            "iterationsPerSecond": 2896.624469,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 85989.766647,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 85748181\nTotal time (secs): 85.748181\nIterations/Sec   : 2332.410993\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 2332.410993 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 751278,
+            "translateMs": 74.07938799993477,
+            "optMs": 82.15774699941805,
+            "emitMs": 105.80188699995486,
+            "compileMs": 69.4183670000159,
+            "instMs": 25.880347999958815,
+            "tableMs": 8.824830000084631
+          },
+          "profile": null,
+          "process": 1,
+          "metrics": {
+            "ticks": 85748181,
+            "seconds": 85.748181,
+            "iterationsPerSecond": 2332.410993,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 69082.728778,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 69003303\nTotal time (secs): 69.003303\nIterations/Sec   : 2898.411979\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 2898.411979 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 751278,
+            "translateMs": 24.665140999906654,
+            "optMs": 13.271112000128738,
+            "emitMs": 34.54977600009273,
+            "compileMs": 11.414701000046513,
+            "instMs": 1.5939419999790019,
+            "tableMs": 0.6901639999957752
+          },
+          "profile": null,
+          "process": 2,
+          "metrics": {
+            "ticks": 69003303,
+            "seconds": 69.003303,
+            "iterationsPerSecond": 2898.411979,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 76911.177088,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 76833504\nTotal time (secs): 76.833504\nIterations/Sec   : 2603.031094\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 2603.031094 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 751278,
+            "translateMs": 24.05270499999535,
+            "optMs": 13.767288000233009,
+            "emitMs": 35.52107099996631,
+            "compileMs": 7.638669000074202,
+            "instMs": 1.7268309999835552,
+            "tableMs": 0.7239470000061914
+          },
+          "profile": null,
+          "process": 3,
+          "metrics": {
+            "ticks": 76833504,
+            "seconds": 76.833504,
+            "iterationsPerSecond": 2603.031094,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 69764.867,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 69686050\nTotal time (secs): 69.686050\nIterations/Sec   : 2870.014874\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 2870.014874 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 751278,
+            "translateMs": 26.276431999944187,
+            "optMs": 12.332706000556655,
+            "emitMs": 35.945825000007176,
+            "compileMs": 7.838565999974961,
+            "instMs": 1.6215509999867095,
+            "tableMs": 0.6853669999647423
+          },
+          "profile": null,
+          "process": 4,
+          "metrics": {
+            "ticks": 69686050,
+            "seconds": 69.68605,
+            "iterationsPerSecond": 2870.014874,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 67817.428077,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 67747972\nTotal time (secs): 67.747972\nIterations/Sec   : 2952.117888\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 2952.117888 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 117,
+            "bytes": 728134,
+            "translateMs": 21.518365999828816,
+            "optMs": 14.849984000207094,
+            "emitMs": 27.47575500009966,
+            "compileMs": 7.56740300002037,
+            "instMs": 1.4702869999445198,
+            "tableMs": 0.6339530000773976
+          },
+          "profile": null,
+          "process": 5,
+          "metrics": {
+            "ticks": 67747972,
+            "seconds": 67.747972,
+            "iterationsPerSecond": 2952.117888,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 71287.195721,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 71203742\nTotal time (secs): 71.203742\nIterations/Sec   : 2808.841142\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 2808.841142 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 751278,
+            "translateMs": 29.880123999832975,
+            "optMs": 16.334822999788976,
+            "emitMs": 31.384049999989728,
+            "compileMs": 7.448337999981,
+            "instMs": 1.6277370000230817,
+            "tableMs": 0.6822519999453291
+          },
+          "profile": null,
+          "process": 6,
+          "metrics": {
+            "ticks": 71203742,
+            "seconds": 71.203742,
+            "iterationsPerSecond": 2808.841142,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 67116.024909,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 67043385\nTotal time (secs): 67.043385\nIterations/Sec   : 2983.142931\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 2983.142931 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 751278,
+            "translateMs": 22.261654999972528,
+            "optMs": 12.207626000118992,
+            "emitMs": 31.616729999950692,
+            "compileMs": 7.77040000000008,
+            "instMs": 1.5755690000304625,
+            "tableMs": 0.6597849999734109
+          },
+          "profile": null,
+          "process": 7,
+          "metrics": {
+            "ticks": 67043385,
+            "seconds": 67.043385,
+            "iterationsPerSecond": 2983.142931,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 72913.22694400001,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 72835901\nTotal time (secs): 72.835901\nIterations/Sec   : 2745.898619\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 2745.898619 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 751278,
+            "translateMs": 28.164951000069742,
+            "optMs": 13.079936999823786,
+            "emitMs": 29.710662999921595,
+            "compileMs": 8.050603000058778,
+            "instMs": 1.6471969999770124,
+            "tableMs": 0.6718059999501236
+          },
+          "profile": null,
+          "process": 8,
+          "metrics": {
+            "ticks": 72835901,
+            "seconds": 72.835901,
+            "iterationsPerSecond": 2745.898619,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 68315.453552,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 68244253\nTotal time (secs): 68.244253\nIterations/Sec   : 2930.649706\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 2930.649706 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 751278,
+            "translateMs": 25.0401860002788,
+            "optMs": 12.100781999899475,
+            "emitMs": 32.66418199999421,
+            "compileMs": 14.211594000113067,
+            "instMs": 1.510509999920778,
+            "tableMs": 0.6407949999521918
+          },
+          "profile": null,
+          "process": 9,
+          "metrics": {
+            "ticks": 68244253,
+            "seconds": 68.244253,
+            "iterationsPerSecond": 2930.649706,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        }
+      ],
+      "summary": {
+        "runMedianMs": 69440.3035155,
+        "kernelMedianMs": 69365.9675,
+        "runMadMs": 1734.8838219999961,
+        "kernelMadMs": 1727.885000000002,
+        "compileMedianMs": 84.06547900034653,
+        "emittedBytesMedian": 751278,
+        "peakCachedBytesMedian": null,
+        "durationQualified": true
+      }
+    },
+    {
+      "name": "a32-page-table",
+      "architecture": "a32",
+      "memoryMode": "page-table",
+      "runs": 10,
+      "samples": [
+        {
+          "haltReason": 16777216,
+          "runMs": 32132.183987,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 32050682\nTotal time (secs): 32.050682\nIterations/Sec   : 6240.116825\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6240.116825 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 873161,
+            "translateMs": 25.82541599997193,
+            "optMs": 15.82838700010754,
+            "emitMs": 32.460989000004844,
+            "compileMs": 7.873256999981102,
+            "instMs": 1.6601730000035673,
+            "tableMs": 0.7661119999930577
+          },
+          "profile": null,
+          "process": 0,
+          "metrics": {
+            "ticks": 32050682,
+            "seconds": 32.050682,
+            "iterationsPerSecond": 6240.116825,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 34201.380619999996,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 34125448\nTotal time (secs): 34.125448\nIterations/Sec   : 5860.728920\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 5860.728920 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 116,
+            "bytes": 838323,
+            "translateMs": 27.19748700003,
+            "optMs": 12.33089099992371,
+            "emitMs": 29.12225300002634,
+            "compileMs": 12.479007000006803,
+            "instMs": 1.7369649999880536,
+            "tableMs": 0.6336750000357299
+          },
+          "profile": null,
+          "process": 1,
+          "metrics": {
+            "ticks": 34125448,
+            "seconds": 34.125448,
+            "iterationsPerSecond": 5860.72892,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 31531.277276999997,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 31452483\nTotal time (secs): 31.452483\nIterations/Sec   : 6358.798445\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6358.798445 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 117,
+            "bytes": 847382,
+            "translateMs": 29.324287000076097,
+            "optMs": 12.896815000014968,
+            "emitMs": 37.80287399998277,
+            "compileMs": 11.432343999987992,
+            "instMs": 1.9210780000085421,
+            "tableMs": 0.6752079999869309
+          },
+          "profile": null,
+          "process": 2,
+          "metrics": {
+            "ticks": 31452483,
+            "seconds": 31.452483,
+            "iterationsPerSecond": 6358.798445,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 32345.158906,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 32258134\nTotal time (secs): 32.258134\nIterations/Sec   : 6199.986645\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6199.986645 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 116,
+            "bytes": 838323,
+            "translateMs": 29.16638400005896,
+            "optMs": 14.522447000019241,
+            "emitMs": 36.63419300001609,
+            "compileMs": 12.202319000024197,
+            "instMs": 1.735125999985371,
+            "tableMs": 0.8244349999933647
+          },
+          "profile": null,
+          "process": 3,
+          "metrics": {
+            "ticks": 32258134,
+            "seconds": 32.258134,
+            "iterationsPerSecond": 6199.986645,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 34083.415789,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 34002213\nTotal time (secs): 34.002213\nIterations/Sec   : 5881.970094\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 5881.970094 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 873161,
+            "translateMs": 28.134890999899923,
+            "optMs": 13.390275000151284,
+            "emitMs": 37.5556929999953,
+            "compileMs": 11.650160999987058,
+            "instMs": 2.0283749999998477,
+            "tableMs": 0.7636230000010045
+          },
+          "profile": null,
+          "process": 4,
+          "metrics": {
+            "ticks": 34002213,
+            "seconds": 34.002213,
+            "iterationsPerSecond": 5881.970094,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 30973.697995000002,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 30901113\nTotal time (secs): 30.901113\nIterations/Sec   : 6472.258782\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6472.258782 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 873161,
+            "translateMs": 22.134039999953913,
+            "optMs": 12.016053999998505,
+            "emitMs": 31.827638000003375,
+            "compileMs": 10.094842000001051,
+            "instMs": 1.712633999991482,
+            "tableMs": 0.6616849999992098
+          },
+          "profile": null,
+          "process": 5,
+          "metrics": {
+            "ticks": 30901113,
+            "seconds": 30.901113,
+            "iterationsPerSecond": 6472.258782,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 31085.562693,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 31011288\nTotal time (secs): 31.011288\nIterations/Sec   : 6449.264539\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6449.264539 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 873161,
+            "translateMs": 23.853192000129887,
+            "optMs": 13.404972999880442,
+            "emitMs": 33.64280100000921,
+            "compileMs": 8.296153000008324,
+            "instMs": 1.9823209999936822,
+            "tableMs": 0.7067320000155135
+          },
+          "profile": null,
+          "process": 6,
+          "metrics": {
+            "ticks": 31011288,
+            "seconds": 31.011288,
+            "iterationsPerSecond": 6449.264539,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 31248.537517,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 31167913\nTotal time (secs): 31.167913\nIterations/Sec   : 6416.855694\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6416.855694 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 116,
+            "bytes": 838323,
+            "translateMs": 27.050571999984356,
+            "optMs": 13.348117000000912,
+            "emitMs": 48.65148200001986,
+            "compileMs": 8.456951000000274,
+            "instMs": 2.109280999996244,
+            "tableMs": 0.8275910000021653
+          },
+          "profile": null,
+          "process": 7,
+          "metrics": {
+            "ticks": 31167913,
+            "seconds": 31.167913,
+            "iterationsPerSecond": 6416.855694,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 33328.186513,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 33246113\nTotal time (secs): 33.246113\nIterations/Sec   : 6015.740848\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6015.740848 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 873161,
+            "translateMs": 27.56779399995105,
+            "optMs": 13.6347789999107,
+            "emitMs": 33.297070000015836,
+            "compileMs": 8.846405999991674,
+            "instMs": 1.9538729999906295,
+            "tableMs": 0.7051680000308593
+          },
+          "profile": null,
+          "process": 8,
+          "metrics": {
+            "ticks": 33246113,
+            "seconds": 33.246113,
+            "iterationsPerSecond": 6015.740848,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 32886.06576,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 32803561\nTotal time (secs): 32.803561\nIterations/Sec   : 6096.899053\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6096.899053 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 873161,
+            "translateMs": 27.611314000037915,
+            "optMs": 13.72363899991619,
+            "emitMs": 32.52583899998938,
+            "compileMs": 8.435536000000255,
+            "instMs": 1.940715000000374,
+            "tableMs": 0.7104499999947151
+          },
+          "profile": null,
+          "process": 9,
+          "metrics": {
+            "ticks": 32803561,
+            "seconds": 32.803561,
+            "iterationsPerSecond": 6096.899053,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        }
+      ],
+      "summary": {
+        "runMedianMs": 32238.6714465,
+        "kernelMedianMs": 32154.408,
+        "runMadMs": 1039.824498,
+        "kernelMadMs": 1039.0999999999985,
+        "compileMedianMs": 85.4762914999148,
+        "emittedBytesMedian": 873161,
+        "peakCachedBytesMedian": null,
+        "durationQualified": true
+      }
+    },
+    {
+      "name": "a32-flat-window",
+      "architecture": "a32",
+      "memoryMode": "flat-window",
+      "runs": 10,
+      "samples": [
+        {
+          "haltReason": 16777216,
+          "runMs": 25745.497648,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 25669810\nTotal time (secs): 25.669810\nIterations/Sec   : 7791.253617\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 7791.253617 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 820635,
+            "translateMs": 25.394853000007835,
+            "optMs": 19.02977499996475,
+            "emitMs": 32.87116299998719,
+            "compileMs": 7.632933000002211,
+            "instMs": 1.629919999993831,
+            "tableMs": 3.701679999998966
+          },
+          "profile": null,
+          "process": 0,
+          "metrics": {
+            "ticks": 25669810,
+            "seconds": 25.66981,
+            "iterationsPerSecond": 7791.253617,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 31459.915728,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 31374481\nTotal time (secs): 31.374481\nIterations/Sec   : 6374.607440\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6374.607440 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 820635,
+            "translateMs": 25.006227000110535,
+            "optMs": 19.379151999980714,
+            "emitMs": 36.44077999999524,
+            "compileMs": 11.273330999999445,
+            "instMs": 1.742774000003898,
+            "tableMs": 3.7721450000001013
+          },
+          "profile": null,
+          "process": 1,
+          "metrics": {
+            "ticks": 31374481,
+            "seconds": 31.374481,
+            "iterationsPerSecond": 6374.60744,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 25412.974174,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 25338041\nTotal time (secs): 25.338041\nIterations/Sec   : 7893.270044\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 7893.270044 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 820635,
+            "translateMs": 25.75814099994973,
+            "optMs": 12.721318999925366,
+            "emitMs": 30.76751500001717,
+            "compileMs": 8.300242000023907,
+            "instMs": 1.6342219999891014,
+            "tableMs": 0.7022360000089805
+          },
+          "profile": null,
+          "process": 2,
+          "metrics": {
+            "ticks": 25338041,
+            "seconds": 25.338041,
+            "iterationsPerSecond": 7893.270044,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 39119.340731000004,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 38886986\nTotal time (secs): 38.886986\nIterations/Sec   : 5143.108803\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 5143.108803 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 820635,
+            "translateMs": 80.98617300009657,
+            "optMs": 33.1594739998979,
+            "emitMs": 116.12386299999633,
+            "compileMs": 34.94212700000668,
+            "instMs": 10.07811399999298,
+            "tableMs": 8.266505000020288
+          },
+          "profile": null,
+          "process": 3,
+          "metrics": {
+            "ticks": 38886986,
+            "seconds": 38.886986,
+            "iterationsPerSecond": 5143.108803,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 26252.206294000003,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 26167198\nTotal time (secs): 26.167198\nIterations/Sec   : 7643.156902\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 7643.156902 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 820635,
+            "translateMs": 24.978692999981078,
+            "optMs": 13.667624000025882,
+            "emitMs": 39.51201999999789,
+            "compileMs": 12.050249999981034,
+            "instMs": 2.0838800000149007,
+            "tableMs": 0.955561999994714
+          },
+          "profile": null,
+          "process": 4,
+          "metrics": {
+            "ticks": 26167198,
+            "seconds": 26.167198,
+            "iterationsPerSecond": 7643.156902,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 24075.484461,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 24005705\nTotal time (secs): 24.005705\nIterations/Sec   : 8331.352901\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 8331.352901 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 820635,
+            "translateMs": 24.697653999985413,
+            "optMs": 12.354494000138722,
+            "emitMs": 32.558048000003566,
+            "compileMs": 7.091987999991581,
+            "instMs": 1.5251680000111563,
+            "tableMs": 0.6696059999958592
+          },
+          "profile": null,
+          "process": 5,
+          "metrics": {
+            "ticks": 24005705,
+            "seconds": 24.005705,
+            "iterationsPerSecond": 8331.352901,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 25552.947175999998,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 25474304\nTotal time (secs): 25.474304\nIterations/Sec   : 7851.048649\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 7851.048649 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 820635,
+            "translateMs": 25.759333999859443,
+            "optMs": 12.711246000146254,
+            "emitMs": 30.86214600000416,
+            "compileMs": 8.767873000008684,
+            "instMs": 1.5410879999905518,
+            "tableMs": 0.6652259999858501
+          },
+          "profile": null,
+          "process": 6,
+          "metrics": {
+            "ticks": 25474304,
+            "seconds": 25.474304,
+            "iterationsPerSecond": 7851.048649,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 25767.378709,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 25661885\nTotal time (secs): 25.661885\nIterations/Sec   : 7793.659741\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 7793.659741 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 820635,
+            "translateMs": 30.658906000010347,
+            "optMs": 16.73256799994156,
+            "emitMs": 40.50992200001601,
+            "compileMs": 12.43644799998853,
+            "instMs": 2.7819149999924946,
+            "tableMs": 1.193818000034554
+          },
+          "profile": null,
+          "process": 7,
+          "metrics": {
+            "ticks": 25661885,
+            "seconds": 25.661885,
+            "iterationsPerSecond": 7793.659741,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 24942.247008,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 24871653\nTotal time (secs): 24.871653\nIterations/Sec   : 8041.282982\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 8041.282982 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 116,
+            "bytes": 787633,
+            "translateMs": 21.56591900010092,
+            "optMs": 12.049106999966767,
+            "emitMs": 31.78268399998956,
+            "compileMs": 7.310832000006677,
+            "instMs": 1.5126499999846814,
+            "tableMs": 0.6648790000078151
+          },
+          "profile": null,
+          "process": 8,
+          "metrics": {
+            "ticks": 24871653,
+            "seconds": 24.871653,
+            "iterationsPerSecond": 8041.282982,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 26145.870149,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 26067762\nTotal time (secs): 26.067762\nIterations/Sec   : 7672.311877\nIterations       : 200000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 7672.311877 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\n",
+          "compile": {
+            "blocks": 118,
+            "bytes": 820635,
+            "translateMs": 29.226653999982688,
+            "optMs": 12.561735000098693,
+            "emitMs": 30.689191999992424,
+            "compileMs": 7.123425999977222,
+            "instMs": 1.5218870000115317,
+            "tableMs": 0.6667899999923677
+          },
+          "profile": null,
+          "process": 9,
+          "metrics": {
+            "ticks": 26067762,
+            "seconds": 26.067762,
+            "iterationsPerSecond": 7672.311877,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        }
+      ],
+      "summary": {
+        "runMedianMs": 25756.4381785,
+        "kernelMedianMs": 25665.8475,
+        "runMadMs": 442.60004300000037,
+        "kernelMadMs": 451.6324999999997,
+        "compileMedianMs": 86.02500400000486,
+        "emittedBytesMedian": 820635,
+        "peakCachedBytesMedian": null,
+        "durationQualified": true
+      }
+    },
+    {
+      "name": "a64-thunk",
+      "architecture": "a64",
+      "memoryMode": "thunk",
+      "runs": 10,
+      "samples": [
+        {
+          "haltReason": 16777216,
+          "runMs": 64574.230305,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 64456646\nTotal time (secs): 64.456646\nIterations/Sec   : 3102.860797\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 3102.860797 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 652432,
+            "translateMs": 73.78900999986858,
+            "optMs": 14.987176000089065,
+            "emitMs": 29.857618000015407,
+            "compileMs": 7.289021999948574,
+            "instMs": 1.5291160000402755,
+            "tableMs": 0.7368879999735896
+          },
+          "profile": null,
+          "process": 0,
+          "metrics": {
+            "ticks": 64456646,
+            "seconds": 64.456646,
+            "iterationsPerSecond": 3102.860797,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 76642.788369,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 76184277\nTotal time (secs): 76.184277\nIterations/Sec   : 2625.213599\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 2625.213599 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 652432,
+            "translateMs": 307.7724959997117,
+            "optMs": 84.20040400001056,
+            "emitMs": 218.14098699999005,
+            "compileMs": 116.58719300010722,
+            "instMs": 48.75596899989199,
+            "tableMs": 3.1101830000181394
+          },
+          "profile": null,
+          "process": 1,
+          "metrics": {
+            "ticks": 76184277,
+            "seconds": 76.184277,
+            "iterationsPerSecond": 2625.213599,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 72068.475569,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 71870565\nTotal time (secs): 71.870565\nIterations/Sec   : 2782.780405\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 2782.780405 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 652432,
+            "translateMs": 136.51347699969318,
+            "optMs": 17.822944000347576,
+            "emitMs": 62.147424999969815,
+            "compileMs": 19.63923299999948,
+            "instMs": 6.143242000059018,
+            "tableMs": 2.5282819999575565
+          },
+          "profile": null,
+          "process": 2,
+          "metrics": {
+            "ticks": 71870565,
+            "seconds": 71.870565,
+            "iterationsPerSecond": 2782.780405,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 63555.003082,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 63393298\nTotal time (secs): 63.393298\nIterations/Sec   : 3154.907637\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 3154.907637 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 652432,
+            "translateMs": 119.85794100003284,
+            "optMs": 12.05137500002823,
+            "emitMs": 31.90790200000248,
+            "compileMs": 7.819683999985699,
+            "instMs": 1.6278450000164923,
+            "tableMs": 0.74529799999533
+          },
+          "profile": null,
+          "process": 3,
+          "metrics": {
+            "ticks": 63393298,
+            "seconds": 63.393298,
+            "iterationsPerSecond": 3154.907637,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 64904.882117,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 64787952\nTotal time (secs): 64.787952\nIterations/Sec   : 3086.993705\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 3086.993705 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 652432,
+            "translateMs": 75.95604200006845,
+            "optMs": 14.666067999876077,
+            "emitMs": 30.620461999996152,
+            "compileMs": 7.2309309999815525,
+            "instMs": 1.5037800000024504,
+            "tableMs": 0.685427999980476
+          },
+          "profile": null,
+          "process": 4,
+          "metrics": {
+            "ticks": 64787952,
+            "seconds": 64.787952,
+            "iterationsPerSecond": 3086.993705,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 62282.406083999995,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 62164901\nTotal time (secs): 62.164901\nIterations/Sec   : 3217.249554\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 3217.249554 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 652432,
+            "translateMs": 73.57828900004802,
+            "optMs": 14.06282899993461,
+            "emitMs": 30.683069999978713,
+            "compileMs": 6.711357000023867,
+            "instMs": 1.422843999969615,
+            "tableMs": 0.64661000001621
+          },
+          "profile": null,
+          "process": 5,
+          "metrics": {
+            "ticks": 62164901,
+            "seconds": 62.164901,
+            "iterationsPerSecond": 3217.249554,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 64349.275324,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 64228388\nTotal time (secs): 64.228388\nIterations/Sec   : 3113.887896\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 3113.887896 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 652432,
+            "translateMs": 78.67314999992563,
+            "optMs": 11.675258999949094,
+            "emitMs": 33.395151999958614,
+            "compileMs": 11.664785000049704,
+            "instMs": 1.9755589999691807,
+            "tableMs": 0.9529970000149461
+          },
+          "profile": null,
+          "process": 6,
+          "metrics": {
+            "ticks": 64228388,
+            "seconds": 64.228388,
+            "iterationsPerSecond": 3113.887896,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 61573.561509,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 61424396\nTotal time (secs): 61.424396\nIterations/Sec   : 3256.035273\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 3256.035273 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 652432,
+            "translateMs": 104.30561299985538,
+            "optMs": 13.416383000031544,
+            "emitMs": 38.824259000032555,
+            "compileMs": 8.196565000001641,
+            "instMs": 1.870569999978784,
+            "tableMs": 0.8677150000371796
+          },
+          "profile": null,
+          "process": 7,
+          "metrics": {
+            "ticks": 61424396,
+            "seconds": 61.424396,
+            "iterationsPerSecond": 3256.035273,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 62646.791805,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 62531842\nTotal time (secs): 62.531842\nIterations/Sec   : 3198.370520\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 3198.370520 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 652432,
+            "translateMs": 73.2396239998163,
+            "optMs": 11.33413800015093,
+            "emitMs": 31.958563000016298,
+            "compileMs": 6.337092000021983,
+            "instMs": 1.4054550000307273,
+            "tableMs": 0.6632909999343326
+          },
+          "profile": null,
+          "process": 8,
+          "metrics": {
+            "ticks": 62531842,
+            "seconds": 62.531842,
+            "iterationsPerSecond": 3198.37052,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 61831.095106,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 61711155\nTotal time (secs): 61.711155\nIterations/Sec   : 3240.905149\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 3240.905149 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 652432,
+            "translateMs": 79.09697600008356,
+            "optMs": 11.853828999946913,
+            "emitMs": 31.77596600001735,
+            "compileMs": 7.901400000021539,
+            "instMs": 1.5404439999808233,
+            "tableMs": 0.7220989999892709
+          },
+          "profile": null,
+          "process": 9,
+          "metrics": {
+            "ticks": 61711155,
+            "seconds": 61.711155,
+            "iterationsPerSecond": 3240.905149,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        }
+      ],
+      "summary": {
+        "runMedianMs": 63952.139203,
+        "kernelMedianMs": 63810.843,
+        "runMadMs": 1487.540258500001,
+        "kernelMadMs": 1462.4715000000033,
+        "compileMedianMs": 135.6138079999533,
+        "emittedBytesMedian": 652432,
+        "peakCachedBytesMedian": null,
+        "durationQualified": true
+      }
+    },
+    {
+      "name": "a64-page-table",
+      "architecture": "a64",
+      "memoryMode": "page-table",
+      "runs": 10,
+      "samples": [
+        {
+          "haltReason": 16777216,
+          "runMs": 33209.394539,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 33090037\nTotal time (secs): 33.090037\nIterations/Sec   : 6044.115333\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6044.115333 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 768021,
+            "translateMs": 76.36888800004783,
+            "optMs": 11.76917700001728,
+            "emitMs": 33.82867100002535,
+            "compileMs": 7.442909000007347,
+            "instMs": 2.223585000007887,
+            "tableMs": 0.729640999989897
+          },
+          "profile": null,
+          "process": 0,
+          "metrics": {
+            "ticks": 33090037,
+            "seconds": 33.090037,
+            "iterationsPerSecond": 6044.115333,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 32622.692674,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 32488223\nTotal time (secs): 32.488223\nIterations/Sec   : 6156.076927\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6156.076927 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 768021,
+            "translateMs": 78.19317999990423,
+            "optMs": 16.458670000025307,
+            "emitMs": 39.94375700000376,
+            "compileMs": 12.087801999995875,
+            "instMs": 1.9951300000085013,
+            "tableMs": 0.8968139999998073
+          },
+          "profile": null,
+          "process": 1,
+          "metrics": {
+            "ticks": 32488223,
+            "seconds": 32.488223,
+            "iterationsPerSecond": 6156.076927,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 31387.412718,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 31267548\nTotal time (secs): 31.267548\nIterations/Sec   : 6396.408187\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6396.408187 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 768021,
+            "translateMs": 76.0840859999729,
+            "optMs": 12.175011000048059,
+            "emitMs": 32.41061599999847,
+            "compileMs": 7.448883999994308,
+            "instMs": 1.4413699999887513,
+            "tableMs": 0.6326110000056246
+          },
+          "profile": null,
+          "process": 2,
+          "metrics": {
+            "ticks": 31267548,
+            "seconds": 31.267548,
+            "iterationsPerSecond": 6396.408187,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 33318.508428,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 33188875\nTotal time (secs): 33.188875\nIterations/Sec   : 6026.115679\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6026.115679 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 768021,
+            "translateMs": 83.42955200010852,
+            "optMs": 21.033623999778825,
+            "emitMs": 34.116694999983736,
+            "compileMs": 8.338629000035624,
+            "instMs": 1.7486739999268792,
+            "tableMs": 0.7302110000217397
+          },
+          "profile": null,
+          "process": 3,
+          "metrics": {
+            "ticks": 33188875,
+            "seconds": 33.188875,
+            "iterationsPerSecond": 6026.115679,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 33667.705644,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 33545565\nTotal time (secs): 33.545565\nIterations/Sec   : 5962.039989\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 5962.039989 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 768021,
+            "translateMs": 78.17760600008869,
+            "optMs": 11.78130499992271,
+            "emitMs": 32.71597600004367,
+            "compileMs": 7.321933000011441,
+            "instMs": 1.627942999992385,
+            "tableMs": 0.7318119999721517
+          },
+          "profile": null,
+          "process": 4,
+          "metrics": {
+            "ticks": 33545565,
+            "seconds": 33.545565,
+            "iterationsPerSecond": 5962.039989,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 33297.578639,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 33163896\nTotal time (secs): 33.163896\nIterations/Sec   : 6030.654541\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6030.654541 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 768021,
+            "translateMs": 92.52586300009831,
+            "optMs": 15.841110999775026,
+            "emitMs": 33.75828300000691,
+            "compileMs": 11.43273400002056,
+            "instMs": 2.334893000020884,
+            "tableMs": 0.8109369999601768
+          },
+          "profile": null,
+          "process": 5,
+          "metrics": {
+            "ticks": 33163896,
+            "seconds": 33.163896,
+            "iterationsPerSecond": 6030.654541,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 32910.729574000005,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 32788205\nTotal time (secs): 32.788205\nIterations/Sec   : 6099.754470\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6099.754470 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 768021,
+            "translateMs": 81.64230699989129,
+            "optMs": 11.726250999981588,
+            "emitMs": 32.655832999986075,
+            "compileMs": 7.946020999959245,
+            "instMs": 1.6138070000319686,
+            "tableMs": 0.7198470000021189
+          },
+          "profile": null,
+          "process": 6,
+          "metrics": {
+            "ticks": 32788205,
+            "seconds": 32.788205,
+            "iterationsPerSecond": 6099.75447,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 31540.981108999997,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 31427605\nTotal time (secs): 31.427605\nIterations/Sec   : 6363.832051\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6363.832051 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 768021,
+            "translateMs": 74.17177499994087,
+            "optMs": 11.02325100007424,
+            "emitMs": 29.777744999993814,
+            "compileMs": 6.643156000009256,
+            "instMs": 1.8184039999937056,
+            "tableMs": 0.7300019999910745
+          },
+          "profile": null,
+          "process": 7,
+          "metrics": {
+            "ticks": 31427605,
+            "seconds": 31.427605,
+            "iterationsPerSecond": 6363.832051,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 32521.976332,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 32369929\nTotal time (secs): 32.369929\nIterations/Sec   : 6178.573947\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6178.573947 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 768021,
+            "translateMs": 95.68348100005925,
+            "optMs": 17.34172599988247,
+            "emitMs": 51.27455099999872,
+            "compileMs": 9.346653000007876,
+            "instMs": 2.3658119999949747,
+            "tableMs": 1.0471299999958035
+          },
+          "profile": null,
+          "process": 8,
+          "metrics": {
+            "ticks": 32369929,
+            "seconds": 32.369929,
+            "iterationsPerSecond": 6178.573947,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 30771.516612000003,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 30661670\nTotal time (secs): 30.661670\nIterations/Sec   : 6522.801922\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 6522.801922 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 768021,
+            "translateMs": 69.27599899989482,
+            "optMs": 10.609654000066001,
+            "emitMs": 29.438161000010155,
+            "compileMs": 7.196156999989981,
+            "instMs": 1.3710150000057837,
+            "tableMs": 0.6173890000000313
+          },
+          "profile": null,
+          "process": 9,
+          "metrics": {
+            "ticks": 30661670,
+            "seconds": 30.66167,
+            "iterationsPerSecond": 6522.801922,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        }
+      ],
+      "summary": {
+        "runMedianMs": 32766.711124,
+        "kernelMedianMs": 32638.214,
+        "runMadMs": 541.3324094999989,
+        "kernelMadMs": 538.1715000000004,
+        "compileMedianMs": 134.33346849997395,
+        "emittedBytesMedian": 768021,
+        "peakCachedBytesMedian": null,
+        "durationQualified": true
+      }
+    },
+    {
+      "name": "a64-flat-window",
+      "architecture": "a64",
+      "memoryMode": "flat-window",
+      "runs": 10,
+      "samples": [
+        {
+          "haltReason": 16777216,
+          "runMs": 23952.431847,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 23837067\nTotal time (secs): 23.837067\nIterations/Sec   : 8390.293990\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 8390.293990 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 708917,
+            "translateMs": 74.2486229999691,
+            "optMs": 11.969836000056375,
+            "emitMs": 31.71488499999856,
+            "compileMs": 7.151191999992307,
+            "instMs": 1.5476049999881383,
+            "tableMs": 0.6863920000052985
+          },
+          "profile": null,
+          "process": 0,
+          "metrics": {
+            "ticks": 23837067,
+            "seconds": 23.837067,
+            "iterationsPerSecond": 8390.29399,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 24865.904968000003,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 24726330\nTotal time (secs): 24.726330\nIterations/Sec   : 8088.543670\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 8088.543670 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 708917,
+            "translateMs": 82.75634899994624,
+            "optMs": 12.740761000140907,
+            "emitMs": 37.32397400000394,
+            "compileMs": 15.291434000023685,
+            "instMs": 2.2116939999762337,
+            "tableMs": 1.3283760000272196
+          },
+          "profile": null,
+          "process": 1,
+          "metrics": {
+            "ticks": 24726330,
+            "seconds": 24.72633,
+            "iterationsPerSecond": 8088.54367,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 23289.551228,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 23178418\nTotal time (secs): 23.178418\nIterations/Sec   : 8628.716593\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 8628.716593 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 708917,
+            "translateMs": 71.81972899996161,
+            "optMs": 11.276356000015383,
+            "emitMs": 29.11258599999404,
+            "compileMs": 6.792283999995348,
+            "instMs": 1.4068360000119213,
+            "tableMs": 0.6383089999889222
+          },
+          "profile": null,
+          "process": 2,
+          "metrics": {
+            "ticks": 23178418,
+            "seconds": 23.178418,
+            "iterationsPerSecond": 8628.716593,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 24216.676133,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 24040253\nTotal time (secs): 24.040253\nIterations/Sec   : 8319.380000\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 8319.380000 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 708917,
+            "translateMs": 89.24367300008944,
+            "optMs": 21.762958999965136,
+            "emitMs": 44.11809599999789,
+            "compileMs": 12.814969999995455,
+            "instMs": 3.305462000025443,
+            "tableMs": 1.300237999986905
+          },
+          "profile": null,
+          "process": 3,
+          "metrics": {
+            "ticks": 24040253,
+            "seconds": 24.040253,
+            "iterationsPerSecond": 8319.38,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 24467.414865,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 24333642\nTotal time (secs): 24.333642\nIterations/Sec   : 8219.073824\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 8219.073824 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 708917,
+            "translateMs": 80.30384499997452,
+            "optMs": 12.65839900006263,
+            "emitMs": 39.59129299998685,
+            "compileMs": 11.15731800001899,
+            "instMs": 1.8194539999894488,
+            "tableMs": 0.8996960000016543
+          },
+          "profile": null,
+          "process": 4,
+          "metrics": {
+            "ticks": 24333642,
+            "seconds": 24.333642,
+            "iterationsPerSecond": 8219.073824,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 25421.086875,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 25294760\nTotal time (secs): 25.294760\nIterations/Sec   : 7906.775949\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 7906.775949 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 708917,
+            "translateMs": 78.42245999996624,
+            "optMs": 12.323237999985707,
+            "emitMs": 42.71894700001357,
+            "compileMs": 13.611089000008974,
+            "instMs": 2.054911999985464,
+            "tableMs": 0.9022310000101328
+          },
+          "profile": null,
+          "process": 5,
+          "metrics": {
+            "ticks": 25294760,
+            "seconds": 25.29476,
+            "iterationsPerSecond": 7906.775949,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 23919.663049,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 23803374\nTotal time (secs): 23.803374\nIterations/Sec   : 8402.170213\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 8402.170213 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 708917,
+            "translateMs": 74.28011099994383,
+            "optMs": 11.853880000040377,
+            "emitMs": 31.291690999988163,
+            "compileMs": 7.163075999990724,
+            "instMs": 1.5574590000041013,
+            "tableMs": 0.7058999999923969
+          },
+          "profile": null,
+          "process": 6,
+          "metrics": {
+            "ticks": 23803374,
+            "seconds": 23.803374,
+            "iterationsPerSecond": 8402.170213,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 24493.392107,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 24369109\nTotal time (secs): 24.369109\nIterations/Sec   : 8207.111717\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 8207.111717 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 708917,
+            "translateMs": 79.72384500007463,
+            "optMs": 12.161547000059613,
+            "emitMs": 32.41636900000111,
+            "compileMs": 7.9788050000093875,
+            "instMs": 1.6037929999796887,
+            "tableMs": 0.7033630000308193
+          },
+          "profile": null,
+          "process": 7,
+          "metrics": {
+            "ticks": 24369109,
+            "seconds": 24.369109,
+            "iterationsPerSecond": 8207.111717,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 22617.223460999998,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 22506717\nTotal time (secs): 22.506717\nIterations/Sec   : 8886.236051\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 8886.236051 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 708917,
+            "translateMs": 71.49097600005788,
+            "optMs": 10.629685000057407,
+            "emitMs": 28.53040099999845,
+            "compileMs": 6.714289999992232,
+            "instMs": 1.3434279999878527,
+            "tableMs": 0.6033680000197847
+          },
+          "profile": null,
+          "process": 8,
+          "metrics": {
+            "ticks": 22506717,
+            "seconds": 22.506717,
+            "iterationsPerSecond": 8886.236051,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        },
+        {
+          "haltReason": 16777216,
+          "runMs": 23067.161171,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 22953722\nTotal time (secs): 22.953722\nIterations/Sec   : 8713.183858\nIterations       : 200000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nCorrect operation validated. See README.md for run and reporting rules.\nCoreMark 1.0 : 8713.183858 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\n",
+          "compile": {
+            "blocks": 111,
+            "bytes": 708917,
+            "translateMs": 72.92225399996607,
+            "optMs": 11.025729000076183,
+            "emitMs": 31.558544000004417,
+            "compileMs": 7.987466000000552,
+            "instMs": 1.546720000000775,
+            "tableMs": 0.6640780000018651
+          },
+          "profile": null,
+          "process": 9,
+          "metrics": {
+            "ticks": 22953722,
+            "seconds": 22.953722,
+            "iterationsPerSecond": 8713.183858,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "4983"
+            },
+            "durationValid": true,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        }
+      ],
+      "summary": {
+        "runMedianMs": 24084.55399,
+        "kernelMedianMs": 23938.66,
+        "runMadMs": 595.0945475000008,
+        "kernelMadMs": 595.3454999999994,
+        "compileMedianMs": 130.95312750008253,
+        "emittedBytesMedian": 708917,
+        "peakCachedBytesMedian": null,
+        "durationQualified": true
+      }
+    }
+  ],
+  "durationQualified": true,
+  "native": {
+    "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 4905537\nTotal time (secs): 4.905537\nIterations/Sec   : 40770.256141\nERROR! Must execute for at least 10 secs for a valid result!\nIterations       : 200000\nCompiler version : GCC12.3.0\nCompiler flags   : -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nErrors detected\n",
+    "metrics": {
+      "ticks": 4905537,
+      "seconds": 4.905537,
+      "iterationsPerSecond": 40770.256141,
+      "crc": {
+        "seedcrc": "e9f5",
+        "crclist": "e714",
+        "crcmatrix": "1fd7",
+        "crcstate": "8e3a",
+        "crcfinal": "4983"
+      },
+      "durationValid": false,
+      "compilerVersion": "GCC12.3.0",
+      "compilerFlags": "-O2"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+2K performance run parameters for coremark.
+CoreMark Size    : 666
+Total ticks      : 18171093
+Total time (secs): 18.171093
+Iterations/Sec   : 11006.492565
+Iterations       : 200000
+Compiler version : clang 22.1.8 
+Compiler flags   : -target aarch64-freestanding -O2
+Memory location  : STACK
+seedcrc          : 0xe9f5
+[0]crclist       : 0xe714
+[0]crcmatrix     : 0x1fd7
+[0]crcstate      : 0x8e3a
+[0]crcfinal      : 0x4983
+Correct operation validated. See README.md for run and reporting rules.
+CoreMark 1.0 : 11006.492565 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK

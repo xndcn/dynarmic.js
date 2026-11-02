@@ -1,0 +1,38 @@
+idle jump hidden none
+outcome PASS — all three paths match every reference output. Explore the measured times and engine statistics below.
+small {
+  scroll: 320,
+  client: 320,
+  hash: '#quickjs-results',
+  resultTop: 24.46875,
+  jumpVisible: 'inline-flex',
+  pathsRole: 'group',
+  chartsRole: 'group'
+}
+mobile {
+  scroll: 390,
+  client: 390,
+  hash: '#quickjs-results',
+  resultTop: 24.078125,
+  jumpVisible: 'inline-flex',
+  pathsRole: 'group',
+  chartsRole: 'group'
+}
+desktop {
+  scroll: 1425,
+  client: 1425,
+  hash: '#quickjs-results',
+  resultTop: 24.40625,
+  jumpVisible: 'inline-flex',
+  pathsRole: 'group',
+  chartsRole: 'group'
+}
+dark {
+  scroll: 1425,
+  client: 1425,
+  hash: '#quickjs-results',
+  resultTop: 24.40625,
+  jumpVisible: 'inline-flex',
+  pathsRole: 'group',
+  chartsRole: 'group'
+}

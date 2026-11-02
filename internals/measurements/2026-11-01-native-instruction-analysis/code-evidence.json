@@ -1,0 +1,203 @@
+{
+  "integer": {
+    "bcoreHotPc": "0x100ec",
+    "defaultMainBlock": {
+      "file": "pc-65772-0-126628820696016.bin",
+      "pc": 65772,
+      "address": 126628820696016,
+      "size": 2511,
+      "variant": 0
+    },
+    "promotions": [
+      {
+        "pc": 65772,
+        "marker": 0,
+        "tier": 1,
+        "background": 2,
+        "cp": 0,
+        "bytes": 2534,
+        "irInstructions": 431
+      }
+    ],
+    "stats": {
+      "blocksPromoted": 1,
+      "blocksTranslated": 14,
+      "cpBlocks": 13,
+      "cpFallbacks": 0,
+      "loopBlocks": 1,
+      "loopsProven": 0,
+      "loopsSteady": 0
+    }
+  },
+  "branch": {
+    "bcoreHotPc": "0x1017c",
+    "defaultMainBlock": {
+      "file": "pc-65916-0-134196563562080.bin",
+      "pc": 65916,
+      "address": 134196563562080,
+      "size": 445,
+      "variant": 0
+    },
+    "promotions": [
+      {
+        "pc": 65904,
+        "marker": 0,
+        "tier": 1,
+        "background": 2,
+        "cp": 0,
+        "bytes": 358,
+        "irInstructions": 93
+      },
+      {
+        "pc": 65840,
+        "marker": 0,
+        "tier": 1,
+        "background": 2,
+        "cp": 0,
+        "bytes": 1349,
+        "irInstructions": 249
+      },
+      {
+        "pc": 65910,
+        "marker": 0,
+        "tier": 1,
+        "background": 2,
+        "cp": 0,
+        "bytes": 792,
+        "irInstructions": 194
+      },
+      {
+        "pc": 65916,
+        "marker": 0,
+        "tier": 1,
+        "background": 2,
+        "cp": 0,
+        "bytes": 544,
+        "irInstructions": 139
+      },
+      {
+        "pc": 65808,
+        "marker": 0,
+        "tier": 1,
+        "background": 2,
+        "cp": 0,
+        "bytes": 1263,
+        "irInstructions": 234
+      },
+      {
+        "pc": 65932,
+        "marker": 0,
+        "tier": 1,
+        "background": 2,
+        "cp": 0,
+        "bytes": 1658,
+        "irInstructions": 357
+      }
+    ],
+    "stats": {
+      "blocksPromoted": 6,
+      "blocksTranslated": 24,
+      "cpBlocks": 18,
+      "cpFallbacks": 0,
+      "loopBlocks": 0,
+      "loopsProven": 0,
+      "loopsSteady": 0
+    }
+  },
+  "stream": {
+    "bcoreHotPc": "0x101ba",
+    "defaultMainBlock": {
+      "file": "pc-65978-0-130924299700288.bin",
+      "pc": 65978,
+      "address": 130924299700288,
+      "size": 3890,
+      "variant": 0
+    },
+    "promotions": [
+      {
+        "pc": 65978,
+        "marker": 0,
+        "tier": 1,
+        "background": 2,
+        "cp": 0,
+        "bytes": 3916,
+        "irInstructions": 623
+      },
+      {
+        "pc": 66458,
+        "marker": 6,
+        "tier": 1,
+        "background": 2,
+        "cp": 0,
+        "bytes": 1926,
+        "irInstructions": 316
+      }
+    ],
+    "stats": {
+      "blocksPromoted": 2,
+      "blocksTranslated": 18,
+      "cpBlocks": 16,
+      "cpFallbacks": 0,
+      "loopBlocks": 2,
+      "loopsProven": 0,
+      "loopsSteady": 0
+    }
+  },
+  "pointer": {
+    "bcoreHotPc": "0x1021e",
+    "defaultMainBlock": {
+      "file": "pc-66078-0-124302068305072.bin",
+      "pc": 66078,
+      "address": 124302068305072,
+      "size": 2700,
+      "variant": 0
+    },
+    "promotions": [
+      {
+        "pc": 66078,
+        "marker": 0,
+        "tier": 1,
+        "background": 2,
+        "cp": 0,
+        "bytes": 2721,
+        "irInstructions": 477
+      },
+      {
+        "pc": 66488,
+        "marker": 6,
+        "tier": 1,
+        "background": 2,
+        "cp": 0,
+        "bytes": 2597,
+        "irInstructions": 450
+      },
+      {
+        "pc": 66534,
+        "marker": 8,
+        "tier": 1,
+        "background": 2,
+        "cp": 0,
+        "bytes": 3872,
+        "irInstructions": 599
+      },
+      {
+        "pc": 66578,
+        "marker": 8,
+        "tier": 1,
+        "background": 2,
+        "cp": 0,
+        "bytes": 3119,
+        "irInstructions": 468
+      }
+    ],
+    "stats": {
+      "blocksPromoted": 4,
+      "blocksTranslated": 22,
+      "cpBlocks": 18,
+      "cpFallbacks": 0,
+      "loopBlocks": 4,
+      "loopsProven": 1,
+      "loopsSteady": 0
+    }
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "schema": "dynarmic.js/native-coremark-linux-build-v1",
+  "revision": "1f483d5b8316753a742cbf5590caf5bd0a4e4777",
+  "iterations": 200000,
+  "dataSize": 2000,
+  "contexts": 1,
+  "timer": "tests/bench/coremark/core_portme.c HOST: CLOCK_MONOTONIC, wrapping u32 microseconds",
+  "compiler": "clang version 22.1.8\nTarget: x86_64-unknown-linux6.8.0-gnu2.35.0\nThread model: posix\nInstalledDir: /home/xiong/.local/lib/python3.10/site-packages/ziglang",
+  "baseManifest": {
+    "path": "/tmp/dynarmic-coremark-long/manifest.json",
+    "sha256": "4076aed57606318db796d4bfbe5f8cbc8aef4eeddc7e662f5619a554c289053c"
+  },
+  "sources": [
+    {
+      "path": "/tmp/dynarmic-coremark-source/core_list_join.c",
+      "sha256": "ca00e4e010ece47d7f040cb92aa50a95345a00d3171b59d088f6b243be06ce7b"
+    },
+    {
+      "path": "/tmp/dynarmic-coremark-source/core_main.c",
+      "sha256": "17884c93c5b94378eb0ff02b4df3725756cf2addb9b8cbcaa6200a4649ff5ca7"
+    },
+    {
+      "path": "/tmp/dynarmic-coremark-source/core_matrix.c",
+      "sha256": "ecdff717b5a5c4907d221a606760e25499899cbf617582c05d40db71c91351e4"
+    },
+    {
+      "path": "/tmp/dynarmic-coremark-source/core_state.c",
+      "sha256": "f4b84bb0a3452c45a4daa664ab502bfdccbd31cb57d93e9ac490c60937717a4e"
+    },
+    {
+      "path": "/tmp/dynarmic-coremark-source/core_util.c",
+      "sha256": "a3fbfcb9bb943b638624b8ece01c5836dd56a96d7bcde2697b248d077447327f"
+    },
+    {
+      "path": "/tmp/dynarmic-coremark-source/barebones/cvt.c",
+      "sha256": "7c57eaa23c780cd707db2304365d1ded372fd73dd107f16bdd091d9dd16fd742"
+    },
+    {
+      "path": "/tmp/dynarmic-coremark-source/coremark.h",
+      "sha256": "42642b9a06c7ed2b3bd9eda971b7c3868c4f5d27bf7ef6c4bba11291a0c2598a"
+    },
+    {
+      "path": "/tmp/dynarmic-coremark-long/ee_printf.c",
+      "sha256": "1be05078a3d9121bcfac8ddc67eadcccc4f7580c5968084c4a177274ee013e8b"
+    },
+    {
+      "path": "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/core_portme.c",
+      "sha256": "b2d8d0cb6ac4cdc43e0e366f3a259b707fa715bf926739fec40655fba3373695"
+    },
+    {
+      "path": "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/core_portme.h",
+      "sha256": "6a5feb460110da19fa9ae0c1773fd1ad956765a02191bd12860c1a8ad1dac009"
+    }
+  ],
+  "commands": {
+    "x86Native": [
+      "/usr/bin/python3",
+      "-m",
+      "ziglang",
+      "cc",
+      "-target",
+      "x86_64-linux-musl",
+      "-O2",
+      "-static",
+      "-DCOMPILER_FLAGS=\"-target x86_64-linux-musl -O2 -static\"",
+      "-DITERATIONS=200000",
+      "-DTOTAL_DATA_SIZE=2000",
+      "-DPERFORMANCE_RUN=1",
+      "-DMAIN_HAS_NOARGC=1",
+      "-I/home/xiong/workspace/dynarmic.js/tests/bench/coremark",
+      "-I/tmp/dynarmic-coremark-source",
+      "-DHOST",
+      "/tmp/dynarmic-coremark-source/core_list_join.c",
+      "/tmp/dynarmic-coremark-source/core_main.c",
+      "/tmp/dynarmic-coremark-source/core_matrix.c",
+      "/tmp/dynarmic-coremark-source/core_state.c",
+      "/tmp/dynarmic-coremark-source/core_util.c",
+      "/tmp/dynarmic-coremark-source/barebones/cvt.c",
+      "/tmp/dynarmic-coremark-long/ee_printf.c",
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/core_portme.c",
+      "-o",
+      "/tmp/dynarmic-native-coremark-linux-v3/coremark_x86_64"
+    ],
+    "qemuUser": [
+      "/usr/bin/python3",
+      "-m",
+      "ziglang",
+      "cc",
+      "-target",
+      "aarch64-linux-musl",
+      "-O2",
+      "-static",
+      "-DCOMPILER_FLAGS=\"-target aarch64-linux-musl -O2 -static\"",
+      "-DITERATIONS=200000",
+      "-DTOTAL_DATA_SIZE=2000",
+      "-DPERFORMANCE_RUN=1",
+      "-DMAIN_HAS_NOARGC=1",
+      "-I/home/xiong/workspace/dynarmic.js/tests/bench/coremark",
+      "-I/tmp/dynarmic-coremark-source",
+      "-DHOST",
+      "/tmp/dynarmic-coremark-source/core_list_join.c",
+      "/tmp/dynarmic-coremark-source/core_main.c",
+      "/tmp/dynarmic-coremark-source/core_matrix.c",
+      "/tmp/dynarmic-coremark-source/core_state.c",
+      "/tmp/dynarmic-coremark-source/core_util.c",
+      "/tmp/dynarmic-coremark-source/barebones/cvt.c",
+      "/tmp/dynarmic-coremark-long/ee_printf.c",
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/core_portme.c",
+      "-o",
+      "/tmp/dynarmic-native-coremark-linux-v3/coremark_aarch64"
+    ]
+  },
+  "artifacts": {
+    "x86Native": {
+      "file": "coremark_x86_64",
+      "path": "/tmp/dynarmic-native-coremark-linux-v3/coremark_x86_64",
+      "target": "x86_64-linux-musl",
+      "flags": "-target x86_64-linux-musl -O2 -static",
+      "sha256": "213b8e26ef79812bada9285c270eaf96045b703ea9530ea30dead5604485d709",
+      "bytes": 1421880
+    },
+    "qemuUser": {
+      "file": "coremark_aarch64",
+      "path": "/tmp/dynarmic-native-coremark-linux-v3/coremark_aarch64",
+      "target": "aarch64-linux-musl",
+      "flags": "-target aarch64-linux-musl -O2 -static",
+      "sha256": "7cf5ba7e8293c9839d96a39b87001c02ea28273a01f6ba4c06b912ccd6b5761c",
+      "bytes": 1592616
+    }
+  }
+}

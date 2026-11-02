@@ -1,0 +1,26 @@
+32-0-0-0-1 pair=0,19: FPSR 0x8000012 != 0x8000013
+32-0-0-0-1 pair=1,8: FPSR 0x8000012 != 0x8000013
+32-0-0-0-1 pair=2,19: FPSR 0x8000012 != 0x8000013
+32-0-0-0-1 pair=3,8: FPSR 0x8000012 != 0x8000013
+32-0-0-0-1 pair=4,19: FPSR 0x8000012 != 0x8000013
+32-0-0-0-1 pair=5,8: FPSR 0x8000012 != 0x8000013
+32-0-0-0-1 pair=6,19: FPSR 0x8000012 != 0x8000013
+32-0-0-0-1 pair=7,8: FPSR 0x8000012 != 0x8000013
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: 13832 FP result/FPSR mismatches in 77440 checks
+
+13832 !== 0
+
+    at file:///home/xiong/workspace/dynarmic.js/tests/ir/fp_edge_test.mjs:107:10 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 13832,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

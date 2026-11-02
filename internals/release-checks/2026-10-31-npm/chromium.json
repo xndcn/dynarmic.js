@@ -1,0 +1,34 @@
+{
+  "status": "pass",
+  "environment": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+  "checks": [
+    "a32: step, SVC, resume and zero budget",
+    "a32: memory copies, boundaries and input validation",
+    "a32: code cache invalidation",
+    "a32: cooperative budget interrupts a guest loop",
+    "a32: data and instruction faults, boundary access and recovery",
+    "a32: Thumb state and SVC resume",
+    "a64: step, SVC, resume and zero budget",
+    "a64: memory copies, boundaries and input validation",
+    "a64: code cache invalidation",
+    "a64: cooperative budget interrupts a guest loop",
+    "a64: data and instruction faults, boundary access and recovery",
+    "a64: BigInt arithmetic and fault addresses retain all 64 bits",
+    "independent live instances and idempotent disposal",
+    "relocated Wasm URL and supplied bytes without asset fallback in a module Worker",
+    "invalid Wasm bytes reject in a module Worker"
+  ],
+  "requests": [
+    "index.html",
+    "worker.js",
+    "node_modules/dynarmic.js/index.js",
+    "cases.mjs",
+    "node_modules/dynarmic.js/runtime.mjs",
+    "node_modules/dynarmic.js/runtime.wasm",
+    "relocated/runtime.wasm",
+    "phase/url",
+    "phase/bytes",
+    "phase/invalid-bytes"
+  ],
+  "tarballSha256": "634dc62a8ebb1471131c4f78d5979931126dcf5bbfe81af8fc49173a604d9bdf"
+}

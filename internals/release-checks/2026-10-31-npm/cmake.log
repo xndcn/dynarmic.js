@@ -1,0 +1,38 @@
+✔ independent CMake grammar accepts valid values and rejects malformed values (69.145599ms)
+✔ root configuration rejects malformed focus instead of truncating or normalizing it (360.570371ms)
+✔ explicit empty focus is a valid disabled STRING cache value (470.395118ms)
+✔ valid nonmatching focus is preserved exactly and enables the private definition (442.839043ms)
+✔ strict browser configuration reports each missing prerequisite before compilation (631.564104ms)
+✔ native reference capture preserves exact stdout and spaced executable/output paths (104.080967ms)
+✔ native reference failures remove partial or stale output and fail the build (171.738384ms)
+✔ Wasm post-link manifest binds source, production configuration and actual artifacts (166.809935ms)
+✔ Wasm post-link manifest retains the configured guest RAM and initial Wasm memory sizes (168.761448ms)
+✔ Wasm post-link manifest records configure and build EMCC_CFLAGS independently (238.860653ms)
+✔ Wasm post-link manifest observes dirty source at generation time (197.187129ms)
+✔ Wasm source cleanliness cannot hide modified submodules through Git configuration (163.597774ms)
+✔ Wasm source cleanliness cannot hide untracked files through Git configuration (158.320294ms)
+✔ Wasm post-link manifest fails closed for missing inputs and artifacts (260.58597ms)
+✔ source archives build with explicitly unknown Git provenance (133.90402ms)
+✔ a source archive inside another repository never reports the parent revision (147.103706ms)
+✔ an unpacked upstream never inherits the containing project revision (154.141834ms)
+✔ Git is optional for generating a usable build manifest (130.913088ms)
+✔ broken checkout metadata fails instead of claiming unknown or clean provenance (134.898361ms)
+✔ configuration strings round-trip JSON escapes (135.70452ms)
+✔ A32/A64 campaigns reject empty, incomplete and excessive unsupported coverage (944.467163ms)
+✔ strict successful regression retains unique guest, command and fuzz evidence (1397.059742ms)
+✔ an early fuzz mismatch and replay corpus survive later successful campaigns (1282.780279ms)
+✔ a PASS marker never masks nonzero process exit, and stderr is retained (1240.065684ms)
+✔ strict missing fuzz dependencies fail while ordinary regression explicitly skips (2308.346411ms)
+✔ native reference failures cannot pass using otherwise matching checksum output (2524.929861ms)
+✔ a stale browser C benchmark reference fails the regression artifact check (1289.126422ms)
+✔ explicit CoreMark evidence remains inside the retained regression directory (1233.579902ms)
+✔ artifact output rejects existing directories and symlinks without changing contents (16.036361ms)
+✔ temporary successful runs clean up and failed runs retain diagnostics (2545.213155ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13900.059797

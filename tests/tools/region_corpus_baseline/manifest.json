@@ -1,0 +1,141 @@
+{
+  "schema": "dynarmic.js/region-corpus-v1",
+  "source_revision": "2bd45b378e205baeffe797a3d5bc320769d53167",
+  "emission": {
+    "link_slots_base": 1048576,
+    "fast_dispatch_base": 2097152,
+    "function_names": false,
+    "diagnostics": false
+  },
+  "cases": [
+    {
+      "name": "a32_conditional_backward",
+      "entry_descriptor": "0x0000000000002000",
+      "descriptors": [
+        "0x0000000000001000",
+        "0x0000000000002000",
+        "0x0000000000002004",
+        "0x0000000000002008"
+      ],
+      "entry_index": 1,
+      "wasm": "a32_conditional_backward.wasm",
+      "wasm_bytes": 398
+    },
+    {
+      "name": "a64_single_block",
+      "entry_descriptor": "0x0000000000001000",
+      "descriptors": [
+        "0x0000000000001000"
+      ],
+      "entry_index": 0,
+      "wasm": "a64_single_block.wasm",
+      "wasm_bytes": 113
+    },
+    {
+      "name": "a64_backward_conditional",
+      "entry_descriptor": "0x0000000000002000",
+      "descriptors": [
+        "0x0000000000001000",
+        "0x0000000000002000",
+        "0x0000000000002004"
+      ],
+      "entry_index": 1,
+      "wasm": "a64_backward_conditional.wasm",
+      "wasm_bytes": 202
+    },
+    {
+      "name": "a64_bl_ret_push_rsb",
+      "entry_descriptor": "0x0000000000003000",
+      "descriptors": [
+        "0x0000000000003000",
+        "0x0000000000003004",
+        "0x0000000000003010"
+      ],
+      "entry_index": 0,
+      "wasm": "a64_bl_ret_push_rsb.wasm",
+      "wasm_bytes": 646
+    },
+    {
+      "name": "a64_max_64_blocks",
+      "entry_descriptor": "0x0000000000004000",
+      "descriptors": [
+        "0x0000000000004000",
+        "0x0000000000004004",
+        "0x0000000000004008",
+        "0x000000000000400c",
+        "0x0000000000004010",
+        "0x0000000000004014",
+        "0x0000000000004018",
+        "0x000000000000401c",
+        "0x0000000000004020",
+        "0x0000000000004024",
+        "0x0000000000004028",
+        "0x000000000000402c",
+        "0x0000000000004030",
+        "0x0000000000004034",
+        "0x0000000000004038",
+        "0x000000000000403c",
+        "0x0000000000004040",
+        "0x0000000000004044",
+        "0x0000000000004048",
+        "0x000000000000404c",
+        "0x0000000000004050",
+        "0x0000000000004054",
+        "0x0000000000004058",
+        "0x000000000000405c",
+        "0x0000000000004060",
+        "0x0000000000004064",
+        "0x0000000000004068",
+        "0x000000000000406c",
+        "0x0000000000004070",
+        "0x0000000000004074",
+        "0x0000000000004078",
+        "0x000000000000407c",
+        "0x0000000000004080",
+        "0x0000000000004084",
+        "0x0000000000004088",
+        "0x000000000000408c",
+        "0x0000000000004090",
+        "0x0000000000004094",
+        "0x0000000000004098",
+        "0x000000000000409c",
+        "0x00000000000040a0",
+        "0x00000000000040a4",
+        "0x00000000000040a8",
+        "0x00000000000040ac",
+        "0x00000000000040b0",
+        "0x00000000000040b4",
+        "0x00000000000040b8",
+        "0x00000000000040bc",
+        "0x00000000000040c0",
+        "0x00000000000040c4",
+        "0x00000000000040c8",
+        "0x00000000000040cc",
+        "0x00000000000040d0",
+        "0x00000000000040d4",
+        "0x00000000000040d8",
+        "0x00000000000040dc",
+        "0x00000000000040e0",
+        "0x00000000000040e4",
+        "0x00000000000040e8",
+        "0x00000000000040ec",
+        "0x00000000000040f0",
+        "0x00000000000040f4",
+        "0x00000000000040f8",
+        "0x00000000000040fc"
+      ],
+      "entry_index": 0,
+      "wasm": "a64_max_64_blocks.wasm",
+      "wasm_bytes": 523
+    }
+  ],
+  "baseline_review": {
+    "previous_source_revision": "e33352f959ac745f18ec9c9854efeda4e8a88131",
+    "correctness_fix_revision": "6701c8dec3a21adf78b13939b40d1fa421bc9371",
+    "changed_cases": [
+      "a32_conditional_backward"
+    ],
+    "instruction_change": "A32 BX selects the target alignment mask (-2 for Thumb, -4 for ARM) and derives the upper descriptor from EndLocation instead of the entry state. This module grows by two bytes. All four A64 modules and descriptor selections are unchanged.",
+    "validation": "Binaryen wasm-dis 133 instruction comparison; original 20 guest-semantic executions pass on both old and new corpora. Eight additional BX target/mode cases pass on the new corpus; the old corpus fails ARM LR=0x5002 alignment. Current baseline and candidate each execute 28 semantic checks."
+  }
+}

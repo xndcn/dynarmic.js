@@ -1,0 +1,962 @@
+[
+  {
+    "round": 0,
+    "case": "a32-thunk",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":69115.740031,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 69045885\\nTotal time (secs): 69.045885\\nIterations/Sec   : 2896.624469\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 2896.624469 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":751278,\"translateMs\":25.21831099999919,\"optMs\":11.873115000279647,\"emitMs\":27.614892000110096,\"compileMs\":6.421523000002203,\"instMs\":1.3481279998959081,\"tableMs\":0.6327520001372164},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 0,
+    "case": "a32-thunk",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":67525.578978,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 67453655\\nTotal time (secs): 67.453655\\nIterations/Sec   : 2964.998709\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 2964.998709 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":735561,\"translateMs\":24.910666999886903,\"optMs\":12.23958299970154,\"emitMs\":33.47960800004171,\"compileMs\":7.224018000002452,\"instMs\":1.527466000032497,\"tableMs\":0.6631770000048505},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 0,
+    "case": "a32-page-table",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":32132.183987,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 32050682\\nTotal time (secs): 32.050682\\nIterations/Sec   : 6240.116825\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 6240.116825 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":873161,\"translateMs\":25.82541599997193,\"optMs\":15.82838700010754,\"emitMs\":32.460989000004844,\"compileMs\":7.873256999981102,\"instMs\":1.6601730000035673,\"tableMs\":0.7661119999930577},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 0,
+    "case": "a32-page-table",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":33803.755163999995,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 33721995\\nTotal time (secs): 33.721995\\nIterations/Sec   : 5930.847211\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 5930.847211 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":116,\"bytes\":822606,\"translateMs\":26.770289999996464,\"optMs\":15.454497000008132,\"emitMs\":34.29356799998691,\"compileMs\":8.00776400000425,\"instMs\":2.030039000028566,\"tableMs\":0.7318400000008509},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 0,
+    "case": "a32-flat-window",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":25745.497648,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 25669810\\nTotal time (secs): 25.669810\\nIterations/Sec   : 7791.253617\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 7791.253617 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":820635,\"translateMs\":25.394853000007835,\"optMs\":19.02977499996475,\"emitMs\":32.87116299998719,\"compileMs\":7.632933000002211,\"instMs\":1.629919999993831,\"tableMs\":3.701679999998966},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 0,
+    "case": "a32-flat-window",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":25019.656619999998,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 24942852\\nTotal time (secs): 24.942852\\nIterations/Sec   : 8018.329259\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 8018.329259 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":116,\"bytes\":771916,\"translateMs\":24.50906100012233,\"optMs\":14.913397999951044,\"emitMs\":30.834350000013714,\"compileMs\":7.215747000006992,\"instMs\":2.001778999989625,\"tableMs\":0.6723330000189307},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 0,
+    "case": "a64-thunk",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":64574.230305,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 64456646\\nTotal time (secs): 64.456646\\nIterations/Sec   : 3102.860797\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 3102.860797 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":652432,\"translateMs\":73.78900999986858,\"optMs\":14.987176000089065,\"emitMs\":29.857618000015407,\"compileMs\":7.289021999948574,\"instMs\":1.5291160000402755,\"tableMs\":0.7368879999735896},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 0,
+    "case": "a64-thunk",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":63359.698331,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 63239538\\nTotal time (secs): 63.239538\\nIterations/Sec   : 3162.578449\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 3162.578449 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":619484,\"translateMs\":80.64618000020093,\"optMs\":13.162437999884887,\"emitMs\":34.246831000007546,\"compileMs\":8.441336000042085,\"instMs\":1.9146259999968436,\"tableMs\":0.8235679999731218},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 0,
+    "case": "a64-page-table",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":33209.394539,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 33090037\\nTotal time (secs): 33.090037\\nIterations/Sec   : 6044.115333\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 6044.115333 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":768021,\"translateMs\":76.36888800004783,\"optMs\":11.76917700001728,\"emitMs\":33.82867100002535,\"compileMs\":7.442909000007347,\"instMs\":2.223585000007887,\"tableMs\":0.729640999989897},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 0,
+    "case": "a64-page-table",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":32313.286347999998,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 32182156\\nTotal time (secs): 32.182156\\nIterations/Sec   : 6214.624030\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 6214.624030 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":735073,\"translateMs\":92.51253200005279,\"optMs\":11.468357999933417,\"emitMs\":31.60550600001345,\"compileMs\":8.25680400000141,\"instMs\":1.5417389999978894,\"tableMs\":0.6629630000051492},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 0,
+    "case": "a64-flat-window",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":23952.431847,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 23837067\\nTotal time (secs): 23.837067\\nIterations/Sec   : 8390.293990\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 8390.293990 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":708917,\"translateMs\":74.2486229999691,\"optMs\":11.969836000056375,\"emitMs\":31.71488499999856,\"compileMs\":7.151191999992307,\"instMs\":1.5476049999881383,\"tableMs\":0.6863920000052985},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 0,
+    "case": "a64-flat-window",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":23588.788662,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 23454566\\nTotal time (secs): 23.454566\\nIterations/Sec   : 8527.124313\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 8527.124313 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":675969,\"translateMs\":94.9635899998414,\"optMs\":11.589652000144156,\"emitMs\":31.448575000019233,\"compileMs\":6.675137000015383,\"instMs\":1.4895429999912153,\"tableMs\":0.6553860000046257},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 1,
+    "case": "a32-page-table",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":32258.001975,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 32183335\\nTotal time (secs): 32.183335\\nIterations/Sec   : 6214.396364\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 6214.396364 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":116,\"bytes\":822606,\"translateMs\":25.500450000043337,\"optMs\":12.5266910000285,\"emitMs\":33.41667900000821,\"compileMs\":8.30918399998879,\"instMs\":1.8958990000107292,\"tableMs\":0.7024739999951777},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 1,
+    "case": "a32-page-table",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":34201.380619999996,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 34125448\\nTotal time (secs): 34.125448\\nIterations/Sec   : 5860.728920\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 5860.728920 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":116,\"bytes\":838323,\"translateMs\":27.19748700003,\"optMs\":12.33089099992371,\"emitMs\":29.12225300002634,\"compileMs\":12.479007000006803,\"instMs\":1.7369649999880536,\"tableMs\":0.6336750000357299},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 1,
+    "case": "a32-flat-window",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":25985.849636,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 25906040\\nTotal time (secs): 25.906040\\nIterations/Sec   : 7720.207334\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 7720.207334 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":804918,\"translateMs\":24.707173000110103,\"optMs\":12.713488999948133,\"emitMs\":35.91973600002372,\"compileMs\":8.821774999991248,\"instMs\":1.6578470000031729,\"tableMs\":1.1461130000099686},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 1,
+    "case": "a32-flat-window",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":31459.915728,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 31374481\\nTotal time (secs): 31.374481\\nIterations/Sec   : 6374.607440\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 6374.607440 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":820635,\"translateMs\":25.006227000110535,\"optMs\":19.379151999980714,\"emitMs\":36.44077999999524,\"compileMs\":11.273330999999445,\"instMs\":1.742774000003898,\"tableMs\":3.7721450000001013},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 1,
+    "case": "a64-thunk",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":91152.513076,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 91019366\\nTotal time (secs): 91.019366\\nIterations/Sec   : 2197.334576\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 2197.334576 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":619484,\"translateMs\":83.3147530005094,\"optMs\":13.957449000080743,\"emitMs\":36.467622999971184,\"compileMs\":12.60461200004238,\"instMs\":2.4660589999831757,\"tableMs\":0.9978069999385468},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 1,
+    "case": "a64-thunk",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":76642.788369,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 76184277\\nTotal time (secs): 76.184277\\nIterations/Sec   : 2625.213599\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 2625.213599 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":652432,\"translateMs\":307.7724959997117,\"optMs\":84.20040400001056,\"emitMs\":218.14098699999005,\"compileMs\":116.58719300010722,\"instMs\":48.75596899989199,\"tableMs\":3.1101830000181394},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 1,
+    "case": "a64-page-table",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":35283.948776000005,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 35083539\\nTotal time (secs): 35.083539\\nIterations/Sec   : 5700.679170\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 5700.679170 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":735073,\"translateMs\":137.4696420000949,\"optMs\":30.48250299989047,\"emitMs\":72.62356000000506,\"compileMs\":37.8973619999926,\"instMs\":6.696840999998017,\"tableMs\":2.6855280000031883},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 1,
+    "case": "a64-page-table",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":32622.692674,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 32488223\\nTotal time (secs): 32.488223\\nIterations/Sec   : 6156.076927\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 6156.076927 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":768021,\"translateMs\":78.19317999990423,\"optMs\":16.458670000025307,\"emitMs\":39.94375700000376,\"compileMs\":12.087801999995875,\"instMs\":1.9951300000085013,\"tableMs\":0.8968139999998073},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 1,
+    "case": "a64-flat-window",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":24931.806935,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 24795257\\nTotal time (secs): 24.795257\\nIterations/Sec   : 8066.058763\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 8066.058763 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":675969,\"translateMs\":94.08135599996135,\"optMs\":15.455389000087422,\"emitMs\":34.221154999980456,\"compileMs\":6.351314000007449,\"instMs\":1.694411999992127,\"tableMs\":0.5947840000079054},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 1,
+    "case": "a64-flat-window",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":24865.904968000003,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 24726330\\nTotal time (secs): 24.726330\\nIterations/Sec   : 8088.543670\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 8088.543670 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":708917,\"translateMs\":82.75634899994624,\"optMs\":12.740761000140907,\"emitMs\":37.32397400000394,\"compileMs\":15.291434000023685,\"instMs\":2.2116939999762337,\"tableMs\":1.3283760000272196},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 1,
+    "case": "a32-thunk",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":99478.340727,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 99235615\\nTotal time (secs): 99.235615\\nIterations/Sec   : 2015.405457\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 2015.405457 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":735561,\"translateMs\":70.62798500049306,\"optMs\":27.156723000181202,\"emitMs\":69.64399000001791,\"compileMs\":28.27704699996157,\"instMs\":9.514752000013303,\"tableMs\":2.759050000039224},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 1,
+    "case": "a32-thunk",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":85989.766647,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 85748181\\nTotal time (secs): 85.748181\\nIterations/Sec   : 2332.410993\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 2332.410993 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":751278,\"translateMs\":74.07938799993477,\"optMs\":82.15774699941805,\"emitMs\":105.80188699995486,\"compileMs\":69.4183670000159,\"instMs\":25.880347999958815,\"tableMs\":8.824830000084631},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 2,
+    "case": "a32-flat-window",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":25412.974174,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 25338041\\nTotal time (secs): 25.338041\\nIterations/Sec   : 7893.270044\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 7893.270044 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":820635,\"translateMs\":25.75814099994973,\"optMs\":12.721318999925366,\"emitMs\":30.76751500001717,\"compileMs\":8.300242000023907,\"instMs\":1.6342219999891014,\"tableMs\":0.7022360000089805},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 2,
+    "case": "a32-flat-window",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":26092.587984,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 25961225\\nTotal time (secs): 25.961225\\nIterations/Sec   : 7703.796720\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 7703.796720 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":116,\"bytes\":771916,\"translateMs\":38.44238900003943,\"optMs\":17.005648999914754,\"emitMs\":43.24952300000797,\"compileMs\":17.099095999989757,\"instMs\":4.632488000010447,\"tableMs\":1.6304870000154423},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 2,
+    "case": "a64-thunk",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":72068.475569,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 71870565\\nTotal time (secs): 71.870565\\nIterations/Sec   : 2782.780405\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 2782.780405 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":652432,\"translateMs\":136.51347699969318,\"optMs\":17.822944000347576,\"emitMs\":62.147424999969815,\"compileMs\":19.63923299999948,\"instMs\":6.143242000059018,\"tableMs\":2.5282819999575565},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 2,
+    "case": "a64-thunk",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":62023.735175,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 61899463\\nTotal time (secs): 61.899463\\nIterations/Sec   : 3231.045801\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 3231.045801 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":619484,\"translateMs\":83.16112499996196,\"optMs\":13.286186000018674,\"emitMs\":37.38997300000831,\"compileMs\":11.323279999972641,\"instMs\":1.8748699999864016,\"tableMs\":0.8111610000196805},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 2,
+    "case": "a64-page-table",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":31387.412718,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 31267548\\nTotal time (secs): 31.267548\\nIterations/Sec   : 6396.408187\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 6396.408187 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":768021,\"translateMs\":76.0840859999729,\"optMs\":12.175011000048059,\"emitMs\":32.41061599999847,\"compileMs\":7.448883999994308,\"instMs\":1.4413699999887513,\"tableMs\":0.6326110000056246},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 2,
+    "case": "a64-page-table",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":31808.273515,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 31681733\\nTotal time (secs): 31.681733\\nIterations/Sec   : 6312.785983\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 6312.785983 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":735073,\"translateMs\":88.26717399998476,\"optMs\":10.972577999911692,\"emitMs\":30.571186999997266,\"compileMs\":7.755606999978937,\"instMs\":1.4593900000194253,\"tableMs\":0.6410939999888683},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 2,
+    "case": "a64-flat-window",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":23289.551228,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 23178418\\nTotal time (secs): 23.178418\\nIterations/Sec   : 8628.716593\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 8628.716593 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":708917,\"translateMs\":71.81972899996161,\"optMs\":11.276356000015383,\"emitMs\":29.11258599999404,\"compileMs\":6.792283999995348,\"instMs\":1.4068360000119213,\"tableMs\":0.6383089999889222},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 2,
+    "case": "a64-flat-window",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":23124.745191,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 22999640\\nTotal time (secs): 22.999640\\nIterations/Sec   : 8695.788282\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 8695.788282 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":675969,\"translateMs\":87.99284599998443,\"optMs\":10.975268000088406,\"emitMs\":32.534978999995616,\"compileMs\":6.694333999984337,\"instMs\":1.3673950000009683,\"tableMs\":0.6101689999998712},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 2,
+    "case": "a32-thunk",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":69082.728778,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 69003303\\nTotal time (secs): 69.003303\\nIterations/Sec   : 2898.411979\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 2898.411979 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":751278,\"translateMs\":24.665140999906654,\"optMs\":13.271112000128738,\"emitMs\":34.54977600009273,\"compileMs\":11.414701000046513,\"instMs\":1.5939419999790019,\"tableMs\":0.6901639999957752},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 2,
+    "case": "a32-thunk",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":68963.55317900001,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 68833383\\nTotal time (secs): 68.833383\\nIterations/Sec   : 2905.566911\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 2905.566911 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":735561,\"translateMs\":36.645394000418754,\"optMs\":29.653997999714115,\"emitMs\":66.49358300002028,\"compileMs\":8.364245999874697,\"instMs\":1.7426490000599983,\"tableMs\":0.8090919999839343},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 2,
+    "case": "a32-page-table",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":31531.277276999997,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 31452483\\nTotal time (secs): 31.452483\\nIterations/Sec   : 6358.798445\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 6358.798445 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":117,\"bytes\":847382,\"translateMs\":29.324287000076097,\"optMs\":12.896815000014968,\"emitMs\":37.80287399998277,\"compileMs\":11.432343999987992,\"instMs\":1.9210780000085421,\"tableMs\":0.6752079999869309},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 2,
+    "case": "a32-page-table",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":31670.206226,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 31583777\\nTotal time (secs): 31.583777\\nIterations/Sec   : 6332.364872\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 6332.364872 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":117,\"bytes\":831665,\"translateMs\":28.994858999934706,\"optMs\":18.899644000120084,\"emitMs\":37.21947699999181,\"compileMs\":9.486123999998753,\"instMs\":1.931100999997362,\"tableMs\":0.7573880000113462},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 3,
+    "case": "a64-thunk",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":62969.827066000005,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 62844845\\nTotal time (secs): 62.844845\\nIterations/Sec   : 3182.440819\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 3182.440819 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":619484,\"translateMs\":79.31806100024873,\"optMs\":12.868429999911996,\"emitMs\":36.431971999967075,\"compileMs\":8.430163999947396,\"instMs\":1.8603310000460453,\"tableMs\":0.7927970000056632},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 3,
+    "case": "a64-thunk",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":63555.003082,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 63393298\\nTotal time (secs): 63.393298\\nIterations/Sec   : 3154.907637\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 3154.907637 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":652432,\"translateMs\":119.85794100003284,\"optMs\":12.05137500002823,\"emitMs\":31.90790200000248,\"compileMs\":7.819683999985699,\"instMs\":1.6278450000164923,\"tableMs\":0.74529799999533},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 3,
+    "case": "a64-page-table",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":33350.237137000004,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 33219479\\nTotal time (secs): 33.219479\\nIterations/Sec   : 6020.564019\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 6020.564019 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":735073,\"translateMs\":90.59121700010087,\"optMs\":11.491900999939574,\"emitMs\":31.209810999982054,\"compileMs\":12.782727999976217,\"instMs\":1.5209230000214689,\"tableMs\":0.6611279999975181},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 3,
+    "case": "a64-page-table",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":33318.508428,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 33188875\\nTotal time (secs): 33.188875\\nIterations/Sec   : 6026.115679\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 6026.115679 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":768021,\"translateMs\":83.42955200010852,\"optMs\":21.033623999778825,\"emitMs\":34.116694999983736,\"compileMs\":8.338629000035624,\"instMs\":1.7486739999268792,\"tableMs\":0.7302110000217397},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 3,
+    "case": "a64-flat-window",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":28350.660290999997,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 28220654\\nTotal time (secs): 28.220654\\nIterations/Sec   : 7087.007976\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 7087.007976 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":675969,\"translateMs\":91.03608900005568,\"optMs\":11.472868000107823,\"emitMs\":31.633429999999578,\"compileMs\":10.893592000004787,\"instMs\":1.5152070000049775,\"tableMs\":0.6653500000062138},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 3,
+    "case": "a64-flat-window",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":24216.676133,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 24040253\\nTotal time (secs): 24.040253\\nIterations/Sec   : 8319.380000\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 8319.380000 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":708917,\"translateMs\":89.24367300008944,\"optMs\":21.762958999965136,\"emitMs\":44.11809599999789,\"compileMs\":12.814969999995455,\"instMs\":3.305462000025443,\"tableMs\":1.300237999986905},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 3,
+    "case": "a32-thunk",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":102103.289745,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 101884153\\nTotal time (secs): 101.884153\\nIterations/Sec   : 1963.013816\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 1963.013816 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":735561,\"translateMs\":90.2925799997149,\"optMs\":45.24340800029445,\"emitMs\":122.27359299999605,\"compileMs\":21.37232199995546,\"instMs\":12.07316100009831,\"tableMs\":1.7854639999837048},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 3,
+    "case": "a32-thunk",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":76911.177088,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 76833504\\nTotal time (secs): 76.833504\\nIterations/Sec   : 2603.031094\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 2603.031094 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":751278,\"translateMs\":24.05270499999535,\"optMs\":13.767288000233009,\"emitMs\":35.52107099996631,\"compileMs\":7.638669000074202,\"instMs\":1.7268309999835552,\"tableMs\":0.7239470000061914},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 3,
+    "case": "a32-page-table",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":32513.350852,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 32437277\\nTotal time (secs): 32.437277\\nIterations/Sec   : 6165.745664\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 6165.745664 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":117,\"bytes\":831665,\"translateMs\":25.97617299994146,\"optMs\":12.400336000024843,\"emitMs\":31.641058999993426,\"compileMs\":8.403811999993614,\"instMs\":1.9658530000104548,\"tableMs\":0.7438600000093984},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 3,
+    "case": "a32-page-table",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":32345.158906,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 32258134\\nTotal time (secs): 32.258134\\nIterations/Sec   : 6199.986645\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 6199.986645 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":116,\"bytes\":838323,\"translateMs\":29.16638400005896,\"optMs\":14.522447000019241,\"emitMs\":36.63419300001609,\"compileMs\":12.202319000024197,\"instMs\":1.735125999985371,\"tableMs\":0.8244349999933647},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 3,
+    "case": "a32-flat-window",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":28147.001753,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 27968218\\nTotal time (secs): 27.968218\\nIterations/Sec   : 7150.974009\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 7150.974009 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":804918,\"translateMs\":51.278994000053416,\"optMs\":18.366658999939922,\"emitMs\":50.261173000007545,\"compileMs\":19.251612000020955,\"instMs\":9.205160999990092,\"tableMs\":1.9964700000033346},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 3,
+    "case": "a32-flat-window",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":39119.340731000004,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 38886986\\nTotal time (secs): 38.886986\\nIterations/Sec   : 5143.108803\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 5143.108803 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":820635,\"translateMs\":80.98617300009657,\"optMs\":33.1594739998979,\"emitMs\":116.12386299999633,\"compileMs\":34.94212700000668,\"instMs\":10.07811399999298,\"tableMs\":8.266505000020288},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 4,
+    "case": "a64-page-table",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":33667.705644,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 33545565\\nTotal time (secs): 33.545565\\nIterations/Sec   : 5962.039989\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 5962.039989 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":768021,\"translateMs\":78.17760600008869,\"optMs\":11.78130499992271,\"emitMs\":32.71597600004367,\"compileMs\":7.321933000011441,\"instMs\":1.627942999992385,\"tableMs\":0.7318119999721517},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 4,
+    "case": "a64-page-table",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":50688.676261,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 50549573\\nTotal time (secs): 50.549573\\nIterations/Sec   : 3956.512155\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 3956.512155 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":735073,\"translateMs\":94.16024800006726,\"optMs\":14.768656999990426,\"emitMs\":38.71171300002375,\"compileMs\":7.181428000017291,\"instMs\":1.5788250000026949,\"tableMs\":0.745599999977486},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 4,
+    "case": "a64-flat-window",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":24467.414865,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 24333642\\nTotal time (secs): 24.333642\\nIterations/Sec   : 8219.073824\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 8219.073824 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":708917,\"translateMs\":80.30384499997452,\"optMs\":12.65839900006263,\"emitMs\":39.59129299998685,\"compileMs\":11.15731800001899,\"instMs\":1.8194539999894488,\"tableMs\":0.8996960000016543},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 4,
+    "case": "a64-flat-window",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":23900.438737,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 23706546\\nTotal time (secs): 23.706546\\nIterations/Sec   : 8436.488386\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 8436.488386 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":675969,\"translateMs\":123.68017400003927,\"optMs\":15.714987999902007,\"emitMs\":53.65551499998574,\"compileMs\":24.453844000020098,\"instMs\":3.4520189999913384,\"tableMs\":1.6751070000052835},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 4,
+    "case": "a32-thunk",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":69764.867,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 69686050\\nTotal time (secs): 69.686050\\nIterations/Sec   : 2870.014874\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 2870.014874 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":751278,\"translateMs\":26.276431999944187,\"optMs\":12.332706000556655,\"emitMs\":35.945825000007176,\"compileMs\":7.838565999974961,\"instMs\":1.6215509999867095,\"tableMs\":0.6853669999647423},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 4,
+    "case": "a32-thunk",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":70669.19948000001,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 70599859\\nTotal time (secs): 70.599859\\nIterations/Sec   : 2832.866848\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 2832.866848 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":116,\"bytes\":704977,\"translateMs\":21.986803999474354,\"optMs\":12.125008000656699,\"emitMs\":30.432872000034223,\"compileMs\":7.440664999942044,\"instMs\":1.5114639999621815,\"tableMs\":0.6444260000097017},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 4,
+    "case": "a32-page-table",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":34083.415789,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 34002213\\nTotal time (secs): 34.002213\\nIterations/Sec   : 5881.970094\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 5881.970094 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":873161,\"translateMs\":28.134890999899923,\"optMs\":13.390275000151284,\"emitMs\":37.5556929999953,\"compileMs\":11.650160999987058,\"instMs\":2.0283749999998477,\"tableMs\":0.7636230000010045},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 4,
+    "case": "a32-page-table",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "1"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":33553.370139,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 33465933\\nTotal time (secs): 33.465933\\nIterations/Sec   : 5976.226630\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 5976.226630 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":857444,\"translateMs\":27.780455999948472,\"optMs\":13.195646999983786,\"emitMs\":38.31352200001121,\"compileMs\":8.950743999982592,\"instMs\":2.5803990000127612,\"tableMs\":0.8852260000172691},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 4,
+    "case": "a32-flat-window",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":26252.206294000003,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 26167198\\nTotal time (secs): 26.167198\\nIterations/Sec   : 7643.156902\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 7643.156902 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":820635,\"translateMs\":24.978692999981078,\"optMs\":13.667624000025882,\"emitMs\":39.51201999999789,\"compileMs\":12.050249999981034,\"instMs\":2.0838800000149007,\"tableMs\":0.955561999994714},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 4,
+    "case": "a32-flat-window",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a32.bin",
+      "a32",
+      "2"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":24774.139648,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 24697820\\nTotal time (secs): 24.697820\\nIterations/Sec   : 8097.880704\\nIterations       : 200000\\nCompiler version : GCC10.3.1 20210621 (release)\\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 8097.880704 / GCC10.3.1 20210621 (release) -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp / STACK\\n\",\"compile\":{\"blocks\":118,\"bytes\":804918,\"translateMs\":24.271094999905173,\"optMs\":13.26627600008888,\"emitMs\":33.975300999999284,\"compileMs\":10.397749999988541,\"instMs\":2.5154189999850374,\"tableMs\":0.7964230000210577},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 4,
+    "case": "a64-thunk",
+    "side": "before",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/before-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":64904.882117,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 64787952\\nTotal time (secs): 64.787952\\nIterations/Sec   : 3086.993705\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 3086.993705 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":652432,\"translateMs\":75.95604200006845,\"optMs\":14.666067999876077,\"emitMs\":30.620461999996152,\"compileMs\":7.2309309999815525,\"instMs\":1.5037800000024504,\"tableMs\":0.685427999980476},\"profile\":null}\n",
+    "stderr": ""
+  },
+  {
+    "round": 4,
+    "case": "a64-thunk",
+    "side": "after",
+    "argv": [
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-cache-pruning/after-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "0"
+    ],
+    "status": 0,
+    "signal": null,
+    "stdout": "COREMARK_SAMPLE {\"haltReason\":16777216,\"runMs\":65593.227186,\"stdout\":\"2K performance run parameters for coremark.\\nCoreMark Size    : 666\\nTotal ticks      : 65461241\\nTotal time (secs): 65.461241\\nIterations/Sec   : 3055.243025\\nIterations       : 200000\\nCompiler version : clang 22.1.8 \\nCompiler flags   : -target aarch64-freestanding -O2\\nMemory location  : STACK\\nseedcrc          : 0xe9f5\\n[0]crclist       : 0xe714\\n[0]crcmatrix     : 0x1fd7\\n[0]crcstate      : 0x8e3a\\n[0]crcfinal      : 0x4983\\nCorrect operation validated. See README.md for run and reporting rules.\\nCoreMark 1.0 : 3055.243025 / clang 22.1.8  -target aarch64-freestanding -O2 / STACK\\n\",\"compile\":{\"blocks\":111,\"bytes\":619484,\"translateMs\":79.7343299999647,\"optMs\":14.800872999733826,\"emitMs\":35.55552799995219,\"compileMs\":7.9278019999548235,\"instMs\":1.8380720000644146,\"tableMs\":0.7788209999861948},\"profile\":null}\n",
+    "stderr": ""
+  }
+]

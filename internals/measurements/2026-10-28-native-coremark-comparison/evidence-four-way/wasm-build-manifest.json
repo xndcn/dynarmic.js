@@ -1,0 +1,42 @@
+{
+  "schema": "dynarmic.js/wasm-coremark-host-build-v1",
+  "sourceRoot": "/home/xiong/workspace/dynarmic.js",
+  "build": {
+    "type": "Release",
+    "profile": false,
+    "a64RegionFocus": "",
+    "compilerId": "Clang",
+    "compilerVersion": "24.0.0",
+    "emscriptenVersion": "\"6.0.13\"",
+    "cxxFlags": "",
+    "configCxxFlags": "-O3 -DNDEBUG",
+    "linkFlags": "",
+    "configLinkFlags": ""
+  },
+  "configuration": {
+    "regionDiagnostics": false,
+    "focusTestExceptions": false,
+    "examples": true  },
+  "buildEnvironment": {
+    "configureEmccCflags": "",
+    "buildEmccCflags": ""
+  },
+  "source": {
+    "revision": "045107cd21d0e2bbd9fc8cf43baef74e5bea0a31",
+    "upstream": "a41c380246d3d9f9874f0f792d234dc0cc17c180",
+    "dirty": false  },
+  "artifacts": {
+    "js": {
+      "path": "/tmp/dynarmic-js-four-way-production-build/examples/browser/dist/arm_jit.js",
+      "sha256": "16747bdfd6585d6fb21ff5c9416a5702853dc3b2b2274ecf971070b60bfd0073",
+      "bytes": 25394    },
+    "wasm": {
+      "path": "/tmp/dynarmic-js-four-way-production-build/examples/browser/dist/arm_jit.wasm",
+      "sha256": "ce0ad762b23e3fdeebd53711920609312d5ba47ca4cf28902044750659375b72",
+      "bytes": 2227959    }
+  },
+  "buildSources": {
+    "browserCmakeSha256": "dc55a99fb30698f565ac3ff0df32e17e820ad3b245be49aaccf80efe2b2a7bee",
+    "manifestScriptSha256": "adb4bda38eba124cb6ed559357fb9cfb2c2e3a0dae13ce93919570fa9c8be301"
+  }
+}

@@ -1,0 +1,10 @@
+RUN session 1 / 5
+PASS session 1 45 observations / 270 matching checksums
+RUN session 2 / 5
+PASS session 2 45 observations / 270 matching checksums
+RUN session 3 / 5
+PASS session 3 45 observations / 270 matching checksums
+RUN session 4 / 5
+PASS session 4 45 observations / 270 matching checksums
+RUN session 5 / 5
+PASS session 5 45 observations / 270 matching checksums

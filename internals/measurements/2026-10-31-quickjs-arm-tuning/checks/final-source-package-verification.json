@@ -1,0 +1,16 @@
+{
+  "archiveSha256": "b842ceee1b93499e5faf2346021bc98151b7e895a3db6f6af49b28b6a5573c75",
+  "regularFilesCompared": 3229,
+  "allArchivedSourceBytesMatchWorkingTree": true,
+  "rebuildCmakeOptions": {
+    "DYNARMIC_QUICKJS_ARM_OPT": "O2",
+    "DYNARMIC_QUICKJS_ARM_DISPATCH": "switch",
+    "DYNARMIC_QUICKJS_ARM_ISA": "arm",
+    "DYNARMIC_QUICKJS_ARM_LTO": "OFF",
+    "DYNARMIC_QUICKJS_ARM_NO_GCSE": "OFF",
+    "DYNARMIC_QUICKJS_ARM_NO_CROSSJUMPING": "OFF"
+  },
+  "localDirtySnapshot": true,
+  "correspondenceVerified": false,
+  "correspondenceNote": "Clean snapshots and clean runtime builds at matching revisions establish correspondence. Dirty snapshots are for local review only; a revision match does not prove that uncommitted source matches the runtime."
+}

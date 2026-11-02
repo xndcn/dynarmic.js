@@ -1,0 +1,127 @@
+{
+  "schema": "dynarmic.js/quickjs-path-comparison-v1",
+  "sourceReport": "browser-chromium.json",
+  "measuredAt": "2026-10-30T16:48:16.498Z",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/133.0.0.0 Safari/537.36",
+    "hardwareConcurrency": 20,
+    "visibilityChanged": false
+  },
+  "metric": "elapsed measurement milliseconds / benchmark iterations, after upstream warmup",
+  "rows": [
+    {
+      "case": "Richards/Richards",
+      "suite": "Richards",
+      "dynarmicMs": 48.95950000000001,
+      "wasmMs": 3.565124554990449,
+      "ratio": 13.73290028015057,
+      "dynarmicIterations": 42,
+      "wasmIterations": 281
+    },
+    {
+      "case": "DeltaBlue/DeltaBlue",
+      "suite": "DeltaBlue",
+      "dynarmicMs": 85.79999999999997,
+      "wasmMs": 6.3106918241242935,
+      "ratio": 13.595973688971265,
+      "dynarmicIterations": 36,
+      "wasmIterations": 159
+    },
+    {
+      "case": "Crypto/Encrypt",
+      "suite": "Crypto",
+      "dynarmicMs": 94.06666666666665,
+      "wasmMs": 6.376433121170967,
+      "ratio": 14.752239203191433,
+      "dynarmicIterations": 33,
+      "wasmIterations": 157
+    },
+    {
+      "case": "Crypto/Decrypt",
+      "suite": "Crypto",
+      "dynarmicMs": 1764.278125,
+      "wasmMs": 114.26666666732895,
+      "ratio": 15.44000692814855,
+      "dynarmicIterations": 32,
+      "wasmIterations": 36
+    },
+    {
+      "case": "RayTrace/RayTrace",
+      "suite": "RayTrace",
+      "dynarmicMs": 803.009375,
+      "wasmMs": 67.9733333322737,
+      "ratio": 11.813594179274,
+      "dynarmicIterations": 32,
+      "wasmIterations": 45
+    },
+    {
+      "case": "EarleyBoyer/Earley",
+      "suite": "EarleyBoyer",
+      "dynarmicMs": 114.44722222222224,
+      "wasmMs": 9.523809523809524,
+      "ratio": 12.016958333333335,
+      "dynarmicIterations": 36,
+      "wasmIterations": 105
+    },
+    {
+      "case": "EarleyBoyer/Boyer",
+      "suite": "EarleyBoyer",
+      "dynarmicMs": 1634.5687812499998,
+      "wasmMs": 111.89189189189189,
+      "ratio": 14.608464953200482,
+      "dynarmicIterations": 32,
+      "wasmIterations": 37
+    },
+    {
+      "case": "RegExp/RegExp",
+      "suite": "RegExp",
+      "dynarmicMs": 4292.95934375,
+      "wasmMs": 259.4468749985099,
+      "ratio": 16.54658335651434,
+      "dynarmicIterations": 32,
+      "wasmIterations": 32
+    },
+    {
+      "case": "Splay/Splay",
+      "suite": "Splay",
+      "dynarmicMs": 40.333999999999996,
+      "wasmMs": 3.3478260869565215,
+      "ratio": 12.047818181818181,
+      "dynarmicIterations": 50,
+      "wasmIterations": 299
+    },
+    {
+      "case": "NavierStokes/NavierStokes",
+      "suite": "NavierStokes",
+      "dynarmicMs": 1443.8874374999998,
+      "wasmMs": 89.42499999867546,
+      "ratio": 16.14635099269093,
+      "dynarmicIterations": 32,
+      "wasmIterations": 36
+    }
+  ],
+  "caseEqualGeometricRatio": 13.97381640600405,
+  "suiteEqualGeometricRatio": 13.932362168876507,
+  "suiteRatios": {
+    "Crypto": 15.09220578653035,
+    "RegExp": 16.546583356514343,
+    "Splay": 12.04781818181818,
+    "DeltaBlue": 13.595973688971267,
+    "EarleyBoyer": 13.249502430528121,
+    "NavierStokes": 16.146350992690934,
+    "RayTrace": 11.813594179274002,
+    "Richards": 13.732900280150568
+  },
+  "nodeRatios": {
+    "Richards/Richards": 13.388132568765192,
+    "DeltaBlue/DeltaBlue": 10.661518234735434,
+    "Crypto/Encrypt": 9.74944485216369,
+    "Crypto/Decrypt": 13.587396918540064,
+    "RayTrace/RayTrace": 10.165638481980277,
+    "EarleyBoyer/Earley": 12.141505282898665,
+    "EarleyBoyer/Boyer": 13.745804321499136,
+    "RegExp/RegExp": 14.909362247004173,
+    "Splay/Splay": 11.207202647092846,
+    "NavierStokes/NavierStokes": 15.892859318024083
+  }
+}

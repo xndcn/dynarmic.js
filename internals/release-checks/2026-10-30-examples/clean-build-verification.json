@@ -1,0 +1,47 @@
+{
+  "result": "PASS",
+  "assets": {
+    "index.html": {
+      "bytes": 5382,
+      "sha256": "23268034225d9bb50e14f6dd1b396a7c985eaa498eb62c5e9efb9e5654b16098"
+    },
+    "styles.css": {
+      "bytes": 6280,
+      "sha256": "acf355ba2312668b3527556352f9306dcf6844167d146d7ed3b327870215994b"
+    },
+    "app.js": {
+      "bytes": 9426,
+      "sha256": "19b9ba1cef1e16d6f990f265768cf850f3ca0e51434fd38df76635de016d3b0f"
+    },
+    "worker.js": {
+      "bytes": 5163,
+      "sha256": "e39b04e15598faeeebc83d4145a2ccd62604277ae6fc20f80975460da8c6b8f1"
+    },
+    "arm_jit.js": {
+      "bytes": 25394,
+      "sha256": "16747bdfd6585d6fb21ff5c9416a5702853dc3b2b2274ecf971070b60bfd0073"
+    },
+    "arm_jit.wasm": {
+      "bytes": 2243355,
+      "sha256": "f286460c3739e33629d9d709493c836c85c295fd84f0fdf4e6122d47210e4cfc"
+    },
+    "demo.bin": {
+      "bytes": 794,
+      "sha256": "3b02710c7980a705f832ff65256248e7dee1c67f223e471c9679fb864fc1125f"
+    },
+    "demo_a64.bin": {
+      "bytes": 800,
+      "sha256": "456d2979329330dcf07ddbff947d9c1093d2482872dc9fa65712779123c446ec"
+    },
+    "expected.txt": {
+      "bytes": 51,
+      "sha256": "1f93f67870cb72ff0c6e1fb33437736671ec0073ba2330f63b84a4ee86dd2e0e"
+    },
+    "wasm-build-manifest.json": {
+      "bytes": 1421,
+      "sha256": "deee06f0b664645a8685d2e1608f7814c184b22082245864206489fab7f407bb"
+    }
+  },
+  "nativeExpected": "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n",
+  "sourceAssetsMatch": true
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pass",
+  "environment": "v22.11.0",
+  "checks": [
+    "a32: step, SVC, resume and zero budget",
+    "a32: memory copies, boundaries and input validation",
+    "a32: code cache invalidation",
+    "a32: cooperative budget interrupts a guest loop",
+    "a32: data and instruction faults, boundary access and recovery",
+    "a32: Thumb state and SVC resume",
+    "a64: step, SVC, resume and zero budget",
+    "a64: memory copies, boundaries and input validation",
+    "a64: code cache invalidation",
+    "a64: cooperative budget interrupts a guest loop",
+    "a64: data and instruction faults, boundary access and recovery",
+    "a64: BigInt arithmetic and fault addresses retain all 64 bits",
+    "independent live instances and idempotent disposal",
+    "Node file URL and supplied Buffer, ArrayBuffer and offset Uint8Array",
+    "Custom HTTP asset URL, 404 rejection and successful retry",
+    "Invalid Wasm initialization rejects without breaking subsequent instances",
+    "Invalid architecture, memory, URL and mutually exclusive loader options reject",
+    "RAM allocation grows Wasm memory without stale host views"
+  ],
+  "tarballSha256": "634dc62a8ebb1471131c4f78d5979931126dcf5bbfe81af8fc49173a604d9bdf"
+}

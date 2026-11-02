@@ -1,0 +1,19 @@
+{
+  "configuration": "native offline emitter, no inline memory, no chaining slots; translate+EmitWASM; entry index 1",
+  "baseline": {
+    "blocks": 64,
+    "module_bytes": 17551,
+    "entry_body_bytes": 17342,
+    "layout": "fallback",
+    "native_emit_ms_median_of_20": 0.19129,
+    "native_emit_ms_all": [0.257215, 0.216413, 0.193768, 0.203573, 0.19129, 0.199048, 0.19136, 0.188326, 0.193643, 0.181948, 0.179755, 0.182933, 0.193358, 0.186766, 0.188056, 0.178132, 0.200141, 0.182832, 0.178292, 0.177516]
+  },
+  "candidate": {
+    "blocks": 64,
+    "module_bytes": 19408,
+    "entry_body_bytes": 19199,
+    "layout": "fallback",
+    "native_emit_ms_median_of_20": 0.19897,
+    "native_emit_ms_all": [0.208048, 0.227218, 0.199742, 0.19897, 0.2044, 0.196416, 0.192801, 0.20199, 0.205798, 0.191766, 0.185049, 0.213055, 0.190789, 0.189433, 0.186372, 0.188123, 0.207237, 0.194867, 0.191648, 0.20271]
+  }
+}

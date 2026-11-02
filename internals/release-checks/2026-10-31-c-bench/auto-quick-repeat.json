@@ -1,0 +1,3645 @@
+{
+  "schema": "dynarmic.js/c-bench-comparison-v1",
+  "startedAt": "2026-10-31T03:26:16.378Z",
+  "status": "pass",
+  "verified": true,
+  "profile": "quick",
+  "selectedCases": [
+    "integer",
+    "branch",
+    "stream",
+    "pointer",
+    "float"
+  ],
+  "methodology": {
+    "rounds": 3,
+    "firstRuns": 1,
+    "warmupRuns": 2,
+    "measuredRuns": 3,
+    "freshWorkerPerObservation": true,
+    "timingFloorMs": 0.1,
+    "workerTimeoutMs": 90000,
+    "totalTimeoutMs": 600000,
+    "performanceEligible": true,
+    "instrumentation": {
+      "profile": false,
+      "regionDiagnostics": false,
+      "description": "ARM profiling is disabled. Region diagnostics are disabled."
+    },
+    "aggregation": "Median of three measured fixed-work calls per round, then median/min/max of three round medians; ratios pair the same round before equal-case geometric means",
+    "scope": "Same C source and compiler version without libc; complete ARM, x86 and direct Wasm execution paths still differ"
+  },
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/133.0.0.0 Safari/537.36",
+    "hardwareConcurrency": 20,
+    "visibilityChanged": false
+  },
+  "observations": [
+    {
+      "task": {
+        "runtime": "dynarmic",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 0,
+        "position": 0,
+        "token": "1793417176378-0-0-integer-dynarmic"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 0,
+        "token": "1793417176378-0-0-integer-dynarmic",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 1376229747,
+        "checksums": [
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747
+        ],
+        "loadMs": 33.90000003576279,
+        "firstMs": 11.199999988079071,
+        "warmupMs": [
+          7.600000023841858,
+          7.399999976158142
+        ],
+        "samplesMs": [
+          7.600000023841858,
+          7.899999976158142,
+          7.300000011920929
+        ],
+        "memoryBytes": 67108864,
+        "stats": {
+          "blocks": 5,
+          "bytes": 39863,
+          "translateMs": 2.8000000715255737,
+          "optMs": 2.8999998569488525,
+          "emitMs": 9.599999964237213,
+          "compileMs": 0.30000001192092896,
+          "instMs": 0.3999999761581421,
+          "tableMs": 0.19999998807907104
+        },
+        "validation": {
+          "pass": true,
+          "actual": 1376229747,
+          "expected": 1376229747
+        }
+      },
+      "measurement": {
+        "medianMs": 7.600000023841858,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "v86",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 0,
+        "position": 1,
+        "token": "1793417176378-0-0-integer-v86"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "v86",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 0,
+        "token": "1793417176378-0-0-integer-v86",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 1376229747,
+        "checksums": [
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747
+        ],
+        "loadMs": 54.40000003576279,
+        "firstMs": 52.19999998807907,
+        "warmupMs": [
+          25.700000047683716,
+          21.5
+        ],
+        "samplesMs": [
+          22.19999998807907,
+          21.30000001192093,
+          20.099999964237213
+        ],
+        "memoryBytes": 34930688,
+        "stats": {
+          "compiledSlots": 1
+        },
+        "validation": {
+          "pass": true,
+          "actual": 1376229747,
+          "expected": 1376229747
+        }
+      },
+      "measurement": {
+        "medianMs": 21.30000001192093,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "wasm",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 0,
+        "position": 2,
+        "token": "1793417176378-0-0-integer-wasm"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "wasm",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 0,
+        "token": "1793417176378-0-0-integer-wasm",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 1376229747,
+        "checksums": [
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747
+        ],
+        "loadMs": 7.199999988079071,
+        "firstMs": 12,
+        "warmupMs": [
+          7,
+          7.399999976158142
+        ],
+        "samplesMs": [
+          6.600000023841858,
+          7,
+          6.599999964237213
+        ],
+        "memoryBytes": 16777216,
+        "stats": {},
+        "validation": {
+          "pass": true,
+          "actual": 1376229747,
+          "expected": 1376229747
+        }
+      },
+      "measurement": {
+        "medianMs": 6.600000023841858,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "v86",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 0,
+        "position": 0,
+        "token": "1793417176378-0-0-branch-v86"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "v86",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 0,
+        "token": "1793417176378-0-0-branch-v86",
+        "iterations": 1000000,
+        "seed": 305419896,
+        "expected": 3070096057,
+        "checksums": [
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057
+        ],
+        "loadMs": 43.30000001192093,
+        "firstMs": 43.80000001192093,
+        "warmupMs": [
+          18.5,
+          15.300000011920929
+        ],
+        "samplesMs": [
+          14.300000011920929,
+          14,
+          15.099999964237213
+        ],
+        "memoryBytes": 34930688,
+        "stats": {
+          "compiledSlots": 1
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3070096057,
+          "expected": 3070096057
+        }
+      },
+      "measurement": {
+        "medianMs": 14.300000011920929,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "wasm",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 0,
+        "position": 1,
+        "token": "1793417176378-0-0-branch-wasm"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "wasm",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 0,
+        "token": "1793417176378-0-0-branch-wasm",
+        "iterations": 1000000,
+        "seed": 305419896,
+        "expected": 3070096057,
+        "checksums": [
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057
+        ],
+        "loadMs": 6.200000047683716,
+        "firstMs": 6.099999964237213,
+        "warmupMs": [
+          3.900000035762787,
+          3.599999964237213
+        ],
+        "samplesMs": [
+          3.600000023841858,
+          3.599999964237213,
+          3.5
+        ],
+        "memoryBytes": 16777216,
+        "stats": {},
+        "validation": {
+          "pass": true,
+          "actual": 3070096057,
+          "expected": 3070096057
+        }
+      },
+      "measurement": {
+        "medianMs": 3.599999964237213,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "dynarmic",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 0,
+        "position": 2,
+        "token": "1793417176378-0-0-branch-dynarmic"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 0,
+        "token": "1793417176378-0-0-branch-dynarmic",
+        "iterations": 1000000,
+        "seed": 305419896,
+        "expected": 3070096057,
+        "checksums": [
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057
+        ],
+        "loadMs": 35.299999952316284,
+        "firstMs": 19,
+        "warmupMs": [
+          11.899999976158142,
+          12.800000011920929
+        ],
+        "samplesMs": [
+          12.100000023841858,
+          16,
+          15.099999964237213
+        ],
+        "memoryBytes": 67108864,
+        "stats": {
+          "blocks": 5,
+          "bytes": 46779,
+          "translateMs": 3,
+          "optMs": 1.1999999284744263,
+          "emitMs": 11.099999964237213,
+          "compileMs": 0.800000011920929,
+          "instMs": 0.19999998807907104,
+          "tableMs": 0.2999999523162842
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3070096057,
+          "expected": 3070096057
+        }
+      },
+      "measurement": {
+        "medianMs": 15.099999964237213,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "wasm",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 0,
+        "position": 0,
+        "token": "1793417176378-0-0-stream-wasm"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "wasm",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 0,
+        "token": "1793417176378-0-0-stream-wasm",
+        "iterations": 8000000,
+        "seed": 305419896,
+        "expected": 3629256032,
+        "checksums": [
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032
+        ],
+        "loadMs": 10.199999988079071,
+        "firstMs": 11.300000011920929,
+        "warmupMs": [
+          5.199999988079071,
+          5.099999964237213
+        ],
+        "samplesMs": [
+          4.700000047683716,
+          5,
+          4.599999964237213
+        ],
+        "memoryBytes": 16777216,
+        "stats": {},
+        "validation": {
+          "pass": true,
+          "actual": 3629256032,
+          "expected": 3629256032
+        }
+      },
+      "measurement": {
+        "medianMs": 4.700000047683716,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "dynarmic",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 0,
+        "position": 1,
+        "token": "1793417176378-0-0-stream-dynarmic"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 0,
+        "token": "1793417176378-0-0-stream-dynarmic",
+        "iterations": 8000000,
+        "seed": 305419896,
+        "expected": 3629256032,
+        "checksums": [
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032
+        ],
+        "loadMs": 42.80000001192093,
+        "firstMs": 19.600000023841858,
+        "warmupMs": [
+          16.30000001192093,
+          15.800000011920929
+        ],
+        "samplesMs": [
+          16,
+          16.80000001192093,
+          16.099999964237213
+        ],
+        "memoryBytes": 67108864,
+        "stats": {
+          "blocks": 5,
+          "bytes": 41957,
+          "translateMs": 2.4999998807907104,
+          "optMs": 1.6000001430511475,
+          "emitMs": 10.300000071525574,
+          "compileMs": 1.0999999642372131,
+          "instMs": 0,
+          "tableMs": 0.10000002384185791
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3629256032,
+          "expected": 3629256032
+        }
+      },
+      "measurement": {
+        "medianMs": 16.099999964237213,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "v86",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 0,
+        "position": 2,
+        "token": "1793417176378-0-0-stream-v86"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "v86",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 0,
+        "token": "1793417176378-0-0-stream-v86",
+        "iterations": 8000000,
+        "seed": 305419896,
+        "expected": 3629256032,
+        "checksums": [
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032
+        ],
+        "loadMs": 48.30000001192093,
+        "firstMs": 114,
+        "warmupMs": [
+          58.5,
+          60.40000003576279
+        ],
+        "samplesMs": [
+          59.69999998807907,
+          60.30000001192093,
+          63.89999997615814
+        ],
+        "memoryBytes": 34930688,
+        "stats": {
+          "compiledSlots": 1
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3629256032,
+          "expected": 3629256032
+        }
+      },
+      "measurement": {
+        "medianMs": 60.30000001192093,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "dynarmic",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 0,
+        "position": 0,
+        "token": "1793417176378-0-0-pointer-dynarmic"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 0,
+        "token": "1793417176378-0-0-pointer-dynarmic",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 112897855,
+        "checksums": [
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855
+        ],
+        "loadMs": 41.69999998807907,
+        "firstMs": 13.099999964237213,
+        "warmupMs": [
+          8.399999976158142,
+          8.199999988079071
+        ],
+        "samplesMs": [
+          7.599999964237213,
+          8.400000035762787,
+          7.900000035762787
+        ],
+        "memoryBytes": 67108864,
+        "stats": {
+          "blocks": 5,
+          "bytes": 40106,
+          "translateMs": 2.9999999403953552,
+          "optMs": 1.7000000476837158,
+          "emitMs": 13.200000047683716,
+          "compileMs": 0.8000000715255737,
+          "instMs": 0.2999999523162842,
+          "tableMs": 0.19999998807907104
+        },
+        "validation": {
+          "pass": true,
+          "actual": 112897855,
+          "expected": 112897855
+        }
+      },
+      "measurement": {
+        "medianMs": 7.900000035762787,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "v86",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 0,
+        "position": 1,
+        "token": "1793417176378-0-0-pointer-v86"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "v86",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 0,
+        "token": "1793417176378-0-0-pointer-v86",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 112897855,
+        "checksums": [
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855
+        ],
+        "loadMs": 59.5,
+        "firstMs": 43.39999997615814,
+        "warmupMs": [
+          20.600000023841858,
+          23.400000035762787
+        ],
+        "samplesMs": [
+          19.80000001192093,
+          18.400000035762787,
+          17.799999952316284
+        ],
+        "memoryBytes": 34930688,
+        "stats": {
+          "compiledSlots": 1
+        },
+        "validation": {
+          "pass": true,
+          "actual": 112897855,
+          "expected": 112897855
+        }
+      },
+      "measurement": {
+        "medianMs": 18.400000035762787,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "wasm",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 0,
+        "position": 2,
+        "token": "1793417176378-0-0-pointer-wasm"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "wasm",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 0,
+        "token": "1793417176378-0-0-pointer-wasm",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 112897855,
+        "checksums": [
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855
+        ],
+        "loadMs": 5.800000011920929,
+        "firstMs": 6.800000011920929,
+        "warmupMs": [
+          6.399999976158142,
+          5.899999976158142
+        ],
+        "samplesMs": [
+          6.200000047683716,
+          5.900000035762787,
+          5.799999952316284
+        ],
+        "memoryBytes": 16777216,
+        "stats": {},
+        "validation": {
+          "pass": true,
+          "actual": 112897855,
+          "expected": 112897855
+        }
+      },
+      "measurement": {
+        "medianMs": 5.900000035762787,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "v86",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 0,
+        "position": 0,
+        "token": "1793417176378-0-0-float-v86"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "v86",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 0,
+        "token": "1793417176378-0-0-float-v86",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 3461951353,
+        "checksums": [
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353
+        ],
+        "loadMs": 39.10000002384186,
+        "firstMs": 113.59999996423721,
+        "warmupMs": [
+          72,
+          74
+        ],
+        "samplesMs": [
+          74.5,
+          83.40000003576279,
+          132.69999998807907
+        ],
+        "memoryBytes": 34930688,
+        "stats": {
+          "compiledSlots": 1
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3461951353,
+          "expected": 3461951353
+        }
+      },
+      "measurement": {
+        "medianMs": 83.40000003576279,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "wasm",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 0,
+        "position": 1,
+        "token": "1793417176378-0-0-float-wasm"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "wasm",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 0,
+        "token": "1793417176378-0-0-float-wasm",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 3461951353,
+        "checksums": [
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353
+        ],
+        "loadMs": 5.099999964237213,
+        "firstMs": 8.100000023841858,
+        "warmupMs": [
+          4.699999988079071,
+          4.800000011920929
+        ],
+        "samplesMs": [
+          4.899999976158142,
+          5,
+          4.600000023841858
+        ],
+        "memoryBytes": 16777216,
+        "stats": {},
+        "validation": {
+          "pass": true,
+          "actual": 3461951353,
+          "expected": 3461951353
+        }
+      },
+      "measurement": {
+        "medianMs": 4.899999976158142,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "dynarmic",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 0,
+        "position": 2,
+        "token": "1793417176378-0-0-float-dynarmic"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 0,
+        "token": "1793417176378-0-0-float-dynarmic",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 3461951353,
+        "checksums": [
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353
+        ],
+        "loadMs": 37.19999998807907,
+        "firstMs": 11.599999964237213,
+        "warmupMs": [
+          7,
+          7.400000035762787
+        ],
+        "samplesMs": [
+          6.699999988079071,
+          6.800000011920929,
+          8.899999976158142
+        ],
+        "memoryBytes": 67108864,
+        "stats": {
+          "blocks": 5,
+          "bytes": 42605,
+          "translateMs": 2.8000000715255737,
+          "optMs": 1.9999998807907104,
+          "emitMs": 11.899999976158142,
+          "compileMs": 0.699999988079071,
+          "instMs": 0.10000002384185791,
+          "tableMs": 0.30000001192092896
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3461951353,
+          "expected": 3461951353
+        }
+      },
+      "measurement": {
+        "medianMs": 6.800000011920929,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "wasm",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 1,
+        "position": 0,
+        "token": "1793417176378-0-1-branch-wasm"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "wasm",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 1,
+        "token": "1793417176378-0-1-branch-wasm",
+        "iterations": 1000000,
+        "seed": 305419896,
+        "expected": 3070096057,
+        "checksums": [
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057
+        ],
+        "loadMs": 6.199999988079071,
+        "firstMs": 6.599999964237213,
+        "warmupMs": [
+          4.199999988079071,
+          4.200000047683716
+        ],
+        "samplesMs": [
+          4.299999952316284,
+          4.200000047683716,
+          3.699999988079071
+        ],
+        "memoryBytes": 16777216,
+        "stats": {},
+        "validation": {
+          "pass": true,
+          "actual": 3070096057,
+          "expected": 3070096057
+        }
+      },
+      "measurement": {
+        "medianMs": 4.200000047683716,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "dynarmic",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 1,
+        "position": 1,
+        "token": "1793417176378-0-1-branch-dynarmic"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 1,
+        "token": "1793417176378-0-1-branch-dynarmic",
+        "iterations": 1000000,
+        "seed": 305419896,
+        "expected": 3070096057,
+        "checksums": [
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057
+        ],
+        "loadMs": 39.10000002384186,
+        "firstMs": 20,
+        "warmupMs": [
+          12.199999988079071,
+          11.600000023841858
+        ],
+        "samplesMs": [
+          11.5,
+          11.399999976158142,
+          12.300000011920929
+        ],
+        "memoryBytes": 67108864,
+        "stats": {
+          "blocks": 5,
+          "bytes": 46779,
+          "translateMs": 3.2000001072883606,
+          "optMs": 1.7999998927116394,
+          "emitMs": 12.500000059604645,
+          "compileMs": 1.5000000596046448,
+          "instMs": 0.3999999761581421,
+          "tableMs": 0.19999998807907104
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3070096057,
+          "expected": 3070096057
+        }
+      },
+      "measurement": {
+        "medianMs": 11.5,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "v86",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 1,
+        "position": 2,
+        "token": "1793417176378-0-1-branch-v86"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "v86",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 1,
+        "token": "1793417176378-0-1-branch-v86",
+        "iterations": 1000000,
+        "seed": 305419896,
+        "expected": 3070096057,
+        "checksums": [
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057
+        ],
+        "loadMs": 49.69999998807907,
+        "firstMs": 45.299999952316284,
+        "warmupMs": [
+          16.80000001192093,
+          16.100000023841858
+        ],
+        "samplesMs": [
+          15,
+          14.399999976158142,
+          14.699999988079071
+        ],
+        "memoryBytes": 34930688,
+        "stats": {
+          "compiledSlots": 1
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3070096057,
+          "expected": 3070096057
+        }
+      },
+      "measurement": {
+        "medianMs": 14.699999988079071,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "dynarmic",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 1,
+        "position": 0,
+        "token": "1793417176378-0-1-stream-dynarmic"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 1,
+        "token": "1793417176378-0-1-stream-dynarmic",
+        "iterations": 8000000,
+        "seed": 305419896,
+        "expected": 3629256032,
+        "checksums": [
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032
+        ],
+        "loadMs": 32.89999997615814,
+        "firstMs": 20.19999998807907,
+        "warmupMs": [
+          16,
+          16.200000047683716
+        ],
+        "samplesMs": [
+          15.599999964237213,
+          18.19999998807907,
+          14.700000047683716
+        ],
+        "memoryBytes": 67108864,
+        "stats": {
+          "blocks": 5,
+          "bytes": 41957,
+          "translateMs": 2.899999976158142,
+          "optMs": 1.1000000834465027,
+          "emitMs": 10.799999952316284,
+          "compileMs": 0.6999999284744263,
+          "instMs": 0,
+          "tableMs": 0.09999996423721313
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3629256032,
+          "expected": 3629256032
+        }
+      },
+      "measurement": {
+        "medianMs": 15.599999964237213,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "v86",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 1,
+        "position": 1,
+        "token": "1793417176378-0-1-stream-v86"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "v86",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 1,
+        "token": "1793417176378-0-1-stream-v86",
+        "iterations": 8000000,
+        "seed": 305419896,
+        "expected": 3629256032,
+        "checksums": [
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032
+        ],
+        "loadMs": 42.30000001192093,
+        "firstMs": 87.40000003576279,
+        "warmupMs": [
+          56.5,
+          54.299999952316284
+        ],
+        "samplesMs": [
+          56.5,
+          56.19999998807907,
+          58.19999998807907
+        ],
+        "memoryBytes": 34930688,
+        "stats": {
+          "compiledSlots": 1
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3629256032,
+          "expected": 3629256032
+        }
+      },
+      "measurement": {
+        "medianMs": 56.5,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "wasm",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 1,
+        "position": 2,
+        "token": "1793417176378-0-1-stream-wasm"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "wasm",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 1,
+        "token": "1793417176378-0-1-stream-wasm",
+        "iterations": 8000000,
+        "seed": 305419896,
+        "expected": 3629256032,
+        "checksums": [
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032
+        ],
+        "loadMs": 5,
+        "firstMs": 10,
+        "warmupMs": [
+          4.599999964237213,
+          4.800000011920929
+        ],
+        "samplesMs": [
+          4.899999976158142,
+          4.700000047683716,
+          4.799999952316284
+        ],
+        "memoryBytes": 16777216,
+        "stats": {},
+        "validation": {
+          "pass": true,
+          "actual": 3629256032,
+          "expected": 3629256032
+        }
+      },
+      "measurement": {
+        "medianMs": 4.799999952316284,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "v86",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 1,
+        "position": 0,
+        "token": "1793417176378-0-1-pointer-v86"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "v86",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 1,
+        "token": "1793417176378-0-1-pointer-v86",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 112897855,
+        "checksums": [
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855
+        ],
+        "loadMs": 35.59999996423721,
+        "firstMs": 38.5,
+        "warmupMs": [
+          20.5,
+          18.600000023841858
+        ],
+        "samplesMs": [
+          18.399999976158142,
+          18.5,
+          17.80000001192093
+        ],
+        "memoryBytes": 34930688,
+        "stats": {
+          "compiledSlots": 1
+        },
+        "validation": {
+          "pass": true,
+          "actual": 112897855,
+          "expected": 112897855
+        }
+      },
+      "measurement": {
+        "medianMs": 18.399999976158142,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "wasm",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 1,
+        "position": 1,
+        "token": "1793417176378-0-1-pointer-wasm"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "wasm",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 1,
+        "token": "1793417176378-0-1-pointer-wasm",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 112897855,
+        "checksums": [
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855
+        ],
+        "loadMs": 5.300000011920929,
+        "firstMs": 6.099999964237213,
+        "warmupMs": [
+          6.300000011920929,
+          6.300000011920929
+        ],
+        "samplesMs": [
+          5.900000035762787,
+          6.099999964237213,
+          6
+        ],
+        "memoryBytes": 16777216,
+        "stats": {},
+        "validation": {
+          "pass": true,
+          "actual": 112897855,
+          "expected": 112897855
+        }
+      },
+      "measurement": {
+        "medianMs": 6,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "dynarmic",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 1,
+        "position": 2,
+        "token": "1793417176378-0-1-pointer-dynarmic"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 1,
+        "token": "1793417176378-0-1-pointer-dynarmic",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 112897855,
+        "checksums": [
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855
+        ],
+        "loadMs": 30.30000001192093,
+        "firstMs": 13.800000011920929,
+        "warmupMs": [
+          9.199999988079071,
+          8.100000023841858
+        ],
+        "samplesMs": [
+          7.5,
+          7.699999988079071,
+          7.899999976158142
+        ],
+        "memoryBytes": 67108864,
+        "stats": {
+          "blocks": 5,
+          "bytes": 40106,
+          "translateMs": 2.700000047683716,
+          "optMs": 3.799999952316284,
+          "emitMs": 10.599999904632568,
+          "compileMs": 0.800000011920929,
+          "instMs": 0.19999992847442627,
+          "tableMs": 0.09999996423721313
+        },
+        "validation": {
+          "pass": true,
+          "actual": 112897855,
+          "expected": 112897855
+        }
+      },
+      "measurement": {
+        "medianMs": 7.699999988079071,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "wasm",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 1,
+        "position": 0,
+        "token": "1793417176378-0-1-float-wasm"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "wasm",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 1,
+        "token": "1793417176378-0-1-float-wasm",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 3461951353,
+        "checksums": [
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353
+        ],
+        "loadMs": 6.600000023841858,
+        "firstMs": 9.5,
+        "warmupMs": [
+          5.300000011920929,
+          5
+        ],
+        "samplesMs": [
+          5.100000023841858,
+          5.199999988079071,
+          4.899999976158142
+        ],
+        "memoryBytes": 16777216,
+        "stats": {},
+        "validation": {
+          "pass": true,
+          "actual": 3461951353,
+          "expected": 3461951353
+        }
+      },
+      "measurement": {
+        "medianMs": 5.100000023841858,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "dynarmic",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 1,
+        "position": 1,
+        "token": "1793417176378-0-1-float-dynarmic"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 1,
+        "token": "1793417176378-0-1-float-dynarmic",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 3461951353,
+        "checksums": [
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353
+        ],
+        "loadMs": 37.30000001192093,
+        "firstMs": 15.099999964237213,
+        "warmupMs": [
+          7.700000047683716,
+          7.5
+        ],
+        "samplesMs": [
+          7.799999952316284,
+          7.300000011920929,
+          7.400000035762787
+        ],
+        "memoryBytes": 67108864,
+        "stats": {
+          "blocks": 5,
+          "bytes": 42605,
+          "translateMs": 4.700000047683716,
+          "optMs": 2.5000001192092896,
+          "emitMs": 17.5,
+          "compileMs": 0.9999999403953552,
+          "instMs": 0.20000004768371582,
+          "tableMs": 0
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3461951353,
+          "expected": 3461951353
+        }
+      },
+      "measurement": {
+        "medianMs": 7.400000035762787,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "v86",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 1,
+        "position": 2,
+        "token": "1793417176378-0-1-float-v86"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "v86",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 1,
+        "token": "1793417176378-0-1-float-v86",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 3461951353,
+        "checksums": [
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353
+        ],
+        "loadMs": 52.39999997615814,
+        "firstMs": 113.59999996423721,
+        "warmupMs": [
+          76.80000001192093,
+          98.79999995231628
+        ],
+        "samplesMs": [
+          87.10000002384186,
+          78.5,
+          81
+        ],
+        "memoryBytes": 34930688,
+        "stats": {
+          "compiledSlots": 1
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3461951353,
+          "expected": 3461951353
+        }
+      },
+      "measurement": {
+        "medianMs": 81,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "v86",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 1,
+        "position": 0,
+        "token": "1793417176378-0-1-integer-v86"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "v86",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 1,
+        "token": "1793417176378-0-1-integer-v86",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 1376229747,
+        "checksums": [
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747
+        ],
+        "loadMs": 44.30000001192093,
+        "firstMs": 55.10000002384186,
+        "warmupMs": [
+          28.600000023841858,
+          23
+        ],
+        "samplesMs": [
+          24.099999964237213,
+          22.5,
+          23.80000001192093
+        ],
+        "memoryBytes": 34930688,
+        "stats": {
+          "compiledSlots": 1
+        },
+        "validation": {
+          "pass": true,
+          "actual": 1376229747,
+          "expected": 1376229747
+        }
+      },
+      "measurement": {
+        "medianMs": 23.80000001192093,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "wasm",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 1,
+        "position": 1,
+        "token": "1793417176378-0-1-integer-wasm"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "wasm",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 1,
+        "token": "1793417176378-0-1-integer-wasm",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 1376229747,
+        "checksums": [
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747
+        ],
+        "loadMs": 9.199999988079071,
+        "firstMs": 10.199999988079071,
+        "warmupMs": [
+          6.800000011920929,
+          6.699999988079071
+        ],
+        "samplesMs": [
+          7.199999988079071,
+          6.900000035762787,
+          6.899999976158142
+        ],
+        "memoryBytes": 16777216,
+        "stats": {},
+        "validation": {
+          "pass": true,
+          "actual": 1376229747,
+          "expected": 1376229747
+        }
+      },
+      "measurement": {
+        "medianMs": 6.900000035762787,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "dynarmic",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 1,
+        "position": 2,
+        "token": "1793417176378-0-1-integer-dynarmic"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 1,
+        "token": "1793417176378-0-1-integer-dynarmic",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 1376229747,
+        "checksums": [
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747
+        ],
+        "loadMs": 38.09999996423721,
+        "firstMs": 10.599999964237213,
+        "warmupMs": [
+          8,
+          7.200000047683716
+        ],
+        "samplesMs": [
+          7.5,
+          7.299999952316284,
+          7.5
+        ],
+        "memoryBytes": 67108864,
+        "stats": {
+          "blocks": 5,
+          "bytes": 39863,
+          "translateMs": 2.399999976158142,
+          "optMs": 1.800000011920929,
+          "emitMs": 11.300000071525574,
+          "compileMs": 0.6999999284744263,
+          "instMs": 0.10000002384185791,
+          "tableMs": 0.19999998807907104
+        },
+        "validation": {
+          "pass": true,
+          "actual": 1376229747,
+          "expected": 1376229747
+        }
+      },
+      "measurement": {
+        "medianMs": 7.5,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "v86",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 2,
+        "position": 0,
+        "token": "1793417176378-0-2-stream-v86"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "v86",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 2,
+        "token": "1793417176378-0-2-stream-v86",
+        "iterations": 8000000,
+        "seed": 305419896,
+        "expected": 3629256032,
+        "checksums": [
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032
+        ],
+        "loadMs": 53.90000003576279,
+        "firstMs": 99.30000001192093,
+        "warmupMs": [
+          56.80000001192093,
+          56.80000001192093
+        ],
+        "samplesMs": [
+          58.5,
+          61.19999998807907,
+          55.09999996423721
+        ],
+        "memoryBytes": 34930688,
+        "stats": {
+          "compiledSlots": 1
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3629256032,
+          "expected": 3629256032
+        }
+      },
+      "measurement": {
+        "medianMs": 58.5,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "wasm",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 2,
+        "position": 1,
+        "token": "1793417176378-0-2-stream-wasm"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "wasm",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 2,
+        "token": "1793417176378-0-2-stream-wasm",
+        "iterations": 8000000,
+        "seed": 305419896,
+        "expected": 3629256032,
+        "checksums": [
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032
+        ],
+        "loadMs": 8.5,
+        "firstMs": 11.5,
+        "warmupMs": [
+          4.599999964237213,
+          4.5
+        ],
+        "samplesMs": [
+          4.5,
+          4.400000035762787,
+          4.300000011920929
+        ],
+        "memoryBytes": 16777216,
+        "stats": {},
+        "validation": {
+          "pass": true,
+          "actual": 3629256032,
+          "expected": 3629256032
+        }
+      },
+      "measurement": {
+        "medianMs": 4.400000035762787,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "dynarmic",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 2,
+        "position": 2,
+        "token": "1793417176378-0-2-stream-dynarmic"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "caseId": "stream",
+        "profile": "quick",
+        "round": 2,
+        "token": "1793417176378-0-2-stream-dynarmic",
+        "iterations": 8000000,
+        "seed": 305419896,
+        "expected": 3629256032,
+        "checksums": [
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032,
+          3629256032
+        ],
+        "loadMs": 36.60000002384186,
+        "firstMs": 25.700000047683716,
+        "warmupMs": [
+          15.399999976158142,
+          16
+        ],
+        "samplesMs": [
+          15.199999988079071,
+          16.80000001192093,
+          14.800000011920929
+        ],
+        "memoryBytes": 67108864,
+        "stats": {
+          "blocks": 5,
+          "bytes": 41957,
+          "translateMs": 2.9999999403953552,
+          "optMs": 1.4000000357627869,
+          "emitMs": 10.899999976158142,
+          "compileMs": 0.7000000476837158,
+          "instMs": 0.09999996423721313,
+          "tableMs": 0.10000002384185791
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3629256032,
+          "expected": 3629256032
+        }
+      },
+      "measurement": {
+        "medianMs": 15.199999988079071,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "wasm",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 2,
+        "position": 0,
+        "token": "1793417176378-0-2-pointer-wasm"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "wasm",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 2,
+        "token": "1793417176378-0-2-pointer-wasm",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 112897855,
+        "checksums": [
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855
+        ],
+        "loadMs": 7.700000047683716,
+        "firstMs": 6.5,
+        "warmupMs": [
+          5.900000035762787,
+          5.900000035762787
+        ],
+        "samplesMs": [
+          6.399999976158142,
+          6,
+          6.100000023841858
+        ],
+        "memoryBytes": 16777216,
+        "stats": {},
+        "validation": {
+          "pass": true,
+          "actual": 112897855,
+          "expected": 112897855
+        }
+      },
+      "measurement": {
+        "medianMs": 6.100000023841858,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "dynarmic",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 2,
+        "position": 1,
+        "token": "1793417176378-0-2-pointer-dynarmic"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 2,
+        "token": "1793417176378-0-2-pointer-dynarmic",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 112897855,
+        "checksums": [
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855
+        ],
+        "loadMs": 46.5,
+        "firstMs": 13.600000023841858,
+        "warmupMs": [
+          8.199999988079071,
+          7.600000023841858
+        ],
+        "samplesMs": [
+          7.800000011920929,
+          7.599999964237213,
+          7.599999964237213
+        ],
+        "memoryBytes": 67108864,
+        "stats": {
+          "blocks": 5,
+          "bytes": 40106,
+          "translateMs": 3.3000000715255737,
+          "optMs": 1.9000000357627869,
+          "emitMs": 13.399999976158142,
+          "compileMs": 0.9999999403953552,
+          "instMs": 0.10000002384185791,
+          "tableMs": 0.20000004768371582
+        },
+        "validation": {
+          "pass": true,
+          "actual": 112897855,
+          "expected": 112897855
+        }
+      },
+      "measurement": {
+        "medianMs": 7.599999964237213,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "v86",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 2,
+        "position": 2,
+        "token": "1793417176378-0-2-pointer-v86"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "v86",
+        "caseId": "pointer",
+        "profile": "quick",
+        "round": 2,
+        "token": "1793417176378-0-2-pointer-v86",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 112897855,
+        "checksums": [
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855,
+          112897855
+        ],
+        "loadMs": 53.799999952316284,
+        "firstMs": 51.799999952316284,
+        "warmupMs": [
+          20,
+          21.5
+        ],
+        "samplesMs": [
+          17.899999976158142,
+          19.69999998807907,
+          18.399999976158142
+        ],
+        "memoryBytes": 34930688,
+        "stats": {
+          "compiledSlots": 1
+        },
+        "validation": {
+          "pass": true,
+          "actual": 112897855,
+          "expected": 112897855
+        }
+      },
+      "measurement": {
+        "medianMs": 18.399999976158142,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "dynarmic",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 2,
+        "position": 0,
+        "token": "1793417176378-0-2-float-dynarmic"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 2,
+        "token": "1793417176378-0-2-float-dynarmic",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 3461951353,
+        "checksums": [
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353
+        ],
+        "loadMs": 38.80000001192093,
+        "firstMs": 12.399999976158142,
+        "warmupMs": [
+          6.800000011920929,
+          7.800000011920929
+        ],
+        "samplesMs": [
+          6.299999952316284,
+          6.100000023841858,
+          6.300000011920929
+        ],
+        "memoryBytes": 67108864,
+        "stats": {
+          "blocks": 5,
+          "bytes": 42605,
+          "translateMs": 3.1999999284744263,
+          "optMs": 1.5000000596046448,
+          "emitMs": 11.499999940395355,
+          "compileMs": 0.5999999642372131,
+          "instMs": 0.10000002384185791,
+          "tableMs": 0.09999996423721313
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3461951353,
+          "expected": 3461951353
+        }
+      },
+      "measurement": {
+        "medianMs": 6.299999952316284,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "v86",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 2,
+        "position": 1,
+        "token": "1793417176378-0-2-float-v86"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "v86",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 2,
+        "token": "1793417176378-0-2-float-v86",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 3461951353,
+        "checksums": [
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353
+        ],
+        "loadMs": 52.40000003576279,
+        "firstMs": 116.80000001192093,
+        "warmupMs": [
+          73,
+          70.80000001192093
+        ],
+        "samplesMs": [
+          72.89999997615814,
+          74.19999998807907,
+          70.90000003576279
+        ],
+        "memoryBytes": 34930688,
+        "stats": {
+          "compiledSlots": 1
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3461951353,
+          "expected": 3461951353
+        }
+      },
+      "measurement": {
+        "medianMs": 72.89999997615814,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "wasm",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 2,
+        "position": 2,
+        "token": "1793417176378-0-2-float-wasm"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "wasm",
+        "caseId": "float",
+        "profile": "quick",
+        "round": 2,
+        "token": "1793417176378-0-2-float-wasm",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 3461951353,
+        "checksums": [
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353,
+          3461951353
+        ],
+        "loadMs": 7,
+        "firstMs": 8.199999988079071,
+        "warmupMs": [
+          5,
+          4.800000011920929
+        ],
+        "samplesMs": [
+          4.699999988079071,
+          4.899999976158142,
+          5.100000023841858
+        ],
+        "memoryBytes": 16777216,
+        "stats": {},
+        "validation": {
+          "pass": true,
+          "actual": 3461951353,
+          "expected": 3461951353
+        }
+      },
+      "measurement": {
+        "medianMs": 4.899999976158142,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "wasm",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 2,
+        "position": 0,
+        "token": "1793417176378-0-2-integer-wasm"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "wasm",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 2,
+        "token": "1793417176378-0-2-integer-wasm",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 1376229747,
+        "checksums": [
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747
+        ],
+        "loadMs": 7.600000023841858,
+        "firstMs": 9.699999988079071,
+        "warmupMs": [
+          7.100000023841858,
+          6.699999988079071
+        ],
+        "samplesMs": [
+          6.800000011920929,
+          6.899999976158142,
+          6.600000023841858
+        ],
+        "memoryBytes": 16777216,
+        "stats": {},
+        "validation": {
+          "pass": true,
+          "actual": 1376229747,
+          "expected": 1376229747
+        }
+      },
+      "measurement": {
+        "medianMs": 6.800000011920929,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "dynarmic",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 2,
+        "position": 1,
+        "token": "1793417176378-0-2-integer-dynarmic"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 2,
+        "token": "1793417176378-0-2-integer-dynarmic",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 1376229747,
+        "checksums": [
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747
+        ],
+        "loadMs": 36,
+        "firstMs": 11.900000035762787,
+        "warmupMs": [
+          7.800000011920929,
+          7.5
+        ],
+        "samplesMs": [
+          7.099999964237213,
+          7.800000011920929,
+          7.600000023841858
+        ],
+        "memoryBytes": 67108864,
+        "stats": {
+          "blocks": 5,
+          "bytes": 39863,
+          "translateMs": 3.199999988079071,
+          "optMs": 1.2000001072883606,
+          "emitMs": 10.899999976158142,
+          "compileMs": 0.800000011920929,
+          "instMs": 0.19999998807907104,
+          "tableMs": 0.09999996423721313
+        },
+        "validation": {
+          "pass": true,
+          "actual": 1376229747,
+          "expected": 1376229747
+        }
+      },
+      "measurement": {
+        "medianMs": 7.600000023841858,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "v86",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 2,
+        "position": 2,
+        "token": "1793417176378-0-2-integer-v86"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "v86",
+        "caseId": "integer",
+        "profile": "quick",
+        "round": 2,
+        "token": "1793417176378-0-2-integer-v86",
+        "iterations": 4000000,
+        "seed": 305419896,
+        "expected": 1376229747,
+        "checksums": [
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747,
+          1376229747
+        ],
+        "loadMs": 54.700000047683716,
+        "firstMs": 47.5,
+        "warmupMs": [
+          26.69999998807907,
+          27.19999998807907
+        ],
+        "samplesMs": [
+          24.5,
+          24.30000001192093,
+          43.60000002384186
+        ],
+        "memoryBytes": 34930688,
+        "stats": {
+          "compiledSlots": 1
+        },
+        "validation": {
+          "pass": true,
+          "actual": 1376229747,
+          "expected": 1376229747
+        }
+      },
+      "measurement": {
+        "medianMs": 24.5,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "dynarmic",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 2,
+        "position": 0,
+        "token": "1793417176378-0-2-branch-dynarmic"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 2,
+        "token": "1793417176378-0-2-branch-dynarmic",
+        "iterations": 1000000,
+        "seed": 305419896,
+        "expected": 3070096057,
+        "checksums": [
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057
+        ],
+        "loadMs": 42.40000003576279,
+        "firstMs": 18.899999976158142,
+        "warmupMs": [
+          11.600000023841858,
+          11.599999964237213
+        ],
+        "samplesMs": [
+          11.5,
+          11.400000035762787,
+          12.199999988079071
+        ],
+        "memoryBytes": 67108864,
+        "stats": {
+          "blocks": 5,
+          "bytes": 46779,
+          "translateMs": 3.7999998927116394,
+          "optMs": 1.600000023841858,
+          "emitMs": 11,
+          "compileMs": 0.800000011920929,
+          "instMs": 0.19999998807907104,
+          "tableMs": 0.40000003576278687
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3070096057,
+          "expected": 3070096057
+        }
+      },
+      "measurement": {
+        "medianMs": 11.5,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "v86",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 2,
+        "position": 1,
+        "token": "1793417176378-0-2-branch-v86"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "v86",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 2,
+        "token": "1793417176378-0-2-branch-v86",
+        "iterations": 1000000,
+        "seed": 305419896,
+        "expected": 3070096057,
+        "checksums": [
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057
+        ],
+        "loadMs": 44.90000003576279,
+        "firstMs": 40.59999996423721,
+        "warmupMs": [
+          17.400000035762787,
+          16.099999964237213
+        ],
+        "samplesMs": [
+          14.699999988079071,
+          14.800000011920929,
+          14.300000011920929
+        ],
+        "memoryBytes": 34930688,
+        "stats": {
+          "compiledSlots": 1
+        },
+        "validation": {
+          "pass": true,
+          "actual": 3070096057,
+          "expected": 3070096057
+        }
+      },
+      "measurement": {
+        "medianMs": 14.699999988079071,
+        "belowResolution": false
+      }
+    },
+    {
+      "task": {
+        "runtime": "wasm",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 2,
+        "position": 2,
+        "token": "1793417176378-0-2-branch-wasm"
+      },
+      "status": "pass",
+      "result": {
+        "ok": true,
+        "runtime": "wasm",
+        "caseId": "branch",
+        "profile": "quick",
+        "round": 2,
+        "token": "1793417176378-0-2-branch-wasm",
+        "iterations": 1000000,
+        "seed": 305419896,
+        "expected": 3070096057,
+        "checksums": [
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057,
+          3070096057
+        ],
+        "loadMs": 6.299999952316284,
+        "firstMs": 6,
+        "warmupMs": [
+          3.699999988079071,
+          3.600000023841858
+        ],
+        "samplesMs": [
+          3.699999988079071,
+          3.600000023841858,
+          3.699999988079071
+        ],
+        "memoryBytes": 16777216,
+        "stats": {},
+        "validation": {
+          "pass": true,
+          "actual": 3070096057,
+          "expected": 3070096057
+        }
+      },
+      "measurement": {
+        "medianMs": 3.699999988079071,
+        "belowResolution": false
+      }
+    }
+  ],
+  "summary": {
+    "cases": {
+      "integer": {
+        "runtimes": {
+          "dynarmic": {
+            "completed": 3,
+            "complete": true,
+            "status": "pass",
+            "belowResolution": false,
+            "timing": {
+              "samples": [
+                7.600000023841858,
+                7.5,
+                7.600000023841858
+              ],
+              "median": 7.600000023841858,
+              "min": 7.5,
+              "max": 7.600000023841858
+            }
+          },
+          "v86": {
+            "completed": 3,
+            "complete": true,
+            "status": "pass",
+            "belowResolution": false,
+            "timing": {
+              "samples": [
+                21.30000001192093,
+                23.80000001192093,
+                24.5
+              ],
+              "median": 23.80000001192093,
+              "min": 21.30000001192093,
+              "max": 24.5
+            }
+          },
+          "wasm": {
+            "completed": 3,
+            "complete": true,
+            "status": "pass",
+            "belowResolution": false,
+            "timing": {
+              "samples": [
+                6.600000023841858,
+                6.900000035762787,
+                6.800000011920929
+              ],
+              "median": 6.800000011920929,
+              "min": 6.600000023841858,
+              "max": 6.900000035762787
+            }
+          }
+        },
+        "v86OverArm": {
+          "samples": [
+            2.802631571723814,
+            3.1733333349227903,
+            3.2236842004133393
+          ],
+          "median": 3.1733333349227903,
+          "min": 2.802631571723814,
+          "max": 3.2236842004133393
+        },
+        "armOverDirect": {
+          "samples": [
+            1.1515151509678179,
+            1.086956516105421,
+            1.1176470603703628
+          ],
+          "median": 1.1176470603703628,
+          "min": 1.086956516105421,
+          "max": 1.1515151509678179
+        }
+      },
+      "branch": {
+        "runtimes": {
+          "dynarmic": {
+            "completed": 3,
+            "complete": true,
+            "status": "pass",
+            "belowResolution": false,
+            "timing": {
+              "samples": [
+                15.099999964237213,
+                11.5,
+                11.5
+              ],
+              "median": 11.5,
+              "min": 11.5,
+              "max": 15.099999964237213
+            }
+          },
+          "v86": {
+            "completed": 3,
+            "complete": true,
+            "status": "pass",
+            "belowResolution": false,
+            "timing": {
+              "samples": [
+                14.300000011920929,
+                14.699999988079071,
+                14.699999988079071
+              ],
+              "median": 14.699999988079071,
+              "min": 14.300000011920929,
+              "max": 14.699999988079071
+            }
+          },
+          "wasm": {
+            "completed": 3,
+            "complete": true,
+            "status": "pass",
+            "belowResolution": false,
+            "timing": {
+              "samples": [
+                3.599999964237213,
+                4.200000047683716,
+                3.699999988079071
+              ],
+              "median": 3.699999988079071,
+              "min": 3.599999964237213,
+              "max": 4.200000047683716
+            }
+          }
+        },
+        "v86OverArm": {
+          "samples": [
+            0.947019870582053,
+            1.278260868528615,
+            1.278260868528615
+          ],
+          "median": 1.278260868528615,
+          "min": 0.947019870582053,
+          "max": 1.278260868528615
+        },
+        "armOverDirect": {
+          "samples": [
+            4.194444476178399,
+            2.7380952070089157,
+            3.1081081181220367
+          ],
+          "median": 3.1081081181220367,
+          "min": 2.7380952070089157,
+          "max": 4.194444476178399
+        }
+      },
+      "stream": {
+        "runtimes": {
+          "dynarmic": {
+            "completed": 3,
+            "complete": true,
+            "status": "pass",
+            "belowResolution": false,
+            "timing": {
+              "samples": [
+                16.099999964237213,
+                15.599999964237213,
+                15.199999988079071
+              ],
+              "median": 15.599999964237213,
+              "min": 15.199999988079071,
+              "max": 16.099999964237213
+            }
+          },
+          "v86": {
+            "completed": 3,
+            "complete": true,
+            "status": "pass",
+            "belowResolution": false,
+            "timing": {
+              "samples": [
+                60.30000001192093,
+                56.5,
+                58.5
+              ],
+              "median": 58.5,
+              "min": 56.5,
+              "max": 60.30000001192093
+            }
+          },
+          "wasm": {
+            "completed": 3,
+            "complete": true,
+            "status": "pass",
+            "belowResolution": false,
+            "timing": {
+              "samples": [
+                4.700000047683716,
+                4.799999952316284,
+                4.400000035762787
+              ],
+              "median": 4.700000047683716,
+              "min": 4.400000035762787,
+              "max": 4.799999952316284
+            }
+          }
+        },
+        "v86OverArm": {
+          "samples": [
+            3.7453416239667567,
+            3.621794880097787,
+            3.84868421354473
+          ],
+          "median": 3.7453416239667567,
+          "min": 3.621794880097787,
+          "max": 3.84868421354473
+        },
+        "armOverDirect": {
+          "samples": [
+            3.4255318725308777,
+            3.250000024835269,
+            3.454545423757932
+          ],
+          "median": 3.4255318725308777,
+          "min": 3.250000024835269,
+          "max": 3.454545423757932
+        }
+      },
+      "pointer": {
+        "runtimes": {
+          "dynarmic": {
+            "completed": 3,
+            "complete": true,
+            "status": "pass",
+            "belowResolution": false,
+            "timing": {
+              "samples": [
+                7.900000035762787,
+                7.699999988079071,
+                7.599999964237213
+              ],
+              "median": 7.699999988079071,
+              "min": 7.599999964237213,
+              "max": 7.900000035762787
+            }
+          },
+          "v86": {
+            "completed": 3,
+            "complete": true,
+            "status": "pass",
+            "belowResolution": false,
+            "timing": {
+              "samples": [
+                18.400000035762787,
+                18.399999976158142,
+                18.399999976158142
+              ],
+              "median": 18.399999976158142,
+              "min": 18.399999976158142,
+              "max": 18.400000035762787
+            }
+          },
+          "wasm": {
+            "completed": 3,
+            "complete": true,
+            "status": "pass",
+            "belowResolution": false,
+            "timing": {
+              "samples": [
+                5.900000035762787,
+                6,
+                6.100000023841858
+              ],
+              "median": 6,
+              "min": 5.900000035762787,
+              "max": 6.100000023841858
+            }
+          }
+        },
+        "v86OverArm": {
+          "samples": [
+            2.3291139180338205,
+            2.3896103902135737,
+            2.4210526398344383
+          ],
+          "median": 2.3896103902135737,
+          "min": 2.3291139180338205,
+          "max": 2.4210526398344383
+        },
+        "armOverDirect": {
+          "samples": [
+            1.3389830487927155,
+            1.2833333313465118,
+            1.2459016286119022
+          ],
+          "median": 1.2833333313465118,
+          "min": 1.2459016286119022,
+          "max": 1.3389830487927155
+        }
+      },
+      "float": {
+        "runtimes": {
+          "dynarmic": {
+            "completed": 3,
+            "complete": true,
+            "status": "pass",
+            "belowResolution": false,
+            "timing": {
+              "samples": [
+                6.800000011920929,
+                7.400000035762787,
+                6.299999952316284
+              ],
+              "median": 6.800000011920929,
+              "min": 6.299999952316284,
+              "max": 7.400000035762787
+            }
+          },
+          "v86": {
+            "completed": 3,
+            "complete": true,
+            "status": "pass",
+            "belowResolution": false,
+            "timing": {
+              "samples": [
+                83.40000003576279,
+                81,
+                72.89999997615814
+              ],
+              "median": 81,
+              "min": 72.89999997615814,
+              "max": 83.40000003576279
+            }
+          },
+          "wasm": {
+            "completed": 3,
+            "complete": true,
+            "status": "pass",
+            "belowResolution": false,
+            "timing": {
+              "samples": [
+                4.899999976158142,
+                5.100000023841858,
+                4.899999976158142
+              ],
+              "median": 4.899999976158142,
+              "min": 4.899999976158142,
+              "max": 5.100000023841858
+            }
+          }
+        },
+        "v86OverArm": {
+          "samples": [
+            12.264705866111191,
+            10.94594589304628,
+            11.571428655226486
+          ],
+          "median": 11.571428655226486,
+          "min": 10.94594589304628,
+          "max": 12.264705866111191
+        },
+        "armOverDirect": {
+          "samples": [
+            1.3877551112260387,
+            1.4509803923860232,
+            1.2857142822387961
+          ],
+          "median": 1.3877551112260387,
+          "min": 1.2857142822387961,
+          "max": 1.4509803923860232
+        }
+      }
+    },
+    "v86OverArm": {
+      "samples": [
+        3.094944613235155,
+        3.287970305612625,
+        3.3848162358201117
+      ],
+      "median": 3.287970305612625,
+      "min": 3.094944613235155,
+      "max": 3.3848162358201117
+    },
+    "armOverDirect": {
+      "samples": [
+        1.9840472320686968,
+        1.7828262482634196,
+        1.806192295617879
+      ],
+      "median": 1.806192295617879,
+      "min": 1.7828262482634196,
+      "max": 1.9840472320686968
+    }
+  },
+  "build": {
+    "schema": "dynarmic.js/c-bench-build-v1",
+    "compiler": {
+      "version": "clang version 22.1.8\nTarget: x86_64-unknown-linux6.8.0-gnu2.35.0\nThread model: posix\nInstalledDir: /home/xiong/.local/lib/python3.10/site-packages/ziglang",
+      "zigVersion": "0.17.0",
+      "binary": {
+        "path": "/home/xiong/.local/lib/python3.10/site-packages/ziglang/zig",
+        "bytes": 185514480,
+        "sha256": "7c61539af19fa4082c94848f1c2b57b89e76dc6cfd5bd4c57764c3caf8f82272"
+      },
+      "frontend": "One Zig-provided Clang frontend for ARM, x86 and Wasm"
+    },
+    "commonFlags": [
+      "-O2",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-strict-aliasing",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-fno-vectorize",
+      "-fno-slp-vectorize",
+      "-fno-unroll-loops",
+      "-fno-stack-protector",
+      "-fno-pic",
+      "-fno-pie",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-nostdlib"
+    ],
+    "targets": {
+      "arm": {
+        "flags": [
+          "-target",
+          "arm-freestanding-eabi",
+          "-mcpu=cortex_a8-neon",
+          "-mfpu=vfpv3",
+          "-mfloat-abi=softfp",
+          "-marm"
+        ],
+        "startup": "start-arm.S",
+        "linker": "link-arm.ld",
+        "isa": "ARMv7-A, VFPv3 softfp, ARM state",
+        "effectiveFlags": [
+          "-O2",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-strict-aliasing",
+          "-fno-fast-math",
+          "-ffp-contract=off",
+          "-fno-vectorize",
+          "-fno-slp-vectorize",
+          "-fno-unroll-loops",
+          "-fno-stack-protector",
+          "-fno-pic",
+          "-fno-pie",
+          "-fno-unwind-tables",
+          "-fno-asynchronous-unwind-tables",
+          "-ffunction-sections",
+          "-fdata-sections",
+          "-nostdlib",
+          "-target",
+          "arm-freestanding-eabi",
+          "-mcpu=cortex_a8-neon",
+          "-mfpu=vfpv3",
+          "-mfloat-abi=softfp",
+          "-marm",
+          "-I/home/xiong/workspace/dynarmic.js/examples/c-bench"
+        ],
+        "linkFlags": [
+          "-Wl,--gc-sections",
+          "-Wl,--build-id=none",
+          "-T",
+          "/home/xiong/workspace/dynarmic.js/examples/c-bench/link-arm.ld"
+        ],
+        "assembly": {
+          "path": "arm-kernels.s",
+          "bytes": 108243,
+          "sha256": "13b16de4cbe6430b5c238eac132f783947816dc921981a115550718140779f3e"
+        }
+      },
+      "x86": {
+        "flags": [
+          "-target",
+          "x86-freestanding-none",
+          "-mcpu=pentium4",
+          "-msse2",
+          "-mfpmath=sse"
+        ],
+        "startup": "start-x86.S",
+        "linker": "link-x86.ld",
+        "isa": "i386 Pentium 4, SSE2 arithmetic, standard i386 ABI",
+        "effectiveFlags": [
+          "-O2",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-strict-aliasing",
+          "-fno-fast-math",
+          "-ffp-contract=off",
+          "-fno-vectorize",
+          "-fno-slp-vectorize",
+          "-fno-unroll-loops",
+          "-fno-stack-protector",
+          "-fno-pic",
+          "-fno-pie",
+          "-fno-unwind-tables",
+          "-fno-asynchronous-unwind-tables",
+          "-ffunction-sections",
+          "-fdata-sections",
+          "-nostdlib",
+          "-target",
+          "x86-freestanding-none",
+          "-mcpu=pentium4",
+          "-msse2",
+          "-mfpmath=sse",
+          "-I/home/xiong/workspace/dynarmic.js/examples/c-bench"
+        ],
+        "linkFlags": [
+          "-Wl,--gc-sections",
+          "-Wl,--build-id=none",
+          "-T",
+          "/home/xiong/workspace/dynarmic.js/examples/c-bench/link-x86.ld"
+        ],
+        "assembly": {
+          "path": "x86-kernels.s",
+          "bytes": 114140,
+          "sha256": "74baf2d63571f83bda884618b7ede661626049c81d8376be432104e286d4a261"
+        }
+      },
+      "wasm": {
+        "flags": [
+          "-target",
+          "wasm32-freestanding"
+        ],
+        "isa": "WebAssembly scalar wasm32",
+        "effectiveFlags": [
+          "-O2",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-strict-aliasing",
+          "-fno-fast-math",
+          "-ffp-contract=off",
+          "-fno-vectorize",
+          "-fno-slp-vectorize",
+          "-fno-unroll-loops",
+          "-fno-stack-protector",
+          "-fno-pic",
+          "-fno-pie",
+          "-fno-unwind-tables",
+          "-fno-asynchronous-unwind-tables",
+          "-ffunction-sections",
+          "-fdata-sections",
+          "-nostdlib",
+          "-target",
+          "wasm32-freestanding",
+          "-I/home/xiong/workspace/dynarmic.js/examples/c-bench"
+        ],
+        "linkFlags": [
+          "-Wl,--no-entry",
+          "-Wl,--export=bench_init",
+          "-Wl,--export=bench_run",
+          "-Wl,--export-memory",
+          "-Wl,--initial-memory=16777216",
+          "-Wl,--max-memory=16777216",
+          "-Wl,-z,stack-size=65536"
+        ],
+        "assembly": {
+          "path": "wasm-kernels.s",
+          "bytes": 115399,
+          "sha256": "cf05ce98a426ee720c67e4aeab06e5a198bdc3ac685260130a17a443f585f3c9"
+        }
+      }
+    },
+    "commands": [
+      [
+        "/usr/bin/python3",
+        "-m",
+        "ziglang",
+        "cc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-strict-aliasing",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-fno-vectorize",
+        "-fno-slp-vectorize",
+        "-fno-unroll-loops",
+        "-fno-stack-protector",
+        "-fno-pic",
+        "-fno-pie",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-nostdlib",
+        "-target",
+        "arm-freestanding-eabi",
+        "-mcpu=cortex_a8-neon",
+        "-mfpu=vfpv3",
+        "-mfloat-abi=softfp",
+        "-marm",
+        "-I/home/xiong/workspace/dynarmic.js/examples/c-bench",
+        "-S",
+        "/home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c",
+        "-o",
+        "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/c-bench-cache/arm-kernels.s"
+      ],
+      [
+        "/usr/bin/python3",
+        "-m",
+        "ziglang",
+        "cc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-strict-aliasing",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-fno-vectorize",
+        "-fno-slp-vectorize",
+        "-fno-unroll-loops",
+        "-fno-stack-protector",
+        "-fno-pic",
+        "-fno-pie",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-nostdlib",
+        "-target",
+        "arm-freestanding-eabi",
+        "-mcpu=cortex_a8-neon",
+        "-mfpu=vfpv3",
+        "-mfloat-abi=softfp",
+        "-marm",
+        "-I/home/xiong/workspace/dynarmic.js/examples/c-bench",
+        "/home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c",
+        "/home/xiong/workspace/dynarmic.js/examples/c-bench/guest.c",
+        "/home/xiong/workspace/dynarmic.js/examples/c-bench/start-arm.S",
+        "-Wl,--gc-sections",
+        "-Wl,--build-id=none",
+        "-T",
+        "/home/xiong/workspace/dynarmic.js/examples/c-bench/link-arm.ld",
+        "-o",
+        "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/c-bench-cache/c-bench-arm.elf"
+      ],
+      [
+        "/usr/bin/python3",
+        "-m",
+        "ziglang",
+        "objcopy",
+        "-O",
+        "binary",
+        "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/c-bench-cache/c-bench-arm.elf",
+        "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist/c-bench-arm.bin"
+      ],
+      [
+        "/usr/bin/python3",
+        "-m",
+        "ziglang",
+        "cc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-strict-aliasing",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-fno-vectorize",
+        "-fno-slp-vectorize",
+        "-fno-unroll-loops",
+        "-fno-stack-protector",
+        "-fno-pic",
+        "-fno-pie",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-nostdlib",
+        "-target",
+        "x86-freestanding-none",
+        "-mcpu=pentium4",
+        "-msse2",
+        "-mfpmath=sse",
+        "-I/home/xiong/workspace/dynarmic.js/examples/c-bench",
+        "-S",
+        "/home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c",
+        "-o",
+        "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/c-bench-cache/x86-kernels.s"
+      ],
+      [
+        "/usr/bin/python3",
+        "-m",
+        "ziglang",
+        "cc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-strict-aliasing",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-fno-vectorize",
+        "-fno-slp-vectorize",
+        "-fno-unroll-loops",
+        "-fno-stack-protector",
+        "-fno-pic",
+        "-fno-pie",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-nostdlib",
+        "-target",
+        "x86-freestanding-none",
+        "-mcpu=pentium4",
+        "-msse2",
+        "-mfpmath=sse",
+        "-I/home/xiong/workspace/dynarmic.js/examples/c-bench",
+        "/home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c",
+        "/home/xiong/workspace/dynarmic.js/examples/c-bench/guest.c",
+        "/home/xiong/workspace/dynarmic.js/examples/c-bench/start-x86.S",
+        "-Wl,--gc-sections",
+        "-Wl,--build-id=none",
+        "-T",
+        "/home/xiong/workspace/dynarmic.js/examples/c-bench/link-x86.ld",
+        "-o",
+        "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist/c-bench-x86.elf"
+      ],
+      [
+        "/usr/bin/python3",
+        "-m",
+        "ziglang",
+        "cc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-strict-aliasing",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-fno-vectorize",
+        "-fno-slp-vectorize",
+        "-fno-unroll-loops",
+        "-fno-stack-protector",
+        "-fno-pic",
+        "-fno-pie",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-nostdlib",
+        "-target",
+        "wasm32-freestanding",
+        "-I/home/xiong/workspace/dynarmic.js/examples/c-bench",
+        "-S",
+        "/home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c",
+        "-o",
+        "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/c-bench-cache/wasm-kernels.s"
+      ],
+      [
+        "/usr/bin/python3",
+        "-m",
+        "ziglang",
+        "cc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-strict-aliasing",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-fno-vectorize",
+        "-fno-slp-vectorize",
+        "-fno-unroll-loops",
+        "-fno-stack-protector",
+        "-fno-pic",
+        "-fno-pie",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-nostdlib",
+        "-target",
+        "wasm32-freestanding",
+        "-I/home/xiong/workspace/dynarmic.js/examples/c-bench",
+        "/home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c",
+        "-Wl,--no-entry",
+        "-Wl,--export=bench_init",
+        "-Wl,--export=bench_run",
+        "-Wl,--export-memory",
+        "-Wl,--initial-memory=16777216",
+        "-Wl,--max-memory=16777216",
+        "-Wl,-z,stack-size=65536",
+        "-o",
+        "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist/c-bench.wasm"
+      ]
+    ],
+    "artifacts": [
+      {
+        "path": "c-bench-arm.bin",
+        "bytes": 1196,
+        "sha256": "abf71d3a0f2a4b57a62d03c886126eec97499944dd68634f4969a2862068edfa"
+      },
+      {
+        "path": "c-bench-x86.elf",
+        "bytes": 16140,
+        "sha256": "3f780a81b70ec71339b5abeb95e45f58d3fc4bb66db8c4ecaae5039a48aadb4b"
+      },
+      {
+        "path": "c-bench.wasm",
+        "bytes": 6124,
+        "sha256": "ce492306c7ec5d91f4f5fe420f6fd332642ad5c92649c21c583ae2fe10183c1e"
+      },
+      {
+        "path": "c-bench-reference.json",
+        "bytes": 2619,
+        "sha256": "1ec94ac79cf3c1500da93240f9c6af607bca0b9527c3a63ff0a2b2330812343f"
+      },
+      {
+        "path": "c-bench-source.c",
+        "bytes": 4623,
+        "sha256": "e320aef8b6978e5c08888284026cb9a3cf41c8961770a958d236ddc6cc948fb9"
+      },
+      {
+        "path": "c-bench-v86.js",
+        "bytes": 359857,
+        "sha256": "e257912c4a1129e36a86c1e2df69904ab969d87bffd24aa6676e84d6ddffc1c6"
+      },
+      {
+        "path": "c-bench-v86.wasm",
+        "bytes": 2007347,
+        "sha256": "2f0c4150f266415b754a84a32e6f8e4c975a1d3abb94c78b047fa30027db1ef1"
+      },
+      {
+        "path": "c-bench-v86-LICENSE.txt",
+        "bytes": 1306,
+        "sha256": "3f61ba65e3215b09ef264ba8d777d73c19644309fbb705967634eb5147e500a0"
+      }
+    ],
+    "sources": [
+      {
+        "path": "examples/c-bench/build.py",
+        "bytes": 7709,
+        "sha256": "1642cd574eac11cd15956db19a358b37fae13ca48b5a0cbf64326a063cd28637"
+      },
+      {
+        "path": "examples/c-bench/reference.py",
+        "bytes": 4943,
+        "sha256": "ce5e2461a21cec72aea19fddb8b57d69b5647a8bd4ab6b80369bc58b5ddb498e"
+      },
+      {
+        "path": "examples/c-bench/kernels.c",
+        "bytes": 4239,
+        "sha256": "7b042c7adf8c6d78945431dce38e27cb435abb161f8f3939a5571baa4ba7bf75"
+      },
+      {
+        "path": "examples/c-bench/kernels.h",
+        "bytes": 349,
+        "sha256": "094738020bc75a76f0b8c3a0fd0530db70c4f9f728ac4d02a4254fb6810e4825"
+      },
+      {
+        "path": "examples/c-bench/guest.c",
+        "bytes": 924,
+        "sha256": "273e37d49725b9253d1176b800a19abbf9cfcc4c9ec68bf9771ed83f7b173faa"
+      },
+      {
+        "path": "examples/c-bench/start-arm.S",
+        "bytes": 184,
+        "sha256": "66751fc591220002502dba7c6527905b66cdd92dda5d5e645352ed0732a87000"
+      },
+      {
+        "path": "examples/c-bench/start-x86.S",
+        "bytes": 687,
+        "sha256": "5b356b1706b99d37099f96fa28b0d9b1ea2112a91315a6c05b1602c11e5f1699"
+      },
+      {
+        "path": "examples/c-bench/link-arm.ld",
+        "bytes": 389,
+        "sha256": "b58ed28357f87d6f64852c1a64f1f326822c781589849493779d6a16f799275f"
+      },
+      {
+        "path": "examples/c-bench/link-x86.ld",
+        "bytes": 560,
+        "sha256": "ba531baabecd32cb5c6e2fd10ec4c6051e533ee465d89d4859936d0fc770c59c"
+      }
+    ],
+    "v86": {
+      "version": "0.5.473+g315b2b0",
+      "revision": "315b2b0b758703ef0e6cc7b4088d6068f83f3c20",
+      "url": "https://registry.npmjs.org/v86/-/v86-0.5.473.tgz",
+      "archiveIntegrity": "sha512-mNHB0DXDmfxn0CrlqCmlgMR1W7aKuD+sHmSctLcTROOwpOvbE4qsAhmaE6Vy+riQfcE4PfA2xvW59/ZXsYnHNw==",
+      "archive": {
+        "path": "v86-0.5.473.tgz",
+        "bytes": 4218519,
+        "sha256": "364ab67a68c1d83646e2ddf7caf73c24574694a132b2b43689ad0f72e7242636"
+      }
+    },
+    "protocol": {
+      "firstRuns": 1,
+      "warmupRuns": 2,
+      "measuredRuns": 3,
+      "totalRuns": 6,
+      "rounds": 3,
+      "guestRamBytes": 16777216,
+      "mailboxAddress": 61440,
+      "magic": 1128418865,
+      "mailbox": {
+        "request": [
+          "magic",
+          "caseIndex",
+          "iterations",
+          "seed"
+        ],
+        "statusWord": 4,
+        "completedRunsWord": 5,
+        "checksumsWord": 6,
+        "status": {
+          "running": 1,
+          "complete": 2,
+          "invalid": 3
+        }
+      },
+      "arm": {
+        "entry": 65536,
+        "markSvc": 3,
+        "exitSvc": 0
+      },
+      "x86": {
+        "markPort": 57856,
+        "exitPort": 57864,
+        "markValues": [
+          0,
+          1
+        ]
+      },
+      "wasm": {
+        "initExport": "bench_init",
+        "runExport": "bench_run"
+      }
+    },
+    "semantics": {
+      "optimization": "O2",
+      "scalar": true,
+      "vectorization": false,
+      "unrolling": false,
+      "fastMath": false,
+      "fpContraction": false,
+      "libc": false,
+      "malloc": false,
+      "floatingPointOracle": "All dyadic operations are exact in binary64, verified by independent integer numerators",
+      "branchWork": "Data-dependent branch selects distinct noinline callees"
+    }
+  },
+  "reference": {
+    "schema": "dynarmic.js/c-bench-reference-v1",
+    "cases": [
+      {
+        "id": "integer",
+        "index": 0,
+        "title": "Integer mix",
+        "description": "Dependent 32-bit multiply, XOR and rotate."
+      },
+      {
+        "id": "branch",
+        "index": 1,
+        "title": "Data-dependent branches",
+        "description": "Seeded branch choices with two distinct non-inlined call paths."
+      },
+      {
+        "id": "stream",
+        "index": 2,
+        "title": "Sequential array",
+        "description": "Read, update and sum an 8,192-word array in order."
+      },
+      {
+        "id": "pointer",
+        "index": 3,
+        "title": "Pointer chase",
+        "description": "Follow one shuffled 8,192-entry cycle with dependent loads."
+      },
+      {
+        "id": "float",
+        "index": 4,
+        "title": "Binary64 arithmetic",
+        "description": "Exactly representable dyadic products and sums from a seeded sequence."
+      }
+    ],
+    "profiles": {
+      "quick": {
+        "iterations": {
+          "integer": 4000000,
+          "branch": 1000000,
+          "stream": 8000000,
+          "pointer": 4000000,
+          "float": 4000000
+        },
+        "seed": 305419896,
+        "expected": {
+          "integer": 1376229747,
+          "branch": 3070096057,
+          "stream": 3629256032,
+          "pointer": 112897855,
+          "float": 3461951353
+        }
+      },
+      "full": {
+        "iterations": {
+          "integer": 16000000,
+          "branch": 4000000,
+          "stream": 32000000,
+          "pointer": 16000000,
+          "float": 16000000
+        },
+        "seed": 305419896,
+        "expected": {
+          "integer": 2030965970,
+          "branch": 2804494586,
+          "stream": 1157981115,
+          "pointer": 3815798204,
+          "float": 1295591077
+        }
+      }
+    },
+    "protocol": {
+      "firstRuns": 1,
+      "warmupRuns": 2,
+      "measuredRuns": 3,
+      "totalRuns": 6,
+      "rounds": 3,
+      "guestRamBytes": 16777216,
+      "mailboxAddress": 61440,
+      "magic": 1128418865,
+      "mailbox": {
+        "request": [
+          "magic",
+          "caseIndex",
+          "iterations",
+          "seed"
+        ],
+        "statusWord": 4,
+        "completedRunsWord": 5,
+        "checksumsWord": 6,
+        "status": {
+          "running": 1,
+          "complete": 2,
+          "invalid": 3
+        }
+      },
+      "arm": {
+        "entry": 65536,
+        "markSvc": 3,
+        "exitSvc": 0
+      },
+      "x86": {
+        "markPort": 57856,
+        "exitPort": 57864,
+        "markValues": [
+          0,
+          1
+        ]
+      },
+      "wasm": {
+        "initExport": "bench_init",
+        "runExport": "bench_run"
+      }
+    },
+    "oracle": "Independent Python unsigned arithmetic; binary64 case uses exact rational integer numerators"
+  },
+  "dynarmicBuild": {
+    "schema": "dynarmic.js/wasm-coremark-host-build-v1",
+    "sourceRoot": "/home/xiong/workspace/dynarmic.js",
+    "build": {
+      "type": "Release",
+      "profile": false,
+      "a64RegionFocus": "",
+      "compilerId": "Clang",
+      "compilerVersion": "24.0.0",
+      "emscriptenVersion": "\"6.0.13\"",
+      "cxxFlags": "",
+      "configCxxFlags": "-O3 -DNDEBUG",
+      "linkFlags": "",
+      "configLinkFlags": ""
+    },
+    "configuration": {
+      "regionDiagnostics": false,
+      "focusTestExceptions": false,
+      "examples": true,
+      "guestRamBytes": 16777216,
+      "initialMemoryBytes": 67108864
+    },
+    "buildEnvironment": {
+      "configureEmccCflags": "",
+      "buildEmccCflags": ""
+    },
+    "source": {
+      "revision": "40c7e05b5dd6df9d813334680b3319257098b5bc",
+      "upstream": "a41c380246d3d9f9874f0f792d234dc0cc17c180",
+      "dirty": true
+    },
+    "artifacts": {
+      "js": {
+        "path": "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist/arm_jit.js",
+        "sha256": "16747bdfd6585d6fb21ff5c9416a5702853dc3b2b2274ecf971070b60bfd0073",
+        "bytes": 25394
+      },
+      "wasm": {
+        "path": "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist/arm_jit.wasm",
+        "sha256": "8bf2ed617b83da078d415b2347624c795029356842f8d3cd2dcf8c93e75d4171",
+        "bytes": 2244534
+      }
+    },
+    "buildSources": {
+      "browserCmakeSha256": "f2e0e897714cc2f8a504169d5db38cb271a6cb8a760b8b457002cbcf161e2830",
+      "manifestScriptSha256": "41cd7b788ce283cb1756be111f5192b1848b4b64a8c036f0de8ee2a8c82ad075"
+    }
+  },
+  "finishedAt": "2026-10-31T03:26:26.043Z",
+  "performanceValid": true
+}

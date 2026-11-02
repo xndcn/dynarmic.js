@@ -1,0 +1,242 @@
+{
+  "schema": "dynarmic.js/region-alias-static-gate-v1",
+  "decision": "STOP_STATIC_GATE",
+  "registeredGate": {
+    "baselineRegionCount": 111,
+    "predictedCoveredLaterEntryCount": 16,
+    "expectedCandidateRegionCount": 95
+  },
+  "workloadSha256": "ad43250ce2139ab0d0fdbf1eac0bb1284e00fde62419d387accfe6348cca17aa",
+  "before": {
+    "git": {
+      "revision": "f96fe7a0b4bc7a098ef9badf64919930e2cf8a71",
+      "upstream": "a41c380246d3d9f9874f0f792d234dc0cc17c180",
+      "dirty": false
+    },
+    "artifact": {
+      "jsSha256": "247964ce64d6c4de94eb09b865faffb7f0737343e30e6787b4cb6009835e94e6",
+      "wasmSha256": "45125719cde0ae5ef9e8964321aaf88b88ffa108293859638316ecd72d36a76e"
+    },
+    "duplicationTotals": {
+      "regionCount": 111,
+      "selectedBlockCount": 4177,
+      "uniqueDescriptorCount": 862,
+      "duplicatedDescriptorCount": 587,
+      "duplicateSelectionCount": 3315,
+      "moduleBytes": 708917,
+      "entryBodyBytes": 694277
+    }
+  },
+  "after": {
+    "git": {
+      "revision": "6a6c6d79b2c21d6590ebda65848d8883f94f8a31",
+      "upstream": "a41c380246d3d9f9874f0f792d234dc0cc17c180",
+      "dirty": false
+    },
+    "artifact": {
+      "jsSha256": "247964ce64d6c4de94eb09b865faffb7f0737343e30e6787b4cb6009835e94e6",
+      "wasmSha256": "157d310d3b1d442105359d4f99db43cce9854518c2a202e66a02da0c76a0c05e"
+    },
+    "duplicationTotals": {
+      "regionCount": 99,
+      "selectedBlockCount": 3767,
+      "uniqueDescriptorCount": 866,
+      "duplicatedDescriptorCount": 504,
+      "duplicateSelectionCount": 2901,
+      "moduleBytes": 576602,
+      "entryBodyBytes": 564056
+    }
+  },
+  "comparison": {
+    "baselineRegionCount": 111,
+    "candidateRegionCount": 99,
+    "netEliminatedRegionCount": 12,
+    "eliminatedBaselineEntryCount": 20,
+    "addedCandidateEntryCount": 8,
+    "predictedCoveredLaterEntryCount": 16,
+    "expectedCandidateRegionCount": 95,
+    "reconciledCandidateRegionCount": 99,
+    "moduleBytesBefore": 708917,
+    "moduleBytesAfter": 576602,
+    "moduleBytesDelta": -132315
+  },
+  "diagnosis": {
+    "aliasReusedEntries": [
+      {
+        "baselineRegionId": 22,
+        "entryDescriptor": "0x0000000000010370",
+        "aliasOwnerRegionId": 18
+      },
+      {
+        "baselineRegionId": 26,
+        "entryDescriptor": "0x000000000001154c",
+        "aliasOwnerRegionId": 23
+      },
+      {
+        "baselineRegionId": 27,
+        "entryDescriptor": "0x0000000000011700",
+        "aliasOwnerRegionId": 25
+      },
+      {
+        "baselineRegionId": 28,
+        "entryDescriptor": "0x0000000000011288",
+        "aliasOwnerRegionId": 22
+      },
+      {
+        "baselineRegionId": 29,
+        "entryDescriptor": "0x00000000000100ac",
+        "aliasOwnerRegionId": 22
+      },
+      {
+        "baselineRegionId": 33,
+        "entryDescriptor": "0x000000000001202c",
+        "aliasOwnerRegionId": 28
+      },
+      {
+        "baselineRegionId": 38,
+        "entryDescriptor": "0x000000000001209c",
+        "aliasOwnerRegionId": 28
+      },
+      {
+        "baselineRegionId": 42,
+        "entryDescriptor": "0x0000000000010084",
+        "aliasOwnerRegionId": 22
+      },
+      {
+        "baselineRegionId": 43,
+        "entryDescriptor": "0x0000000000010464",
+        "aliasOwnerRegionId": 18
+      },
+      {
+        "baselineRegionId": 44,
+        "entryDescriptor": "0x00000000000105b8",
+        "aliasOwnerRegionId": 37
+      },
+      {
+        "baselineRegionId": 52,
+        "entryDescriptor": "0x0000000000010b10",
+        "aliasOwnerRegionId": 44
+      },
+      {
+        "baselineRegionId": 53,
+        "entryDescriptor": "0x0000000000010b18",
+        "aliasOwnerRegionId": 44
+      },
+      {
+        "baselineRegionId": 72,
+        "entryDescriptor": "0x0000000000013ca4",
+        "aliasOwnerRegionId": 55
+      },
+      {
+        "baselineRegionId": 80,
+        "entryDescriptor": "0x0000000000012704",
+        "aliasOwnerRegionId": 69
+      },
+      {
+        "baselineRegionId": 81,
+        "entryDescriptor": "0x000000000001287c",
+        "aliasOwnerRegionId": 69
+      }
+    ],
+    "ownerDependencySurvivors": [
+      {
+        "baselineRegionId": 23,
+        "candidateRegionId": 22,
+        "entryDescriptor": "0x0000000000010380",
+        "predictedOwnerRegionIds": [
+          22
+        ],
+        "absorbedOwnerEntryDescriptors": [
+          "0x0000000000010370"
+        ]
+      }
+    ],
+    "nonAliasAbsorbedEntries": [
+      {
+        "baselineRegionId": 30,
+        "entryDescriptor": "0x000000000001135c",
+        "emittingCandidateRegionIds": [
+          23,
+          27
+        ]
+      },
+      {
+        "baselineRegionId": 34,
+        "entryDescriptor": "0x000000000001238c",
+        "emittingCandidateRegionIds": [
+          29,
+          30,
+          31,
+          32
+        ]
+      },
+      {
+        "baselineRegionId": 39,
+        "entryDescriptor": "0x00000000000123f8",
+        "emittingCandidateRegionIds": [
+          29,
+          30,
+          31,
+          32
+        ]
+      },
+      {
+        "baselineRegionId": 40,
+        "entryDescriptor": "0x000000000001229c",
+        "emittingCandidateRegionIds": [
+          29,
+          30,
+          31,
+          32
+        ]
+      },
+      {
+        "baselineRegionId": 41,
+        "entryDescriptor": "0x0000000000012174",
+        "emittingCandidateRegionIds": [
+          35
+        ]
+      }
+    ],
+    "newEntries": [
+      {
+        "candidateRegionId": 25,
+        "entryDescriptor": "0x0000000000011698"
+      },
+      {
+        "candidateRegionId": 26,
+        "entryDescriptor": "0x0000000000011980"
+      },
+      {
+        "candidateRegionId": 27,
+        "entryDescriptor": "0x000000000001125c"
+      },
+      {
+        "candidateRegionId": 30,
+        "entryDescriptor": "0x0000000000012398"
+      },
+      {
+        "candidateRegionId": 33,
+        "entryDescriptor": "0x0000000000012350"
+      },
+      {
+        "candidateRegionId": 35,
+        "entryDescriptor": "0x0000000000012144"
+      },
+      {
+        "candidateRegionId": 36,
+        "entryDescriptor": "0x0000000000010098"
+      },
+      {
+        "candidateRegionId": 37,
+        "entryDescriptor": "0x0000000000010518"
+      }
+    ],
+    "unanticipatedAliasReusedEntries": [],
+    "publicationReplay": {
+      "publishedAliasCount": 26,
+      "conflictingAliasExposureCount": 9,
+      "liveOriginalEntryConflictCount": 0
+    }
+  }
+}

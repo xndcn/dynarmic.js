@@ -1,0 +1,52 @@
+{
+  "pairs": [
+    {
+      "pair": 0,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": 600.3626519999999,
+      "candidate": 530.97406
+    },
+    {
+      "pair": 1,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "baseline": 535.725179,
+      "candidate": 537.4378339999998
+    },
+    {
+      "pair": 2,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": 540.2418499999999,
+      "candidate": 529.851187
+    },
+    {
+      "pair": 3,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "baseline": 534.224077,
+      "candidate": 542.6316269999999
+    },
+    {
+      "pair": 4,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": 544.948013,
+      "candidate": 527.798875
+    }
+  ],
+  "baselineMedianMs": 540.2418499999999,
+  "candidateMedianMs": 530.97406,
+  "timeChangePercent": -1.7154890906729836
+}

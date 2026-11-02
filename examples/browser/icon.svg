@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+<title id="title">dynarmic.js</title><desc id="desc">Two forward chevrons on a blue field, representing instruction translation.</desc>
+<rect width="512" height="512" fill="#1552d0"/>
+<g fill="none" stroke="#fff" stroke-width="30" stroke-linecap="square" stroke-linejoin="miter"><path d="m154 176 62 80-62 80"/><path d="m276 176 62 80-62 80"/></g>
+</svg>

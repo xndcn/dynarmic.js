@@ -1,0 +1,282 @@
+name: GitHub Pages
+
+on:
+  workflow_call:
+    inputs:
+      release:
+        description: 'Export the validated site for a versioned release'
+        type: boolean
+        default: false
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: 'Published release to deploy without rebuilding (e.g. v0.1.0-alpha.0); blank builds this ref'
+        type: string
+        default: ''
+      deploy:
+        description: 'Deploy the validated artifact to GitHub Pages'
+        type: boolean
+        required: true
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - 'examples/browser/**'
+      - 'examples/quickjs/**'
+      - 'examples/c-bench/**'
+      - 'tests/browser/**'
+      - 'tests/pages/**'
+      - 'src/**'
+      - 'patches/**'
+      - 'externals/dynarmic'
+      - 'cmake/**'
+      - 'CMakeLists.txt'
+      - 'packages/dynarmic/package.json'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vite.config.mjs'
+      - 'scripts/pages.mjs'
+      - 'scripts/release.py'
+      - '.github/workflows/pages.yml'
+  pull_request:
+    paths:
+      - 'examples/browser/**'
+      - 'examples/quickjs/**'
+      - 'examples/c-bench/**'
+      - 'src/**'
+      - 'patches/**'
+      - 'externals/dynarmic'
+      - 'cmake/**'
+      - 'tests/browser/**'
+      - 'tests/pages/**'
+      - 'CMakeLists.txt'
+      - 'packages/dynarmic/package.json'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vite.config.mjs'
+      - 'scripts/pages.mjs'
+      - 'scripts/release.py'
+      - '.github/workflows/pages.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.event_name }}-${{ github.ref }}
+  # Let a deployment finish so the Pages environment is never left between
+  # an uploaded artifact and its deployment.
+  cancel-in-progress: false
+
+env:
+  EMSCRIPTEN_VERSION: 6.0.13
+
+jobs:
+  build:
+    if: github.event_name != 'workflow_dispatch' || inputs.release_tag == ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - name: Check out source and pinned upstream
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          submodules: recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install local Pages tooling
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Verify artifact checks and preview routing
+        run: npm test
+
+      - name: Set up Emscripten
+        uses: mymindstorm/setup-emsdk@6ab9eb1bda2574c4ddb79809fc9247783eaf9021 # v14
+        with:
+          version: ${{ env.EMSCRIPTEN_VERSION }}
+          actions-cache-folder: emsdk-cache
+
+      - name: Set up Chromium
+        id: chrome
+        uses: browser-actions/setup-chrome@c785b87e244131f27c9f19c1a33e2ead956ab7ce # v1
+        with:
+          chrome-version: stable
+          install-dependencies: true
+
+      - name: Set up Firefox
+        id: firefox
+        uses: browser-actions/setup-firefox@0bc507ddf224827e3b1af68e014d5e42ab93e795 # v1
+        with:
+          firefox-version: latest
+
+      - name: Install browser example toolchains
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libnewlib-dev libboost-dev
+          python3 -m pip install --user ziglang==0.17.0
+          mkdir -p "$RUNNER_TEMP/boost-headers"
+          cp -a /usr/include/boost "$RUNNER_TEMP/boost-headers/"
+
+      - name: Build the complete release example
+        run: |
+          emcmake cmake -S . -B build-pages -G Ninja -DCMAKE_BUILD_TYPE=Release \
+            -DBoost_INCLUDE_DIR="$RUNNER_TEMP/boost-headers" \
+            -DDYNARMIC_JS_TESTS=OFF \
+            -DDYNARMIC_JS_EXAMPLES_REQUIRE_GUESTS=ON
+          cmake --build build-pages --parallel 2 --target browser_page
+
+      - name: Package matching source and license notices
+        run: |
+          python3 -m unittest discover -s tests/browser -p '*_test.py'
+          python3 examples/browser/package_source.py \
+            --dist build-pages/examples/browser/dist \
+            --emscripten-root "$EMSDK/upstream/emscripten" --require-clean
+
+      - name: Smoke-test generated assets
+        run: |
+          for asset in index.html styles.css app.js site.js worker.js arm_jit.js arm_jit.wasm \
+            vendor/prism-1.30.0/prism-core.js vendor/prism-1.30.0/prism-clike.js \
+            vendor/prism-1.30.0/prism-c.js vendor/prism-1.30.0/prism-javascript.js vendor/prism-1.30.0/LICENSE \
+            demo.bin demo_a64.bin expected.txt wasm-build-manifest.json 404.html robots.txt sitemap.xml \
+            quickjs-app.js quickjs-worker.js quickjs-workloads.js quickjs-arm.bin \
+            quickjs-wasm.js quickjs-wasm.wasm quickjs-manifest.json quickjs-LICENSE.txt quickjs-source.tar.xz quickjs-runtime-licenses.txt \
+            official-benchmarks-app.js official-benchmarks-worker.js official-benchmarks.json \
+            official-v8-upstream.js official-v8.js official-v8-adapter.js quickjs-extras-source.tar.xz quickjs-extras-LICENSE.txt \
+            arm_bench_jit.js arm_bench_jit.wasm arm-bench-build-manifest.json \
+            c-bench-app.js c-bench-worker.js c-bench-protocol.js c-bench-arm.bin c-bench-x86.elf \
+            c-bench.wasm c-bench-manifest.json c-bench-reference.json c-bench-source.c \
+            c-bench-v86.js c-bench-v86.wasm c-bench-v86-LICENSE.txt \
+            site.webmanifest icon.svg icon-192.png icon-512.png social-card.png \
+            source.tar.gz source-manifest.json LICENSE.txt THIRD_PARTY_NOTICES.md runtime-licenses.txt; do
+            test -s "build-pages/examples/browser/dist/$asset"
+          done
+          node --input-type=module - <<'NODE'
+          import {readFileSync} from 'node:fs';
+          const root = 'build-pages/examples/browser/dist/';
+          const manifest = JSON.parse(readFileSync(root + 'site.webmanifest', 'utf8'));
+          if (manifest.start_url !== './' || manifest.scope !== './' || manifest.icons.length < 2) {
+            throw new Error('manifest is missing relative install metadata');
+          }
+          if (!readFileSync(root + 'sitemap.xml', 'utf8').includes('https://xndcn.github.io/dynarmic.js/')) {
+            throw new Error('sitemap does not contain the canonical Pages URL');
+          }
+          NODE
+          node examples/node/hello.mjs build-pages/examples/browser/dist
+          python3 examples/quickjs/reference.py
+          python3 examples/c-bench/reference.py --output "$RUNNER_TEMP/c-bench-reference.json"
+          cmp "$RUNNER_TEMP/c-bench-reference.json" build-pages/examples/browser/dist/c-bench-reference.json
+          node examples/quickjs/run.mjs build-pages/examples/browser/dist light
+          node examples/quickjs/official-run.mjs build-pages/examples/browser/dist --runtime all --case all --report pages-official-node.json
+          DYNARMIC_JS_BROWSER_DIST=build-pages/examples/browser/dist node --test examples/browser/*.test.mjs examples/quickjs/*.test.mjs examples/quickjs/v86/*.test.mjs
+
+      - name: Check the final Pages root
+        run: npm run pages:check -- --dist build-pages/examples/browser/dist --strict
+
+      - name: Verify the artifact in Chromium and Firefox
+        run: |
+          node tests/browser/verify_interactions.mjs \
+            "${{ steps.chrome.outputs.chrome-path }}" \
+            build-pages/examples/browser/dist --report pages-browser-interactions.json
+          node examples/browser/verify_browser.mjs \
+            "${{ steps.firefox.outputs.firefox-path }}" \
+            build-pages/examples/browser/dist
+          node tests/browser/verify_quickjs.mjs \
+            "${{ steps.chrome.outputs.chrome-path }}" \
+            build-pages/examples/browser/dist --report pages-quickjs-interactions.json
+          node examples/browser/verify_browser.mjs \
+            "${{ steps.firefox.outputs.firefox-path }}" \
+            build-pages/examples/browser/dist --quickjs
+          node tests/browser/verify_official.mjs \
+            "${{ steps.chrome.outputs.chrome-path }}" \
+            build-pages/examples/browser/dist --report pages-official-browser.json
+          node examples/browser/verify_browser.mjs \
+            "${{ steps.firefox.outputs.firefox-path }}" \
+            build-pages/examples/browser/dist --official
+          node tests/browser/verify_c_bench.mjs \
+            "${{ steps.chrome.outputs.chrome-path }}" \
+            build-pages/examples/browser/dist --report pages-c-bench-browser.json
+          node examples/browser/verify_browser.mjs \
+            "${{ steps.firefox.outputs.firefox-path }}" \
+            build-pages/examples/browser/dist --cbench
+
+      - name: Retain browser interaction evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: pages-browser-interactions
+          path: |
+            pages-browser-interactions.json
+            pages-quickjs-interactions.json
+            pages-official-node.json
+            pages-official-browser.json
+            pages-official-browser-*.png
+            pages-c-bench-browser.json
+          if-no-files-found: warn
+
+      - name: Upload Pages artifact
+        if: inputs.release != true
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: build-pages/examples/browser/dist
+
+      - name: Retain validated release site
+        if: inputs.release == true
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: pages-dist
+          path: build-pages/examples/browser/dist
+          include-hidden-files: true
+          compression-level: 0
+          if-no-files-found: error
+
+  release-artifact:
+    if: github.event_name == 'workflow_dispatch' && inputs.release_tag != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Download and verify the published site
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]
+          test "$(gh release view "$RELEASE_TAG" --json isDraft --jq .isDraft)" = false
+          revision=$(gh api "repos/$GH_REPO/commits/$RELEASE_TAG" --jq .sha)
+          gh release download "$RELEASE_TAG" --dir build-release-download \
+            --pattern release.json --pattern "dynarmic.js-${RELEASE_TAG#v}-pages.tar.gz"
+          python3 scripts/release.py extract-pages --assets build-release-download \
+            --output build-release-pages --tag "$RELEASE_TAG" --revision "$revision" --repository "$GH_REPO"
+      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: build-release-pages
+
+  deploy:
+    if: >-
+      always() && github.event_name == 'workflow_dispatch' && inputs.deploy == true &&
+      (needs.build.result == 'success' || needs.release-artifact.result == 'success')
+    needs: [build, release-artifact]
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages-deployment
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

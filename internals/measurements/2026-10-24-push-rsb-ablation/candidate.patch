@@ -1,0 +1,134 @@
+diff --git a/src/dynarmic/backend/wasm/region_selector.cpp b/src/dynarmic/backend/wasm/region_selector.cpp
+index e2865a7..c5c0eb9 100644
+--- a/src/dynarmic/backend/wasm/region_selector.cpp
++++ b/src/dynarmic/backend/wasm/region_selector.cpp
+@@ -4,6 +4,7 @@
+ #include "dynarmic/backend/wasm/region_selector.h"
+ 
+ #include <algorithm>
++#include <array>
+ #include <deque>
+ #include <unordered_set>
+ 
+@@ -15,6 +16,14 @@
+ namespace Dynarmic::Backend::Wasm {
+ namespace {
+ 
++// Diagnostic-only CoreMark ablation: never a production descriptor policy.
++constexpr std::array<u64, 28> kProbeSuppressedReturns{
++    0x10cb8, 0x10e50, 0x10edc, 0x10f10, 0x10f4c, 0x10f8c, 0x10f9c,
++    0x10fa4, 0x10fb0, 0x10fb8, 0x10fd8, 0x10fe8, 0x10ff0, 0x11008,
++    0x11024, 0x11038, 0x1104c, 0x11060, 0x11070, 0x110ac, 0x110f8,
++    0x11144, 0x11188, 0x111d0, 0x111ec, 0x1120c, 0x11220, 0x1122c,
++};
++
+ struct SuccessorCollector {
+     std::vector<IR::LocationDescriptor>& out;
+ 
+@@ -39,7 +48,12 @@ std::vector<IR::LocationDescriptor> Successors(const IR::Block& block) {
+     SuccessorCollector collector{out};
+     boost::apply_visitor(collector, block.GetTerminal());
+     for (const auto& inst : block) {
+-        if (inst.GetOpcode() == IR::Opcode::PushRSB) out.push_back(IR::LocationDescriptor{inst.GetArg(0).GetU64()});
++        if (inst.GetOpcode() != IR::Opcode::PushRSB) continue;
++        const IR::LocationDescriptor next{inst.GetArg(0).GetU64()};
++        if (std::find(kProbeSuppressedReturns.begin(), kProbeSuppressedReturns.end(), next.Value()) ==
++            kProbeSuppressedReturns.end()) {
++            out.push_back(next);
++        }
+     }
+     return out;
+ }
+diff --git a/tests/unit/region_selector_test.cpp b/tests/unit/region_selector_test.cpp
+index 7ad9928..b4cdcc7 100644
+--- a/tests/unit/region_selector_test.cpp
++++ b/tests/unit/region_selector_test.cpp
+@@ -1,6 +1,7 @@
+ // This file is part of Dynarmic.
+ // Licensed under GPLv2 or any later version.
+ 
++#include <array>
+ #include <cstdlib>
+ #include <iostream>
+ #include <unordered_map>
+@@ -26,6 +27,7 @@ void Require(bool value, const char* message) {
+ struct SyntheticGraph {
+     std::unordered_map<u64, std::vector<u64>> successors;
+     std::unordered_map<u64, bool> compatible;
++    std::unordered_map<u64, std::vector<u64>> push_rsb_successors;
+ 
+     IR::Block Block(u64 location) const {
+         IR::Block block{IR::LocationDescriptor{location}};
+@@ -35,6 +37,12 @@ struct SyntheticGraph {
+         } else {
+             block.SetTerminal(IR::Term::LinkBlock{IR::LocationDescriptor{it->second.front()}});
+         }
++        const auto push_rsb = push_rsb_successors.find(location);
++        if (push_rsb != push_rsb_successors.end()) {
++            for (const u64 target : push_rsb->second) {
++                block.AppendNewInst(IR::Opcode::PushRSB, {IR::Value(target)});
++            }
++        }
+         return block;
+     }
+ };
+@@ -199,5 +207,59 @@ int main() {
+     Require(selected.stats.candidates == 64 && selected.stats.rejected_block_budget == 1 &&
+                 selected.stats.rejected_ir_budget == 0,
+             "the 64-block boundary must reject exactly the next candidate");
++
++    constexpr std::array<u64, 28> suppressed_returns{
++        0x10cb8, 0x10e50, 0x10edc, 0x10f10, 0x10f4c, 0x10f8c, 0x10f9c,
++        0x10fa4, 0x10fb0, 0x10fb8, 0x10fd8, 0x10fe8, 0x10ff0, 0x11008,
++        0x11024, 0x11038, 0x1104c, 0x11060, 0x11070, 0x110ac, 0x110f8,
++        0x11144, 0x11188, 0x111d0, 0x111ec, 0x1120c, 0x11220, 0x1122c,
++    };
++    constexpr u64 probe_entry = 0x10000;
++    constexpr u64 retained_return_alias = 0x0000000100010cb8ULL;
++    SyntheticGraph return_probe;
++    return_probe.successors[probe_entry] = {suppressed_returns.front()};
++    return_probe.push_rsb_successors[probe_entry].assign(suppressed_returns.begin(), suppressed_returns.end());
++    return_probe.push_rsb_successors[probe_entry].push_back(retained_return_alias);
++    const auto select_return_probe = [&](u64 entry) {
++        return RegionSelector::Select(
++            IR::LocationDescriptor{entry},
++            [&](IR::LocationDescriptor location) {
++                auto block = return_probe.Block(location.Value());
++                if (location.Value() == probe_entry) {
++                    block.SetConditionFailedLocation(IR::LocationDescriptor{suppressed_returns[1]});
++                }
++                return block;
++            },
++            [](const IR::Block& block) {
++                const u64 pc = block.Location().Value() & 0xffffffffULL;
++                return RegionGuestRange{pc, pc};
++            },
++            [](IR::LocationDescriptor location) { return location.Value() & 0xffffffffULL; },
++            [](IR::LocationDescriptor, IR::LocationDescriptor) { return true; }, true);
++    };
++    selected = select_return_probe(probe_entry);
++    const auto contains = [&](u64 location) {
++        for (const auto& block : selected.blocks) {
++            if (block.Location().Value() == location) return true;
++        }
++        return false;
++    };
++    Require(selected.stats.candidates == 3,
++            "all 28 PushRSB appends must be suppressed before candidate accounting");
++    Require(selected.blocks.size() == 4,
++            "diagnostic probe must suppress exactly the 28 listed speculative returns");
++    Require(contains(suppressed_returns.front()),
++            "an ordinary LinkBlock must retain a listed return descriptor");
++    Require(contains(suppressed_returns[1]),
++            "a condition-failed edge must retain a listed return descriptor");
++    Require(contains(retained_return_alias),
++            "a nonlisted full-descriptor PushRSB alias must remain selected");
++    for (size_t i = 2; i < suppressed_returns.size(); i++) {
++        Require(!contains(suppressed_returns[i]), "every listed PushRSB-only continuation must be suppressed");
++    }
++
++    selected = select_return_probe(suppressed_returns[2]);
++    Require(selected.blocks.size() == 1 && selected.blocks[0].Location().Value() == suppressed_returns[2],
++            "a listed descriptor must remain selectable as a direct region entry");
+     std::cout << "PASS region selector budgets and ordering\n";
+ }

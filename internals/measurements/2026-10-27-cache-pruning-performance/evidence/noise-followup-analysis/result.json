@@ -1,0 +1,7 @@
+{
+  "schema": "dynarmic.js/coremark-noise-followup-v1",
+  "originalPass": false,
+  "followupPass": false,
+  "pooledPass": true,
+  "pass": false
+}

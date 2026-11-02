@@ -1,0 +1,19 @@
+{
+  "name": "dynarmic-js-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Local tooling for building and reviewing the dynarmic.js Pages artifact",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build": "node scripts/pages.mjs build",
+    "test": "node --test tests/pages/*.test.mjs",
+    "pages:check": "node scripts/pages.mjs check",
+    "pages:preview": "vite preview --config vite.config.mjs"
+  },
+  "devDependencies": {
+    "parse5": "8.0.0",
+    "vite": "8.3.5"
+  }
+}

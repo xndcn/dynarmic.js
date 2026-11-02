@@ -1,0 +1,12 @@
+/build*/
+__pycache__/
+/node_modules/
+**/node_modules/
+/test-results/
+/.cache/
+/.firefox-profile-*/
+/.firefox-npm-profile-*/
+*.py[cod]
+*.swp
+*.swo
+/.venv/

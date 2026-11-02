@@ -1,0 +1,11 @@
+{
+  "name": "dynarmic-js-package-checks",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.5",
+    "publint": "0.3.25",
+    "typescript": "5.9.3",
+    "vite": "8.3.5"
+  }
+}

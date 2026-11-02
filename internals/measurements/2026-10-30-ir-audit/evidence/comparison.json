@@ -1,0 +1,402 @@
+{
+  "schema": "dynarmic.js/comparison-v1",
+  "pass": true,
+  "cases": [
+    {
+      "name": "memory-thunk",
+      "pass": true,
+      "metrics": [
+        {
+          "metric": "warmMinstrPerSec",
+          "baseline": 564.1029069220126,
+          "candidate": 739.9067982594436,
+          "ratio": 1.3116521634265146,
+          "limit": 0.95,
+          "direction": "min",
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 18586,
+          "candidate": 18586,
+          "ratio": 1,
+          "limit": 1.1,
+          "direction": "max",
+          "pass": true
+        },
+        {
+          "metric": "coldCompileMedianMs",
+          "baseline": 37.734286000000004,
+          "candidate": 30.746511000000012,
+          "ratio": 0.8148162920056314,
+          "limit": 1.15,
+          "direction": "max",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "memory-page-table",
+      "pass": true,
+      "metrics": [
+        {
+          "metric": "warmMinstrPerSec",
+          "baseline": 1845.8727703466852,
+          "candidate": 2824.518261914211,
+          "ratio": 1.5301803609052211,
+          "limit": 0.95,
+          "direction": "min",
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 19148,
+          "candidate": 19148,
+          "ratio": 1,
+          "limit": 1.1,
+          "direction": "max",
+          "pass": true
+        },
+        {
+          "metric": "coldCompileMedianMs",
+          "baseline": 37.067419000000015,
+          "candidate": 30.69470899999998,
+          "ratio": 0.8280778599664564,
+          "limit": 1.15,
+          "direction": "max",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "memory-flat-window",
+      "pass": true,
+      "metrics": [
+        {
+          "metric": "warmMinstrPerSec",
+          "baseline": 3444.7696592141997,
+          "candidate": 4554.947326078439,
+          "ratio": 1.322279216520238,
+          "limit": 0.95,
+          "direction": "min",
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 18828,
+          "candidate": 18828,
+          "ratio": 1,
+          "limit": 1.1,
+          "direction": "max",
+          "pass": true
+        },
+        {
+          "metric": "coldCompileMedianMs",
+          "baseline": 38.281125999999986,
+          "candidate": 32.168604,
+          "ratio": 0.8403254387031357,
+          "limit": 1.15,
+          "direction": "max",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "call-return",
+      "pass": true,
+      "metrics": [
+        {
+          "metric": "warmMinstrPerSec",
+          "baseline": 1234.0722161376375,
+          "candidate": 1258.9337244127066,
+          "ratio": 1.020145910385115,
+          "limit": 0.95,
+          "direction": "min",
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 3524,
+          "candidate": 3524,
+          "ratio": 1,
+          "limit": 1.1,
+          "direction": "max",
+          "pass": true
+        },
+        {
+          "metric": "coldCompileMedianMs",
+          "baseline": 11.954168999999997,
+          "candidate": 10.842905000000009,
+          "ratio": 0.9070396277650091,
+          "limit": 1.15,
+          "direction": "max",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "a64-memory-thunk",
+      "pass": true,
+      "metrics": [
+        {
+          "metric": "warmMinstrPerSec",
+          "baseline": 566.739263498029,
+          "candidate": 621.2261703314053,
+          "ratio": 1.0961410481727913,
+          "limit": 0.95,
+          "direction": "min",
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 3987,
+          "candidate": 3987,
+          "ratio": 1,
+          "limit": 1.1,
+          "direction": "max",
+          "pass": true
+        },
+        {
+          "metric": "coldCompileMedianMs",
+          "baseline": 123.773353,
+          "candidate": 108.503911,
+          "ratio": 0.8766338502601606,
+          "limit": 1.15,
+          "direction": "max",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "a64-memory-page-table",
+      "pass": true,
+      "metrics": [
+        {
+          "metric": "warmMinstrPerSec",
+          "baseline": 2391.5808629052062,
+          "candidate": 2310.0345155454966,
+          "ratio": 0.9659027429828778,
+          "limit": 0.95,
+          "direction": "min",
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 4427,
+          "candidate": 4567,
+          "ratio": 1.031624124689406,
+          "limit": 1.1,
+          "direction": "max",
+          "pass": true
+        },
+        {
+          "metric": "coldCompileMedianMs",
+          "baseline": 112.40534299999999,
+          "candidate": 103.118636,
+          "ratio": 0.917381978897569,
+          "limit": 1.15,
+          "direction": "max",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "a64-memory-flat-window",
+      "pass": true,
+      "metrics": [
+        {
+          "metric": "warmMinstrPerSec",
+          "baseline": 3822.411391010766,
+          "candidate": 4072.4298565214403,
+          "ratio": 1.0654085706469605,
+          "limit": 0.95,
+          "direction": "min",
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 4237,
+          "candidate": 4237,
+          "ratio": 1,
+          "limit": 1.1,
+          "direction": "max",
+          "pass": true
+        },
+        {
+          "metric": "coldCompileMedianMs",
+          "baseline": 109.601451,
+          "candidate": 106.334766,
+          "ratio": 0.9701948745185864,
+          "limit": 1.15,
+          "direction": "max",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "a64-neon",
+      "pass": true,
+      "metrics": [
+        {
+          "metric": "warmMinstrPerSec",
+          "baseline": 6865.389226849682,
+          "candidate": 7440.341087994111,
+          "ratio": 1.083746433326149,
+          "limit": 0.95,
+          "direction": "min",
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 2921,
+          "candidate": 2921,
+          "ratio": 1,
+          "limit": 1.1,
+          "direction": "max",
+          "pass": true
+        },
+        {
+          "metric": "coldCompileMedianMs",
+          "baseline": 86.885518,
+          "candidate": 81.34484499999999,
+          "ratio": 0.9362301897077945,
+          "limit": 1.15,
+          "direction": "max",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "a64-scalar",
+      "pass": true,
+      "metrics": [
+        {
+          "metric": "warmMinstrPerSec",
+          "baseline": 7212.179675664735,
+          "candidate": 7387.6617143259455,
+          "ratio": 1.0243313459387764,
+          "limit": 0.95,
+          "direction": "min",
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 2373,
+          "candidate": 2373,
+          "ratio": 1,
+          "limit": 1.1,
+          "direction": "max",
+          "pass": true
+        },
+        {
+          "metric": "coldCompileMedianMs",
+          "baseline": 88.463354,
+          "candidate": 79.02900099999998,
+          "ratio": 0.8933529809416901,
+          "limit": 1.15,
+          "direction": "max",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "thumb-memory-thunk",
+      "pass": true,
+      "metrics": [
+        {
+          "metric": "warmMinstrPerSec",
+          "baseline": 259.3829937809087,
+          "candidate": 317.829269592414,
+          "ratio": 1.225328094797428,
+          "limit": 0.95,
+          "direction": "min",
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 2473,
+          "candidate": 2473,
+          "ratio": 1,
+          "limit": 1.1,
+          "direction": "max",
+          "pass": true
+        },
+        {
+          "metric": "coldCompileMedianMs",
+          "baseline": 37.23752300000001,
+          "candidate": 33.78402299999998,
+          "ratio": 0.907257526232343,
+          "limit": 1.15,
+          "direction": "max",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "thumb-memory-page-table",
+      "pass": true,
+      "metrics": [
+        {
+          "metric": "warmMinstrPerSec",
+          "baseline": 1113.2302784521428,
+          "candidate": 1242.5849463995864,
+          "ratio": 1.1161975832415383,
+          "limit": 0.95,
+          "direction": "min",
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 2807,
+          "candidate": 2807,
+          "ratio": 1,
+          "limit": 1.1,
+          "direction": "max",
+          "pass": true
+        },
+        {
+          "metric": "coldCompileMedianMs",
+          "baseline": 37.254742000000014,
+          "candidate": 33.64522499999998,
+          "ratio": 0.9031125487327216,
+          "limit": 1.15,
+          "direction": "max",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "thumb-memory-flat-window",
+      "pass": true,
+      "metrics": [
+        {
+          "metric": "warmMinstrPerSec",
+          "baseline": 1132.367916875593,
+          "candidate": 1619.9412331164206,
+          "ratio": 1.4305785328024219,
+          "limit": 0.95,
+          "direction": "min",
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 2615,
+          "candidate": 2615,
+          "ratio": 1,
+          "limit": 1.1,
+          "direction": "max",
+          "pass": true
+        },
+        {
+          "metric": "coldCompileMedianMs",
+          "baseline": 39.864872999999996,
+          "candidate": 34.05959900000002,
+          "ratio": 0.8543762073442457,
+          "limit": 1.15,
+          "direction": "max",
+          "pass": true
+        }
+      ]
+    }
+  ]
+}

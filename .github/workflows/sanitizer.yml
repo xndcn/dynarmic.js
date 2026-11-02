@@ -1,0 +1,46 @@
+name: Native sanitizers
+on:
+  push:
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'externals/dynarmic/**'
+      - 'patches/**'
+      - 'CMakeLists.txt'
+      - 'cmake/**'
+      - '.github/workflows/sanitizer.yml'
+permissions:
+  contents: read
+jobs:
+  asan-ubsan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install native dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake ninja-build libboost-dev
+      - name: Configure sanitized native build
+        run: >-
+          cmake -S . -B build-native-sanitize -G Ninja
+          -DCMAKE_BUILD_TYPE=Debug
+          -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer"
+          -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address,undefined"
+          -DDYNARMIC_JS_TESTS=ON
+      - name: Build
+        run: cmake --build build-native-sanitize --parallel 2
+      - name: Run sanitized tests
+        env:
+          ASAN_OPTIONS: detect_leaks=1:halt_on_error=1
+          UBSAN_OPTIONS: halt_on_error=1:print_stacktrace=1
+        run: ctest --test-dir build-native-sanitize --output-on-failure
+      - name: Install consumer smoke
+        env:
+          CXXFLAGS: -fsanitize=address,undefined -fno-omit-frame-pointer
+          LDFLAGS: -fsanitize=address,undefined
+        run: tests/install/smoke.sh build-native-sanitize /tmp/dynarmic-js-install

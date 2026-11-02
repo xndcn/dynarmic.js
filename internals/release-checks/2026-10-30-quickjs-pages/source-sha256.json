@@ -1,0 +1,11 @@
+{
+  "examples/browser/index.html": "c380436fe92a5a6402d108bbe677622af872a1b4f4c049e4108a38bf6e392b9e",
+  "examples/browser/styles.css": "108bde9f6e1ac526ed151360dbf543ea8abba68ec9154a10e9d2a357a83cdd64",
+  "examples/browser/app.js": "713a739826961ee36427e3f29f093e35bcfa338dfbdd0c9325003d73bd7ea144",
+  "examples/browser/quickjs-app.js": "3e61c2b5356a04eaffaf69217ff938133e0905142bd3336a45fc1a041ce758ad",
+  "examples/browser/quickjs-worker.js": "c9b8c4b2b907d5b0ad67b9c17646a0649fbc893b5894695a627a2ed6690a556c",
+  "examples/quickjs/workloads.js": "cff32113b074e4a0ede55920f1b4ac8a29bbf4996f2c9deb321f7e45f8c6c31e",
+  "examples/quickjs/build.py": "668df2a257232f12dd83f56cfac81390d5dfa0646e0255676e230e1b644e51c7",
+  "examples/quickjs/runner.c": "6ffe192abc120522552f4ee144a090f176e6511f3e035bd32778d5c41e76e6f4",
+  "examples/quickjs/preview.png": "d0b7a679ec25d4e04f6db298119b4c165e08bc94aea3fcb76d7437bf504d0b07"
+}

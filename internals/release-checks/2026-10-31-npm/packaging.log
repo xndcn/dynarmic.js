@@ -1,0 +1,22 @@
+test_changed_runtime_pair_is_rejected (test_packaging.PackageProvenanceTests) ... ok
+test_changed_source_at_same_revision_requires_rebuild (test_packaging.PackageProvenanceTests) ... ok
+test_checkout_or_submodule_revision_change_requires_rebuild (test_packaging.PackageProvenanceTests) ... ok
+test_compiler_input_omitted_by_git_ignore_is_rejected (test_packaging.PackageProvenanceTests) ... ok
+test_dirty_checkout_cannot_reuse_clean_runtime_for_publication (test_packaging.PackageProvenanceTests) ... ok
+test_dirty_local_snapshot_stages_but_cannot_claim_release (test_packaging.PackageProvenanceTests) ... Verified dynarmic.js@0.1.0-alpha.0: 14 files
+ok
+test_matching_clean_snapshot_stages_with_actual_archive_and_verifier (test_packaging.PackageProvenanceTests) ... Verified dynarmic.js@0.1.0-alpha.0: 14 files, clean release candidate
+ok
+test_new_and_removed_compiler_inputs_require_rebuild (test_packaging.PackageProvenanceTests) ... ok
+test_new_checkout_file_during_archiving_is_rejected (test_packaging.PackageProvenanceTests) ... ok
+test_nonproduction_configurations_are_rejected (test_packaging.PackageProvenanceTests) ... ok
+test_output_without_package_marker_is_preserved (test_packaging.PackageProvenanceTests) ... ok
+test_runtime_changed_during_archiving_is_rejected (test_packaging.PackageProvenanceTests) ... ok
+test_source_change_and_revert_during_archiving_is_rejected (test_packaging.PackageProvenanceTests) ... ok
+test_unknown_runtime_cleanliness_cannot_pass_release_gate (test_packaging.PackageProvenanceTests) ... ok
+test_wrapper_change_and_revert_during_archiving_is_rejected (test_packaging.PackageProvenanceTests) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.254s
+
+OK

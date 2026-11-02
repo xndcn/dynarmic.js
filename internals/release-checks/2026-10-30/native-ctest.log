@@ -1,0 +1,39 @@
+Test project /home/xiong/workspace/dynarmic.js/build-native
+      Start  1: arm_decoder
+ 1/17 Test  #1: arm_decoder ..........................   Passed    0.05 sec
+      Start  2: address_space
+ 2/17 Test  #2: address_space ........................   Passed    0.00 sec
+      Start  3: region_plan
+ 3/17 Test  #3: region_plan ..........................   Passed    0.08 sec
+      Start  4: region_selector
+ 4/17 Test  #4: region_selector ......................   Passed    0.00 sec
+      Start  5: region_selector_focus
+ 5/17 Test  #5: region_selector_focus ................   Passed    0.01 sec
+      Start  6: a64_region_focus
+ 6/17 Test  #6: a64_region_focus .....................   Passed    0.00 sec
+      Start  7: a64_region_focus_cmake_grammar
+ 7/17 Test  #7: a64_region_focus_cmake_grammar .......   Passed    0.01 sec
+      Start  8: region_diagnostics
+ 8/17 Test  #8: region_diagnostics ...................   Passed    0.00 sec
+      Start  9: a64_region_focus_cmake_integration
+ 9/17 Test  #9: a64_region_focus_cmake_integration ...   Passed    1.20 sec
+      Start 10: browser_manifest
+10/17 Test #10: browser_manifest .....................   Passed    1.95 sec
+      Start 11: browser_host_contract
+11/17 Test #11: browser_host_contract ................   Passed    2.22 sec
+      Start 12: benchmark_protocol
+12/17 Test #12: benchmark_protocol ...................   Passed    6.31 sec
+      Start 13: integer_edge_test
+13/17 Test #13: integer_edge_test ....................   Passed    0.78 sec
+      Start 14: vector_edge_test
+14/17 Test #14: vector_edge_test .....................   Passed    0.42 sec
+      Start 15: fp_edge_test
+15/17 Test #15: fp_edge_test .........................   Passed    0.07 sec
+      Start 16: memory_edge_test
+16/17 Test #16: memory_edge_test .....................   Passed    0.20 sec
+      Start 17: region_corpus
+17/17 Test #17: region_corpus ........................   Passed    0.24 sec
+
+100% tests passed, 0 tests failed out of 17
+
+Total Test time (real) =  13.55 sec

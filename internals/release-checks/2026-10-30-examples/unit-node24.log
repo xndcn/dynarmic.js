@@ -1,0 +1,41 @@
+✔ runs both architectures in every memory mode and shows exact-reference results (6.527707ms)
+✔ HTTP failure, rejected fetch and empty reference fail cleanly and permit retry (3.817898ms)
+✔ startup, execution, unreadable-message and postMessage errors discard Workers and permit retries (3.280004ms)
+✔ mismatch, unexpected halt, Worker error and malformed reply never pass (3.389656ms)
+✔ caught runtime failures discard poisoned modules before the next guest or rerun (1.777985ms)
+✔ a rerun clears previous success and statistics before fetching (0.829001ms)
+✔ Stop aborts a pending fetch, re-enables controls and allows a fresh run (0.984758ms)
+✔ Stop terminates a synchronous guest Worker, ignores its late replies and permits retry (5.44128ms)
+✔ the whole run deadline covers stalled fetches and stalled Workers (1.789588ms)
+✔ file URLs and missing browser capabilities fail with actionable feedback (1.835705ms)
+✔ reports failures to a same-origin smoke driver, preserves query and refuses foreign callbacks (1.476458ms)
+✔ Firefox runner waits for profile writes on graceful shutdown before reporting success (223.906245ms)
+✔ Firefox runner kills a browser that ignores SIGTERM and cleans its profile (1609.509761ms)
+✔ Firefox runner handles startup failure without waiting for the report timeout (52.465301ms)
+✔ Firefox runner checks the complete page bundle before starting a browser (90.403111ms)
+✔ Firefox runner handles early browser exit and cleans its profile (69.875692ms)
+✔ Firefox runner still waits for browser closure after a failed page report (207.325968ms)
+✔ Chrome smoke rejects invalid arguments before discovery (105.706278ms)
+✔ Chrome smoke handles malformed or empty target discovery (409.026882ms)
+✔ Chrome smoke bounds connection and request failures (275.343694ms)
+✔ Chrome smoke still recognizes a passing page and prints its output (46.470783ms)
+✔ Worker rejects oversized or malformed requests before changing guest memory (6.738757ms)
+✔ Worker loads a maximum-size binary entirely within guest RAM (1.008508ms)
+✔ Worker retries a failed module load and reuses a later successful instance (1.298414ms)
+✔ Worker rejects concurrent requests during module loading without replacing the running guest (1.13689ms)
+✔ Worker identifies missing Wasm features before loading the module (2.124616ms)
+✔ Worker rejects empty input without loading Wasm and permits a valid retry (1.770937ms)
+✔ Worker releases the request lock after initialization errors and guest faults (0.88315ms)
+✔ Worker reports a Wasm runtime trap as an ordinary failure reply (0.761952ms)
+✔ Worker reports compile counters only from the active JIT instance (0.82016ms)
+✔ strict browser configuration reports each missing prerequisite before compilation (444.803217ms)
+✔ native reference capture preserves exact stdout and spaced executable/output paths (76.200782ms)
+✔ native reference failures remove partial or stale output and fail the build (128.419511ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2302.636048

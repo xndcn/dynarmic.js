@@ -1,0 +1,115 @@
+{
+  "schema": "dynarmic.js/c-bench-reference-v1",
+  "cases": [
+    {
+      "id": "integer",
+      "index": 0,
+      "title": "Integer mix",
+      "description": "Dependent 32-bit multiply, XOR and rotate."
+    },
+    {
+      "id": "branch",
+      "index": 1,
+      "title": "Data-dependent branches",
+      "description": "Seeded branch choices with two distinct non-inlined call paths."
+    },
+    {
+      "id": "stream",
+      "index": 2,
+      "title": "Sequential array",
+      "description": "Read, update and sum an 8,192-word array in order."
+    },
+    {
+      "id": "pointer",
+      "index": 3,
+      "title": "Pointer chase",
+      "description": "Follow one shuffled 8,192-entry cycle with dependent loads."
+    },
+    {
+      "id": "float",
+      "index": 4,
+      "title": "Binary64 arithmetic",
+      "description": "Exactly representable dyadic products and sums from a seeded sequence."
+    }
+  ],
+  "profiles": {
+    "quick": {
+      "iterations": {
+        "integer": 4000000,
+        "branch": 1000000,
+        "stream": 8000000,
+        "pointer": 4000000,
+        "float": 4000000
+      },
+      "seed": 305419896,
+      "expected": {
+        "integer": 1376229747,
+        "branch": 3070096057,
+        "stream": 3629256032,
+        "pointer": 112897855,
+        "float": 3461951353
+      }
+    },
+    "full": {
+      "iterations": {
+        "integer": 16000000,
+        "branch": 4000000,
+        "stream": 32000000,
+        "pointer": 16000000,
+        "float": 16000000
+      },
+      "seed": 305419896,
+      "expected": {
+        "integer": 2030965970,
+        "branch": 2804494586,
+        "stream": 1157981115,
+        "pointer": 3815798204,
+        "float": 1295591077
+      }
+    }
+  },
+  "protocol": {
+    "firstRuns": 1,
+    "warmupRuns": 2,
+    "measuredRuns": 3,
+    "totalRuns": 6,
+    "rounds": 3,
+    "guestRamBytes": 16777216,
+    "mailboxAddress": 61440,
+    "magic": 1128418865,
+    "mailbox": {
+      "request": [
+        "magic",
+        "caseIndex",
+        "iterations",
+        "seed"
+      ],
+      "statusWord": 4,
+      "completedRunsWord": 5,
+      "checksumsWord": 6,
+      "status": {
+        "running": 1,
+        "complete": 2,
+        "invalid": 3
+      }
+    },
+    "arm": {
+      "entry": 65536,
+      "markSvc": 3,
+      "exitSvc": 0
+    },
+    "x86": {
+      "markPort": 57856,
+      "exitPort": 57864,
+      "markValues": [
+        0,
+        1
+      ]
+    },
+    "wasm": {
+      "initExport": "bench_init",
+      "runExport": "bench_run"
+    }
+  },
+  "oracle": "Independent Python unsigned arithmetic; binary64 case uses exact rational integer numerators"
+}

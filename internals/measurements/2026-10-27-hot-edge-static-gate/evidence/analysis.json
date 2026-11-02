@@ -1,0 +1,1846 @@
+{
+  "source": "ec4701f20d2e53a133367e4048f3f0fc2b981c82",
+  "upstream": "a41c380246d3d9f9874f0f792d234dc0cc17c180",
+  "git": {
+    "dirty": false
+  },
+  "architecture": "a64",
+  "memoryMode": "0",
+  "workloadSha256": "ad43250ce2139ab0d0fdbf1eac0bb1284e00fde62419d387accfe6348cca17aa",
+  "a64BinarySha256": "8f96e0f0f3beb9a5fb8765405926655c182bfcdfe93a8f99dc6ea32dec227ab1",
+  "loadBase": 65536,
+  "blockDumpSha256": "d59bc78bbf7058ef103428ac3f8b1e5d12dd95944d4e4218e89afa18b010c5e7",
+  "reportA64BinarySha256": "8f96e0f0f3beb9a5fb8765405926655c182bfcdfe93a8f99dc6ea32dec227ab1",
+  "schema": "offline-hot-edge-static-probe-v1",
+  "semantics": "direct-branch-only; 0x12370 is not BL; RSB counts are not attributed to this edge",
+  "limits": {
+    "max_blocks": 64,
+    "max_instructions": 2000,
+    "max_guest_distance": 4096,
+    "full_graph_safety_blocks": 1024
+  },
+  "baseline": {
+    "blocks": 64,
+    "instructions": 511,
+    "descriptors": [
+      73760,
+      73772,
+      73796,
+      73804,
+      73820,
+      73832,
+      73844,
+      73856,
+      73860,
+      73868,
+      73872,
+      73884,
+      73908,
+      73912,
+      73924,
+      73936,
+      73948,
+      73960,
+      73972,
+      73988,
+      74004,
+      74020,
+      74036,
+      74236,
+      74252,
+      74264,
+      74272,
+      74280,
+      74288,
+      74296,
+      74304,
+      74344,
+      74348,
+      74356,
+      74364,
+      74400,
+      74408,
+      74416,
+      74432,
+      74444,
+      74456,
+      74464,
+      74480,
+      74488,
+      74504,
+      74528,
+      74544,
+      74556,
+      74576,
+      74580,
+      74584,
+      74604,
+      74608,
+      74648,
+      74652,
+      74660,
+      74668,
+      74672,
+      74696,
+      74720,
+      74732,
+      74788,
+      74792,
+      75232
+    ],
+    "rejected": {
+      "blocks": 10
+    }
+  },
+  "full_reachable_within_distance": {
+    "blocks": 88,
+    "instructions": 701,
+    "rejected": {},
+    "descriptors": [
+      73760,
+      73772,
+      73796,
+      73804,
+      73820,
+      73832,
+      73844,
+      73856,
+      73860,
+      73868,
+      73872,
+      73884,
+      73908,
+      73912,
+      73924,
+      73936,
+      73948,
+      73960,
+      73972,
+      73988,
+      74004,
+      74020,
+      74036,
+      74052,
+      74068,
+      74084,
+      74100,
+      74116,
+      74132,
+      74148,
+      74164,
+      74180,
+      74196,
+      74236,
+      74252,
+      74264,
+      74272,
+      74280,
+      74288,
+      74296,
+      74304,
+      74316,
+      74340,
+      74344,
+      74348,
+      74356,
+      74364,
+      74388,
+      74396,
+      74400,
+      74408,
+      74416,
+      74428,
+      74432,
+      74444,
+      74456,
+      74464,
+      74472,
+      74480,
+      74488,
+      74504,
+      74528,
+      74540,
+      74544,
+      74556,
+      74576,
+      74580,
+      74584,
+      74604,
+      74608,
+      74620,
+      74632,
+      74636,
+      74648,
+      74652,
+      74660,
+      74668,
+      74672,
+      74696,
+      74700,
+      74720,
+      74732,
+      74744,
+      74760,
+      74776,
+      74788,
+      74792,
+      75232
+    ],
+    "block_info": [
+      {
+        "descriptor": 73760,
+        "instructions": 7,
+        "successors": [
+          74236,
+          73772
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74236
+        ],
+        "push_rsb_continuations": [
+          73772
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000121fc}}"
+      },
+      {
+        "descriptor": 73772,
+        "instructions": 22,
+        "successors": [
+          73796,
+          73760
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          73796,
+          73760
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{0000000000012044}}, LinkBlock{{0000000000012020}}}"
+      },
+      {
+        "descriptor": 73796,
+        "instructions": 9,
+        "successors": [
+          73860,
+          73804
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          73860,
+          73804
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{0000000000012084}}, LinkBlock{{000000000001204c}}}"
+      },
+      {
+        "descriptor": 73804,
+        "instructions": 10,
+        "successors": [
+          73832
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          73832
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{0000000000012068}}"
+      },
+      {
+        "descriptor": 73820,
+        "instructions": 8,
+        "successors": [
+          73856,
+          73832
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          73856,
+          73832
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{hs, LinkBlock{{0000000000012080}}, LinkBlock{{0000000000012068}}}"
+      },
+      {
+        "descriptor": 73832,
+        "instructions": 7,
+        "successors": [
+          73820,
+          73844
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          73820,
+          73844
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{eq, LinkBlock{{000000000001205c}}, LinkBlock{{0000000000012074}}}"
+      },
+      {
+        "descriptor": 73844,
+        "instructions": 7,
+        "successors": [
+          73820
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          73820
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{000000000001205c}}"
+      },
+      {
+        "descriptor": 73856,
+        "instructions": 9,
+        "successors": [
+          73908,
+          73868
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          73908,
+          73868
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{00000000000120b4}}, LinkBlock{{000000000001208c}}}"
+      },
+      {
+        "descriptor": 73860,
+        "instructions": 7,
+        "successors": [
+          73908,
+          73868
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          73908,
+          73868
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{00000000000120b4}}, LinkBlock{{000000000001208c}}}"
+      },
+      {
+        "descriptor": 73868,
+        "instructions": 10,
+        "successors": [
+          74236,
+          73884
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74236
+        ],
+        "push_rsb_continuations": [
+          73884
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000121fc}}"
+      },
+      {
+        "descriptor": 73872,
+        "instructions": 7,
+        "successors": [
+          74236,
+          73884
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74236
+        ],
+        "push_rsb_continuations": [
+          73884
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000121fc}}"
+      },
+      {
+        "descriptor": 73884,
+        "instructions": 22,
+        "successors": [
+          73908,
+          73872
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          73908,
+          73872
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{00000000000120b4}}, LinkBlock{{0000000000012090}}}"
+      },
+      {
+        "descriptor": 73908,
+        "instructions": 3,
+        "successors": [
+          73960,
+          73912
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          73960,
+          73912
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{00000000000120e8}}, LinkBlock{{00000000000120b8}}}"
+      },
+      {
+        "descriptor": 73912,
+        "instructions": 8,
+        "successors": [
+          73936
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          73936
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{00000000000120d0}}"
+      },
+      {
+        "descriptor": 73924,
+        "instructions": 8,
+        "successors": [
+          73960,
+          73936
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          73960,
+          73936
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{hs, LinkBlock{{00000000000120e8}}, LinkBlock{{00000000000120d0}}}"
+      },
+      {
+        "descriptor": 73936,
+        "instructions": 7,
+        "successors": [
+          73924,
+          73948
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          73924,
+          73948
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{eq, LinkBlock{{00000000000120c4}}, LinkBlock{{00000000000120dc}}}"
+      },
+      {
+        "descriptor": 73948,
+        "instructions": 7,
+        "successors": [
+          73924
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          73924
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{00000000000120c4}}"
+      },
+      {
+        "descriptor": 73960,
+        "instructions": 8,
+        "successors": [
+          75232,
+          73972
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [
+          73972
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 73972,
+        "instructions": 9,
+        "successors": [
+          75232,
+          73988
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [
+          73988
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 73988,
+        "instructions": 9,
+        "successors": [
+          75232,
+          74004
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [
+          74004
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 74004,
+        "instructions": 9,
+        "successors": [
+          75232,
+          74020
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [
+          74020
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 74020,
+        "instructions": 9,
+        "successors": [
+          75232,
+          74036
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [
+          74036
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 74036,
+        "instructions": 9,
+        "successors": [
+          75232,
+          74052
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [
+          74052
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 74052,
+        "instructions": 9,
+        "successors": [
+          75232,
+          74068
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [
+          74068
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 74068,
+        "instructions": 9,
+        "successors": [
+          75232,
+          74084
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [
+          74084
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 74084,
+        "instructions": 9,
+        "successors": [
+          75232,
+          74100
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [
+          74100
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 74100,
+        "instructions": 9,
+        "successors": [
+          75232,
+          74116
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [
+          74116
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 74116,
+        "instructions": 9,
+        "successors": [
+          75232,
+          74132
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [
+          74132
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 74132,
+        "instructions": 9,
+        "successors": [
+          75232,
+          74148
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [
+          74148
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 74148,
+        "instructions": 9,
+        "successors": [
+          75232,
+          74164
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [
+          74164
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 74164,
+        "instructions": 9,
+        "successors": [
+          75232,
+          74180
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [
+          74180
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 74180,
+        "instructions": 9,
+        "successors": [
+          75232,
+          74196
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [
+          74196
+        ],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 74196,
+        "instructions": 39,
+        "successors": [
+          75232
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          75232
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{00000000000125e0}}"
+      },
+      {
+        "descriptor": 74236,
+        "instructions": 9,
+        "successors": [
+          74720,
+          74252
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74720,
+          74252
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{00000000000123e0}}, LinkBlock{{000000000001220c}}}"
+      },
+      {
+        "descriptor": 74252,
+        "instructions": 9,
+        "successors": [
+          74792,
+          74272
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74792,
+          74272
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{eq, LinkBlock{{0000000000012428}}, LinkBlock{{0000000000012220}}}"
+      },
+      {
+        "descriptor": 74264,
+        "instructions": 4,
+        "successors": [
+          74792,
+          74272
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74792,
+          74272
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{eq, LinkBlock{{0000000000012428}}, LinkBlock{{0000000000012220}}}"
+      },
+      {
+        "descriptor": 74272,
+        "instructions": 4,
+        "successors": [
+          74344,
+          74280
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74344,
+          74280
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{le, LinkBlock{{0000000000012268}}, LinkBlock{{0000000000012228}}}"
+      },
+      {
+        "descriptor": 74280,
+        "instructions": 4,
+        "successors": [
+          74400,
+          74288
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74400,
+          74288
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{gt, LinkBlock{{00000000000122a0}}, LinkBlock{{0000000000012230}}}"
+      },
+      {
+        "descriptor": 74288,
+        "instructions": 4,
+        "successors": [
+          74480,
+          74296
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74480,
+          74296
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{eq, LinkBlock{{00000000000122f0}}, LinkBlock{{0000000000012238}}}"
+      },
+      {
+        "descriptor": 74296,
+        "instructions": 4,
+        "successors": [
+          74652,
+          74304
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74652,
+          74304
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{ne, LinkBlock{{000000000001239c}}, LinkBlock{{0000000000012240}}}"
+      },
+      {
+        "descriptor": 74304,
+        "instructions": 7,
+        "successors": [
+          74636,
+          74316
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74636,
+          74316
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{ne, LinkBlock{{000000000001238c}}, LinkBlock{{000000000001224c}}}"
+      },
+      {
+        "descriptor": 74316,
+        "instructions": 15,
+        "successors": [
+          74340,
+          74660
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74340,
+          74660
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{0000000000012264}}, LinkBlock{{00000000000123a4}}}"
+      },
+      {
+        "descriptor": 74340,
+        "instructions": 0,
+        "successors": [
+          74732
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74732
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{00000000000123ec}}"
+      },
+      {
+        "descriptor": 74344,
+        "instructions": 3,
+        "successors": [
+          74432,
+          74348
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74432,
+          74348
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{00000000000122c0}}, LinkBlock{{000000000001226c}}}"
+      },
+      {
+        "descriptor": 74348,
+        "instructions": 4,
+        "successors": [
+          74544,
+          74356
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74544,
+          74356
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{eq, LinkBlock{{0000000000012330}}, LinkBlock{{0000000000012274}}}"
+      },
+      {
+        "descriptor": 74356,
+        "instructions": 4,
+        "successors": [
+          74652,
+          74364
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74652,
+          74364
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{ne, LinkBlock{{000000000001239c}}, LinkBlock{{000000000001227c}}}"
+      },
+      {
+        "descriptor": 74364,
+        "instructions": 12,
+        "successors": [
+          74652,
+          74388
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74652,
+          74388
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{eq, LinkBlock{{000000000001239c}}, LinkBlock{{0000000000012294}}}"
+      },
+      {
+        "descriptor": 74388,
+        "instructions": 4,
+        "successors": [
+          74652,
+          74396
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74652,
+          74396
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{eq, LinkBlock{{000000000001239c}}, LinkBlock{{000000000001229c}}}"
+      },
+      {
+        "descriptor": 74396,
+        "instructions": 0,
+        "successors": [
+          74788
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74788
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{0000000000012424}}"
+      },
+      {
+        "descriptor": 74400,
+        "instructions": 4,
+        "successors": [
+          74504,
+          74408
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74504,
+          74408
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{eq, LinkBlock{{0000000000012308}}, LinkBlock{{00000000000122a8}}}"
+      },
+      {
+        "descriptor": 74408,
+        "instructions": 4,
+        "successors": [
+          74652,
+          74416
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74652,
+          74416
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{ne, LinkBlock{{000000000001239c}}, LinkBlock{{00000000000122b0}}}"
+      },
+      {
+        "descriptor": 74416,
+        "instructions": 6,
+        "successors": [
+          74528,
+          74428
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74528,
+          74428
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{hi, LinkBlock{{0000000000012320}}, LinkBlock{{00000000000122bc}}}"
+      },
+      {
+        "descriptor": 74428,
+        "instructions": 0,
+        "successors": [
+          74744
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74744
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{00000000000123f8}}"
+      },
+      {
+        "descriptor": 74432,
+        "instructions": 6,
+        "successors": [
+          74580,
+          74444
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74580,
+          74444
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{hi, LinkBlock{{0000000000012354}}, LinkBlock{{00000000000122cc}}}"
+      },
+      {
+        "descriptor": 74444,
+        "instructions": 5,
+        "successors": [
+          74584,
+          74456
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74584,
+          74456
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{eq, LinkBlock{{0000000000012358}}, LinkBlock{{00000000000122d8}}}"
+      },
+      {
+        "descriptor": 74456,
+        "instructions": 4,
+        "successors": [
+          74584,
+          74464
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74584,
+          74464
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{eq, LinkBlock{{0000000000012358}}, LinkBlock{{00000000000122e0}}}"
+      },
+      {
+        "descriptor": 74464,
+        "instructions": 4,
+        "successors": [
+          74700,
+          74472
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74700,
+          74472
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{ne, LinkBlock{{00000000000123cc}}, LinkBlock{{00000000000122e8}}}"
+      },
+      {
+        "descriptor": 74472,
+        "instructions": 1,
+        "successors": [
+          74584
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74584
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{0000000000012358}}"
+      },
+      {
+        "descriptor": 74480,
+        "instructions": 4,
+        "successors": [
+          74608,
+          74488
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74608,
+          74488
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{ne, LinkBlock{{0000000000012370}}, LinkBlock{{00000000000122f8}}}"
+      },
+      {
+        "descriptor": 74488,
+        "instructions": 7,
+        "successors": [
+          74648
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74648
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{0000000000012398}}"
+      },
+      {
+        "descriptor": 74504,
+        "instructions": 13,
+        "successors": [
+          74788,
+          74528
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74788,
+          74528
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{lo, LinkBlock{{0000000000012424}}, LinkBlock{{0000000000012320}}}"
+      },
+      {
+        "descriptor": 74528,
+        "instructions": 9,
+        "successors": [
+          74540,
+          74660
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74540,
+          74660
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{000000000001232c}}, LinkBlock{{00000000000123a4}}}"
+      },
+      {
+        "descriptor": 74540,
+        "instructions": 0,
+        "successors": [
+          74732
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74732
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{00000000000123ec}}"
+      },
+      {
+        "descriptor": 74544,
+        "instructions": 6,
+        "successors": [
+          74672,
+          74556
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74672,
+          74556
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{hs, LinkBlock{{00000000000123b0}}, LinkBlock{{000000000001233c}}}"
+      },
+      {
+        "descriptor": 74556,
+        "instructions": 11,
+        "successors": [
+          74648,
+          74576
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74648,
+          74576
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{eq, LinkBlock{{0000000000012398}}, LinkBlock{{0000000000012350}}}"
+      },
+      {
+        "descriptor": 74576,
+        "instructions": 0,
+        "successors": [
+          74788
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74788
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{0000000000012424}}"
+      },
+      {
+        "descriptor": 74580,
+        "instructions": 13,
+        "successors": [
+          74604,
+          74660
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74604,
+          74660
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{000000000001236c}}, LinkBlock{{00000000000123a4}}}"
+      },
+      {
+        "descriptor": 74584,
+        "instructions": 12,
+        "successors": [
+          74604,
+          74660
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74604,
+          74660
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{000000000001236c}}, LinkBlock{{00000000000123a4}}}"
+      },
+      {
+        "descriptor": 74604,
+        "instructions": 0,
+        "successors": [
+          74732
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74732
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{00000000000123ec}}"
+      },
+      {
+        "descriptor": 74608,
+        "instructions": 6,
+        "successors": [
+          74776,
+          74620
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74776,
+          74620
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{ls, LinkBlock{{0000000000012418}}, LinkBlock{{000000000001237c}}}"
+      },
+      {
+        "descriptor": 74620,
+        "instructions": 9,
+        "successors": [
+          74632,
+          74660
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74632,
+          74660
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{0000000000012388}}, LinkBlock{{00000000000123a4}}}"
+      },
+      {
+        "descriptor": 74632,
+        "instructions": 0,
+        "successors": [
+          74732
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74732
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{00000000000123ec}}"
+      },
+      {
+        "descriptor": 74636,
+        "instructions": 6,
+        "successors": [
+          74760,
+          74648
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74760,
+          74648
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{ls, LinkBlock{{0000000000012408}}, LinkBlock{{0000000000012398}}}"
+      },
+      {
+        "descriptor": 74648,
+        "instructions": 9,
+        "successors": [
+          74732,
+          74660
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74732,
+          74660
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{00000000000123ec}}, LinkBlock{{00000000000123a4}}}"
+      },
+      {
+        "descriptor": 74652,
+        "instructions": 8,
+        "successors": [
+          74732,
+          74660
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74732,
+          74660
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{00000000000123ec}}, LinkBlock{{00000000000123a4}}}"
+      },
+      {
+        "descriptor": 74660,
+        "instructions": 4,
+        "successors": [
+          74264,
+          74668
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74264,
+          74668
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = If{ne, LinkBlock{{0000000000012218}}, LinkBlock{{00000000000123ac}}}"
+      },
+      {
+        "descriptor": 74668,
+        "instructions": 0,
+        "successors": [
+          74732
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74732
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{00000000000123ec}}"
+      },
+      {
+        "descriptor": 74672,
+        "instructions": 15,
+        "successors": [
+          74696,
+          74660
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74696,
+          74660
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = CheckBit{LinkBlock{{00000000000123c8}}, LinkBlock{{00000000000123a4}}}"
+      },
+      {
+        "descriptor": 74696,
+        "instructions": 0,
+        "successors": [
+          74732
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74732
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{00000000000123ec}}"
+      },
+      {
+        "descriptor": 74700,
+        "instructions": 8,
+        "successors": [
+          74584
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74584
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{0000000000012358}}"
+      },
+      {
+        "descriptor": 74720,
+        "instructions": 6,
+        "successors": [],
+        "condition_failed_successor": null,
+        "direct_successors": [],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = PopRSBHint{}"
+      },
+      {
+        "descriptor": 74732,
+        "instructions": 7,
+        "successors": [],
+        "condition_failed_successor": null,
+        "direct_successors": [],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = PopRSBHint{}"
+      },
+      {
+        "descriptor": 74744,
+        "instructions": 7,
+        "successors": [
+          74788
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74788
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{0000000000012424}}"
+      },
+      {
+        "descriptor": 74760,
+        "instructions": 7,
+        "successors": [
+          74788
+        ],
+        "condition_failed_successor": null,
+        "direct_successors": [
+          74788
+        ],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = LinkBlock{{0000000000012424}}"
+      },
+      {
+        "descriptor": 74776,
+        "instructions": 13,
+        "successors": [],
+        "condition_failed_successor": null,
+        "direct_successors": [],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = PopRSBHint{}"
+      },
+      {
+        "descriptor": 74788,
+        "instructions": 6,
+        "successors": [],
+        "condition_failed_successor": null,
+        "direct_successors": [],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = PopRSBHint{}"
+      },
+      {
+        "descriptor": 74792,
+        "instructions": 5,
+        "successors": [],
+        "condition_failed_successor": null,
+        "direct_successors": [],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = PopRSBHint{}"
+      },
+      {
+        "descriptor": 75232,
+        "instructions": 58,
+        "successors": [],
+        "condition_failed_successor": null,
+        "direct_successors": [],
+        "push_rsb_continuations": [],
+        "terminal": "terminal = PopRSBHint{}"
+      }
+    ]
+  },
+  "target_region_rsb_exits": [
+    {
+      "block": 74776,
+      "count": 4800000
+    },
+    {
+      "block": 74788,
+      "count": 1600000
+    },
+    {
+      "block": 74792,
+      "count": 41599998
+    }
+  ],
+  "paths": {
+    "entry_to_hot_exit": [
+      73772,
+      73760,
+      74236,
+      74252,
+      74272,
+      74280,
+      74288,
+      74480,
+      74608
+    ],
+    "target_to_12418": [
+      74620,
+      74660,
+      74264,
+      74272,
+      74280,
+      74288,
+      74480,
+      74608,
+      74776
+    ],
+    "target_to_12424": [
+      74620,
+      74660,
+      74264,
+      74272,
+      74280,
+      74400,
+      74504,
+      74788
+    ],
+    "target_to_12428": [
+      74620,
+      74660,
+      74264,
+      74792
+    ]
+  },
+  "required": {
+    "blocks": 17,
+    "instructions": 127,
+    "descriptors": [
+      73760,
+      73772,
+      74236,
+      74252,
+      74264,
+      74272,
+      74280,
+      74288,
+      74400,
+      74480,
+      74504,
+      74608,
+      74620,
+      74660,
+      74776,
+      74788,
+      74792
+    ],
+    "baseline_blocks_displaced": [
+      73796,
+      73804,
+      73820,
+      73832,
+      73844,
+      73856,
+      73860,
+      73868,
+      73872,
+      73884,
+      73908,
+      73912,
+      73924,
+      73936,
+      73948,
+      73960,
+      73972,
+      73988,
+      74004,
+      74020,
+      74036,
+      74296,
+      74304,
+      74344,
+      74348,
+      74356,
+      74364,
+      74408,
+      74416,
+      74432,
+      74444,
+      74456,
+      74464,
+      74488,
+      74528,
+      74544,
+      74556,
+      74576,
+      74580,
+      74584,
+      74604,
+      74648,
+      74652,
+      74668,
+      74672,
+      74696,
+      74720,
+      74732,
+      75232
+    ],
+    "new_blocks_vs_baseline": [
+      74620,
+      74776
+    ],
+    "newly_external_edges_before_optional_fill": [
+      {
+        "block": 73772,
+        "target": 73796,
+        "was_baseline_internal": true
+      },
+      {
+        "block": 74236,
+        "target": 74720,
+        "was_baseline_internal": true
+      },
+      {
+        "block": 74272,
+        "target": 74344,
+        "was_baseline_internal": true
+      },
+      {
+        "block": 74288,
+        "target": 74296,
+        "was_baseline_internal": true
+      },
+      {
+        "block": 74400,
+        "target": 74408,
+        "was_baseline_internal": true
+      },
+      {
+        "block": 74480,
+        "target": 74488,
+        "was_baseline_internal": true
+      },
+      {
+        "block": 74504,
+        "target": 74528,
+        "was_baseline_internal": true
+      },
+      {
+        "block": 74620,
+        "target": 74632,
+        "was_baseline_internal": false
+      },
+      {
+        "block": 74660,
+        "target": 74668,
+        "was_baseline_internal": true
+      }
+    ]
+  },
+  "filled_selection": {
+    "blocks": 64,
+    "instructions": 524,
+    "descriptors": [
+      73760,
+      73772,
+      73796,
+      73804,
+      73820,
+      73832,
+      73844,
+      73856,
+      73860,
+      73868,
+      73872,
+      73884,
+      73908,
+      73912,
+      73924,
+      73936,
+      73948,
+      73960,
+      73972,
+      73988,
+      74004,
+      74020,
+      74036,
+      74236,
+      74252,
+      74264,
+      74272,
+      74280,
+      74288,
+      74296,
+      74304,
+      74344,
+      74348,
+      74356,
+      74364,
+      74400,
+      74408,
+      74416,
+      74432,
+      74444,
+      74456,
+      74464,
+      74480,
+      74488,
+      74504,
+      74528,
+      74544,
+      74556,
+      74580,
+      74584,
+      74604,
+      74608,
+      74620,
+      74652,
+      74660,
+      74668,
+      74672,
+      74696,
+      74720,
+      74732,
+      74776,
+      74788,
+      74792,
+      75232
+    ],
+    "new_blocks_vs_baseline": [
+      74620,
+      74776
+    ],
+    "displaced_baseline_blocks": [
+      74576,
+      74648
+    ],
+    "hot_edge_internal": true,
+    "all_return_blocks_present": true,
+    "baseline_return_sites": [
+      73772,
+      73884,
+      73972,
+      73988,
+      74004,
+      74020,
+      74036
+    ],
+    "return_sites_present": [
+      73772,
+      73884,
+      73972,
+      73988,
+      74004,
+      74020,
+      74036
+    ],
+    "missing_return_sites": [],
+    "internalized_measured_external_edges": [
+      {
+        "block": 74608,
+        "target": 74620,
+        "count": 47199999
+      },
+      {
+        "block": 74608,
+        "target": 74776,
+        "count": 2399999
+      }
+    ],
+    "internalized_measured_external_total": 49599998,
+    "externalized_baseline_internal_edges": [
+      {
+        "block": 74488,
+        "target": 74648,
+        "previous_dynamic_count": "not-measured-internal-edge"
+      },
+      {
+        "block": 74556,
+        "target": 74648,
+        "previous_dynamic_count": "not-measured-internal-edge"
+      },
+      {
+        "block": 74556,
+        "target": 74576,
+        "previous_dynamic_count": "not-measured-internal-edge"
+      }
+    ],
+    "external_edges": [
+      {
+        "block": 74036,
+        "target": 74052,
+        "previous_external_count": null,
+        "was_baseline_internal": false
+      },
+      {
+        "block": 74304,
+        "target": 74636,
+        "previous_external_count": 20799999,
+        "was_baseline_internal": false
+      },
+      {
+        "block": 74304,
+        "target": 74316,
+        "previous_external_count": 0,
+        "was_baseline_internal": false
+      },
+      {
+        "block": 74364,
+        "target": 74388,
+        "previous_external_count": 0,
+        "was_baseline_internal": false
+      },
+      {
+        "block": 74416,
+        "target": 74428,
+        "previous_external_count": 0,
+        "was_baseline_internal": false
+      },
+      {
+        "block": 74464,
+        "target": 74700,
+        "previous_external_count": 11199999,
+        "was_baseline_internal": false
+      },
+      {
+        "block": 74464,
+        "target": 74472,
+        "previous_external_count": 7199999,
+        "was_baseline_internal": false
+      },
+      {
+        "block": 74488,
+        "target": 74648,
+        "previous_external_count": null,
+        "was_baseline_internal": true
+      },
+      {
+        "block": 74528,
+        "target": 74540,
+        "previous_external_count": 0,
+        "was_baseline_internal": false
+      },
+      {
+        "block": 74556,
+        "target": 74648,
+        "previous_external_count": null,
+        "was_baseline_internal": true
+      },
+      {
+        "block": 74556,
+        "target": 74576,
+        "previous_external_count": null,
+        "was_baseline_internal": true
+      },
+      {
+        "block": 74620,
+        "target": 74632,
+        "previous_external_count": null,
+        "was_baseline_internal": false
+      }
+    ]
+  },
+  "static_eligibility": {
+    "entry_reachable": true,
+    "is_architectural_call": false,
+    "continuation_required": false,
+    "fits_block_cap": true,
+    "fits_ir_cap": true,
+    "all_baseline_return_sites_present": true
+  }
+}

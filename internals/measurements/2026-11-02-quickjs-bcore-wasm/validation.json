@@ -1,0 +1,41 @@
+{
+  "verified": true,
+  "observations": 60,
+  "pairedCases": 30,
+  "rounds": [
+    2.196551459145793,
+    2.194441834202351,
+    2.1916292953283127
+  ],
+  "eightSuiteMedian": 2.194441834202351,
+  "inputHashesUnchanged": true,
+  "matchedGuestOutputs": {
+    "lcg": 428440788,
+    "sieve": 6542,
+    "pi": 3141587
+  },
+  "bcoreStats": {
+    "tierSubmitted": {
+      "min": 167,
+      "max": 892
+    },
+    "tierInstalled": {
+      "min": 167,
+      "max": 892
+    },
+    "tierFailed": {
+      "min": 0,
+      "max": 0
+    },
+    "executionLlvmLoads": {
+      "min": 0,
+      "max": 0
+    },
+    "compilerMemoryBytes": {
+      "min": 402653184,
+      "max": 402653184
+    }
+  },
+  "browserAttempts": 3,
+  "officialMeasuredInvocations": 2109
+}

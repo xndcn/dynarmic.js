@@ -1,0 +1,10 @@
+// op name, kind (for the reference), lane bits, [signedness]
+Q2(qadd_s8) Q2(qadd_s16) Q2(qadd_s32) Q2(qadd_u8) Q2(qadd_u16) Q2(qadd_u32)
+Q2(qsub_s8) Q2(qsub_s16) Q2(qsub_s32) Q2(qsub_u8) Q2(qsub_u16) Q2(qsub_u32)
+Q1(qabs_s8) Q1(qabs_s16) Q1(qabs_s32) Q1(qneg_s8) Q1(qneg_s16) Q1(qneg_s32)
+Q2(qdmulh_s16) Q2(qdmulh_s32) Q2(qrdmulh_s16) Q2(qrdmulh_s32) Q2(qdmull_s16) Q2(qdmull_s32)
+Q2(qshl_s8) Q2(qshl_s16) Q2(qshl_s32) Q2(qshl_s64) Q2(qshl_u8) Q2(qshl_u16) Q2(qshl_u32) Q2(qshl_u64)
+Q1(qshli_s8) Q1(qshli_s16) Q1(qshli_s32) Q1(qshli_s64) Q1(qshli_u8) Q1(qshli_u16) Q1(qshli_u32) Q1(qshli_u64)
+Q1(qshlu_s8) Q1(qshlu_s16) Q1(qshlu_s32) Q1(qshlu_s64)
+Q1(qmovn_s16) Q1(qmovn_s32) Q1(qmovn_s64) Q1(qmovn_u16) Q1(qmovn_u32) Q1(qmovn_u64)
+Q1(qmovun_s16) Q1(qmovun_s32) Q1(qmovun_s64)

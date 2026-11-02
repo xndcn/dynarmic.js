@@ -1,0 +1,22 @@
+# Emit fresh modules before executing them under Node. Keep emission failures
+# and validation failures visible to CTest, and never validate stale modules.
+foreach(variable EMITTER NODE VALIDATOR OUTPUT_DIR OUTPUT_NAME)
+    if (NOT DEFINED ${variable})
+        message(FATAL_ERROR "${variable} is required")
+    endif()
+endforeach()
+
+file(REMOVE_RECURSE "${OUTPUT_DIR}")
+file(MAKE_DIRECTORY "${OUTPUT_DIR}")
+set(output "${OUTPUT_DIR}")
+if (NOT OUTPUT_NAME STREQUAL "")
+    set(output "${OUTPUT_DIR}/${OUTPUT_NAME}")
+endif()
+execute_process(COMMAND "${EMITTER}" "${output}" RESULT_VARIABLE result)
+if (NOT result EQUAL 0)
+    message(FATAL_ERROR "Wasm emission failed: ${result}")
+endif()
+execute_process(COMMAND "${NODE}" "${VALIDATOR}" "${output}" RESULT_VARIABLE result)
+if (NOT result EQUAL 0)
+    message(FATAL_ERROR "emitted Wasm validation failed: ${result}")
+endif()

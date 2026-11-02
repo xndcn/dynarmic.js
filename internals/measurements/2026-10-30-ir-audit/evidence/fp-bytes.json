@@ -1,0 +1,296 @@
+{
+  "moduleCount": 48,
+  "beforeBytes": 14192,
+  "intermediateBytes": 26172,
+  "finalBytes": 19996,
+  "modules": [
+    {
+      "name": "32-0-0-0-1.wasm",
+      "before": 214,
+      "intermediate": 238,
+      "final": 198
+    },
+    {
+      "name": "32-0-0-1-0.wasm",
+      "before": 566,
+      "intermediate": 720,
+      "final": 556
+    },
+    {
+      "name": "32-0-0-1-1.wasm",
+      "before": 370,
+      "intermediate": 458,
+      "final": 294
+    },
+    {
+      "name": "32-0-1-0-1.wasm",
+      "before": 214,
+      "intermediate": 238,
+      "final": 198
+    },
+    {
+      "name": "32-0-1-1-0.wasm",
+      "before": 566,
+      "intermediate": 720,
+      "final": 556
+    },
+    {
+      "name": "32-0-1-1-1.wasm",
+      "before": 370,
+      "intermediate": 458,
+      "final": 294
+    },
+    {
+      "name": "32-1-0-0-1.wasm",
+      "before": 214,
+      "intermediate": 350,
+      "final": 310
+    },
+    {
+      "name": "32-1-0-1-0.wasm",
+      "before": 566,
+      "intermediate": 720,
+      "final": 556
+    },
+    {
+      "name": "32-1-0-1-1.wasm",
+      "before": 574,
+      "intermediate": 736,
+      "final": 572
+    },
+    {
+      "name": "32-1-1-0-1.wasm",
+      "before": 214,
+      "intermediate": 350,
+      "final": 310
+    },
+    {
+      "name": "32-1-1-1-0.wasm",
+      "before": 566,
+      "intermediate": 720,
+      "final": 556
+    },
+    {
+      "name": "32-1-1-1-1.wasm",
+      "before": 574,
+      "intermediate": 736,
+      "final": 572
+    },
+    {
+      "name": "32-2-0-0-1.wasm",
+      "before": 210,
+      "intermediate": 227,
+      "final": 187
+    },
+    {
+      "name": "32-2-0-1-0.wasm",
+      "before": 566,
+      "intermediate": 720,
+      "final": 556
+    },
+    {
+      "name": "32-2-0-1-1.wasm",
+      "before": 362,
+      "intermediate": 442,
+      "final": 278
+    },
+    {
+      "name": "32-2-1-0-1.wasm",
+      "before": 210,
+      "intermediate": 227,
+      "final": 187
+    },
+    {
+      "name": "32-2-1-1-0.wasm",
+      "before": 566,
+      "intermediate": 720,
+      "final": 556
+    },
+    {
+      "name": "32-2-1-1-1.wasm",
+      "before": 362,
+      "intermediate": 442,
+      "final": 278
+    },
+    {
+      "name": "32-3-0-0-1.wasm",
+      "before": 210,
+      "intermediate": 339,
+      "final": 299
+    },
+    {
+      "name": "32-3-0-1-0.wasm",
+      "before": 566,
+      "intermediate": 720,
+      "final": 556
+    },
+    {
+      "name": "32-3-0-1-1.wasm",
+      "before": 566,
+      "intermediate": 720,
+      "final": 556
+    },
+    {
+      "name": "32-3-1-0-1.wasm",
+      "before": 210,
+      "intermediate": 339,
+      "final": 299
+    },
+    {
+      "name": "32-3-1-1-0.wasm",
+      "before": 566,
+      "intermediate": 720,
+      "final": 556
+    },
+    {
+      "name": "32-3-1-1-1.wasm",
+      "before": 566,
+      "intermediate": 720,
+      "final": 556
+    },
+    {
+      "name": "64-0-0-0-1.wasm",
+      "before": 249,
+      "intermediate": 281,
+      "final": 213
+    },
+    {
+      "name": "64-0-0-1-0.wasm",
+      "before": 140,
+      "intermediate": 730,
+      "final": 562
+    },
+    {
+      "name": "64-0-0-1-1.wasm",
+      "before": 140,
+      "intermediate": 464,
+      "final": 296
+    },
+    {
+      "name": "64-0-1-0-1.wasm",
+      "before": 249,
+      "intermediate": 281,
+      "final": 213
+    },
+    {
+      "name": "64-0-1-1-0.wasm",
+      "before": 140,
+      "intermediate": 730,
+      "final": 562
+    },
+    {
+      "name": "64-0-1-1-1.wasm",
+      "before": 140,
+      "intermediate": 464,
+      "final": 296
+    },
+    {
+      "name": "64-1-0-0-1.wasm",
+      "before": 249,
+      "intermediate": 423,
+      "final": 355
+    },
+    {
+      "name": "64-1-0-1-0.wasm",
+      "before": 140,
+      "intermediate": 730,
+      "final": 562
+    },
+    {
+      "name": "64-1-0-1-1.wasm",
+      "before": 140,
+      "intermediate": 746,
+      "final": 578
+    },
+    {
+      "name": "64-1-1-0-1.wasm",
+      "before": 249,
+      "intermediate": 423,
+      "final": 355
+    },
+    {
+      "name": "64-1-1-1-0.wasm",
+      "before": 140,
+      "intermediate": 730,
+      "final": 562
+    },
+    {
+      "name": "64-1-1-1-1.wasm",
+      "before": 140,
+      "intermediate": 746,
+      "final": 578
+    },
+    {
+      "name": "64-2-0-0-1.wasm",
+      "before": 247,
+      "intermediate": 271,
+      "final": 203
+    },
+    {
+      "name": "64-2-0-1-0.wasm",
+      "before": 140,
+      "intermediate": 730,
+      "final": 562
+    },
+    {
+      "name": "64-2-0-1-1.wasm",
+      "before": 140,
+      "intermediate": 448,
+      "final": 280
+    },
+    {
+      "name": "64-2-1-0-1.wasm",
+      "before": 247,
+      "intermediate": 271,
+      "final": 203
+    },
+    {
+      "name": "64-2-1-1-0.wasm",
+      "before": 140,
+      "intermediate": 730,
+      "final": 562
+    },
+    {
+      "name": "64-2-1-1-1.wasm",
+      "before": 140,
+      "intermediate": 448,
+      "final": 280
+    },
+    {
+      "name": "64-3-0-0-1.wasm",
+      "before": 247,
+      "intermediate": 413,
+      "final": 345
+    },
+    {
+      "name": "64-3-0-1-0.wasm",
+      "before": 140,
+      "intermediate": 730,
+      "final": 562
+    },
+    {
+      "name": "64-3-0-1-1.wasm",
+      "before": 140,
+      "intermediate": 730,
+      "final": 562
+    },
+    {
+      "name": "64-3-1-0-1.wasm",
+      "before": 247,
+      "intermediate": 413,
+      "final": 345
+    },
+    {
+      "name": "64-3-1-1-0.wasm",
+      "before": 140,
+      "intermediate": 730,
+      "final": 562
+    },
+    {
+      "name": "64-3-1-1-1.wasm",
+      "before": 140,
+      "intermediate": 730,
+      "final": 562
+    }
+  ]
+}

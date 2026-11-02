@@ -1,0 +1,17 @@
+wasm32: build the A64 vector FNEG sign mask as u64
+
+On wasm32 size_t is 32 bits, so 0x8000000000000000 / 0x8000000080000000
+truncated to 0 / 0x80000000 and FNEG.2D / FNEG.4S negated the wrong bits.
+
+diff --git a/src/dynarmic/frontend/A64/translate/impl/simd_two_register_misc.cpp b/src/dynarmic/frontend/A64/translate/impl/simd_two_register_misc.cpp
+--- a/src/dynarmic/frontend/A64/translate/impl/simd_two_register_misc.cpp
++++ b/src/dynarmic/frontend/A64/translate/impl/simd_two_register_misc.cpp
+@@ -611,7 +611,7 @@
+ 
+     const size_t datasize = Q ? 128 : 64;
+     const size_t esize = sz ? 64 : 32;
+-    const size_t mask_value = esize == 64 ? 0x8000000000000000 : 0x8000000080000000;
++    const u64 mask_value = esize == 64 ? 0x8000000000000000 : 0x8000000080000000;
+ 
+     const IR::U128 operand = V(datasize, Vn);
+     const IR::U128 mask = Q ? ir.VectorBroadcast(esize, I(esize, mask_value)) : ir.VectorBroadcastLower(esize, I(esize, mask_value));

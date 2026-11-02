@@ -1,0 +1,841 @@
+diff --git a/.github/workflows/pages.yml b/.github/workflows/pages.yml
+index 0b78db6..747e945 100644
+--- a/.github/workflows/pages.yml
++++ b/.github/workflows/pages.yml
+@@ -97,6 +97,22 @@ jobs:
+             -DDYNARMIC_JS_EXAMPLES_REQUIRE_GUESTS=ON
+           cmake --build build-pages --parallel 2 --target browser_page
+ 
++      - name: Cache Blackfin and bcore Wasm toolchains
++        uses: actions/cache@v4
++        with:
++          path: build-bcore-tools
++          key: bcore-wasm-df7aee6-emsdk-4.0.9-llvm-23.1.2-bfin-2014R1_45-v1
++
++      - name: Build Blackfin C comparison
++        run: |
++          bash examples/c-bench/setup-bcore.sh build-bcore-tools
++          python3 examples/c-bench/build-bcore.py \
++            --bcore-source build-bcore-tools/bcore \
++            --bfin-gcc build-bcore-tools/bfin-elf/bin/bfin-elf-gcc \
++            --emsdk build-bcore-tools/wasm-tools/emsdk-4.0.9 \
++            --llvm build-bcore-tools/wasm-tools/llvm-23.1.2 \
++            --dist build-pages/examples/browser/dist --cache build-bcore-host --jobs 2
++
+       - name: Package matching source and license notices
+         run: |
+           python3 -m unittest discover -s tests/browser -p '*_test.py'
+@@ -116,6 +132,9 @@ jobs:
+             c-bench-app.js c-bench-worker.js c-bench-protocol.js c-bench-arm.bin c-bench-x86.elf \
+             c-bench.wasm c-bench-manifest.json c-bench-reference.json c-bench-source.c \
+             c-bench-v86.js c-bench-v86.wasm c-bench-v86-LICENSE.txt \
++            c-bench-bfin.bin c-bench-bcore.js c-bench-bcore.wasm c-bench-bcore-manifest.json \
++            c-bench-bcore-source.tar.gz c-bench-bcore-LICENSE.txt \
++            c-bench-bcore.deferred.wasm c-bench-bcore-runtime.js c-bench-bcore-tier-worker.js \
+             site.webmanifest icon.svg icon-192.png icon-512.png social-card.png \
+             source.tar.gz source-manifest.json LICENSE.txt THIRD_PARTY_NOTICES.md runtime-licenses.txt; do
+             test -s "build-pages/examples/browser/dist/$asset"
+@@ -166,6 +185,12 @@ jobs:
+             "${{ steps.firefox.outputs.firefox-path }}" \
+             build-pages/examples/browser/dist --cbench
+ 
++      - name: Verify Blackfin comparison in Chromium
++        run: |
++          node tests/browser/verify_bcore_bench.mjs \
++            "${{ steps.chrome.outputs.chrome-path }}" \
++            build-pages/examples/browser/dist pages-bcore-browser.json
++
+       - name: Retain browser interaction evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+@@ -178,6 +203,8 @@ jobs:
+             pages-official-browser.json
+             pages-official-browser-*.png
+             pages-c-bench-browser.json
++            pages-bcore-browser.json
++            pages-bcore-browser-*.png
+           if-no-files-found: warn
+ 
+       - name: Upload Pages artifact
+diff --git a/examples/browser/README.md b/examples/browser/README.md
+index cfca490..9fbb730 100644
+--- a/examples/browser/README.md
++++ b/examples/browser/README.md
+@@ -301,3 +301,12 @@ The page's visual rationale and the primary-source award/project research are in
+ [PagesDesign.md](../../docs/PagesDesign.md). `icon.svg` and `social-card.svg` are
+ project-owned vector originals; PNG derivatives are rasterized from these files.
+ The latter uses DejaVu Sans and DejaVu Sans Mono for reproducible text rendering.
++
++## Optional Blackfin comparison
++
++The C lab can also compare **ARM / Blackfin / direct Wasm**, using bfin-gcc and
++op1emu/bcore's default copy-and-patch Wasm backend. Pages CI builds these optional assets after
++`browser_page`; for local toolchain setup, build commands and measurement
++differences, see [the C benchmark guide](../c-bench/README.md#blackfin--bcore-comparison).
++Blackfin uses a different compiler and software binary64; its ratios describe
++complete execution paths. Quick is recommended for online runs.
+diff --git a/examples/browser/c-bench-app.js b/examples/browser/c-bench-app.js
+index 8c644f2..b1edb51 100644
+--- a/examples/browser/c-bench-app.js
++++ b/examples/browser/c-bench-app.js
+@@ -2,9 +2,11 @@
+ (() => {
+   'use strict';
+   const $ = id => document.getElementById(id);
+-  const runtimes = {dynarmic: 'ARM · dynarmic.js', v86: 'x86 · v86', wasm: 'Direct Wasm'};
++  const runtimes = {dynarmic: 'ARM · dynarmic.js', v86: 'x86 · v86', wasm: 'Direct Wasm', bcore: 'Blackfin · bcore'};
+   const cases = {integer: 'Integer mix', branch: 'Data-dependent branches', stream: 'Sequential memory', pointer: 'Random memory', float: 'Float64 arithmetic'};
+-  const ids = Object.keys(cases), paths = Object.keys(runtimes), rounds = 3;
++  const ids = Object.keys(cases), rounds = 3;
++  let paths = ['dynarmic', 'v86', 'wasm'];
++  const ratioSpecs = () => [[paths.includes('bcore') ? 'bcoreOverArm' : 'v86OverArm', paths.includes('bcore') ? 'bcore / ARM' : 'v86 / ARM', 'Above 1: dynarmic.js takes less time.'], ['armOverDirect', 'ARM / direct Wasm', 'Above 1: direct Wasm takes less time.']];
+   let active = null, report = null, runNumber = 0;
+   const node = (tag, text, className) => {
+     const value = document.createElement(tag);
+@@ -26,7 +28,7 @@
+   function controls() {
+     $('c-bench-run').disabled = !!active || !!blocked();
+     $('c-bench-stop').disabled = !active;
+-    $('c-bench-profile').disabled = $('c-bench-case').disabled = !!active;
++    $('c-bench-profile').disabled = $('c-bench-case').disabled = $('c-bench-path').disabled = !!active;
+     $('c-bench-export').disabled = !report;
+   }
+   function validateProvenance(build, reference, host) {
+@@ -42,12 +44,12 @@
+     return {medianMs: median(result.samplesMs), belowResolution: median(result.samplesMs) < 0.1};
+   }
+   function summarize(value) {
+-    const summary = {cases: {}, v86OverArm: null, armOverDirect: null};
++    const summary = {cases: {}, v86OverArm: null, bcoreOverArm: null, armOverDirect: null};
+     const invalid = value.status === 'invalid' || value.environment.visibilityChanged || value.methodology.performanceEligible !== true;
+     const records = value.observations.filter(entry => entry.status === 'pass').map(entry => entry.result);
+-    const shared = globalThis.CBenchProtocol?.summarize(records, value.selectedCases, rounds);
++    const shared = globalThis.CBenchProtocol?.summarize(records, value.selectedCases, rounds, paths);
+     for (const caseId of value.selectedCases) {
+-      const item = {runtimes: {}, v86OverArm: null, armOverDirect: null};
++      const item = {runtimes: {}, v86OverArm: null, bcoreOverArm: null, armOverDirect: null};
+       for (const runtime of paths) {
+         const entries = value.observations.filter(entry => entry.task.caseId === caseId && entry.task.runtime === runtime);
+         const passed = entries.filter(entry => entry.status === 'pass');
+@@ -59,12 +61,13 @@
+       }
+       if (!invalid && shared) {
+         item.v86OverArm = shared.cases[caseId].ratios.v86OverDynarmic;
++        item.bcoreOverArm = shared.cases[caseId].ratios.bcoreOverDynarmic || null;
+         item.armOverDirect = shared.cases[caseId].ratios.dynarmicOverWasm;
+       }
+       summary.cases[caseId] = item;
+     }
+     if (!invalid && value.observations.every(entry => entry.status === 'pass')) {
+-      for (const name of ['v86OverArm', 'armOverDirect']) {
++      for (const [name] of ratioSpecs()) {
+         if (value.selectedCases.every(id => summary.cases[id][name])) summary[name] = stats(Array.from({length: rounds}, (_, round) =>
+           geometricMean(value.selectedCases.map(id => summary.cases[id][name].samples[round]))));
+       }
+@@ -88,7 +91,7 @@
+     if (report.dynarmicBuild && !report.methodology.performanceEligible) container.append(node('p', 'Instrumented ARM host: correctness checks remain available, but performance comparison and ratios are disabled. ' + report.methodology.instrumentation.description, 'notice'));
+     container.append(node('p', 'Milliseconds per fixed workload · lower is faster. Each value is the median of three round medians; ranges span those round medians.', 'hint'));
+     const totals = node('div', undefined, 'c-bench-ratios');
+-    for (const [name, label, note] of [['v86OverArm', 'v86 / ARM', 'Above 1: dynarmic.js takes less time.'], ['armOverDirect', 'ARM / direct Wasm', 'Reference ratio. Above 1: direct Wasm takes less time.']]) {
++    for (const [name, label, note] of ratioSpecs()) {
+       const item = node('div'), result = report.summary[name];
+       item.append(node('span', label), node('strong', result ? ratio(result.median) : '—'),
+         node('small', result ? `${ratio(result.min)}–${ratio(result.max)} across rounds. ${note}` :
+@@ -116,7 +119,7 @@
+       }
+       card.append(grid);
+       const comparison = node('p', undefined, 'c-bench-case-ratios');
+-      comparison.textContent = `v86 / ARM: ${data.v86OverArm ? ratio(data.v86OverArm.median) : '—'} · ARM / direct: ${data.armOverDirect ? ratio(data.armOverDirect.median) : '—'}`;
++      comparison.textContent = ratioSpecs().map(([name, label]) => `${label}: ${data[name] ? ratio(data[name].median) : '—'}`).join(' · ');
+       card.append(comparison);
+       const details = node('details', undefined, 'c-bench-details'); details.dataset.key = caseId; details.open = open.has(caseId);
+       details.append(node('summary', 'Rounds, first runs, loading & validation'));
+@@ -129,6 +132,11 @@
+           stat(dl, 'Unmeasured warmups', result.warmupMs.map(ms).join(' / '));
+           stat(dl, 'Checksum, all six calls', `${result.expected} · matched`);
+           stat(dl, 'Wasm memory capacity', `${(result.memoryBytes / 1048576).toFixed(1)} MiB`);
++          if (result.runtime === 'bcore') {
++            stat(dl, 'Background LLVM promotions', `${result.stats.tierInstalled} installed / ${result.stats.tierSubmitted} submitted`);
++            stat(dl, 'Promotions installed before measured calls', String(result.stats.tierInstalledBeforeMeasured));
++            stat(dl, 'Compiler Worker initial memory', `${(result.stats.compilerMemoryBytes / 1048576).toFixed(1)} MiB`);
++          }
+         } else stat(dl, 'Observation', entry.error || entry.status);
+         details.append(dl);
+       }
+@@ -141,6 +149,10 @@
+     for (const [href, label] of [['c-bench-manifest.json', 'C build manifest'], ['c-bench-reference.json', 'Inputs & reference outputs'], ['wasm-build-manifest.json', 'ARM host build']]) {
+       const link = node('a', label); link.href = href; links.append(link, node('span', ' · '));
+     }
++    if (report.bcoreBuild) {
++      const link = node('a', 'Blackfin / bcore build'); link.href = 'c-bench-bcore-manifest.json'; links.append(link);
++      provenance.append(node('p', report.bcoreBuild.scope + ' Blackfin float64 uses libgcc software arithmetic.', 'hint'));
++    }
+     provenance.append(links); container.append(provenance);
+     if (focusKey) Array.from(container.querySelectorAll?.('details') || []).find(item => item.dataset.key === focusKey)?.querySelector('summary')?.focus({preventScroll: true});
+   }
+@@ -190,6 +202,7 @@
+     if (active || blocked()) return;
+     const profile = $('c-bench-profile').value, selected = $('c-bench-case').value;
+     if (!['quick', 'full'].includes(profile) || (selected !== 'all' && !ids.includes(selected))) return;
++    paths = $('c-bench-path').value === 'bcore' ? ['dynarmic', 'bcore', 'wasm'] : ['dynarmic', 'v86', 'wasm'];
+     const selectedCases = selected === 'all' ? [...ids] : [selected];
+     const controller = new AbortController(), {signal} = controller;
+     active = controller; globalThis.cBenchRunning = true;
+@@ -199,11 +212,11 @@
+     const cancel = (kind, message) => { if (!signal.aborted) { abortKind = kind; controller.abort(new Error(message)); } };
+     const deadline = setTimeout(() => cancel('fail', 'The comparison timed out. Partial results are retained.'), totalTimeoutMs);
+     report = {schema: 'dynarmic.js/c-bench-comparison-v1', startedAt: new Date().toISOString(), status: 'running', verified: false,
+-      profile, selectedCases, methodology: {rounds: 3, firstRuns: 1, warmupRuns: 2, measuredRuns: 3, freshWorkerPerObservation: true,
++      profile, selectedCases, runtimes: [...paths], methodology: {rounds: 3, firstRuns: 1, warmupRuns: 2, measuredRuns: 3, freshWorkerPerObservation: true,
+         timingFloorMs: 0.1, workerTimeoutMs, totalTimeoutMs,
+         performanceEligible: false, instrumentation: {profile: null, regionDiagnostics: null, description: 'Awaiting the host build record.'},
+         aggregation: 'Median of three measured fixed-work calls per round, then median/min/max of three round medians; ratios pair the same round before equal-case geometric means',
+-        scope: 'Same C source and compiler version without libc; complete ARM, x86 and direct Wasm execution paths still differ'},
++        scope: paths.includes('bcore') ? 'Same C source and work counts; ARM/Wasm use Clang, Blackfin uses bfin GCC and software binary64; complete execution paths differ' : 'Same C source and compiler version without libc; complete ARM, x86 and direct Wasm execution paths still differ'},
+       environment: {userAgent: navigator.userAgent, hardwareConcurrency: navigator.hardwareConcurrency || null, visibilityChanged: false}, observations: []};
+     for (let round = 0; round < rounds; round++) for (let index = 0; index < selectedCases.length; index++) {
+       const caseId = selectedCases[(index + round) % selectedCases.length];
+@@ -226,6 +239,7 @@
+       const [build, reference, host] = await Promise.all(['c-bench-manifest.json', 'c-bench-reference.json', 'wasm-build-manifest.json'].map(name => jsonFile(name, signal)));
+       signal.throwIfAborted(); validateProvenance(build, reference, host);
+       Object.assign(report, {build, reference, dynarmicBuild: host});
++      if (paths.includes('bcore')) report.bcoreBuild = CBenchProtocol.validateBcoreManifest(await jsonFile('c-bench-bcore-manifest.json', signal), build);
+       report.methodology.performanceEligible = !host.build.profile && !host.configuration.regionDiagnostics;
+       report.methodology.instrumentation = {profile: host.build.profile, regionDiagnostics: host.configuration.regionDiagnostics,
+         description: [host.build.profile ? 'ARM profiling is enabled.' : 'ARM profiling is disabled.',
+@@ -263,6 +277,13 @@
+     }
+     await reportSmoke(report.status.toUpperCase());
+   }
++  function showPath() {
++    const bcore = $('c-bench-path').value === 'bcore';
++    $('c-bench-peer-isa').textContent = bcore ? 'B / Blackfin' : 'B / x86';
++    $('c-bench-peer-name').textContent = bcore ? 'bcore' : 'v86';
++    $('c-bench-peer-path').textContent = bcore ? 'C → Blackfin → copy-and-patch Wasm' : 'C → x86 → Wasm JIT';
++  }
++  $('c-bench-path').onchange = showPath;
+   $('c-bench-run').onclick = run;
+   $('c-bench-stop').onclick = () => active?.abort(new Error('Stopped. Partial results are retained; run again to start with fresh Workers.'));
+   $('c-bench-export').onclick = () => {
+@@ -272,6 +293,9 @@
+   };
+   for (const name of ['dynarmic-demo-state', 'quickjs-comparison-state', 'official-bench-state']) document.addEventListener(name, controls);
+   controls();
+-  const requested = new URLSearchParams(location.search).get('cbench');
++  const params = new URLSearchParams(location.search);
++  if (params.get('cbench-path') === 'bcore') $('c-bench-path').value = 'bcore';
++  showPath();
++  const requested = params.get('cbench');
+   if (requested === 'quick' || requested === 'full') { $('c-bench-profile').value = requested; run(); }
+ })();
+diff --git a/examples/browser/c-bench-app.test.mjs b/examples/browser/c-bench-app.test.mjs
+index 21fe736..eeab0f6 100644
+--- a/examples/browser/c-bench-app.test.mjs
++++ b/examples/browser/c-bench-app.test.mjs
+@@ -15,17 +15,29 @@ const reference = {schema: 'dynarmic.js/c-bench-reference-v1', cases: ids.map((i
+   protocol: {firstRuns: 1, warmupRuns: 2, measuredRuns: 3, totalRuns: 6, rounds: 3, guestRamBytes: 16777216, mailboxAddress: 61440, magic: 0x43424e31}};
+ const artifact = path => ({path, bytes: 100, sha256: 'a'.repeat(64)});
+ const build = {schema: 'dynarmic.js/c-bench-build-v1', compiler: {version: 'test compiler'}, commonFlags: ['-O2'],
+-  targets: {arm: {}, x86: {}, wasm: {}}, sources: [artifact('bench.c')], artifacts: [
++  targets: {arm: {}, x86: {}, wasm: {}}, sources: ['kernels.c','kernels.h','guest.c'].map(n => artifact('examples/c-bench/' + n)), artifacts: [
+     'c-bench-arm.bin', 'c-bench-x86.elf', 'c-bench.wasm', 'c-bench-reference.json', 'c-bench-source.c',
+     'c-bench-v86.js', 'c-bench-v86.wasm', 'c-bench-v86-LICENSE.txt'].map(artifact)};
+ const host = {schema: 'dynarmic.js/wasm-coremark-host-build-v1', source: {revision: 'test revision'}, build: {type: 'Release', profile: false}, configuration: {regionDiagnostics: false},
+   artifacts: {js: artifact('arm_jit.js'), wasm: artifact('arm_jit.wasm')}};
++const bcore = {schema: 'dynarmic.js/c-bench-bcore-build-v1', compiler: {version: 'bfin GCC', doubleBits: 64, flags: ['-O2']},
++  source: {revision: 'b'.repeat(40)}, hostToolchain: {buildType: 'Release'},
++  configuration: {guestRamBytes: 16777216, copyPatch: true, copyPatchHints: true, stencilSplit: true,
++    tiering: 100000, tierSizeRef: 16, remoteTier: true, lightTier1: false, llvmOnDemand: true, coldThreshold: 10, coldBatch: 32, coldAgePackets: 65536,
++    llvmOptLevel: 1, llvmCodegenLevel: 2, chaining: true, countChained: false, lazyState: true,
++    loopBlocks: true, verify: false, sliceMs: 8, clockRuns: 32, clockPackets: 100000, maxChainPackets: 16777216,
++    hostCycles: true, idleWaits: true, steadySkip: 0, syscfg: 48, splitModule: true, memory: 'page-table RAM; MMIO callbacks'},
++  inputs: structuredClone(build.sources), scope: 'Different compilers; same C.',
++  artifacts: ['c-bench-bfin.bin','c-bench-bcore.js','c-bench-bcore.wasm','c-bench-bcore.deferred.wasm','c-bench-bcore-runtime.js','c-bench-bcore-tier-worker.js','c-bench-bcore-LICENSE.txt','c-bench-bcore-source.tar.gz'].map(artifact)};
+ function reply(task) {
+   const expected = reference.profiles[task.profile].expected[task.caseId];
+-  const ms = {dynarmic: [1, 10, 1], v86: [2, 10, 10], wasm: [.5, .5, .5]}[task.runtime][task.round];
++  const ms = {dynarmic: [1, 10, 1], v86: [2, 10, 10], bcore: [4, 20, 20], wasm: [.5, .5, .5]}[task.runtime][task.round];
+   return {ok: true, ...task, iterations: reference.profiles[task.profile].iterations[task.caseId], seed: 305419896,
+     checksums: Array(6).fill(expected), expected, validation: {pass: true, actual: expected, expected},
+-    loadMs: 17, firstMs: 40, warmupMs: [30, 20], samplesMs: [.8 * ms, ms, 1.2 * ms], stats: {}, memoryBytes: 16777216};
++    loadMs: 17, firstMs: 40, warmupMs: [30, 20], samplesMs: [.8 * ms, ms, 1.2 * ms],
++    stats: task.runtime === 'bcore' ? {tierSubmitted: 1, tierInstalled: 1, tierRefused: 0, tierFailed: 0,
++      tierStale: 0, firstTierInstallMarker: 1, tierInstalledBeforeMeasured: 1, executionLlvmLoads: 0, compilerMemoryBytes: 134217728} : {},
++    memoryBytes: 16777216};
+ }
+ function harness({onPost, fetch, search = ''} = {}) {
+   const elements = new Map(), listeners = new Map(), timers = new Map(), workers = [], fetches = [];
+@@ -40,7 +52,8 @@ function harness({onPost, fetch, search = ''} = {}) {
+     dispatchEvent(event) { for (const fn of listeners.get(event.type) || []) fn(event); }};
+   get('stop').disabled = true; get('c-bench-profile').value = 'quick'; get('c-bench-case').value = 'all';
+   const defaultFetch = async name => ({ok: true, json: async () => structuredClone({
+-    'c-bench-reference.json': reference, 'c-bench-manifest.json': build, 'wasm-build-manifest.json': host}[String(name)])});
++    'c-bench-reference.json': reference, 'c-bench-manifest.json': build, 'wasm-build-manifest.json': host,
++    'c-bench-bcore-manifest.json': bcore}[String(name)])});
+   class Worker {
+     constructor(url) { this.url = url; workers.push(this); }
+     postMessage(message) {
+@@ -94,6 +107,26 @@ test('fixed-work comparison uses 45 fresh Workers, rotates each path and pairs r
+   }
+ });
+ 
++test('Blackfin comparison pairs three paths, exports provenance, and rejects different C sources before execution', async () => {
++  const h = harness({search: '?cbench-path=bcore'}); await h.run(); released(h, 'pass');
++  const r = h.context.cBenchReport;
++  assert.equal(h.workers.length, 45);
++  assert.equal(r.observations.filter(x => x.task.runtime === 'bcore').length, 15);
++  assert.equal(r.observations.filter(x => x.task.runtime === 'v86').length, 0);
++  assert.equal(r.summary.cases.integer.bcoreOverArm.median, 4);
++  assert.equal(r.summary.v86OverArm, null);
++  assert.equal(r.bcoreBuild.source.revision, bcore.source.revision);
++  for (const bad of [null, {...bcore, inputs: bcore.inputs.map(x => ({...x, sha256: 'c'.repeat(64)}))},
++    ...[{copyPatch: false}, {memory: 'bounded inline RAM; MMIO callbacks'}, {tiering: 30000}, {remoteTier: false}, {splitModule: false}].map(changes =>
++      ({...bcore, configuration: {...bcore.configuration, ...changes}}))]) {
++    let invalid;
++    invalid = harness({search: '?cbench-path=bcore', fetch: name => name === 'c-bench-bcore-manifest.json'
++      ? Promise.resolve({ok: true, json: async () => bad}) : invalid.defaultFetch(name)});
++    await invalid.run(); released(invalid, 'fail'); assert.equal(invalid.workers.length, 0);
++    assert.equal(invalid.context.cBenchReport.summary.bcoreOverArm, null);
++  }
++});
++
+ test('a wrong checksum or task token cannot pass, while low-resolution samples retain correctness without ratios', async () => {
+   for (const corrupt of [result => {result.checksums[5]++;}, result => {result.token = 'old-run';}]) {
+     const h = harness({onPost(worker, task) {
+diff --git a/examples/browser/c-bench-protocol.js b/examples/browser/c-bench-protocol.js
+index 76e16b5..8039bc4 100644
+--- a/examples/browser/c-bench-protocol.js
++++ b/examples/browser/c-bench-protocol.js
+@@ -3,6 +3,7 @@
+   'use strict';
+   const CASE_IDS = ['integer', 'branch', 'stream', 'pointer', 'float'];
+   const RUNTIMES = ['dynarmic', 'v86', 'wasm'];
++  const BCORE_RUNTIMES = ['dynarmic', 'bcore', 'wasm'];
+   const RESOLUTION_MS = 0.1;
+   const uint = value => Number.isSafeInteger(value) && value >= 0 && value <= 0xffffffff;
+   const timing = value => typeof value === 'number' && Number.isFinite(value) && value >= 0;
+@@ -48,7 +49,7 @@
+     validateReference(ref);
+     require(result?.ok === true, result?.error || 'C benchmark Worker failed');
+     for (const field of ['runtime','caseId','profile','round','token']) require(result[field] === request[field], 'Mismatched Worker ' + field);
+-    require(RUNTIMES.includes(result.runtime) && CASE_IDS.includes(result.caseId) && ['quick','full'].includes(result.profile), 'Invalid benchmark identity');
++    require([...RUNTIMES, 'bcore'].includes(result.runtime) && CASE_IDS.includes(result.caseId) && ['quick','full'].includes(result.profile), 'Invalid benchmark identity');
+     require(Number.isInteger(result.round) && result.round >= 0 && result.round < ref.protocol.rounds, 'Invalid benchmark round');
+     const input = ref.profiles[result.profile], expected = input.expected[result.caseId];
+     require(result.iterations === input.iterations[result.caseId] && result.seed === input.seed, 'Worker changed the input or work count');
+@@ -61,9 +62,46 @@
+     require(Array.isArray(result.samplesMs) && result.samplesMs.length === 3 && result.samplesMs.every(timing), 'Invalid measured samples');
+     require(Number.isSafeInteger(result.memoryBytes) && result.memoryBytes >= 16777216, 'Invalid runtime memory capacity');
+     require(result.stats && typeof result.stats === 'object' && !Array.isArray(result.stats) && Object.values(result.stats).every(timing), 'Invalid runtime statistics');
++    if (result.runtime === 'bcore') {
++      for (const key of ['tierSubmitted','tierRefused','tierInstalled','tierStale','tierFailed',
++        'firstTierInstallMarker','tierInstalledBeforeMeasured','executionLlvmLoads','compilerMemoryBytes'])
++        require(Number.isSafeInteger(result.stats[key]) && result.stats[key] >= 0, 'Missing bcore tier evidence: ' + key);
++      require(result.stats.tierSubmitted > 0 && result.stats.tierRefused === 0 && result.stats.tierFailed === 0,
++        'bcore background promotion failed or was not exercised');
++    }
+     return result;
+   }
+-  function summarize(records, caseIds = CASE_IDS, rounds = 3) {
++  function validateBcoreManifest(manifest, build) {
++    require(manifest?.schema === 'dynarmic.js/c-bench-bcore-build-v1' &&
++      typeof manifest.compiler?.version === 'string' && manifest.compiler.doubleBits === 64 &&
++      manifest.compiler.flags?.includes('-O2') && /^[a-f0-9]{40}$/.test(manifest.source?.revision) &&
++      manifest.hostToolchain?.buildType === 'Release' && manifest.configuration?.guestRamBytes === 16777216,
++      'Missing Blackfin/bcore build provenance');
++    const defaults = {copyPatch: true, copyPatchHints: true, stencilSplit: true,
++      tiering: 100000, tierSizeRef: 16, remoteTier: true, lightTier1: false,
++      llvmOnDemand: true, coldThreshold: 10, coldBatch: 32,
++      coldAgePackets: 65536, llvmOptLevel: 1, llvmCodegenLevel: 2, chaining: true,
++      countChained: false, lazyState: true, loopBlocks: true, verify: false,
++      sliceMs: 8, clockRuns: 32, clockPackets: 100000, maxChainPackets: 16777216,
++      hostCycles: true, idleWaits: true, steadySkip: 0, syscfg: 48, splitModule: true,
++      memory: 'page-table RAM; MMIO callbacks'};
++    for (const [key, value] of Object.entries(defaults)) require(manifest.configuration[key] === value,
++      'bcore build does not use the OP-1 web copy-and-patch defaults: ' + key);
++    require(Array.isArray(manifest.artifacts) && new Set(manifest.artifacts.map(a => a.path)).size === manifest.artifacts.length,
++      'Invalid bcore artifact list');
++    for (const name of ['c-bench-bfin.bin', 'c-bench-bcore.js', 'c-bench-bcore.wasm', 'c-bench-bcore.deferred.wasm',
++      'c-bench-bcore-runtime.js', 'c-bench-bcore-tier-worker.js', 'c-bench-bcore-LICENSE.txt', 'c-bench-bcore-source.tar.gz']) {
++      const a = manifest.artifacts.find(a => a.path === name);
++      require(a && Number.isSafeInteger(a.bytes) && a.bytes > 0 && /^[a-f0-9]{64}$/.test(a.sha256), 'Missing bcore artifact: ' + name);
++    }
++    for (const name of ['kernels.c', 'kernels.h', 'guest.c']) {
++      const path = 'examples/c-bench/' + name;
++      const a = manifest.inputs?.find(a => a.path === path), b = build.sources?.find(a => a.path === path);
++      require(a && b && a.sha256 === b.sha256 && a.bytes === b.bytes, 'Blackfin uses a different C source: ' + name);
++    }
++    return manifest;
++  }
++  function summarize(records, caseIds = CASE_IDS, rounds = 3, runtimes = RUNTIMES) {
+     const cases = {}, ids = new Set();
+     for (const r of records) {
+       const id = `${r.caseId}/${r.round}/${r.runtime}`;
+@@ -72,7 +110,7 @@
+     for (const caseId of caseIds) {
+       const item = {runtimes: {}, ratios: {v86OverDynarmic: null, dynarmicOverWasm: null}, complete: false, belowResolution: false};
+       const byRuntime = {};
+-      for (const runtime of RUNTIMES) {
++      for (const runtime of runtimes) {
+         const observations = records.filter(r => r.caseId === caseId && r.runtime === runtime).sort((a, b) => a.round - b.round);
+         byRuntime[runtime] = new Map(observations.map(r => [r.round, statistics(r.samplesMs).median]));
+         const warm = statistics([...byRuntime[runtime].values()]);
+@@ -80,10 +118,11 @@
+           loadMs: statistics(observations.map(r => r.loadMs)), warmMs: warm,
+           belowResolution: !!warm && warm.min < RESOLUTION_MS};
+       }
+-      item.complete = RUNTIMES.every(runtime => Array.from({length: rounds}, (_, i) => i).every(i => byRuntime[runtime].has(i)));
+-      item.belowResolution = RUNTIMES.some(runtime => item.runtimes[runtime].belowResolution);
++      item.complete = runtimes.every(runtime => Array.from({length: rounds}, (_, i) => i).every(i => byRuntime[runtime].has(i)));
++      item.belowResolution = runtimes.some(runtime => item.runtimes[runtime].belowResolution);
+       if (item.complete) {
+-        for (const [name, numerator, denominator] of [['v86OverDynarmic','v86','dynarmic'], ['dynarmicOverWasm','dynarmic','wasm']]) {
++        for (const [name, numerator, denominator] of [['v86OverDynarmic','v86','dynarmic'], ['bcoreOverDynarmic','bcore','dynarmic'], ['dynarmicOverWasm','dynarmic','wasm']]) {
++          if (!runtimes.includes(numerator) || !runtimes.includes(denominator)) continue;
+           if (item.runtimes[numerator].belowResolution || item.runtimes[denominator].belowResolution) continue;
+           item.ratios[name] = statistics(Array.from({length: rounds}, (_, i) => byRuntime[numerator].get(i) / byRuntime[denominator].get(i)));
+         }
+@@ -92,7 +131,7 @@
+     }
+     return {cases, complete: caseIds.every(id => cases[id].complete), resolutionFloorMs: RESOLUTION_MS};
+   }
+-  const api = {CASE_IDS, RUNTIMES, RESOLUTION_MS, statistics, validateReference, validateManifest, validateResult, summarize};
++  const api = {CASE_IDS, RUNTIMES, BCORE_RUNTIMES, RESOLUTION_MS, statistics, validateReference, validateManifest, validateBcoreManifest, validateResult, summarize};
+   if (typeof module === 'object' && module.exports) module.exports = api;
+   else global.CBenchProtocol = api;
+ })(globalThis);
+diff --git a/examples/browser/c-bench-worker.js b/examples/browser/c-bench-worker.js
+index 5a2230e..091f1f0 100644
+--- a/examples/browser/c-bench-worker.js
++++ b/examples/browser/c-bench-worker.js
+@@ -41,7 +41,7 @@ self.onmessage = async ({data}) => {
+   const progress = phase => self.postMessage({type: 'progress', ...identity, phase});
+   try {
+     const {runtime, caseId, profile, round} = identity;
+-    if (!P.RUNTIMES.includes(runtime) || !P.CASE_IDS.includes(caseId) || !['quick','full'].includes(profile) ||
++    if (![...P.RUNTIMES, 'bcore'].includes(runtime) || !P.CASE_IDS.includes(caseId) || !['quick','full'].includes(profile) ||
+         !Number.isInteger(round) || round < 0 || round >= 3 || typeof identity.token !== 'string') throw new Error('Invalid C benchmark request');
+     progress('loading'); const loadStart = performance.now();
+     const manifest = P.validateManifest(await json('c-bench-manifest.json'));
+@@ -91,6 +91,29 @@ self.onmessage = async ({data}) => {
+       const raw = module.dynarmicWasmStats || {};
+       stats = Object.fromEntries(Object.entries(raw.instances?.[String(raw.activeInstance)]?.compile || {})
+         .filter(([,v]) => typeof v === 'number' && Number.isFinite(v) && v >= 0));
++    } else if (runtime === 'bcore') {
++      const host = P.validateBcoreManifest(await json('c-bench-bcore-manifest.json'), manifest);
++      const hostFile = name => file(name, host.artifacts.find(a => a.path === name));
++      const [binary, javascript, wasmBinary, runtimeCode, tierSource] = await Promise.all([
++        hostFile('c-bench-bfin.bin'), hostFile('c-bench-bcore.js'), hostFile('c-bench-bcore.wasm'),
++        hostFile('c-bench-bcore-runtime.js'), hostFile('c-bench-bcore-tier-worker.js')]);
++      importVerified(javascript);
++      importVerified(runtimeCode);
++      const adapter = await prepareBcore({host, javascript, wasmBinary, tierSource, base: self.location.href});
++      const {module} = adapter;
++      try {
++        if (module._bcore_init() !== 0) throw new Error('bcore initialization failed');
++        const ram = module._bcore_ram();
++        if (binary.byteLength >= RAM - 0x10000) throw new Error('Unexpected Blackfin memory layout');
++        module.HEAPU8.set(new Uint8Array(binary), ram + 0x10000);
++        module.HEAPU8.set(input(caseIndex, iterations, seed), ram + MAILBOX);
++        adapter.start();
++        loadMs = performance.now() - loadStart; progress('executing');
++        stats = await adapter.run();
++        samples = durations(Array.from(new Float64Array(module.HEAPU8.buffer, module._bcore_marks(), module._bcore_mark_count())));
++        checksums = output(module.HEAPU8.subarray(ram + MAILBOX, ram + MAILBOX + 128));
++        memoryBytes = module.HEAPU8.byteLength;
++      } finally {adapter.stop();}
+     } else {
+       const [wasm, elf, javascript] = await Promise.all([artifact('c-bench-v86.wasm'), artifact('c-bench-x86.elf'), artifact('c-bench-v86.js')]);
+       importVerified(javascript);
+diff --git a/examples/browser/index.html b/examples/browser/index.html
+index b0e09a2..291f52c 100644
+--- a/examples/browser/index.html
++++ b/examples/browser/index.html
+@@ -81,15 +81,16 @@
+   </div>
+ 
+   <section id="c-bench" class="c-bench section" aria-labelledby="c-bench-title">
+-    <div class="section-heading"><div><p class="eyebrow">C / A common starting point</p><h2 id="c-bench-title">Same C.<br><span>Different execution paths.</span></h2></div><p class="section-intro">Five fixed workloads, built with the same compiler version and no libc. Compare ARM through dynarmic.js with x86 through v86, alongside a direct WebAssembly reference.</p></div>
++    <div class="section-heading"><div><p class="eyebrow">C / A common starting point</p><h2 id="c-bench-title">Same C.<br><span>Different execution paths.</span></h2></div><p class="section-intro">Five fixed C workloads. Compare ARM through dynarmic.js with x86 through v86 or Blackfin through bcore, alongside a direct WebAssembly reference. ARM, x86 and direct Wasm share Clang; Blackfin uses bfin-gcc.</p></div>
+     <div class="c-bench-lab">
+       <div class="c-bench-topline"><span class="mono-label">C / fixed-work comparison</span><span class="local-label"><span aria-hidden="true">●</span> Measured here, on your device</span></div>
+       <div class="c-bench-paths" role="group" aria-label="C benchmark execution paths">
+         <div><span class="mono-label">A / ARM</span><h3>dynarmic.js</h3><p>C → ARM32 → Wasm JIT</p></div>
+-        <div><span class="mono-label">B / x86</span><h3>v86</h3><p>C → x86 → Wasm JIT</p></div>
++        <div><span id="c-bench-peer-isa" class="mono-label">B / x86</span><h3 id="c-bench-peer-name">v86</h3><p id="c-bench-peer-path">C → x86 → Wasm JIT</p></div>
+         <div><span class="mono-label">C / Reference</span><h3>Direct Wasm</h3><p>C → WebAssembly</p></div>
+       </div>
+       <div class="c-bench-controls">
++        <div class="mode-control"><label for="c-bench-path">Comparison</label><select id="c-bench-path"><option value="v86">ARM / x86 / direct Wasm</option><option value="bcore">ARM / Blackfin / direct Wasm</option></select></div>
+         <div class="mode-control"><label for="c-bench-profile">Workload</label><select id="c-bench-profile"><option value="quick">Quick</option><option value="full">Extended</option></select></div>
+         <div class="mode-control"><label for="c-bench-case">Case</label><select id="c-bench-case"><option value="all">All five cases</option><option value="integer">Integer mix</option><option value="branch">Data-dependent branches</option><option value="stream">Sequential memory</option><option value="pointer">Random memory</option><option value="float">Float64 arithmetic</option></select></div>
+         <div class="actions"><button id="c-bench-run" class="button-link" type="button" disabled>Run comparison <span aria-hidden="true">→</span></button><button id="c-bench-stop" class="secondary" type="button" disabled>Stop</button></div>
+@@ -99,7 +100,7 @@
+       <div id="c-bench-results" class="c-bench-results" role="region" aria-label="C benchmark measurements"><p class="hint">Choose a case or run all five. Inputs and work counts stay fixed across all three paths; every call must match its reference checksum.</p></div>
+       <noscript><p class="notice">Enable JavaScript to run the C comparison. Work executes locally in disposable Workers.</p></noscript>
+     </div>
+-    <div class="c-bench-notes"><details><summary>How to read this comparison</summary><p>The main values summarize three independent engine instances: take the median of three measured calls in each round, then the median and range of those three round medians. First-run and loading times are shown separately. Runtime order rotates, and only one observation runs at a time.</p><p>Ratios pair observations from the same round. v86 / ARM above 1 favors dynarmic.js; ARM / direct Wasm above 1 favors the direct reference. Overall ratios give each selected case equal weight. Incomplete rounds and round medians below 0.1 ms do not produce ratios. The raw samples remain in the export.</p><p>Matching the source and compiler removes some differences; instruction sets, translation, memory access and browser scheduling still differ. This measures complete execution paths. Two warmups do not prove steady-state performance. Hiding this tab immediately stops the run and invalidates its timings.</p></details><a class="text-link" href="c-bench-source.c">Inspect the shared C source <span aria-hidden="true">↗</span></a></div>
++    <div class="c-bench-notes"><details><summary>How to read this comparison</summary><p>The main values summarize three independent engine instances: take the median of three measured calls in each round, then the median and range of those three round medians. First-run and loading times are shown separately. Runtime order rotates, and only one observation runs at a time.</p><p>Ratios pair observations from the same round. v86 / ARM or bcore / ARM above 1 favors dynarmic.js; ARM / direct Wasm above 1 favors the direct reference. Overall ratios give each selected case equal weight. Incomplete rounds and round medians below 0.1 ms do not produce ratios. The raw samples remain in the export.</p><p>The Blackfin path is an optional build: bfin GCC O2, bcore using the OP-1 web copy-and-patch defaults (cold tier, batching and background LLVM promotion), and software float64 through libgcc. Matching the source removes some differences; instruction sets, translation, memory access and browser scheduling still differ. This measures complete execution paths. Two warmups do not prove steady-state performance. Hiding this tab immediately stops the run and invalidates its timings.</p></details><a class="text-link" href="c-bench-source.c">Inspect the shared C source <span aria-hidden="true">↗</span></a></div>
+   </section>
+ 
+   <section id="quickjs" class="quickjs section" aria-labelledby="quickjs-title">
+diff --git a/examples/browser/package_source.py b/examples/browser/package_source.py
+index 8d4ebcc..7957c80 100644
+--- a/examples/browser/package_source.py
++++ b/examples/browser/package_source.py
+@@ -269,6 +269,40 @@ def verify_c_bench(root: Path, dist: Path) -> dict | None:
+         raise PackageError(f"cannot validate C benchmark build/source correspondence: {error}") from error
+ 
+ 
++def verify_bcore_bench(root: Path, dist: Path) -> dict | None:
++    """Bind the optional Blackfin host, guest and notices to packaged sources."""
++    file = dist / 'c-bench-bcore-manifest.json'
++    if not file.exists():
++        if any((dist / name).exists() for name in ('c-bench-bfin.bin', 'c-bench-bcore.js', 'c-bench-bcore.wasm')):
++            raise PackageError('Blackfin artifacts have no build manifest')
++        return None
++    try:
++        manifest = json.loads(file.read_text())
++        if manifest['schema'] != 'dynarmic.js/c-bench-bcore-build-v1':
++            raise PackageError('unsupported Blackfin build manifest schema')
++        for field, base in [('inputs', root), ('artifacts', dist)]:
++            seen = set()
++            for entry in manifest[field]:
++                name = entry['path']; relative = safe_relative(os.fsencode(name))
++                if name in seen or (field == 'artifacts' and len(relative.parts) != 1) or (field == 'inputs' and not name.startswith('examples/c-bench/')):
++                    raise PackageError('invalid Blackfin build path: ' + name)
++                seen.add(name)
++                if digest(base / relative) != {key: entry[key] for key in ('sha256', 'bytes')}:
++                    raise PackageError('Blackfin build/source mismatch: ' + name)
++            required = ({'c-bench-bfin.bin', 'c-bench-bcore.js', 'c-bench-bcore.wasm',
++                         'c-bench-bcore-source.tar.gz', 'c-bench-bcore-LICENSE.txt', 'c-bench-bcore.deferred.wasm',
++                         'c-bench-bcore-runtime.js', 'c-bench-bcore-tier-worker.js'} if field == 'artifacts' else
++                        {'examples/c-bench/' + name for name in ('kernels.c', 'kernels.h', 'guest.c', 'start-bfin.S',
++                         'link-bfin.ld', 'bcore-host.cpp', 'bcore-tier.cpp', 'bcore/CMakeLists.txt', 'build-bcore.py',
++                         'bcore/split-pre.js', 'bcore/split-module.mjs', 'bcore/runtime.js', 'bcore/tier-worker.js',
++                         'licenses/libgcc-COPYING3.txt', 'licenses/libgcc-RUNTIME-LIBRARY-EXCEPTION.txt')})
++            if not required.issubset(seen):
++                raise PackageError('Blackfin manifest omits required ' + field)
++        return {**manifest, 'manifest': {'path': file.name, **digest(file)}}
++    except (OSError, ValueError, KeyError, TypeError) as error:
++        raise PackageError(f'cannot validate Blackfin build: {error}') from error
++
++
+ def quickjs_rebuild_options(configuration: dict) -> dict[str, str]:
+     """Map recorded build choices to safe, explicit CMake cache arguments."""
+     if not isinstance(configuration, dict):
+@@ -451,6 +485,7 @@ def package_source(root: Path, dist: Path, require_clean: bool = False, emscript
+     runtime = verify_runtime(root, dist, source, require_clean)
+     quickjs = verify_quickjs(root, dist)
+     c_bench = verify_c_bench(root, dist)
++    bcore_bench = verify_bcore_bench(root, dist)
+     official_host = None
+     if quickjs and "officialBenchmarks" in quickjs:
+         official_host = verify_runtime(root, dist, source, require_clean, "arm_bench_jit", "arm-bench-build-manifest.json")
+@@ -477,6 +512,8 @@ def package_source(root: Path, dist: Path, require_clean: bool = False, emscript
+             raise PackageError("QuickJS artifacts changed while archiving; do not rebuild during packaging")
+         if c_bench != verify_c_bench(root, dist):
+             raise PackageError("C benchmark artifacts changed while archiving; do not rebuild during packaging")
++        if bcore_bench != verify_bcore_bench(root, dist):
++            raise PackageError('Blackfin build changed while packaging')
+         if (notices, notices_info) != runtime_notices(root, sdk, runtime):
+             raise PackageError("runtime license inputs changed while archiving")
+         (temp / "runtime-licenses.txt").write_text(notices)
+@@ -487,6 +524,7 @@ def package_source(root: Path, dist: Path, require_clean: bool = False, emscript
+             **({"officialHostBuild": official_host} if official_host is not None else {}),
+             **({"quickjsBuild": quickjs} if quickjs is not None else {}),
+             **({"cBenchBuild": c_bench} if c_bench is not None else {}),
++            **({"bcoreBenchBuild": bcore_bench} if bcore_bench is not None else {}),
+             "runtimeNotices": {"path": "runtime-licenses.txt", **notices_info, **digest(temp / "runtime-licenses.txt")},
+             "correspondenceVerified": not source["dirty"] and not runtime["source"]["dirty"] and
+                                       (official_host is None or not official_host["source"]["dirty"]),
+diff --git a/examples/c-bench/README.md b/examples/c-bench/README.md
+index 6da12ef..aee4f75 100644
+--- a/examples/c-bench/README.md
++++ b/examples/c-bench/README.md
+@@ -1,4 +1,4 @@
+-# One C workload, three browser execution paths
++# One C workload, selectable browser execution paths
+ 
+ The Pages C lab compiles the same five kernels to ARM32 for dynarmic.js, x86
+ for v86, and direct WebAssembly. All three use the same Zig-provided Clang
+@@ -105,3 +105,125 @@ inner measured calls are not independent browser repetitions.
+ The [recorded five-session comparison](../../internals/measurements/2026-10-31-c-bench-performance/README.md)
+ contains the analysis script, raw evidence, per-case ratios, first-call and
+ preparation times, and the separately retained incomplete Chrome 133 attempt.
++
++## Blackfin / bcore comparison
++
++Select **ARM / Blackfin / direct Wasm** to run the same five kernels through
++`bfin-elf-gcc` and [op1emu/bcore](https://github.com/op1emu/bcore)'s Wasm backend.
++The original ARM / x86 comparison remains available. Each group has three paths
++so every runtime occupies each of the three order positions once per case.
++The Blackfin mode keeps the same Quick/Extended counts, seeds, independent
++reference checksums, six-call protocol, fresh Workers and paired ratios.
++`bcore / ARM > 1` means the ARM path takes less time.
++
++Blackfin uses GCC 4.5.3 (ADI 2014R1_45-RC2), `-O2 -mcpu=bf532`, scalar settings
++and no libc. This is **not a same-compiler comparison**: the other two paths use
++Clang. GCC 4.5 does not support Clang's vectorization switches or
++`-ffp-contract=off`; vectorization is disabled with `-fno-tree-vectorize`, and
++Blackfin's binary64 operations call libgcc helpers (including `__muldf3` and
++`__adddf3`), with no hardware FMA or host floating-point shortcut. The float
++result therefore includes software floating-point costs, not just translation.
++Read integer/memory and floating-point results separately.
++
++The pinned bcore revision is `df7aee68589424364e74d6cee4def5269721e3e6`.
++The host follows OP-1's web defaults: copy-and-patch with hints and split
++stencils; 10 cold starts, batches of 32 blocks or 65,536 packets; chaining,
++lazy state and loop blocks. After startup the webpage Worker enables remote
++LLVM promotion at threshold `100000`, size reference `16`. The compiler Worker
++warms each generated function before sending the module back. Tier 1 uses IR
++O1 / codegen O2; the light tier-1 pipeline is off. LLVM is split into a deferred
++module, loaded by the compiler Worker, and only by the execution Worker if an
++unsupported packet requires it. Profiling, chained-block diagnostic counts and
++verification are disabled. Runs yield through MessageChannel after an 8 ms
++slice, checking the clock every 32 dispatches or 100,000 guest packets. The
++chain cap is `2^24`; host cycles, IDLE waits and `SYSCFG=0x30` match OP-1.
++RAM uses a page table: bcore cannot use copy-and-patch with FlatMemory's raw
++inline path. This measures bare-metal C, not the full OP-1 firmware/device
++simulation. These settings are taken from `web/src/op1_web.cpp`, `web/worker.js`,
++`web/compile-worker.js` and `src/cpu/cpu.cpp` at op1emu revision
++`9ba8d234b561efc77f1894f142b39efbd1f7a2db`. Its host builds with the
++upstream-supported Emscripten 4.0.9 and Wasm LLVM 23.1.2, versus the ARM host's
++Emscripten 6.0.13. Host code uses Release O3 and the upstream-recommended O1
++link. The manifest records these differences.
++
++Blackfin has the same 16 MiB guest RAM, entry `0x10000`, stack `0xff0000` and
++mailbox `0xf000`. Guest writes of phase 0/1 to `0x01000000` record real host
++monotonic timestamps using `emscripten_get_now`; writing the exit status to
++`0x01000004` stops execution. Initialization and input resets remain outside
++the timed interval. The host starts with 128 MiB Wasm memory and may grow;
++LLVM also compiles guest blocks to separate Wasm modules. This is not a claim
++of equal total host memory consumption. Loading, first-call compilation and
++warm measurements are shown separately. The execution and compiler Workers
++have separate 128 MiB initial memories; the report records both. The split
++host downloads roughly 43 MiB of main Wasm and 29 MiB of deferred LLVM,
++uncompressed. It loads only when selected. OP-1's Brotli/Service Worker download
++cache is not replicated, so preparation timings do not compare download UX.
++
++Two fixed warmup calls may finish before a background promotion arrives.
++Every observation exports submitted/installed counts, the first installation's
++marker index (0–12; use the installed count to distinguish no installation)
++and installations before measured calls.
++The page shows the counts in its details. Timings include time spent yielding
++and any tier changes within a call; they do not claim pure tier-1 steady state.
++A failed compiler Worker invalidates this benchmark, rather than silently
++reporting a slower tier-0-only path. See the [configuration audit](OP1-CONFIG.md).
++
++The Pages workflow includes this path. To add it to a local `browser_page`
++distribution on Linux x86_64 (Node 24+, Python 3.10+, CMake):
++
++```sh
++bash examples/c-bench/setup-bcore.sh build-bcore-tools
++python3 examples/c-bench/build-bcore.py \
++  --bcore-source build-bcore-tools/bcore \
++  --bfin-gcc build-bcore-tools/bfin-elf/bin/bfin-elf-gcc \
++  --emsdk build-bcore-tools/wasm-tools/emsdk-4.0.9 \
++  --llvm build-bcore-tools/wasm-tools/llvm-23.1.2 \
++  --dist build-em/examples/browser/dist --cache build-c-bench-bcore
++```
++
++Alternatively pass existing toolchain paths. The builder requires the pinned,
++tracked-clean bcore checkout and builds a source snapshot in its own cache;
++it does not change the checkout or reuse unknown upstream build artifacts.
++It retains guest ELF/disassembly and packages bcore's source, MIT license,
++LLVM/Emscripten/runtime notices, GCC GPLv3 and GCC Runtime Library Exception.
++`c-bench-bcore-manifest.json` binds the compiler, libgcc, inputs and artifacts.
++Both the page and Worker reject mismatched C sources, and the Worker verifies
++the bytes of every bcore executable before running them. Source packaging also
++rejects stale Blackfin inputs/artifacts. Rebuild both guest sets after changing
++shared sources. A local build without the optional artifacts reports a missing
++resource if Blackfin is selected.
++
++Run correctness checks and collect paired performance evidence:
++
++```sh
++node tests/browser/verify_bcore_bench.mjs /path/to/chrome \
++  build-em/examples/browser/dist build-c-bench-bcore/checks.json
++node examples/c-bench/measure.mjs --browser /path/to/chrome \
++  --dist build-em/examples/browser/dist --comparison bcore --profile quick \
++  --sessions 5 --output NEW_RESULTS
++```
++
++Quick is useful for this comparison because binary64 software arithmetic is
++much slower than the integer cases; Extended remains available with unchanged
++work counts. Use Chrome/Edge 133+ with Wasm tail calls (tested with Chrome 149). The verifier executes all Quick page rounds,
++all six Blackfin calls for every Extended case, corrupt-asset rejection,
++cancellation, visibility invalidation and mobile layout.
++
++The earlier [LLVM O2 five-session comparison](../../internals/measurements/2026-10-31-bcore-c-bench-performance/README.md)
++is retained as a separate, non-default configuration. It must not be presented
++as the default copy-and-patch result.
++
++The [web-default five-session comparison](../../internals/measurements/2026-10-31-bcore-web-defaults-performance/README.md)
++uses copy-and-patch with background LLVM promotion and records the actual
++compilation stage of each observation. It supersedes the LLVM-only setup as
++the page default.
++
++## Native backend comparison
++
++The [native harness](native/README.md) runs the same ARM/Blackfin guest binaries
++through their x86-64 native JITs, without Wasm. It retains the fixed-work,
++six-call checksum protocol and paired repetitions, with separate bcore native
++default, CP-without-promotion and LLVM-only configurations.
++The [five-session native report](../../internals/measurements/2026-11-01-native-c-bench-performance/README.md)
++covers the four integer/memory cases at Extended counts, including raw samples,
++first-call costs and exact build provenance.
+diff --git a/examples/c-bench/guest.c b/examples/c-bench/guest.c
+index 0b72b4d..073203e 100644
+--- a/examples/c-bench/guest.c
++++ b/examples/c-bench/guest.c
+@@ -6,6 +6,8 @@ static void mark(uint32_t phase) {
+     __asm__ volatile("svc #3" ::: "memory");
+ #elif defined(__i386__)
+     __asm__ volatile("outl %0, %w1" :: "a"(phase), "d"((uint16_t)0xe200) : "memory");
++#elif defined(__bfin__)
++    *(volatile uint32_t *)0x01000000 = phase;
+ #else
+ #error Unsupported guest architecture
+ #endif
+diff --git a/examples/c-bench/measure.mjs b/examples/c-bench/measure.mjs
+index 1823a11..d3db271 100644
+--- a/examples/c-bench/measure.mjs
++++ b/examples/c-bench/measure.mjs
+@@ -11,25 +11,30 @@ import {createRequire} from 'node:module';
+ import {fileURLToPath} from 'node:url';
+ import {withChromium} from '../../tests/browser/chromium.mjs';
+ const P = createRequire(import.meta.url)('../browser/c-bench-protocol.js');
+-const options = {browser:'/usr/bin/google-chrome', dist:'build-em/examples/browser/dist', sessions:5};
++const options = {browser:'/usr/bin/google-chrome', dist:'build-em/examples/browser/dist', sessions:5, comparison:'v86', profile:'full'};
+ for (let i = 2; i < process.argv.length; i += 2) {
+   const key = process.argv[i].slice(2), value = process.argv[i + 1];
+-  assert(['browser','dist','sessions','output'].includes(key) && value, 'Invalid argument');
++  assert(['browser','dist','sessions','output','comparison','profile'].includes(key) && value, 'Invalid argument');
+   options[key] = key === 'sessions' ? Number(value) : value;
+ }
+ assert(options.output && Number.isSafeInteger(options.sessions) && options.sessions >= 3 && options.sessions <= 20);
++assert(['v86','bcore'].includes(options.comparison));
++assert(['quick','full'].includes(options.profile));
++const runtimes = options.comparison === 'bcore' ? P.BCORE_RUNTIMES : P.RUNTIMES;
+ const output = path.resolve(options.output), dist = path.resolve(options.dist);
+ assert(!fs.existsSync(output), 'Output exists; retain it and use a new directory');
+ const digest = name => {const b=fs.readFileSync(name);return {bytes:b.length,sha256:createHash('sha256').update(b).digest('hex')};};
+ const read = name => JSON.parse(fs.readFileSync(path.join(dist,name),'utf8'));
+ const build = P.validateManifest(read('c-bench-manifest.json')), reference = P.validateReference(read('c-bench-reference.json'));
+ const host = read('wasm-build-manifest.json');
++const bcore = options.comparison === 'bcore' ? P.validateBcoreManifest(read('c-bench-bcore-manifest.json'), build) : null;
+ assert.equal(host.build.type,'Release'); assert.equal(host.build.profile,false); assert.equal(host.configuration.regionDiagnostics,false);
+ const names = [...build.artifacts.map(a=>a.path),'c-bench-manifest.json','wasm-build-manifest.json','arm_jit.js','arm_jit.wasm',
+   'c-bench-app.js','c-bench-worker.js','c-bench-protocol.js','index.html','styles.css'];
++if (bcore) names.push('c-bench-bcore-manifest.json', ...bcore.artifacts.map(a => a.path));
+ const files = () => Object.fromEntries(names.map(name=>[name,digest(path.join(dist,name))]));
+ const artifacts = files();
+-for (const a of build.artifacts) assert.deepEqual(artifacts[a.path],{bytes:a.bytes,sha256:a.sha256},a.path);
++for (const a of [...build.artifacts, ...(bcore?.artifacts || [])]) assert.deepEqual(artifacts[a.path],{bytes:a.bytes,sha256:a.sha256},a.path);
+ for(const [kind,ext] of [['js','.js'],['wasm','.wasm']])assert.deepEqual(artifacts['arm_jit'+ext],{bytes:host.artifacts[kind].bytes,sha256:host.artifacts[kind].sha256});
+ fs.mkdirSync(output,{recursive:true});
+ const write = (name,data) => fs.writeFileSync(path.join(output,name),JSON.stringify(data,null,2)+'\n',{flag:'wx'});
+@@ -38,13 +43,13 @@ const collectorPaths = [fileURLToPath(import.meta.url), fileURLToPath(new URL('.
+ const scriptHashes = () => Object.fromEntries(collectorPaths.map(f=>[f,digest(f)]));
+ const collector = scriptHashes();
+ write('experiment.json',{schema:'dynarmic.js/c-bench-performance-v1',createdAt:new Date().toISOString(),sessions:options.sessions,
+-  profile:'full',dist,browser:path.resolve(options.browser),artifacts,collector,build,reference,host,
++  profile:options.profile,dist,browser:path.resolve(options.browser),artifacts,collector,build,reference,host,bcore,runtimes,
+   environment:{node:process.version,os:os.release(),platform:process.platform,arch:process.arch,cpu:os.cpus()[0]?.model,
+     cpuCount:os.cpus().length,memoryBytes:os.totalmem(),affinity:process.platform==='linux'?fs.readFileSync('/proc/self/status','utf8').match(/^Cpus_allowed_list:\s*(.*)$/m)?.[1]:null},
+   methodology:{outerUnit:'One fresh Chromium process/profile running the unchanged full page comparison',
+     innerUnit:'Three balanced-order rounds; each case/runtime uses a fresh Worker with first + two warmup + three measured calls',
+     summary:'Within each session pair round medians before ratio aggregation; then summarize session-level medians',
+-    scope:'Fixed-work scalar kernels, same Clang/O2, complete execution paths; two warmups do not establish steady state'}});
++    scope:bcore ? bcore.scope : 'Fixed-work scalar kernels, same Clang/O2, complete execution paths; two warmups do not establish steady state'}});
+ let userAgent, failures=0;
+ for(let session=0;session<options.sessions;session++) {
+   assert.deepEqual(files(),artifacts,'Frozen page files changed'); assert.deepEqual(scriptHashes(),collector,'Collector changed');
+@@ -53,18 +58,20 @@ for(let session=0;session<options.sessions;session++) {
+     console.log('RUN session',session+1,'/',options.sessions);
+     await withChromium({browser:options.browser,root:dist},async({browserPid,navigate,evaluate,until})=>{
+       item.browserPid=browserPid;
+-      await navigate('?cbench=full');
++      await navigate('?cbench=' + options.profile + '&cbench-path=' + options.comparison);
+       item.userAgent=await evaluate('navigator.userAgent'); userAgent ||= item.userAgent; assert.equal(item.userAgent,userAgent);
+       const report=await until(async()=>{
+         const status=await evaluate('window.cBenchReport?.status');
+         return status && status!=='running' ? await evaluate('window.cBenchReport') : null;
+       },'full C comparison',1205000);
+       item.report=report;
+-      assert.equal(report.schema,'dynarmic.js/c-bench-comparison-v1'); assert.equal(report.profile,'full');
++      assert.equal(report.schema,'dynarmic.js/c-bench-comparison-v1'); assert.equal(report.profile,options.profile);
+       assert.equal(report.status,'pass',JSON.stringify(report.observations.filter(x=>x.status!=='pass')));
+       assert.equal(report.verified,true); assert.equal(report.performanceValid,true);
+       assert.equal(report.environment.visibilityChanged,false); assert.equal(report.methodology.performanceEligible,true);
+       assert.deepEqual(report.build,build); assert.deepEqual(report.reference,reference); assert.deepEqual(report.dynarmicBuild,host);
++      if (bcore) assert.deepEqual(report.bcoreBuild,bcore);
++      assert.deepEqual(report.runtimes,runtimes);
+       assert.deepEqual(report.selectedCases,P.CASE_IDS); assert.equal(report.observations.length,45);
+       const keys=new Set();
+       for(const x of report.observations) {
+@@ -73,14 +80,15 @@ for(let session=0;session<options.sessions;session++) {
+         assert(P.statistics(x.result.samplesMs).median>=P.RESOLUTION_MS);
+         if(x.task.runtime==='v86')assert(x.result.stats.compiledSlots>0,'v86 must use its JIT');
+       }
+-      for(const id of P.CASE_IDS)for(const runtime of P.RUNTIMES) {
++      for(const id of P.CASE_IDS)for(const runtime of runtimes) {
+         const items=report.observations.filter(x=>x.task.caseId===id&&x.task.runtime===runtime);
+         assert.deepEqual(items.map(x=>x.task.round).sort(),[0,1,2]);assert.deepEqual(items.map(x=>x.task.position).sort(),[0,1,2]);
+       }
+-      const summary=P.summarize(report.observations.map(x=>x.result));assert(summary.complete);
++      const summary=P.summarize(report.observations.map(x=>x.result),P.CASE_IDS,3,runtimes);assert(summary.complete);
+       for(const id of P.CASE_IDS) {
+-        for(const runtime of P.RUNTIMES)assert.deepEqual(report.summary.cases[id].runtimes[runtime].timing,summary.cases[id].runtimes[runtime].warmMs);
+-        assert.deepEqual(report.summary.cases[id].v86OverArm,summary.cases[id].ratios.v86OverDynarmic);
++        for(const runtime of runtimes)assert.deepEqual(report.summary.cases[id].runtimes[runtime].timing,summary.cases[id].runtimes[runtime].warmMs);
++        if (bcore) assert.deepEqual(report.summary.cases[id].bcoreOverArm,summary.cases[id].ratios.bcoreOverDynarmic);
++        else assert.deepEqual(report.summary.cases[id].v86OverArm,summary.cases[id].ratios.v86OverDynarmic);
+         assert.deepEqual(report.summary.cases[id].armOverDirect,summary.cases[id].ratios.dynarmicOverWasm);
+       }
+     });
+diff --git a/tests/browser/package_source_test.py b/tests/browser/package_source_test.py
+index f6bb30d..f05c123 100644
+--- a/tests/browser/package_source_test.py
++++ b/tests/browser/package_source_test.py
+@@ -254,6 +254,39 @@ class SourceArchiveTest(unittest.TestCase):
+         (self.dist / "c-bench-manifest.json").write_text(json.dumps(manifest))
+         return manifest
+ 
++    def test_optional_bcore_binds_sources_artifacts_and_notices(self):
++        self.assertIsNone(pack.verify_bcore_bench(self.root, self.dist))
++        inputs = []
++        for name in ('kernels.c', 'kernels.h', 'guest.c', 'start-bfin.S', 'link-bfin.ld', 'bcore-host.cpp',
++                     'bcore/CMakeLists.txt', 'build-bcore.py', 'bcore-tier.cpp', 'bcore/split-pre.js',
++                     'bcore/split-module.mjs', 'bcore/runtime.js', 'bcore/tier-worker.js', 'licenses/libgcc-COPYING3.txt',
++                     'licenses/libgcc-RUNTIME-LIBRARY-EXCEPTION.txt'):
++            file = self.root / 'examples/c-bench' / name
++            file.parent.mkdir(parents=True, exist_ok=True)
++            file.write_text('fixture: ' + name)
++            inputs.append({'path': str(file.relative_to(self.root)), **pack.digest(file)})
++        artifacts = []
++        for name in ('c-bench-bfin.bin', 'c-bench-bcore.js', 'c-bench-bcore.wasm',
++                     'c-bench-bcore-source.tar.gz', 'c-bench-bcore-LICENSE.txt', 'c-bench-bcore.deferred.wasm',
++                         'c-bench-bcore-runtime.js', 'c-bench-bcore-tier-worker.js'):
++            file = self.dist / name; file.write_text('fixture: ' + name)
++            artifacts.append({'path': name, **pack.digest(file)})
++        with self.assertRaisesRegex(pack.PackageError, 'no build manifest'):
++            pack.verify_bcore_bench(self.root, self.dist)
++        manifest = {'schema': 'dynarmic.js/c-bench-bcore-build-v1', 'inputs': inputs, 'artifacts': artifacts}
++        target = self.dist / 'c-bench-bcore-manifest.json'
++        target.write_text(json.dumps(manifest))
++        self.assertEqual(pack.verify_bcore_bench(self.root, self.dist)['inputs'], inputs)
++        for file in (self.dist / 'c-bench-bcore.wasm', self.root / 'examples/c-bench/kernels.c'):
++            original = file.read_bytes(); file.write_bytes(b'changed')
++            with self.assertRaisesRegex(pack.PackageError, 'mismatch'):
++                pack.verify_bcore_bench(self.root, self.dist)
++            file.write_bytes(original)
++        manifest['artifacts'].pop()
++        target.write_text(json.dumps(manifest))
++        with self.assertRaisesRegex(pack.PackageError, 'omits required artifacts'):
++            pack.verify_bcore_bench(self.root, self.dist)
++
+     def test_c_benchmark_packages_current_sources_artifacts_and_compiler_metadata(self):
+         self.assertNotIn("cBenchBuild", self.package(), "Older source fixtures may omit the C lab")
+         build = self.c_bench_fixture()

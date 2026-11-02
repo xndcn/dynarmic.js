@@ -1,0 +1,27 @@
+name: Bug report
+description: Report a reproducible build, runtime, or guest-semantics failure
+body:
+  - type: markdown
+    attributes:
+      value: Please use SECURITY.md for vulnerability reports.
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Commit, OS, Emscripten, Node/browser, build options, guest architecture and memory mode.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Exact commands and a minimal guest or saved fuzz case, if applicable.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+      description: Include complete error output and the expected reference result.
+    validations:
+      required: true

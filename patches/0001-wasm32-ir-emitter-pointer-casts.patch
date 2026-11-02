@@ -1,0 +1,32 @@
+wasm32: cast host function pointers via uptr instead of mcl::bit_cast<u64>
+
+On wasm32 pointers are 4 bytes, so bit_cast<u64> fails its size check.
+
+diff --git a/src/dynarmic/ir/ir_emitter.cpp b/src/dynarmic/ir/ir_emitter.cpp
+index fc4f69b3..96c3b332 100644
+--- a/src/dynarmic/ir/ir_emitter.cpp
++++ b/src/dynarmic/ir/ir_emitter.cpp
+@@ -2868,19 +2868,19 @@ void IREmitter::Breakpoint() {
+ }
+ 
+ void IREmitter::CallHostFunction(void (*fn)(void)) {
+-    Inst(Opcode::CallHostFunction, Imm64(mcl::bit_cast<u64>(fn)), Value{}, Value{}, Value{});
++    Inst(Opcode::CallHostFunction, Imm64(static_cast<u64>(reinterpret_cast<uptr>(fn))), Value{}, Value{}, Value{});
+ }
+ 
+ void IREmitter::CallHostFunction(void (*fn)(u64), const U64& arg1) {
+-    Inst(Opcode::CallHostFunction, Imm64(mcl::bit_cast<u64>(fn)), arg1, Value{}, Value{});
++    Inst(Opcode::CallHostFunction, Imm64(static_cast<u64>(reinterpret_cast<uptr>(fn))), arg1, Value{}, Value{});
+ }
+ 
+ void IREmitter::CallHostFunction(void (*fn)(u64, u64), const U64& arg1, const U64& arg2) {
+-    Inst(Opcode::CallHostFunction, Imm64(mcl::bit_cast<u64>(fn)), arg1, arg2, Value{});
++    Inst(Opcode::CallHostFunction, Imm64(static_cast<u64>(reinterpret_cast<uptr>(fn))), arg1, arg2, Value{});
+ }
+ 
+ void IREmitter::CallHostFunction(void (*fn)(u64, u64, u64), const U64& arg1, const U64& arg2, const U64& arg3) {
+-    Inst(Opcode::CallHostFunction, Imm64(mcl::bit_cast<u64>(fn)), arg1, arg2, arg3);
++    Inst(Opcode::CallHostFunction, Imm64(static_cast<u64>(reinterpret_cast<uptr>(fn))), arg1, arg2, arg3);
+ }
+ 
+ void IREmitter::SetTerm(const Terminal& terminal) {
