@@ -17,7 +17,7 @@ VERSION = "2025-09-13"
 URL = "https://bellard.org/quickjs/quickjs-2025-09-13-2.tar.xz"
 SHA256 = "996c6b5018fc955ad4d06426d0e9cb713685a00c825aa5c0418bd53f7df8b0b4"
 ENGINE_FILES = ["quickjs.c", "dtoa.c", "libregexp.c", "libunicode.c", "cutils.c"]
-LOCAL_INPUTS = ["build.py", "workloads.js", "runner.c", "syscalls.c", "start.S", "link.ld", "reference.py", "runtime_notices.py", "official_benchmarks.py", "official-v8-adapter.js"]
+LOCAL_INPUTS = ["build.py", "workloads.js", "runner.c", "syscalls.c", "start.S", "arm_newlib.h", "link.ld", "reference.py", "runtime_notices.py", "official_benchmarks.py", "official-v8-adapter.js"]
 
 
 def record(path, name):
@@ -129,7 +129,7 @@ def main():
                  # guard, which inttypes.h uses for PRI*64. Newlib 4 stdio.h
                  # no longer includes sys/types.h indirectly; include the
                  # public type header explicitly instead of inventing formats.
-                 "-include", "sys/types.h",
+                 "-include", str(HERE / "arm_newlib.h"),
                  "-ffunction-sections", "-fdata-sections", "-Wl,--gc-sections", "-T", str(HERE / "link.ld")]
     if args.arm_dispatch == "threaded":
         arm_flags.append("-DDYNARMIC_QUICKJS_ARM_DISPATCH=1")
