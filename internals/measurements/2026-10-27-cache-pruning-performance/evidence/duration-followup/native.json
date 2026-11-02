@@ -1,0 +1,7 @@
+{
+  "case": "native",
+  "status": 0,
+  "signal": null,
+  "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 4942102\nTotal time (secs): 4.942102\nIterations/Sec   : 40468.610320\nERROR! Must execute for at least 10 secs for a valid result!\nIterations       : 200000\nCompiler version : GCC12.3.0\nCompiler flags   : -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x4983\nErrors detected\n",
+  "stderr": ""
+}

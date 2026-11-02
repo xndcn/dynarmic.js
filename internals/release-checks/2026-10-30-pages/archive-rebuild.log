@@ -1,0 +1,257 @@
+Packaged 3091 files (21790350 bytes): local snapshot; runtime correspondence unverified
+
+=== reproducible clean-first rebuild (post-package source check) ===
+[0/2] Re-checking globbed directories...
+[1/1] Cleaning all built files...
+Cleaning... 222 files.
+[0/2] Re-checking globbed directories...
+[1/221] Building CXX object externals/dynarmic/externals/fmt/CMakeFiles/fmt.dir/src/os.cc.o
+In file included from /tmp/dynarmic-source-rebuild-tiphqh3y/dynarmic.js/externals/dynarmic/externals/fmt/src/os.cc:13:
+In file included from /tmp/dynarmic-source-rebuild-tiphqh3y/dynarmic.js/externals/dynarmic/externals/fmt/include/fmt/os.h:20:
+/tmp/dynarmic-source-rebuild-tiphqh3y/dynarmic.js/externals/dynarmic/externals/fmt/include/fmt/format.h:4429:27: warning: identifier '_a' preceded by whitespace in a literal operator declaration is deprecated [-Wdeprecated-literal-operator]
+ 4429 | constexpr auto operator"" _a(const char* s, size_t) -> detail::udl_arg<char> {
+      |                ~~~~~~~~~~~^~
+      |                operator""_a
+1 warning generated.
+[2/221] Building CXX object externals/dynarmic/externals/mcl/src/CMakeFiles/mcl.dir/assert.cpp.o
+In file included from /tmp/dynarmic-source-rebuild-tiphqh3y/dynarmic.js/externals/dynarmic/externals/mcl/src/assert.cpp:5:
+In file included from /tmp/dynarmic-source-rebuild-tiphqh3y/dynarmic.js/externals/dynarmic/externals/mcl/src/../include/mcl/assert.hpp:10:
+/tmp/dynarmic-source-rebuild-tiphqh3y/dynarmic.js/externals/dynarmic/externals/fmt/include/fmt/format.h:4429:27: warning: identifier '_a' preceded by whitespace in a literal operator declaration is deprecated [-Wdeprecated-literal-operator]
+ 4429 | constexpr auto operator"" _a(const char* s, size_t) -> detail::udl_arg<char> {
+      |                ~~~~~~~~~~~^~
+      |                operator""_a
+1 warning generated.
+[3/221] Building CXX object externals/dynarmic/externals/fmt/CMakeFiles/fmt.dir/src/format.cc.o
+In file included from /tmp/dynarmic-source-rebuild-tiphqh3y/dynarmic.js/externals/dynarmic/externals/fmt/src/format.cc:8:
+In file included from /tmp/dynarmic-source-rebuild-tiphqh3y/dynarmic.js/externals/dynarmic/externals/fmt/include/fmt/format-inl.h:25:
+/tmp/dynarmic-source-rebuild-tiphqh3y/dynarmic.js/externals/dynarmic/externals/fmt/include/fmt/format.h:4429:27: warning: identifier '_a' preceded by whitespace in a literal operator declaration is deprecated [-Wdeprecated-literal-operator]
+ 4429 | constexpr auto operator"" _a(const char* s, size_t) -> detail::udl_arg<char> {
+      |                ~~~~~~~~~~~^~
+      |                operator""_a
+1 warning generated.
+[4/221] Linking CXX static library externals/dynarmic/externals/fmt/libfmt.a
+[5/221] Linking CXX static library externals/dynarmic/externals/mcl/src/libmcl.a
+[6/221] Building CXX object examples/browser/CMakeFiles/arm_jit.dir/arm_web.cpp.o
+[7/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/cmake_pch.hxx.pch
+[8/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/crypto/aes.cpp.o
+[9/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/crypto/crc32.cpp.o
+[10/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/crypto/sm4.cpp.o
+[11/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/fused.cpp.o
+[12/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPCompare.cpp.o
+[13/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPConvert.cpp.o
+[14/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/backend/block_range_information.cpp.o
+[15/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPMulAdd.cpp.o
+[16/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/dynarmic-patched/src/dynarmic/common/fp/op/FPRecipExponent.cpp.o
+[17/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPRecipEstimate.cpp.o
+[18/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPRecipStepFused.cpp.o
+[19/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPRoundInt.cpp.o
+[20/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPRSqrtEstimate.cpp.o
+[21/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPRSqrtStepFused.cpp.o
+[22/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/process_exception.cpp.o
+[23/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPToFixed.cpp.o
+[24/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/process_nan.cpp.o
+[25/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/unpacked.cpp.o
+[26/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/math_util.cpp.o
+[27/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/memory_pool.cpp.o
+[28/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/u128.cpp.o
+[29/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/a32_types.cpp.o
+[30/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/a64_types.cpp.o
+[31/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/imm.cpp.o
+[32/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/dynarmic-patched/src/dynarmic/ir/basic_block.cpp.o
+[33/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/location_descriptor.cpp.o
+[34/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/microinstruction.cpp.o
+[35/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/dynarmic-patched/src/dynarmic/ir/ir_emitter.cpp.o
+[36/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/constant_propagation_pass.cpp.o
+[37/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/dead_code_elimination_pass.cpp.o
+[38/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/identity_removal_pass.cpp.o
+[39/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/naming_pass.cpp.o
+[40/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/polyfill_pass.cpp.o
+[41/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/verification_pass.cpp.o
+[42/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/type.cpp.o
+[43/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/value.cpp.o
+[44/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/a32_ir_emitter.cpp.o
+[45/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/a32_location_descriptor.cpp.o
+[46/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opcodes.cpp.o
+[47/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/disassembler/disassembler_thumb.cpp.o
+[48/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/a32_translate.cpp.o
+[49/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/conditional_state.cpp.o
+[50/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/a32_branch.cpp.o
+[51/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/a32_crc32.cpp.o
+[52/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/a32_exception_generating.cpp.o
+[53/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/a32_translate_impl.cpp.o
+[54/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/asimd_load_store_structures.cpp.o
+[55/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/asimd_misc.cpp.o
+[56/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/asimd_one_reg_modified_immediate.cpp.o
+[57/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/asimd_three_regs.cpp.o
+[58/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/disassembler/disassembler_arm.cpp.o
+[59/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/asimd_two_regs_misc.cpp.o
+[60/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/asimd_two_regs_scalar.cpp.o
+[61/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/asimd_two_regs_shift.cpp.o
+[62/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/coprocessor.cpp.o
+[63/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/barrier.cpp.o
+[64/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/divide.cpp.o
+[65/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/data_processing.cpp.o
+[66/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/extension.cpp.o
+[67/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/hint.cpp.o
+[68/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/misc.cpp.o
+[69/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/load_store.cpp.o
+[70/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/packing.cpp.o
+[71/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/multiply.cpp.o
+[72/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/parallel.cpp.o
+[73/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/reversal.cpp.o
+[74/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/saturated.cpp.o
+[75/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/status_register_access.cpp.o
+[76/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/synchronization.cpp.o
+[77/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_branch.cpp.o
+[78/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb16.cpp.o
+[79/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_control.cpp.o
+[80/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_coprocessor.cpp.o
+[81/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_data_processing_modified_immediate.cpp.o
+[82/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_data_processing_plain_binary_immediate.cpp.o
+[83/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_data_processing_register.cpp.o
+[84/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_data_processing_shifted_register.cpp.o
+[85/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_load_halfword.cpp.o
+[86/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_load_byte.cpp.o
+[87/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_load_store_dual.cpp.o
+[88/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_load_store_multiple.cpp.o
+[89/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_long_multiply.cpp.o
+[90/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_load_word.cpp.o
+[91/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_misc.cpp.o
+[92/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_multiply.cpp.o
+[93/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_parallel.cpp.o
+[94/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_store_single_data_item.cpp.o
+[95/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/vfp.cpp.o
+[96/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/dynarmic-patched/src/dynarmic/frontend/A32/translate/translate_arm.cpp.o
+[97/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/a32_constant_memory_reads_pass.cpp.o
+[98/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/a32_get_set_elimination_pass.cpp.o
+[99/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/a64_ir_emitter.cpp.o
+[100/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/a64_location_descriptor.cpp.o
+[101/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/translate_thumb.cpp.o
+[102/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/a64_branch.cpp.o
+[103/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/a64_exception_generating.cpp.o
+[104/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/data_processing_addsub.cpp.o
+[105/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/data_processing_bitfield.cpp.o
+[106/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/data_processing_conditional_compare.cpp.o
+[107/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/data_processing_conditional_select.cpp.o
+[108/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/data_processing_crc32.cpp.o
+[109/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/data_processing_logical.cpp.o
+[110/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/data_processing_multiply.cpp.o
+[111/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/data_processing_pcrel.cpp.o
+[112/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/data_processing_register.cpp.o
+[113/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/data_processing_shift.cpp.o
+[114/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/floating_point_compare.cpp.o
+[115/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/floating_point_conditional_compare.cpp.o
+[116/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/floating_point_conditional_select.cpp.o
+[117/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/floating_point_conversion_fixed_point.cpp.o
+[118/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/floating_point_conversion_integer.cpp.o
+[119/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/floating_point_data_processing_one_register.cpp.o
+[120/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/a64_translate.cpp.o
+[121/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/floating_point_data_processing_three_register.cpp.o
+[122/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/floating_point_data_processing_two_register.cpp.o
+[123/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/load_store_exclusive.cpp.o
+[124/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/impl.cpp.o
+[125/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/load_store_load_literal.cpp.o
+[126/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/load_store_multiple_structures.cpp.o
+[127/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/load_store_no_allocate_pair.cpp.o
+[128/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/load_store_register_immediate.cpp.o
+[129/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/load_store_register_pair.cpp.o
+[130/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/load_store_register_register_offset.cpp.o
+[131/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/load_store_register_unprivileged.cpp.o
+[132/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/load_store_single_structure.cpp.o
+[133/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/move_wide.cpp.o
+[134/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_across_lanes.cpp.o
+[135/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_aes.cpp.o
+[136/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_copy.cpp.o
+[137/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_crypto_four_register.cpp.o
+[138/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_extract.cpp.o
+[139/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_crypto_three_register.cpp.o
+[140/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_permute.cpp.o
+[141/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_modified_immediate.cpp.o
+[142/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_scalar_pairwise.cpp.o
+[143/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_scalar_shift_by_immediate.cpp.o
+[144/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_scalar_three_same.cpp.o
+[145/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_scalar_two_register_misc.cpp.o
+[146/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_scalar_x_indexed_element.cpp.o
+[147/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_sha.cpp.o
+[148/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_shift_by_immediate.cpp.o
+[149/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_sha512.cpp.o
+[150/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_three_different.cpp.o
+[151/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_table_lookup.cpp.o
+[152/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_three_same_extra.cpp.o
+[153/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_three_same.cpp.o
+[154/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/dynarmic-patched/src/dynarmic/frontend/A64/translate/impl/simd_two_register_misc.cpp.o
+[155/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/simd_vector_x_indexed_element.cpp.o
+[156/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/sys_dc.cpp.o
+[157/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/sys_ic.cpp.o
+[158/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/system_flag_format.cpp.o
+[159/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/system.cpp.o
+[160/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/a64_callback_config_pass.cpp.o
+[161/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/translate/impl/system_flag_manipulation.cpp.o
+[162/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/a64_merge_interpret_blocks.cpp.o
+[163/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/a64_get_set_elimination_pass.cpp.o
+[164/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/a32_jitstate.cpp.o
+[165/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/a32_address_space.cpp.o
+[166/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/a64_address_space.cpp.o
+[167/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/a64_region_focus.cpp.o
+[168/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/address_space.cpp.o
+[169/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm.cpp.o
+[170/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_a32.cpp.o
+[171/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_a64_memory.cpp.o
+[172/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_a64.cpp.o
+[173/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_crc32.cpp.o
+[174/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_coproc.cpp.o
+[175/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_crypto.cpp.o
+[176/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_fp.cpp.o
+[177/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp.o
+[178/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_memory.cpp.o
+[179/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_fp_a64.cpp.o
+[180/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_packed.cpp.o
+[181/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_saturation.cpp.o
+[182/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_region.cpp.o
+[183/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp.o
+[184/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_vector.cpp.o
+[185/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_terminal.cpp.o
+[186/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_vector2.cpp.o
+[187/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_vector3.cpp.o
+[188/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_vector_a64.cpp.o
+[189/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_vector_fp.cpp.o
+[190/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/exclusive_monitor.cpp.o
+[191/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/profiler.cpp.o
+[192/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_vector_qc.cpp.o
+[193/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/region_plan.cpp.o
+[194/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/region_diagnostics.cpp.o
+[195/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/spin_lock_wasm.cpp.o
+[196/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/thunks.cpp.o
+[197/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/thunks_a64.cpp.o
+[198/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/region_selector.cpp.o
+[199/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/wasm_runtime_emscripten.cpp.o
+[200/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/wasm_runtime_stub.cpp.o
+[201/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/wasm_binary.cpp.o
+[202/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/a32_interface.cpp.o
+[203/221] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/a64_interface.cpp.o
+[204/221] Linking CXX static library externals/dynarmic/src/dynarmic/libdynarmic.a
+[205/221] Linking CXX executable examples/browser/dist/arm_jit.js
+[206/221] Generating dist/404.html
+[207/221] Generating dist/app.js
+[208/221] Generating dist/demo_a64.bin
+[209/221] Generating dist/icon-192.png
+[210/221] Generating dist/expected.txt
+mark 294597366.498
+mark 294597466.544
+mark 294597478.084
+mark 294597499.251
+[211/221] Generating dist/icon-512.png
+[212/221] Generating dist/icon.svg
+[213/221] Generating dist/index.html
+[214/221] Generating dist/robots.txt
+[215/221] Generating dist/site.js
+[216/221] Generating dist/site.webmanifest
+[217/221] Generating dist/sitemap.xml
+[218/221] Generating dist/social-card.png
+[219/221] Generating dist/styles.css
+[220/221] Generating dist/worker.js
+[221/221] Generating dist/demo.bin
+ARM32: 0000002a (42) — PASS
+AArch64: 0000002a (42) — PASS
+
+=== completed 2026-10-30T12:32:58Z ===

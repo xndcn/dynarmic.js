@@ -1,0 +1,21 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: SignedSaturatedAddWithFlag32 a=1 b=7fffffff: FPSR
++ actual - expected
+
++ 138412053
+- 4194325
+
+    at check (file:///home/xiong/workspace/dynarmic.js/tests/ir/integer_edge_test.mjs:82:12)
+    at file:///home/xiong/workspace/dynarmic.js/tests/ir/integer_edge_test.mjs:94:9 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 138412053,
+  expected: 4194325,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

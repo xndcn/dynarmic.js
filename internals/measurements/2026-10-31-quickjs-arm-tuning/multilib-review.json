@@ -1,0 +1,141 @@
+{
+  "schema": "dynarmic.js/arm-tuning-multilib-review-v1",
+  "reviewedAt": "2026-10-30T18:10:47.648669+00:00",
+  "scope": "Compiler query and archive hashing only; no compilation or benchmark execution",
+  "compiler": "arm-none-eabi-gcc (15:10.3-2021.07-4) 10.3.1 20210621 (release)",
+  "commonFlags": [
+    "-march=armv7-a",
+    "-mfpu=vfpv3",
+    "-mfloat-abi=softfp"
+  ],
+  "targets": {
+    "arm": {
+      "flags": [
+        "-march=armv7-a",
+        "-mfpu=vfpv3",
+        "-mfloat-abi=softfp",
+        "-marm"
+      ],
+      "multiDirectory": "thumb/v7-a+fp/softfp",
+      "libraries": {
+        "libc.a": {
+          "command": [
+            "arm-none-eabi-gcc",
+            "-march=armv7-a",
+            "-mfpu=vfpv3",
+            "-mfloat-abi=softfp",
+            "-marm",
+            "-print-file-name=libc.a"
+          ],
+          "reportedPath": "/usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7-a+fp/softfp/libc.a",
+          "resolvedPath": "/usr/lib/arm-none-eabi/newlib/thumb/v7-a+fp/softfp/libc.a",
+          "bytes": 5155350,
+          "sha256": "2ea8add3899b543600c1e942e286954a550d4ddec4776b85c3b375dbcc25bba2"
+        },
+        "libm.a": {
+          "command": [
+            "arm-none-eabi-gcc",
+            "-march=armv7-a",
+            "-mfpu=vfpv3",
+            "-mfloat-abi=softfp",
+            "-marm",
+            "-print-file-name=libm.a"
+          ],
+          "reportedPath": "/usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7-a+fp/softfp/libm.a",
+          "resolvedPath": "/usr/lib/arm-none-eabi/newlib/thumb/v7-a+fp/softfp/libm.a",
+          "bytes": 1706400,
+          "sha256": "427efad8c03be110cea7c4a1494ee13229832e04832f55402313dd60dee11922"
+        },
+        "libgcc.a": {
+          "command": [
+            "arm-none-eabi-gcc",
+            "-march=armv7-a",
+            "-mfpu=vfpv3",
+            "-mfloat-abi=softfp",
+            "-marm",
+            "-print-libgcc-file-name"
+          ],
+          "reportedPath": "/usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7-a+fp/softfp/libgcc.a",
+          "resolvedPath": "/usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7-a+fp/softfp/libgcc.a",
+          "bytes": 9384930,
+          "sha256": "c883f22317ac61b5e9dce94ba9f3cbbf6fc2621810b3bc204a620c353d09e020"
+        }
+      }
+    },
+    "thumb": {
+      "flags": [
+        "-march=armv7-a",
+        "-mfpu=vfpv3",
+        "-mfloat-abi=softfp",
+        "-mthumb"
+      ],
+      "multiDirectory": "thumb/v7-a+fp/softfp",
+      "libraries": {
+        "libc.a": {
+          "command": [
+            "arm-none-eabi-gcc",
+            "-march=armv7-a",
+            "-mfpu=vfpv3",
+            "-mfloat-abi=softfp",
+            "-mthumb",
+            "-print-file-name=libc.a"
+          ],
+          "reportedPath": "/usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7-a+fp/softfp/libc.a",
+          "resolvedPath": "/usr/lib/arm-none-eabi/newlib/thumb/v7-a+fp/softfp/libc.a",
+          "bytes": 5155350,
+          "sha256": "2ea8add3899b543600c1e942e286954a550d4ddec4776b85c3b375dbcc25bba2"
+        },
+        "libm.a": {
+          "command": [
+            "arm-none-eabi-gcc",
+            "-march=armv7-a",
+            "-mfpu=vfpv3",
+            "-mfloat-abi=softfp",
+            "-mthumb",
+            "-print-file-name=libm.a"
+          ],
+          "reportedPath": "/usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7-a+fp/softfp/libm.a",
+          "resolvedPath": "/usr/lib/arm-none-eabi/newlib/thumb/v7-a+fp/softfp/libm.a",
+          "bytes": 1706400,
+          "sha256": "427efad8c03be110cea7c4a1494ee13229832e04832f55402313dd60dee11922"
+        },
+        "libgcc.a": {
+          "command": [
+            "arm-none-eabi-gcc",
+            "-march=armv7-a",
+            "-mfpu=vfpv3",
+            "-mfloat-abi=softfp",
+            "-mthumb",
+            "-print-libgcc-file-name"
+          ],
+          "reportedPath": "/usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7-a+fp/softfp/libgcc.a",
+          "resolvedPath": "/usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7-a+fp/softfp/libgcc.a",
+          "bytes": 9384930,
+          "sha256": "c883f22317ac61b5e9dce94ba9f3cbbf6fc2621810b3bc204a620c353d09e020"
+        }
+      }
+    }
+  },
+  "comparison": {
+    "sameMultiDirectory": true,
+    "libraries": {
+      "libc.a": {
+        "sameResolvedPath": true,
+        "sameSha256": true
+      },
+      "libm.a": {
+        "sameResolvedPath": true,
+        "sameSha256": true
+      },
+      "libgcc.a": {
+        "sameResolvedPath": true,
+        "sameSha256": true
+      }
+    }
+  },
+  "conclusions": [
+    "For these exact GCC 10.3.1 ARMv7-A/VFPv3/softfp targets, both -marm and -mthumb resolve to thumb/v7-a+fp/softfp and the same libc.a, libm.a and libgcc.a archive bytes.",
+    "This query does not establish identical linked archive-member selection, linker relaxation, call/interworking instructions, or final library code bytes. The benchmark compares complete linked guests, not an isolated ISA transform.",
+    "Other compiler versions or target/ABI flags may select different multilibs and require a new query."
+  ]
+}

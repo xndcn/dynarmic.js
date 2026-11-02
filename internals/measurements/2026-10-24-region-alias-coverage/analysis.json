@@ -1,0 +1,1507 @@
+{
+  "schema": "dynarmic.js/region-alias-evidence-v1",
+  "workloadSha256": "ad43250ce2139ab0d0fdbf1eac0bb1284e00fde62419d387accfe6348cca17aa",
+  "baselineArtifact": {
+    "jsSha256": "5471de0a3e0cee63e050ce864b74f579a42da8c5916b1508a11bf41e11505594",
+    "wasmSha256": "0a6b16b2b84e6f054fca199fd299966e0a21982619cce5aa55fa9dd92c7877d4"
+  },
+  "currentArtifact": {
+    "jsSha256": "804b28f87a74a9eb29ddcc172cbf45653a08cafc0de4d996eaf4ae677a3a968e",
+    "wasmSha256": "6f8fd9eb435e587fc8a40a1d1e25c549e29c52c160006b2bd6834aadd1022872"
+  },
+  "projectionMatchesV1": true,
+  "coverage": {
+    "schema": "dynarmic.js/region-alias-coverage-v1",
+    "totals": {
+      "regionCount": 111,
+      "laterEntryCount": 82,
+      "coveredLaterEntryCount": 16
+    },
+    "decision": "GO",
+    "laterEntries": [
+      {
+        "regionId": 3,
+        "entryDescriptor": "0x0000000000010b70",
+        "previouslySelectedRegionIds": [
+          1
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 5,
+        "entryDescriptor": "0x0000000000010b78",
+        "previouslySelectedRegionIds": [
+          1,
+          3
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 6,
+        "entryDescriptor": "0x0000000000010b84",
+        "previouslySelectedRegionIds": [
+          1,
+          3,
+          5
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 7,
+        "entryDescriptor": "0x0000000000010b90",
+        "previouslySelectedRegionIds": [
+          1,
+          3,
+          5,
+          6
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 8,
+        "entryDescriptor": "0x0000000000010b9c",
+        "previouslySelectedRegionIds": [
+          1,
+          3,
+          5,
+          6,
+          7
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 9,
+        "entryDescriptor": "0x0000000000010ba8",
+        "previouslySelectedRegionIds": [
+          1,
+          3,
+          5,
+          6,
+          7,
+          8
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 11,
+        "entryDescriptor": "0x0000000000010dd0",
+        "previouslySelectedRegionIds": [
+          1,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 13,
+        "entryDescriptor": "0x0000000000010c64",
+        "previouslySelectedRegionIds": [
+          1,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 15,
+        "entryDescriptor": "0x0000000000010c7c",
+        "previouslySelectedRegionIds": [
+          1,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 17,
+        "entryDescriptor": "0x0000000000010ce4",
+        "previouslySelectedRegionIds": [
+          1,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          15
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 21,
+        "entryDescriptor": "0x00000000000100c8",
+        "previouslySelectedRegionIds": [
+          19
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 22,
+        "entryDescriptor": "0x0000000000010370",
+        "previouslySelectedRegionIds": [
+          18
+        ],
+        "staticallyEligibleRegionIds": [
+          18
+        ],
+        "liveEligibleOwnerRegionIds": [
+          18
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 23,
+        "entryDescriptor": "0x0000000000010380",
+        "previouslySelectedRegionIds": [
+          22
+        ],
+        "staticallyEligibleRegionIds": [
+          22
+        ],
+        "liveEligibleOwnerRegionIds": [
+          22
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 24,
+        "entryDescriptor": "0x0000000000011350",
+        "previouslySelectedRegionIds": [
+          22
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 26,
+        "entryDescriptor": "0x000000000001154c",
+        "previouslySelectedRegionIds": [
+          24
+        ],
+        "staticallyEligibleRegionIds": [
+          24
+        ],
+        "liveEligibleOwnerRegionIds": [
+          24
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 27,
+        "entryDescriptor": "0x0000000000011700",
+        "previouslySelectedRegionIds": [
+          26
+        ],
+        "staticallyEligibleRegionIds": [
+          26
+        ],
+        "liveEligibleOwnerRegionIds": [
+          26
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 28,
+        "entryDescriptor": "0x0000000000011288",
+        "previouslySelectedRegionIds": [
+          22,
+          23
+        ],
+        "staticallyEligibleRegionIds": [
+          22,
+          23
+        ],
+        "liveEligibleOwnerRegionIds": [
+          22,
+          23
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 29,
+        "entryDescriptor": "0x00000000000100ac",
+        "previouslySelectedRegionIds": [
+          19,
+          22,
+          23
+        ],
+        "staticallyEligibleRegionIds": [
+          22,
+          23
+        ],
+        "liveEligibleOwnerRegionIds": [
+          22,
+          23
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 30,
+        "entryDescriptor": "0x000000000001135c",
+        "previouslySelectedRegionIds": [
+          24
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 33,
+        "entryDescriptor": "0x000000000001202c",
+        "previouslySelectedRegionIds": [
+          31
+        ],
+        "staticallyEligibleRegionIds": [
+          31
+        ],
+        "liveEligibleOwnerRegionIds": [
+          31
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 34,
+        "entryDescriptor": "0x000000000001238c",
+        "previouslySelectedRegionIds": [
+          32
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 35,
+        "entryDescriptor": "0x00000000000123cc",
+        "previouslySelectedRegionIds": [
+          32,
+          34
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 36,
+        "entryDescriptor": "0x00000000000122e8",
+        "previouslySelectedRegionIds": [
+          32,
+          34,
+          35
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 37,
+        "entryDescriptor": "0x0000000000012418",
+        "previouslySelectedRegionIds": [
+          32,
+          34,
+          35,
+          36
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 38,
+        "entryDescriptor": "0x000000000001209c",
+        "previouslySelectedRegionIds": [
+          31,
+          33
+        ],
+        "staticallyEligibleRegionIds": [
+          31,
+          33
+        ],
+        "liveEligibleOwnerRegionIds": [
+          31,
+          33
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 39,
+        "entryDescriptor": "0x00000000000123f8",
+        "previouslySelectedRegionIds": [
+          32,
+          34,
+          35,
+          36
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 40,
+        "entryDescriptor": "0x000000000001229c",
+        "previouslySelectedRegionIds": [
+          32,
+          34,
+          35,
+          36
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 42,
+        "entryDescriptor": "0x0000000000010084",
+        "previouslySelectedRegionIds": [
+          19,
+          22,
+          23
+        ],
+        "staticallyEligibleRegionIds": [
+          22,
+          23
+        ],
+        "liveEligibleOwnerRegionIds": [
+          22,
+          23
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 43,
+        "entryDescriptor": "0x0000000000010464",
+        "previouslySelectedRegionIds": [
+          11,
+          13,
+          15,
+          17,
+          18,
+          22,
+          23
+        ],
+        "staticallyEligibleRegionIds": [
+          18,
+          22,
+          23
+        ],
+        "liveEligibleOwnerRegionIds": [
+          18,
+          22,
+          23
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 44,
+        "entryDescriptor": "0x00000000000105b8",
+        "previouslySelectedRegionIds": [
+          43
+        ],
+        "staticallyEligibleRegionIds": [
+          43
+        ],
+        "liveEligibleOwnerRegionIds": [
+          43
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 45,
+        "entryDescriptor": "0x0000000000010abc",
+        "previouslySelectedRegionIds": [
+          1,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          15,
+          17
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 46,
+        "entryDescriptor": "0x0000000000010ac4",
+        "previouslySelectedRegionIds": [
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          15,
+          17,
+          45
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 47,
+        "entryDescriptor": "0x0000000000010ad4",
+        "previouslySelectedRegionIds": [
+          11,
+          13,
+          15,
+          17,
+          45,
+          46
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 48,
+        "entryDescriptor": "0x0000000000010adc",
+        "previouslySelectedRegionIds": [
+          11,
+          13,
+          15,
+          17,
+          45,
+          46,
+          47
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 49,
+        "entryDescriptor": "0x0000000000010020",
+        "previouslySelectedRegionIds": [
+          18,
+          22,
+          23
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 50,
+        "entryDescriptor": "0x0000000000010af8",
+        "previouslySelectedRegionIds": [
+          11,
+          13,
+          15,
+          17,
+          45,
+          46,
+          47,
+          48
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 51,
+        "entryDescriptor": "0x0000000000010b00",
+        "previouslySelectedRegionIds": [
+          17,
+          45,
+          46,
+          47,
+          48,
+          50
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 52,
+        "entryDescriptor": "0x0000000000010b10",
+        "previouslySelectedRegionIds": [
+          45,
+          46,
+          47,
+          48,
+          50,
+          51
+        ],
+        "staticallyEligibleRegionIds": [
+          51
+        ],
+        "liveEligibleOwnerRegionIds": [
+          51
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 53,
+        "entryDescriptor": "0x0000000000010b18",
+        "previouslySelectedRegionIds": [
+          45,
+          46,
+          47,
+          48,
+          50,
+          51,
+          52
+        ],
+        "staticallyEligibleRegionIds": [
+          51
+        ],
+        "liveEligibleOwnerRegionIds": [
+          51
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 54,
+        "entryDescriptor": "0x0000000000010cec",
+        "previouslySelectedRegionIds": [
+          1,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          15,
+          17
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 56,
+        "entryDescriptor": "0x0000000000010cf0",
+        "previouslySelectedRegionIds": [
+          1,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          15,
+          17,
+          54
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 58,
+        "entryDescriptor": "0x0000000000010cf4",
+        "previouslySelectedRegionIds": [
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          15,
+          17,
+          54,
+          56
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 59,
+        "entryDescriptor": "0x0000000000010d08",
+        "previouslySelectedRegionIds": [
+          8,
+          9,
+          11,
+          13,
+          15,
+          17,
+          54,
+          56,
+          58
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 60,
+        "entryDescriptor": "0x0000000000010d18",
+        "previouslySelectedRegionIds": [
+          11,
+          13,
+          15,
+          17,
+          54,
+          56,
+          58,
+          59
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 61,
+        "entryDescriptor": "0x0000000000010d28",
+        "previouslySelectedRegionIds": [
+          11,
+          13,
+          15,
+          17,
+          54,
+          56,
+          58,
+          59,
+          60
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 62,
+        "entryDescriptor": "0x0000000000010d38",
+        "previouslySelectedRegionIds": [
+          11,
+          13,
+          15,
+          17,
+          54,
+          56,
+          58,
+          59,
+          60,
+          61
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 65,
+        "entryDescriptor": "0x0000000000010e50",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 67,
+        "entryDescriptor": "0x0000000000010f78",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62,
+          65
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 70,
+        "entryDescriptor": "0x0000000000012db4",
+        "previouslySelectedRegionIds": [
+          68
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 71,
+        "entryDescriptor": "0x00000000000140c8",
+        "previouslySelectedRegionIds": [
+          64
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 72,
+        "entryDescriptor": "0x0000000000013ca4",
+        "previouslySelectedRegionIds": [
+          64,
+          70
+        ],
+        "staticallyEligibleRegionIds": [
+          64
+        ],
+        "liveEligibleOwnerRegionIds": [
+          64
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 73,
+        "entryDescriptor": "0x0000000000010f8c",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62,
+          65,
+          67
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 74,
+        "entryDescriptor": "0x0000000000010f9c",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62,
+          65,
+          67,
+          73
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 76,
+        "entryDescriptor": "0x0000000000010fa4",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62,
+          65,
+          67,
+          73,
+          74
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 79,
+        "entryDescriptor": "0x00000000000126d0",
+        "previouslySelectedRegionIds": [
+          77
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 80,
+        "entryDescriptor": "0x0000000000012704",
+        "previouslySelectedRegionIds": [
+          77,
+          79
+        ],
+        "staticallyEligibleRegionIds": [
+          79
+        ],
+        "liveEligibleOwnerRegionIds": [
+          79
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 81,
+        "entryDescriptor": "0x000000000001287c",
+        "previouslySelectedRegionIds": [
+          79,
+          80
+        ],
+        "staticallyEligibleRegionIds": [
+          79,
+          80
+        ],
+        "liveEligibleOwnerRegionIds": [
+          79,
+          80
+        ],
+        "covered": true
+      },
+      {
+        "regionId": 82,
+        "entryDescriptor": "0x0000000000013794",
+        "previouslySelectedRegionIds": [
+          77
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 84,
+        "entryDescriptor": "0x0000000000012a40",
+        "previouslySelectedRegionIds": [
+          63,
+          68,
+          70
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 85,
+        "entryDescriptor": "0x0000000000010fb0",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62,
+          65,
+          67,
+          73,
+          74,
+          76
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 86,
+        "entryDescriptor": "0x0000000000010fb8",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62,
+          65,
+          67,
+          73,
+          74,
+          76,
+          85
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 87,
+        "entryDescriptor": "0x0000000000010fd8",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62,
+          65,
+          67,
+          73,
+          74,
+          76,
+          85,
+          86
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 88,
+        "entryDescriptor": "0x0000000000010fe8",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62,
+          65,
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 89,
+        "entryDescriptor": "0x0000000000010ff0",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62,
+          65,
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 90,
+        "entryDescriptor": "0x0000000000011024",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62,
+          65,
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88,
+          89
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 92,
+        "entryDescriptor": "0x0000000000013c94",
+        "previouslySelectedRegionIds": [
+          64,
+          70
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 93,
+        "entryDescriptor": "0x0000000000011038",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62,
+          65,
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 94,
+        "entryDescriptor": "0x000000000001104c",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62,
+          65,
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          93
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 95,
+        "entryDescriptor": "0x0000000000011060",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62,
+          65,
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          93,
+          94
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 97,
+        "entryDescriptor": "0x0000000000011070",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62,
+          65,
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          93,
+          94,
+          95
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 99,
+        "entryDescriptor": "0x00000000000110ac",
+        "previouslySelectedRegionIds": [
+          54,
+          56,
+          58,
+          59,
+          60,
+          61,
+          62,
+          65,
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          93,
+          94,
+          95,
+          97
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 100,
+        "entryDescriptor": "0x00000000000110f8",
+        "previouslySelectedRegionIds": [
+          59,
+          60,
+          61,
+          62,
+          65,
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          93,
+          94,
+          95,
+          97,
+          99
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 101,
+        "entryDescriptor": "0x0000000000011144",
+        "previouslySelectedRegionIds": [
+          65,
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          93,
+          94,
+          95,
+          97,
+          99,
+          100
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 102,
+        "entryDescriptor": "0x0000000000011188",
+        "previouslySelectedRegionIds": [
+          65,
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          93,
+          94,
+          95,
+          97,
+          99,
+          100,
+          101
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 103,
+        "entryDescriptor": "0x00000000000111d0",
+        "previouslySelectedRegionIds": [
+          65,
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          93,
+          94,
+          95,
+          97,
+          99,
+          100,
+          101,
+          102
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 104,
+        "entryDescriptor": "0x00000000000111ec",
+        "previouslySelectedRegionIds": [
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          93,
+          94,
+          95,
+          97,
+          99,
+          100,
+          101,
+          102,
+          103
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 105,
+        "entryDescriptor": "0x0000000000012b58",
+        "previouslySelectedRegionIds": [
+          63,
+          68,
+          70,
+          84,
+          96,
+          98
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 106,
+        "entryDescriptor": "0x000000000001120c",
+        "previouslySelectedRegionIds": [
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          93,
+          94,
+          95,
+          97,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 107,
+        "entryDescriptor": "0x0000000000011220",
+        "previouslySelectedRegionIds": [
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          93,
+          94,
+          95,
+          97,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          106
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 108,
+        "entryDescriptor": "0x000000000001122c",
+        "previouslySelectedRegionIds": [
+          65,
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          93,
+          94,
+          95,
+          97,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          106,
+          107
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 110,
+        "entryDescriptor": "0x0000000000011234",
+        "previouslySelectedRegionIds": [
+          67,
+          73,
+          74,
+          76,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          93,
+          94,
+          95,
+          97,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          106,
+          107,
+          108
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      },
+      {
+        "regionId": 111,
+        "entryDescriptor": "0x000000000001000c",
+        "previouslySelectedRegionIds": [
+          1
+        ],
+        "staticallyEligibleRegionIds": [],
+        "liveEligibleOwnerRegionIds": [],
+        "covered": false
+      }
+    ]
+  }
+}

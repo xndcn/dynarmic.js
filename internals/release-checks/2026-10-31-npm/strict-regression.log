@@ -1,0 +1,15 @@
+......................
+----------------------------------------------------------------------
+Ran 22 tests in 5.239s
+
+OK
+PASS region planner: 65536 graphs and boundary cases
+PASS arm decoder: 4096 buckets, 4919 candidates, 261 rules, 1000000 random words
+integer edge cases: 1115100 passed (seed=0x32c0ffee)
+{"cases":109724,"failures":0,"moduleBytes":29609,"seed":"0x7a63d291"}
+FP numeric edge cases passed: 77440 result/FPSR checks
+PASS A64 memory edges: 2880 byte-reference cases plus null mappings and cross-page faults
+PASS browser host normal/fault halts (18 runs), RAM boundaries (216 runs) and API validation
+CoreMark not requested (use --coremark WORKLOAD_DIR); application gate not covered
+regression done fail=0
+Regression artifacts: /home/xiong/workspace/dynarmic.js/test-results/npm-strict-regression

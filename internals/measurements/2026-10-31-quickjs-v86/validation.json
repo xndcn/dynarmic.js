@@ -1,0 +1,27 @@
+{
+  "schema": "dynarmic.js/v86-comparison-validation-v1",
+  "primaryObservations": 60,
+  "passedPrimaryObservations": 60,
+  "sameBrowserAttemptPairs": 30,
+  "logicalRounds": 3,
+  "actualBrowserProcesses": 5,
+  "controlInterruptions": 2,
+  "retainedSupersededObservations": 1,
+  "allFrozenInputHashesMatch": true,
+  "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/133.0.0.0 Safari/537.36",
+  "independentEightSuiteRatios": [
+    1.7776954189519945,
+    1.7294718164237946,
+    1.6997745886599755
+  ],
+  "independentMedian": 1.7294718164237946,
+  "agreesWithJavaScriptAnalyzer": true,
+  "nodeTestsPassed": 63,
+  "kernelOutputsMatchIndependentReference": true,
+  "limitation": "Two control interruptions, with at least one renderer SIGSEGV confirmed; completed-run timing excludes interruption and restart costs. The interrupted Richards pair and final DeltaBlue pair were rerun together, not mixed across browser attempts.",
+  "postMeasurementNodeTestsPassed": 65,
+  "postMeasurementPairingErrors": 0,
+  "reviewedStatisticsUnchanged": true,
+  "workflowAndShellChecksPassed": true,
+  "preparedRuntimeBytesUnchangedAfterLicenseCopy": true
+}

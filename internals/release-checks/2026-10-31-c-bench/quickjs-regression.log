@@ -1,0 +1,9 @@
+PASS QuickJS comparison loads on demand at a nested path
+PASS all three actual runtimes match reference outputs and retain valid repeated statistics
+PASS Export JSON downloads the checked measurements and environment unchanged
+PASS QuickJS results and statistics fit 320–1440px
+PASS Stop terminates a synchronous ARM loop and restores both demo controls
+PASS Stop cancels pending Worker initialization and releases controls
+PASS a missing QuickJS Worker reports failure and releases controls
+PASS retry after an asset failure runs all three runtimes successfully
+PASS QuickJS Chromium (8 checks): Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/133.0.0.0 Safari/537.36

@@ -1,0 +1,17 @@
+wasm32: take the FP bit pattern as u64 in DetermineExponentValue
+
+On wasm32 size_t is 32 bits, so get_bits<52, 62> (the double exponent
+field, FRECPX on doubles) does not compile.
+
+diff --git a/src/dynarmic/common/fp/op/FPRecipExponent.cpp b/src/dynarmic/common/fp/op/FPRecipExponent.cpp
+--- a/src/dynarmic/common/fp/op/FPRecipExponent.cpp
++++ b/src/dynarmic/common/fp/op/FPRecipExponent.cpp
+@@ -17,7 +17,7 @@
+ namespace Dynarmic::FP {
+ namespace {
+ template<typename FPT>
+-FPT DetermineExponentValue(size_t value) {
++FPT DetermineExponentValue(u64 value) {
+     if constexpr (sizeof(FPT) == sizeof(u32)) {
+         return static_cast<FPT>(mcl::bit::get_bits<23, 30>(value));
+     } else if constexpr (sizeof(FPT) == sizeof(u64)) {

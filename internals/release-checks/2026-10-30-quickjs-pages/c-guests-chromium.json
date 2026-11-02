@@ -1,0 +1,195 @@
+{
+  "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/133.0.0.0 Safari/537.36",
+  "directory": "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist",
+  "artifactHashes": {
+    "index.html": "c380436fe92a5a6402d108bbe677622af872a1b4f4c049e4108a38bf6e392b9e",
+    "styles.css": "108bde9f6e1ac526ed151360dbf543ea8abba68ec9154a10e9d2a357a83cdd64",
+    "app.js": "713a739826961ee36427e3f29f093e35bcfa338dfbdd0c9325003d73bd7ea144",
+    "site.js": "033e22c81188f9f4e94e23f820e2ade2eb4886e9fff63d18ff59674378f0198a",
+    "worker.js": "e39b04e15598faeeebc83d4145a2ccd62604277ae6fc20f80975460da8c6b8f1",
+    "arm_jit.js": "16747bdfd6585d6fb21ff5c9416a5702853dc3b2b2274ecf971070b60bfd0073",
+    "arm_jit.wasm": "8bf2ed617b83da078d415b2347624c795029356842f8d3cd2dcf8c93e75d4171",
+    "demo.bin": "3b02710c7980a705f832ff65256248e7dee1c67f223e471c9679fb864fc1125f",
+    "demo_a64.bin": "456d2979329330dcf07ddbff947d9c1093d2482872dc9fa65712779123c446ec",
+    "expected.txt": "1f93f67870cb72ff0c6e1fb33437736671ec0073ba2330f63b84a4ee86dd2e0e",
+    "quickjs-app.js": "3e61c2b5356a04eaffaf69217ff938133e0905142bd3336a45fc1a041ce758ad",
+    "quickjs-worker.js": "c9b8c4b2b907d5b0ad67b9c17646a0649fbc893b5894695a627a2ed6690a556c",
+    "quickjs-workloads.js": "cff32113b074e4a0ede55920f1b4ac8a29bbf4996f2c9deb321f7e45f8c6c31e",
+    "quickjs-arm.bin": "13679cac07b934b7127c2730c7d01741bc30eee9dade73c58727107ff9eb0f7d",
+    "quickjs-wasm.js": "ec3f25a8a6914e9d1411061a2033f91ffb01c2f897b0052df11aff0620935d57",
+    "quickjs-wasm.wasm": "e7b4be6146a04117786f10ed1bceb03b84b4b551497bf792cec9a77288e09d07",
+    "quickjs-manifest.json": "f64a0085d0e7edfb0f3cfc43559cc011d01c8bb73181ca41150b273251cdcaac",
+    "wasm-build-manifest.json": "283dcf91a4edec7133ddc1e096c20eaf3e923c6df4cb904505d03e7dc09b3d9c",
+    "icon.svg": "ec790c918d3181d0a684d86cb8f329bbdf98cbfe2297f94e7c48db9035f76e99",
+    "icon-192.png": "bc06f9165494eea7d22f4b9bab4c7f1996dce0ff9327afa769dda7360e11a664",
+    "icon-512.png": "1dbb6b735ad746ba37923059602fdc5128ff249bb86f12858e0125e808b7b6d9",
+    "site.webmanifest": "6b4f63da77852c86af24db060f3fefdbd952a282ba507c439bebeede8f8b0e1b",
+    "social-card.png": "b1d660b4cbde739fd93a6232580f86dfc586e5f6186d32606febcc19b094aa80",
+    "404.html": "bd256b50165b8595476db488a73e5d7f044bd2d3ee986c8bc5c83301d9134fa0",
+    "robots.txt": "3ea8b51e2db70bfa2a5be58f8568b3713e6d5270e0bb71830b0a5e8ccb6a586c",
+    "sitemap.xml": "3b65e2b551e6d2ba07ae652fdb7ec53ccff2ed11c77a6b530be52a9a23502127"
+  },
+  "checks": [
+    {
+      "check": "nested-path first load and accessible status",
+      "title": "ARM code. Your browser. · dynarmic.js",
+      "status": "Ready. Run both guests to verify the results.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "2",
+      "output": [
+        "Guest output will appear here.",
+        "Guest output will appear here."
+      ],
+      "width": 1265,
+      "scrollWidth": 1265
+    },
+    {
+      "check": "keyboard skip link"
+    },
+    {
+      "check": "visible first action and on-demand runtime"
+    },
+    {
+      "check": "architecture stages expose the selected content and state"
+    },
+    {
+      "check": "copy commands and denied-clipboard selection fallback"
+    },
+    {
+      "check": "memory choices explain the active path"
+    },
+    {
+      "check": "stop an infinite ARM guest loop",
+      "title": "DONE CANCELLED",
+      "status": "Run stopped. You can run the guests again.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "2",
+      "output": [
+        "Run stopped.",
+        "Run stopped."
+      ],
+      "width": 1265,
+      "scrollWidth": 1265
+    },
+    {
+      "check": "retry after termination / flat-window memory",
+      "title": "DONE PASS",
+      "status": "PASS — both guests match the native reference.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "2",
+      "output": [
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n",
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n"
+      ],
+      "width": 1265,
+      "scrollWidth": 1265
+    },
+    {
+      "check": "memory mode 0",
+      "title": "DONE PASS",
+      "status": "PASS — both guests match the native reference.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "0",
+      "output": [
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n",
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n"
+      ],
+      "width": 1265,
+      "scrollWidth": 1265
+    },
+    {
+      "check": "memory mode 1",
+      "title": "DONE PASS",
+      "status": "PASS — both guests match the native reference.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "1",
+      "output": [
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n",
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n"
+      ],
+      "width": 1265,
+      "scrollWidth": 1265
+    },
+    {
+      "check": "375px layout with expanded statistics",
+      "title": "DONE PASS",
+      "status": "PASS — both guests match the native reference.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "1",
+      "output": [
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n",
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n"
+      ],
+      "width": 375,
+      "scrollWidth": 375
+    },
+    {
+      "check": "320px through 1440px layout without hidden overflow"
+    },
+    {
+      "check": "reduced motion disables smooth scrolling and animation"
+    },
+    {
+      "check": "missing asset failure",
+      "title": "DONE FAIL",
+      "status": "Could not run demo: Could not load expected.txt: HTTP 404. Build the browser_page target and serve its complete dist/ directory.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "2",
+      "output": [
+        "Guest was not run.",
+        "Guest was not run."
+      ],
+      "width": 1425,
+      "scrollWidth": 1425
+    },
+    {
+      "check": "retry after asset recovery",
+      "title": "DONE PASS",
+      "status": "PASS — both guests match the native reference.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "2",
+      "output": [
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n",
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n"
+      ],
+      "width": 1425,
+      "scrollWidth": 1425
+    },
+    {
+      "check": "stop while loading",
+      "title": "DONE CANCELLED",
+      "status": "Run stopped. You can run the guests again.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "2",
+      "output": [
+        "Run stopped.",
+        "Run stopped."
+      ],
+      "width": 1425,
+      "scrollWidth": 1425
+    },
+    {
+      "check": "file URL deployment guidance",
+      "title": "DONE FAIL",
+      "status": "Could not run demo: Serve the built dist/ directory over HTTP(S), for example: python3 -m http.server 8000 --directory build-em/examples/browser/dist. Then open http://localhost:8000/.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "2",
+      "output": [
+        "Guest was not run.",
+        "Guest was not run."
+      ],
+      "width": 1425,
+      "scrollWidth": 1425
+    }
+  ]
+}

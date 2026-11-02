@@ -1,0 +1,79 @@
+name: Strict regression
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'examples/browser/**'
+      - 'externals/dynarmic'
+      - 'patches/**'
+      - 'cmake/**'
+      - 'CMakeLists.txt'
+      - '.github/workflows/regression.yml'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'examples/browser/**'
+      - 'externals/dynarmic'
+      - 'patches/**'
+      - 'cmake/**'
+      - 'CMakeLists.txt'
+      - '.github/workflows/regression.yml'
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 6.0.13
+          actions-cache-folder: .cache/emsdk
+      - name: Install test dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build libboost-dev gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libnewlib-dev
+          python3 -m pip install --user ziglang==0.17.0 unicorn==2.1.4 capstone==5.0.9
+          mkdir -p /tmp/boost-headers
+          cp -a /usr/include/boost /tmp/boost-headers/
+      - name: Build both toolchains
+        run: |
+          cmake -S . -B build-native -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build build-native --parallel 2
+          emcmake cmake -S . -B build-em -G Ninja -DCMAKE_BUILD_TYPE=Release \
+            -DBoost_INCLUDE_DIR=/tmp/boost-headers
+          cmake --build build-em --parallel 2
+      - name: Native tests and installed consumer
+        run: |
+          ctest --test-dir build-native --output-on-failure
+          tests/install/smoke.sh build-native /tmp/dynarmic-js-install
+      - name: Strict guest and runtime regression
+        env:
+          DYNARMIC_JS_TEST_ARTIFACTS: ${{ runner.temp }}/regression-artifacts
+        run: |
+          set -o pipefail
+          tests/regress.sh --strict build-em build-native 2>&1 | tee regression.log
+      - name: External CMake embedding
+        run: |
+          emcmake cmake -S tests/embedding -B build-embedding -G Ninja \
+            -DDYNARMIC_JS_SOURCE_DIR="$PWD" -DCMAKE_BUILD_TYPE=Release \
+            -DBoost_INCLUDE_DIR=/tmp/boost-headers
+          cmake --build build-embedding --parallel 2
+          node build-embedding/embedding_smoke.js
+      - name: Retain regression commands, results and fuzz reproducers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: strict-regression
+          path: |
+            regression.log
+            ${{ runner.temp }}/regression-artifacts/

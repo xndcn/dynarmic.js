@@ -1,0 +1,29 @@
+{
+  "schema": "dynarmic.js/quickjs-arm-tuning-validation-v1",
+  "default": {
+    "optimization": "O2",
+    "isa": "arm",
+    "dispatch": "switch",
+    "lto": false,
+    "noGcse": false,
+    "noCrossjumping": false
+  },
+  "measurementObservations": {
+    "screenPassed": 60,
+    "followupPassed": 70,
+    "confirmationPassed": 66,
+    "failed": 0
+  },
+  "nodeProtocolAndUiTests": 60,
+  "packageTests": 17,
+  "cmakeGenerationChecks": 8,
+  "actionlint": true,
+  "regressShellSyntax": true,
+  "gitDiffCheck": true,
+  "finalRuntimeBytesMatchFrozenBaseline": true,
+  "chromiumOfficialRichardsThreeRuntimes": true,
+  "chromiumQuickjsInteractions": 8,
+  "firefoxQuickjsSmoke": true,
+  "browserScope": "Functional smoke on the final metadata with runtime bytes identical to the baseline; no new browser speed claim",
+  "performanceDecision": "Retain original default; Thumb saves 24.97% guest bytes but has no consistent throughput improvement"
+}

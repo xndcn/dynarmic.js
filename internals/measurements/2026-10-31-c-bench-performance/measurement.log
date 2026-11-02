@@ -1,0 +1,42 @@
+RUN session 1 / 5
+
+DevTools listening on ws://127.0.0.1:46637/devtools/browser/432362cf-aefa-4acc-8555-197a386ea2da
+Created TensorFlow Lite XNNPACK delegate for CPU.
+Attempting to use a delegate that only supports static-sized tensors with a graph that has dynamic-sized tensors (tensor#-1 is a dynamic-sized tensor).
+
+FAIL session 1 Error: Chrome DevTools timeout: Runtime.evaluate
+    at Timeout._onTimeout (file:///home/xiong/workspace/dynarmic.js/tests/browser/chromium.mjs:86:68)
+    at listOnTimeout (node:internal/timers:635:17)
+    at process.processTimers (node:internal/timers:571:7)
+RUN session 2 / 5
+
+DevTools listening on ws://127.0.0.1:41085/devtools/browser/38bd6325-9389-434a-8ef3-45cb42b9d795
+Created TensorFlow Lite XNNPACK delegate for CPU.
+Attempting to use a delegate that only supports static-sized tensors with a graph that has dynamic-sized tensors (tensor#-1 is a dynamic-sized tensor).
+
+FAIL session 2 Error: Chrome DevTools timeout: Runtime.evaluate
+    at Timeout._onTimeout (file:///home/xiong/workspace/dynarmic.js/tests/browser/chromium.mjs:86:68)
+    at listOnTimeout (node:internal/timers:635:17)
+    at process.processTimers (node:internal/timers:571:7)
+RUN session 3 / 5
+
+DevTools listening on ws://127.0.0.1:42939/devtools/browser/dafccc53-468a-484e-bea6-9a783d80b965
+Created TensorFlow Lite XNNPACK delegate for CPU.
+Attempting to use a delegate that only supports static-sized tensors with a graph that has dynamic-sized tensors (tensor#-1 is a dynamic-sized tensor).
+
+FAIL session 3 Error: Chrome DevTools timeout: Runtime.evaluate
+    at Timeout._onTimeout (file:///home/xiong/workspace/dynarmic.js/tests/browser/chromium.mjs:86:68)
+    at listOnTimeout (node:internal/timers:635:17)
+    at process.processTimers (node:internal/timers:571:7)
+RUN session 4 / 5
+PASS session 4 45 observations / 270 matching checksums
+RUN session 5 / 5
+
+DevTools listening on ws://127.0.0.1:43469/devtools/browser/4f55c5fc-9a94-4732-9f37-5d57e8626219
+Created TensorFlow Lite XNNPACK delegate for CPU.
+Attempting to use a delegate that only supports static-sized tensors with a graph that has dynamic-sized tensors (tensor#-1 is a dynamic-sized tensor).
+
+FAIL session 5 Error: Chrome DevTools timeout: Runtime.evaluate
+    at Timeout._onTimeout (file:///home/xiong/workspace/dynarmic.js/tests/browser/chromium.mjs:86:68)
+    at listOnTimeout (node:internal/timers:635:17)
+    at process.processTimers (node:internal/timers:571:7)

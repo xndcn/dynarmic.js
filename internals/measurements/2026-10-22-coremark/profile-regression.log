@@ -1,0 +1,6 @@
+PASS region planner: 65536 graphs and boundary cases
+PASS arm decoder: 4096 buckets, 4919 candidates, 261 rules, 1000000 random words
+PASS browser host normal/fault halts (18 runs)
+CoreMark evidence: /tmp/tmp.Ubvzn0nupe
+CoreMark workload PASS cases=6 durationQualified=false
+regression done fail=0

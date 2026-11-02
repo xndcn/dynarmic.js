@@ -1,0 +1,79 @@
+Real repository browser CMakeLists via LANGUAGES NONE wrapper. No build command executed.
+
+WRAPPER
+cmake_minimum_required(VERSION 3.16)
+project(quickjs_configure_fixture LANGUAGES NONE)
+set(PROJECT_SOURCE_DIR "/home/xiong/workspace/dynarmic.js")
+set(CMAKE_CXX_COMPILER "/tmp/quickjs-cmake-options-hs5elri9/fake-sdk/emcc")
+set(CMAKE_CXX_COMPILER_ID Fixture)
+set(CMAKE_CXX_COMPILER_VERSION 1.0)
+set(CMAKE_CXX_LINK_EXECUTABLE "<CMAKE_CXX_COMPILER> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>")
+set(CMAKE_BUILD_TYPE Release)
+function(dynarmic_js_host target)
+    set_target_properties(${target} PROPERTIES LINKER_LANGUAGE CXX)
+endfunction()
+add_subdirectory("/home/xiong/workspace/dynarmic.js/examples/browser" browser)
+
+default
+COMMAND cmake -S /tmp/quickjs-cmake-options-hs5elri9 -B /tmp/quickjs-cmake-options-hs5elri9/build -G 'Unix Makefiles'
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/quickjs-cmake-options-hs5elri9/build
+
+
+default unchanged
+COMMAND cmake -S /tmp/quickjs-cmake-options-hs5elri9 -B /tmp/quickjs-cmake-options-hs5elri9/build -G 'Unix Makefiles'
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/quickjs-cmake-options-hs5elri9/build
+
+
+all six custom options
+COMMAND cmake -S /tmp/quickjs-cmake-options-hs5elri9 -B /tmp/quickjs-cmake-options-hs5elri9/build -G 'Unix Makefiles' -DDYNARMIC_QUICKJS_ARM_OPT=O3 -DDYNARMIC_QUICKJS_ARM_DISPATCH=threaded -DDYNARMIC_QUICKJS_ARM_ISA=thumb -DDYNARMIC_QUICKJS_ARM_LTO=ON -DDYNARMIC_QUICKJS_ARM_NO_GCSE=ON -DDYNARMIC_QUICKJS_ARM_NO_CROSSJUMPING=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/quickjs-cmake-options-hs5elri9/build
+
+
+custom unchanged
+COMMAND cmake -S /tmp/quickjs-cmake-options-hs5elri9 -B /tmp/quickjs-cmake-options-hs5elri9/build -G 'Unix Makefiles' -DDYNARMIC_QUICKJS_ARM_OPT=O3 -DDYNARMIC_QUICKJS_ARM_DISPATCH=threaded -DDYNARMIC_QUICKJS_ARM_ISA=thumb -DDYNARMIC_QUICKJS_ARM_LTO=ON -DDYNARMIC_QUICKJS_ARM_NO_GCSE=ON -DDYNARMIC_QUICKJS_ARM_NO_CROSSJUMPING=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/quickjs-cmake-options-hs5elri9/build
+
+
+return to defaults
+COMMAND cmake -S /tmp/quickjs-cmake-options-hs5elri9 -B /tmp/quickjs-cmake-options-hs5elri9/build -G 'Unix Makefiles' -DDYNARMIC_QUICKJS_ARM_OPT=O2 -DDYNARMIC_QUICKJS_ARM_DISPATCH=switch -DDYNARMIC_QUICKJS_ARM_ISA=arm -DDYNARMIC_QUICKJS_ARM_LTO=OFF -DDYNARMIC_QUICKJS_ARM_NO_GCSE=OFF -DDYNARMIC_QUICKJS_ARM_NO_CROSSJUMPING=OFF
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/quickjs-cmake-options-hs5elri9/build
+
+
+reject invalid OPT
+COMMAND cmake -S /tmp/quickjs-cmake-options-hs5elri9 -B /tmp/quickjs-cmake-options-hs5elri9/invalid-opt -G 'Unix Makefiles' '-DDYNARMIC_QUICKJS_ARM_OPT=O2;injected'
+-- Configuring incomplete, errors occurred!
+CMake Error at /home/xiong/workspace/dynarmic.js/examples/browser/CMakeLists.txt:12 (message):
+  DYNARMIC_QUICKJS_ARM_OPT must be O2, O3 or Os
+
+
+
+
+reject invalid DISPATCH
+COMMAND cmake -S /tmp/quickjs-cmake-options-hs5elri9 -B /tmp/quickjs-cmake-options-hs5elri9/invalid-dispatch -G 'Unix Makefiles' '-DDYNARMIC_QUICKJS_ARM_DISPATCH=threaded$(injected)'
+-- Configuring incomplete, errors occurred!
+CMake Error at /home/xiong/workspace/dynarmic.js/examples/browser/CMakeLists.txt:15 (message):
+  DYNARMIC_QUICKJS_ARM_DISPATCH must be switch or threaded
+
+
+
+
+reject invalid ISA
+COMMAND cmake -S /tmp/quickjs-cmake-options-hs5elri9 -B /tmp/quickjs-cmake-options-hs5elri9/invalid-isa -G 'Unix Makefiles' '-DDYNARMIC_QUICKJS_ARM_ISA=thumb
+injected'
+-- Configuring incomplete, errors occurred!
+CMake Error at /home/xiong/workspace/dynarmic.js/examples/browser/CMakeLists.txt:18 (message):
+  DYNARMIC_QUICKJS_ARM_ISA must be arm or thumb
+
+
+CMake Warning:
+  Value of DYNARMIC_QUICKJS_ARM_ISA contained a newline; truncating

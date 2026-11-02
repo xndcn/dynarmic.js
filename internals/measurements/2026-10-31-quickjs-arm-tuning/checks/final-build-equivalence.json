@@ -1,0 +1,93 @@
+{
+  "verified": true,
+  "allRuntimeBytesMatchFrozenBaseline": true,
+  "quickjsBuildSourcesMatchWorkingTree": true,
+  "hostBuildCmakeHashesMatchWorkingTree": true,
+  "armConfiguration": {
+    "optimization": "O2",
+    "dispatch": "switch",
+    "lto": false,
+    "isa": "arm",
+    "architecture": "armv7-a",
+    "noGcse": false,
+    "noCrossjumping": false,
+    "fpu": "vfpv3",
+    "floatAbi": "softfp",
+    "platformMacro": "EMSCRIPTEN",
+    "atomics": false,
+    "stackChecks": false,
+    "engineSource": {
+      "path": "quickjs.c",
+      "sha256": "a2b4b52368375244dc8b7651cb30225bd12af731b58b3569c8369dc75a002c45",
+      "bytes": 1834040
+    }
+  },
+  "artifacts": [
+    {
+      "path": "arm_jit.js",
+      "bytes": 25394,
+      "sha256": "16747bdfd6585d6fb21ff5c9416a5702853dc3b2b2274ecf971070b60bfd0073",
+      "matchesFrozenBaseline": true
+    },
+    {
+      "path": "arm_jit.wasm",
+      "bytes": 2244534,
+      "sha256": "8bf2ed617b83da078d415b2347624c795029356842f8d3cd2dcf8c93e75d4171",
+      "matchesFrozenBaseline": true
+    },
+    {
+      "path": "arm_bench_jit.js",
+      "bytes": 25400,
+      "sha256": "ff2cf9ac1f6c4097539dedcb0c7c2e158067f7309a266a901cef8cd05290dbe2",
+      "matchesFrozenBaseline": true
+    },
+    {
+      "path": "arm_bench_jit.wasm",
+      "bytes": 2250806,
+      "sha256": "6ef0ecb11f8f633af9f9e3eec027404f0c055fac8b21066a577b44a854dd3d8b",
+      "matchesFrozenBaseline": true
+    },
+    {
+      "path": "quickjs-arm.bin",
+      "bytes": 683252,
+      "sha256": "aeba400ff697b77cef6b47019b1af4d373040a22e50e270040e283178a26d2f0",
+      "matchesFrozenBaseline": true
+    },
+    {
+      "path": "quickjs-wasm.js",
+      "bytes": 8298,
+      "sha256": "7fa29bd1612f75f99422dcd654c10ac429dcd60d6d31b0142febe5d7fcd39102",
+      "matchesFrozenBaseline": true
+    },
+    {
+      "path": "quickjs-wasm.wasm",
+      "bytes": 733884,
+      "sha256": "ca565f0194b415c45704d6bf5c3a6e076a32d09de5a8d5cf5067ca5e056fd9ce",
+      "matchesFrozenBaseline": true
+    },
+    {
+      "path": "official-v8.js",
+      "bytes": 458563,
+      "sha256": "87f7553a974678a422e9d9d245f6b3ac80f86a503d17224d3dd33c38819400da",
+      "matchesFrozenBaseline": true
+    },
+    {
+      "path": "official-v8-adapter.js",
+      "bytes": 5898,
+      "sha256": "14ac511bfd497c6686c901919a6f8222e53501d7e835b47af976ffa4874ab9ff",
+      "matchesFrozenBaseline": true
+    },
+    {
+      "path": "official-benchmarks.json",
+      "bytes": 3450,
+      "sha256": "0ff4d09a59ffe52c01fdedeb9b3299f71d694bd314c7616020ebaa61fbc93fc5",
+      "matchesFrozenBaseline": true
+    },
+    {
+      "path": "quickjs-workloads.js",
+      "bytes": 3108,
+      "sha256": "cff32113b074e4a0ede55920f1b4ac8a29bbf4996f2c9deb321f7e45f8c6c31e",
+      "matchesFrozenBaseline": true
+    }
+  ]
+}

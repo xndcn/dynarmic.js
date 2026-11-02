@@ -1,0 +1,16 @@
+2K performance run parameters for coremark.
+CoreMark Size    : 666
+Total ticks      : 5175901
+Total time (secs): 5.175901
+Iterations/Sec   : 38640.615421
+ERROR! Must execute for at least 10 secs for a valid result!
+Iterations       : 200000
+Compiler version : clang 22.1.8 
+Compiler flags   : -target x86_64-linux-musl -O2 -static
+Memory location  : STACK
+seedcrc          : 0xe9f5
+[0]crclist       : 0xe714
+[0]crcmatrix     : 0x1fd7
+[0]crcstate      : 0x8e3a
+[0]crcfinal      : 0x4983
+Errors detected

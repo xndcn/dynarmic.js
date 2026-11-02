@@ -1,0 +1,66 @@
+{
+  "status": "pass",
+  "scope": "Local experimental npm release preparation; no publication or deployment",
+  "package": {
+    "name": "dynarmic.js",
+    "version": "0.1.0-alpha.0",
+    "tarball": "build-npm/dynarmic.js-0.1.0-alpha.0.tgz",
+    "bytes": 5831756,
+    "sha256": "634dc62a8ebb1471131c4f78d5979931126dcf5bbfe81af8fc49173a604d9bdf",
+    "files": 14
+  },
+  "source": {
+    "revision": "2bd45b378e205baeffe797a3d5bc320769d53167",
+    "dirty": true,
+    "publicationCorrespondenceVerified": false,
+    "compilerInputsVerifiedInArchive": true,
+    "archiveSha256": "39ba8f7d803be1c56a9b641d14c311184eecae12c9d1a77bc2726cd4927d5e7c"
+  },
+  "checks": {
+    "node22": 18,
+    "node24": 18,
+    "chromiumWorker": 15,
+    "firefoxWorker": 16,
+    "tooling": 6,
+    "rebuiltSourceConsumer": 18,
+    "packagingProvenanceTests": 15,
+    "nativeCTest": 23,
+    "cmakeTests": 30,
+    "javascriptTests": 440,
+    "integrityNegativeCases": "pass",
+    "npmPackJsonAndInventory": "pass",
+    "npmPublishDryRun": "pass",
+    "sanitizerCTest": 23,
+    "offlineInstall": "pass",
+    "strictRegression": "pass",
+    "differentialCampaigns": 21,
+    "differentialCompared": 22459,
+    "differentialMismatches": 0
+  },
+  "limitations": [
+    "Experimental API and documented CPU limitations remain.",
+    "This worktree is uncommitted: actual publication requires a clean recursive commit, relink and --require-clean checks.",
+    "GitHub workflow is prepared but was not executed remotely."
+  ],
+  "evidence": {
+    "chromium.json": "b8b191b72f419c3ce66774368e726c376879131f5f697b8ccb5665976ea1d5d5",
+    "cmake.log": "f70781b9e45c142ef593605e0955d513649ff2c5bfbd8ef2957f172803b24a4e",
+    "corpus-review.md": "c72c3a6b66fd09d01d03156f67b13afbf1ca983296e8b90af1d78ca0f6f7a519",
+    "firefox.json": "ff8e9d3eff48ce027da326b986d33c38b485abadaa161a39d6552c096c6e18af",
+    "integrity.log": "5fb2126e550e4231b0d3c10ff5c4533222e54075199f44faec832d909739f740",
+    "js-regression.log": "796ad24e6f19d6198ca88309fc51cebfed271cb0185633c429eadcddb3d7fe43",
+    "native-ctest.log": "a16b27aac1285a49887dddee0646b89952fc8baf9fce27af1aa33cdde45fcc41",
+    "node22.json": "691282382f63285be0be1caa4653276dcc104d04a2abeb7f6af93542fcb616c1",
+    "node24.json": "8c38beb30d4d01a5b4798aa3d642987762a4a2bf1adc7f0a2e13c33d741f838a",
+    "pack.json": "7702165e0bf90a9571f127e7d7caa543dbf36d60e0df642f44ab058c064f6cfa",
+    "packaging.log": "894c36227791c00210f691131643f073b9ef9f4a6d6967b67052f53eb1950c6b",
+    "publish-dry-run.json": "46fdedf9b2a30ea781d77cada71e5eac09e1e380045942eb0ed59193e457ded9",
+    "rebuild.json": "76236299820e0f341cf9217431c3929d1adf7a88f23e66b18f3d04ae888ddaf0",
+    "tooling.json": "46d51c5f946b86c2fc3cd97925ae44a461bcf8c35d127af5b7411972ac07e288",
+    "sanitizer-ctest.log": "2a8a7351916cc5c8b7702a37c80fd6d4fec43b8b30fc676f711837fb72061cc5",
+    "offline.json": "a63c73201b04be9a0ad31eafb30078e80bbf26a018b874e1336380c6264d00bd",
+    "strict-regression.json": "b1865b411cf4a1964c1c79ba43117b3dc83645e6230e5275392df607298c163a",
+    "strict-regression.log": "069ea2501ba7297831e3cf4cd31260afc2754f890381add5cfa484b1d91b186d",
+    "strict-run.txt": "d5d476e83337253f052e5e08174d45f6f8459a0415f1f9edef02d54ab5a6d19c"
+  }
+}

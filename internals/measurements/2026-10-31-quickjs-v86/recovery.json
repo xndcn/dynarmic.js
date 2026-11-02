@@ -1,0 +1,20 @@
+{
+  "schema": "dynarmic.js/v86-comparison-recovery-v1",
+  "reason": "Chrome DevTools Runtime.evaluate timeout interrupted round 2 before the Richards/v86 report; repeat both members of the pair in one fresh browser process",
+  "interruptedTask": "r2-c0-v86",
+  "completedBeforeRecovery": 57,
+  "supersededObservation": {
+    "original": "results/r2-c0-dynarmic.json",
+    "retained": "superseded/r2-c0-dynarmic.json",
+    "bytes": 2620,
+    "sha256": "1e4f3bd5f02f4716fd13278cd08d4301f7747d6e4a02a0b6a68e5a043afdee7d"
+  },
+  "pendingAfterRecovery": [
+    "r2-c0-dynarmic",
+    "r2-c0-v86",
+    "r2-c1-v86",
+    "r2-c1-dynarmic"
+  ],
+  "planAndCollectorUnchanged": true,
+  "originalLog": "collection-initial.log"
+}

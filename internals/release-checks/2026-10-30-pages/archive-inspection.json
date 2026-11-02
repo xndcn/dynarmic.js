@@ -1,0 +1,29 @@
+{
+  "directory": "/tmp/dynarmic-source-rebuild-tiphqh3y",
+  "files": 3091,
+  "archive": {
+    "path": "source.tar.gz",
+    "root": "dynarmic.js/",
+    "files": 3091,
+    "sha256": "7202cb7243ab1a44b6e8217daf139b06f113ef8132f82cd21a6d36b1a0bea8e2",
+    "bytes": 21764843
+  },
+  "source": {
+    "revision": "f8e098efc3056f94cd197812df7d0a95fdf55f65",
+    "dirty": true,
+    "submodules": [
+      {
+        "revision": "a41c380246d3d9f9874f0f792d234dc0cc17c180",
+        "dirty": false,
+        "path": "externals/dynarmic",
+        "indexRevision": "a41c380246d3d9f9874f0f792d234dc0cc17c180"
+      }
+    ]
+  },
+  "byteComparison": "all included files equal current working sources",
+  "excluded": [
+    ".git",
+    "root build directories",
+    "__pycache__"
+  ]
+}

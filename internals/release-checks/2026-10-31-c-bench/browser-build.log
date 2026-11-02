@@ -1,0 +1,123 @@
+-- GLOB mismatch!
+-- GLOB mismatch!
+-- GLOB mismatch!
+-- GLOB mismatch!
+CMake Warning (dev) at CMakeLists.txt:69 (find_package):
+  Policy CMP0167 is not set: The FindBoost module is removed.  Run "cmake
+  --help-policy CMP0167" for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- The ASM compiler identification is unknown
+-- Found assembler: /home/xiong/sandbox/emsdk/upstream/emscripten/emcc
+-- Warning: Did not find file Compiler/-ASM
+-- Target architecture: wasm
+CMake Warning (dev) at externals/dynarmic/CMakeLists.txt:143 (find_package):
+  Policy CMP0167 is not set: The FindBoost module is removed.  Run "cmake
+  --help-policy CMP0167" for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Version: 10.1.0
+-- Build type: Release
+CMake Deprecation Warning at externals/dynarmic/externals/robin-map/CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+-- dynarmic.js: applied 5 patch(es) to dynarmic out of tree
+-- Configuring done (2.0s)
+-- Generating done (0.1s)
+-- Build files have been written to: /home/xiong/workspace/dynarmic.js/build-em
+[  0%] Building matching freestanding C benchmarks for ARM32, x86 and Wasm
+[  1%] Built target fmt
+[  2%] Built target mcl
++ /usr/bin/python3 -m ziglang cc -O2 -ffreestanding -fno-builtin -fno-strict-aliasing -fno-fast-math -ffp-contract=off -fno-vectorize -fno-slp-vectorize -fno-unroll-loops -fno-stack-protector -fno-pic -fno-pie -fno-unwind-tables -fno-asynchronous-unwind-tables -ffunction-sections -fdata-sections -nostdlib -target arm-freestanding-eabi -mcpu=cortex_a8-neon -mfpu=vfpv3 -mfloat-abi=softfp -marm -I/home/xiong/workspace/dynarmic.js/examples/c-bench -S /home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c -o /home/xiong/workspace/dynarmic.js/build-em/examples/browser/c-bench-cache/arm-kernels.s
+zig: warning: argument unused during compilation: '-c' [-Wunused-command-line-argument]
++ /usr/bin/python3 -m ziglang cc -O2 -ffreestanding -fno-builtin -fno-strict-aliasing -fno-fast-math -ffp-contract=off -fno-vectorize -fno-slp-vectorize -fno-unroll-loops -fno-stack-protector -fno-pic -fno-pie -fno-unwind-tables -fno-asynchronous-unwind-tables -ffunction-sections -fdata-sections -nostdlib -target arm-freestanding-eabi -mcpu=cortex_a8-neon -mfpu=vfpv3 -mfloat-abi=softfp -marm -I/home/xiong/workspace/dynarmic.js/examples/c-bench /home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c /home/xiong/workspace/dynarmic.js/examples/c-bench/guest.c /home/xiong/workspace/dynarmic.js/examples/c-bench/start-arm.S -Wl,--gc-sections -Wl,--build-id=none -T /home/xiong/workspace/dynarmic.js/examples/c-bench/link-arm.ld -o /home/xiong/workspace/dynarmic.js/build-em/examples/browser/c-bench-cache/c-bench-arm.elf
++ /usr/bin/python3 -m ziglang objcopy -O binary /home/xiong/workspace/dynarmic.js/build-em/examples/browser/c-bench-cache/c-bench-arm.elf /home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist/c-bench-arm.bin
++ /usr/bin/python3 -m ziglang cc -O2 -ffreestanding -fno-builtin -fno-strict-aliasing -fno-fast-math -ffp-contract=off -fno-vectorize -fno-slp-vectorize -fno-unroll-loops -fno-stack-protector -fno-pic -fno-pie -fno-unwind-tables -fno-asynchronous-unwind-tables -ffunction-sections -fdata-sections -nostdlib -target x86-freestanding-none -mcpu=pentium4 -msse2 -mfpmath=sse -I/home/xiong/workspace/dynarmic.js/examples/c-bench -S /home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c -o /home/xiong/workspace/dynarmic.js/build-em/examples/browser/c-bench-cache/x86-kernels.s
+zig: warning: argument unused during compilation: '-c' [-Wunused-command-line-argument]
++ /usr/bin/python3 -m ziglang cc -O2 -ffreestanding -fno-builtin -fno-strict-aliasing -fno-fast-math -ffp-contract=off -fno-vectorize -fno-slp-vectorize -fno-unroll-loops -fno-stack-protector -fno-pic -fno-pie -fno-unwind-tables -fno-asynchronous-unwind-tables -ffunction-sections -fdata-sections -nostdlib -target x86-freestanding-none -mcpu=pentium4 -msse2 -mfpmath=sse -I/home/xiong/workspace/dynarmic.js/examples/c-bench /home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c /home/xiong/workspace/dynarmic.js/examples/c-bench/guest.c /home/xiong/workspace/dynarmic.js/examples/c-bench/start-x86.S -Wl,--gc-sections -Wl,--build-id=none -T /home/xiong/workspace/dynarmic.js/examples/c-bench/link-x86.ld -o /home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist/c-bench-x86.elf
++ /usr/bin/python3 -m ziglang cc -O2 -ffreestanding -fno-builtin -fno-strict-aliasing -fno-fast-math -ffp-contract=off -fno-vectorize -fno-slp-vectorize -fno-unroll-loops -fno-stack-protector -fno-pic -fno-pie -fno-unwind-tables -fno-asynchronous-unwind-tables -ffunction-sections -fdata-sections -nostdlib -target wasm32-freestanding -I/home/xiong/workspace/dynarmic.js/examples/c-bench -S /home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c -o /home/xiong/workspace/dynarmic.js/build-em/examples/browser/c-bench-cache/wasm-kernels.s
+zig: warning: argument unused during compilation: '-c' [-Wunused-command-line-argument]
++ /usr/bin/python3 -m ziglang cc -O2 -ffreestanding -fno-builtin -fno-strict-aliasing -fno-fast-math -ffp-contract=off -fno-vectorize -fno-slp-vectorize -fno-unroll-loops -fno-stack-protector -fno-pic -fno-pie -fno-unwind-tables -fno-asynchronous-unwind-tables -ffunction-sections -fdata-sections -nostdlib -target wasm32-freestanding -I/home/xiong/workspace/dynarmic.js/examples/c-bench /home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c -Wl,--no-entry -Wl,--export=bench_init -Wl,--export=bench_run -Wl,--export-memory -Wl,--initial-memory=16777216 -Wl,--max-memory=16777216 -Wl,-z,stack-size=65536 -o /home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist/c-bench.wasm
+[  2%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/dynarmic-patched/src/dynarmic/common/fp/op/FPRecipExponent.cpp.o
+[  2%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/dynarmic-patched/src/dynarmic/ir/basic_block.cpp.o
+[  3%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/dynarmic-patched/src/dynarmic/ir/ir_emitter.cpp.o
+[  4%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/dynarmic-patched/src/dynarmic/frontend/A32/translate/translate_arm.cpp.o
+[  5%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/dynarmic-patched/src/dynarmic/frontend/A64/translate/impl/simd_two_register_misc.cpp.o
+[  7%] Linking CXX static library libdynarmic.a
+[ 87%] Built target dynarmic
+[ 88%] Linking CXX executable dist/arm_jit.js
+Writing arm_jit build manifest
+[ 88%] Built target arm_jit
+[ 89%] Linking CXX executable dist/arm_bench_jit.js
+Built three C benchmark targets: /home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist
+[ 89%] Built target c_bench_example
+Writing arm_bench_jit build manifest
+[ 89%] Built target arm_bench_jit
+[ 89%] Generating dist/styles.css
+[ 89%] Generating dist/index.html
+[ 89%] Generating dist/app.js
+[ 90%] Generating dist/quickjs-app.js
+[ 91%] Generating dist/official-benchmarks-app.js
+[ 92%] Generating dist/c-bench-app.js
+[ 94%] Generating dist/c-bench-worker.js
+[ 94%] Generating dist/c-bench-protocol.js
+[ 94%] Building checksum-pinned QuickJS for ARM32 and WebAssembly
++ /usr/bin/arm-none-eabi-gcc -O2 -fwrapv -fno-strict-aliasing -D_GNU_SOURCE -DCONFIG_VERSION="2025-09-13" -DEMSCRIPTEN -I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13 -I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache -march=armv7-a -mfpu=vfpv3 -mfloat-abi=softfp -marm -nostartfiles -ffunction-sections -fdata-sections -Wl,--gc-sections -T /home/xiong/workspace/dynarmic.js/examples/quickjs/link.ld /home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c /home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/dtoa.c /home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/libregexp.c /home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/libunicode.c /home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/cutils.c /home/xiong/workspace/dynarmic.js/examples/quickjs/runner.c /home/xiong/workspace/dynarmic.js/examples/quickjs/start.S /home/xiong/workspace/dynarmic.js/examples/quickjs/syscalls.c -lm -lc -lgcc -o /home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-arm.elf
+/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c: In function 'find_line_num':
+/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c:6867:35: warning: passing argument 1 of 'get_sleb128' from incompatible pointer type [-Wincompatible-pointer-types]
+ 6867 |                 ret = get_sleb128(&v, p, p_end);
+      |                                   ^~
+      |                                   |
+      |                                   int *
+/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c:6815:33: note: expected 'int32_t *' {aka 'long int *'} but argument is of type 'int *'
+ 6815 | static int get_sleb128(int32_t *pval, const uint8_t *buf,
+      |                        ~~~~~~~~~^~~~
+/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c:6877:31: warning: passing argument 1 of 'get_sleb128' from incompatible pointer type [-Wincompatible-pointer-types]
+ 6877 |             ret = get_sleb128(&v, p, p_end);
+      |                               ^~
+      |                               |
+      |                               int *
+/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c:6815:33: note: expected 'int32_t *' {aka 'long int *'} but argument is of type 'int *'
+ 6815 | static int get_sleb128(int32_t *pval, const uint8_t *buf,
+      |                        ~~~~~~~~~^~~~
+/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c: In function 'js_parseInt':
+/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c:42498:25: warning: passing argument 2 of 'JS_ToInt32' from incompatible pointer type [-Wincompatible-pointer-types]
+42498 |     if (JS_ToInt32(ctx, &radix, argv[1])) {
+      |                         ^~~~~~
+      |                         |
+      |                         int *
+/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c:12698:41: note: expected 'int32_t *' {aka 'long int *'} but argument is of type 'int *'
+12698 | int JS_ToInt32(JSContext *ctx, int32_t *pres, JSValueConst val)
+      |                                ~~~~~~~~~^~~~
+/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c: In function 'remainingElementsCount_add':
+/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c:49921:29: warning: passing argument 2 of 'JS_ToInt32Free' from incompatible pointer type [-Wincompatible-pointer-types]
+49921 |     if (JS_ToInt32Free(ctx, &remainingElementsCount, val))
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~
+      |                             |
+      |                             int *
+/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c:12646:52: note: expected 'int32_t *' {aka 'long int *'} but argument is of type 'int *'
+12646 | static int JS_ToInt32Free(JSContext *ctx, int32_t *pres, JSValue val)
+      |                                           ~~~~~~~~~^~~~
+/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c: In function 'js_promise_all_resolve_element':
+/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c:49949:25: warning: passing argument 2 of 'JS_ToInt32' from incompatible pointer type [-Wincompatible-pointer-types]
+49949 |     if (JS_ToInt32(ctx, &index, func_data[1]))
+      |                         ^~~~~~
+      |                         |
+      |                         int *
+/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c:12698:41: note: expected 'int32_t *' {aka 'long int *'} but argument is of type 'int *'
+12698 | int JS_ToInt32(JSContext *ctx, int32_t *pres, JSValueConst val)
+      |                                ~~~~~~~~~^~~~
++ /usr/bin/arm-none-eabi-objcopy -O binary /home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-arm.elf /home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist/quickjs-arm.bin
++ /home/xiong/sandbox/emsdk/upstream/emscripten/emcc -O2 -fwrapv -fno-strict-aliasing -D_GNU_SOURCE -DCONFIG_VERSION="2025-09-13" -DEMSCRIPTEN -I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13 -I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache --no-entry -sMODULARIZE=1 -sEXPORT_NAME=createQuickJS -sENVIRONMENT=web,worker,node -sEXPORTED_FUNCTIONS=["_qjs_bench","_qjs_eval","_qjs_set_memory_limit","_malloc","_free"] -sEXPORTED_RUNTIME_METHODS=["HEAPU8"] -sINITIAL_MEMORY=16777216 -sSTACK_SIZE=1048576 -sALLOW_MEMORY_GROWTH=1 -sMAXIMUM_MEMORY=268435456 -sFILESYSTEM=0 /home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/quickjs.c /home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/dtoa.c /home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/libregexp.c /home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/libunicode.c /home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13/cutils.c /home/xiong/workspace/dynarmic.js/examples/quickjs/runner.c -lm -o /home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist/quickjs-wasm.js
+Built QuickJS 2025-09-13 ARM32 + Wasm in /home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist
+[100%] Built target browser_page

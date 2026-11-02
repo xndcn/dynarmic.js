@@ -1,0 +1,706 @@
+{
+  "schema": "dynarmic.js/official-v8-node-v1",
+  "engine": "v24.19.0",
+  "platform": "linux",
+  "arch": "x64",
+  "timeoutMs": 180000,
+  "methodology": {
+    "mode": "upstream",
+    "warmupMs": 1000,
+    "measurementBatchMs": 1000,
+    "minimumRuns": 32,
+    "harness": "Unchanged upstream RunStep and RunSingleBenchmark; only Date timing calls use the host monotonic clock",
+    "standaloneDependencies": "Decrypt prepares one Encrypt input outside timing because its original suite ran Encrypt first",
+    "score": "Complete suite only: 100 times reference microseconds divided by geometric mean of all case times; partial multi-case suites have no score",
+    "comparison": "Each runtime receives the same official benchmark source and case. Scores are local observations and are not cross-device claims."
+  },
+  "reports": [
+    {
+      "runtime": "native",
+      "caseId": "Richards/Richards",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "Richards",
+        "caseId": "Richards/Richards",
+        "name": "Richards",
+        "status": "pass",
+        "referenceUs": 35302,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          2.16650279004329
+        ],
+        "summary": {
+          "minMs": 2.16650279004329,
+          "maxMs": 2.16650279004329,
+          "medianMs": 2.16650279004329,
+          "meanMs": 2.16650279004329,
+          "stddevMs": 0
+        },
+        "runs": [
+          462
+        ],
+        "elapsedMs": [
+          1000.9242889999998
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1000.978423,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1000.9242889999998,
+            "runs": 462
+          }
+        ],
+        "microsecondsPerRun": [
+          2166.5027900432897
+        ],
+        "score": 1629.4463206896962,
+        "completeSuite": true,
+        "suiteCases": [
+          "Richards/Richards"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 4.606989999999996,
+      "runMs": 2020.4612010000003,
+      "memoryBytes": null,
+      "stats": null
+    },
+    {
+      "runtime": "native",
+      "caseId": "DeltaBlue/DeltaBlue",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "DeltaBlue",
+        "caseId": "DeltaBlue/DeltaBlue",
+        "name": "DeltaBlue",
+        "status": "pass",
+        "referenceUs": 66118,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          1.8990206812144212
+        ],
+        "summary": {
+          "minMs": 1.8990206812144212,
+          "maxMs": 1.8990206812144212,
+          "medianMs": 1.8990206812144212,
+          "meanMs": 1.8990206812144212,
+          "stddevMs": 0
+        },
+        "runs": [
+          527
+        ],
+        "elapsedMs": [
+          1000.783899
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1000.380549,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1000.783899,
+            "runs": 527
+          }
+        ],
+        "microsecondsPerRun": [
+          1899.0206812144213
+        ],
+        "score": 3481.689307233749,
+        "completeSuite": true,
+        "suiteCases": [
+          "DeltaBlue/DeltaBlue"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 1.9180619999997361,
+      "runMs": 2008.655077,
+      "memoryBytes": null,
+      "stats": null
+    },
+    {
+      "runtime": "native",
+      "caseId": "Crypto/Encrypt",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "Crypto",
+        "caseId": "Crypto/Encrypt",
+        "name": "Encrypt",
+        "status": "pass",
+        "referenceUs": 266181,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          0.5404397920043224
+        ],
+        "summary": {
+          "minMs": 0.5404397920043224,
+          "maxMs": 0.5404397920043224,
+          "medianMs": 0.5404397920043224,
+          "meanMs": 0.5404397920043224,
+          "stddevMs": 0
+        },
+        "runs": [
+          1851
+        ],
+        "elapsedMs": [
+          1000.3540550000007
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1000.4104740000002,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1000.3540550000007,
+            "runs": 1851
+          }
+        ],
+        "microsecondsPerRun": [
+          540.4397920043224
+        ],
+        "score": null,
+        "completeSuite": false,
+        "suiteCases": [
+          "Crypto/Encrypt",
+          "Crypto/Decrypt"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 1.7119809999994686,
+      "runMs": 2016.1258849999995,
+      "memoryBytes": null,
+      "stats": null
+    },
+    {
+      "runtime": "native",
+      "caseId": "Crypto/Decrypt",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "Crypto",
+        "caseId": "Crypto/Decrypt",
+        "name": "Decrypt",
+        "status": "pass",
+        "referenceUs": 266181,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          5.602340296089386
+        ],
+        "summary": {
+          "minMs": 5.602340296089386,
+          "maxMs": 5.602340296089386,
+          "medianMs": 5.602340296089386,
+          "meanMs": 5.602340296089386,
+          "stddevMs": 0
+        },
+        "runs": [
+          179
+        ],
+        "elapsedMs": [
+          1002.8189130000001
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1001.8894760000003,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1002.8189130000001,
+            "runs": 179
+          }
+        ],
+        "microsecondsPerRun": [
+          5602.340296089385
+        ],
+        "score": null,
+        "completeSuite": false,
+        "suiteCases": [
+          "Crypto/Encrypt",
+          "Crypto/Decrypt"
+        ],
+        "logs": [],
+        "dependencies": [
+          "Crypto/Encrypt"
+        ],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 1.9327789999997549,
+      "runMs": 2017.1017909999991,
+      "memoryBytes": null,
+      "stats": null
+    },
+    {
+      "runtime": "native",
+      "caseId": "RayTrace/RayTrace",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "RayTrace",
+        "caseId": "RayTrace/RayTrace",
+        "name": "RayTrace",
+        "status": "pass",
+        "referenceUs": 739989,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          7.303386474452558
+        ],
+        "summary": {
+          "minMs": 7.303386474452558,
+          "maxMs": 7.303386474452558,
+          "medianMs": 7.303386474452558,
+          "meanMs": 7.303386474452558,
+          "stddevMs": 0
+        },
+        "runs": [
+          137
+        ],
+        "elapsedMs": [
+          1000.5639470000006
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1006.6906089999993,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1000.5639470000006,
+            "runs": 137
+          }
+        ],
+        "microsecondsPerRun": [
+          7303.386474452558
+        ],
+        "score": 10132.13531268681,
+        "completeSuite": true,
+        "suiteCases": [
+          "RayTrace/RayTrace"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 1.6043620000000374,
+      "runMs": 2015.0533969999997,
+      "memoryBytes": null,
+      "stats": null
+    },
+    {
+      "runtime": "native",
+      "caseId": "EarleyBoyer/Earley",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "EarleyBoyer",
+        "caseId": "EarleyBoyer/Earley",
+        "name": "Earley",
+        "status": "pass",
+        "referenceUs": 666463,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          1.835431822018347
+        ],
+        "summary": {
+          "minMs": 1.835431822018347,
+          "maxMs": 1.835431822018347,
+          "medianMs": 1.835431822018347,
+          "meanMs": 1.835431822018347,
+          "stddevMs": 0
+        },
+        "runs": [
+          545
+        ],
+        "elapsedMs": [
+          1000.3103429999992
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1001.6191260000014,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1000.3103429999992,
+            "runs": 545
+          }
+        ],
+        "microsecondsPerRun": [
+          1835.431822018347
+        ],
+        "score": null,
+        "completeSuite": false,
+        "suiteCases": [
+          "EarleyBoyer/Earley",
+          "EarleyBoyer/Boyer"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 1.6405819999999949,
+      "runMs": 2009.403565999999,
+      "memoryBytes": null,
+      "stats": null
+    },
+    {
+      "runtime": "native",
+      "caseId": "EarleyBoyer/Boyer",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "EarleyBoyer",
+        "caseId": "EarleyBoyer/Boyer",
+        "name": "Boyer",
+        "status": "pass",
+        "referenceUs": 666463,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          168.00073351515147
+        ],
+        "summary": {
+          "minMs": 168.00073351515147,
+          "maxMs": 168.00073351515147,
+          "medianMs": 168.00073351515147,
+          "meanMs": 168.00073351515147,
+          "stddevMs": 0
+        },
+        "runs": [
+          33
+        ],
+        "elapsedMs": [
+          5544.024205999998
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1132.5947539999997,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1018.839806,
+            "runs": 7
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1141.5228289999995,
+            "runs": 7
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1221.5015000000003,
+            "runs": 5
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1073.2249190000002,
+            "runs": 6
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1088.9351519999982,
+            "runs": 8
+          }
+        ],
+        "microsecondsPerRun": [
+          168000.73351515146
+        ],
+        "score": null,
+        "completeSuite": false,
+        "suiteCases": [
+          "EarleyBoyer/Earley",
+          "EarleyBoyer/Boyer"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 1.668974000000162,
+      "runMs": 6684.3272130000005,
+      "memoryBytes": null,
+      "stats": null
+    },
+    {
+      "runtime": "native",
+      "caseId": "RegExp/RegExp",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "RegExp",
+        "caseId": "RegExp/RegExp",
+        "name": "RegExp",
+        "status": "pass",
+        "referenceUs": 910985,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          6.258473418750009
+        ],
+        "summary": {
+          "minMs": 6.258473418750009,
+          "maxMs": 6.258473418750009,
+          "medianMs": 6.258473418750009,
+          "meanMs": 6.258473418750009,
+          "stddevMs": 0
+        },
+        "runs": [
+          160
+        ],
+        "elapsedMs": [
+          1001.3557470000014
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1001.3406899999973,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1001.3557470000014,
+            "runs": 160
+          }
+        ],
+        "microsecondsPerRun": [
+          6258.473418750009
+        ],
+        "score": 14556.02571180927,
+        "completeSuite": true,
+        "suiteCases": [
+          "RegExp/RegExp"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 1.6211629999997967,
+      "runMs": 2038.4599149999995,
+      "memoryBytes": null,
+      "stats": null
+    },
+    {
+      "runtime": "native",
+      "caseId": "Splay/Splay",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "Splay",
+        "caseId": "Splay/Splay",
+        "name": "Splay",
+        "status": "pass",
+        "referenceUs": 81491,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          0.5413058290043283
+        ],
+        "summary": {
+          "minMs": 0.5413058290043283,
+          "maxMs": 0.5413058290043283,
+          "medianMs": 0.5413058290043283,
+          "meanMs": 0.5413058290043283,
+          "stddevMs": 0
+        },
+        "runs": [
+          1848
+        ],
+        "elapsedMs": [
+          1000.3331719999987
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1000.4704020000027,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1000.3331719999987,
+            "runs": 1848
+          }
+        ],
+        "microsecondsPerRun": [
+          541.3058290043283
+        ],
+        "score": 15054.521055111047,
+        "completeSuite": true,
+        "suiteCases": [
+          "Splay/Splay"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 1.652840999999171,
+      "runMs": 2073.9796690000003,
+      "memoryBytes": null,
+      "stats": null
+    },
+    {
+      "runtime": "native",
+      "caseId": "NavierStokes/NavierStokes",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "NavierStokes",
+        "caseId": "NavierStokes/NavierStokes",
+        "name": "NavierStokes",
+        "status": "pass",
+        "referenceUs": 1484000,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          2.5118456541353416
+        ],
+        "summary": {
+          "minMs": 2.5118456541353416,
+          "maxMs": 2.5118456541353416,
+          "medianMs": 2.5118456541353416,
+          "meanMs": 2.5118456541353416,
+          "stddevMs": 0
+        },
+        "runs": [
+          399
+        ],
+        "elapsedMs": [
+          1002.2264160000013
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1001.0040019999979,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1002.2264160000013,
+            "runs": 399
+          }
+        ],
+        "microsecondsPerRun": [
+          2511.8456541353416
+        ],
+        "score": 59080.063202005964,
+        "completeSuite": true,
+        "suiteCases": [
+          "NavierStokes/NavierStokes"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 1.7437879999997676,
+      "runMs": 2012.4363120000016,
+      "memoryBytes": null,
+      "stats": null
+    }
+  ],
+  "verified": true
+}

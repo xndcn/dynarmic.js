@@ -1,0 +1,59 @@
+{
+  "status": "pass",
+  "environment": "Mozilla/5.0 (X11; Linux x86_64; rv:157.0) Gecko/20100101 Firefox/157.0",
+  "checks": [
+    "a32: step, SVC, resume and zero budget",
+    "a32: memory copies, boundaries and input validation",
+    "a32: code cache invalidation",
+    "a32: cooperative budget interrupts a guest loop",
+    "a32: data and instruction faults, boundary access and recovery",
+    "a32: Thumb state and SVC resume",
+    "a64: step, SVC, resume and zero budget",
+    "a64: memory copies, boundaries and input validation",
+    "a64: code cache invalidation",
+    "a64: cooperative budget interrupts a guest loop",
+    "a64: data and instruction faults, boundary access and recovery",
+    "a64: BigInt arithmetic and fault addresses retain all 64 bits",
+    "independent live instances and idempotent disposal",
+    "wasmURL: actual ARM guest with relocated runtime asset",
+    "wasmBinary: actual ARM guest with relocated runtime asset",
+    "invalid supplied Wasm bytes reject without fetching a fallback"
+  ],
+  "assetOverrides": [
+    "wasmURL",
+    "wasmBinary"
+  ],
+  "invalidBytesRejected": true,
+  "browser": "/home/xiong/.cache/ms-playwright/firefox-1555/firefox/firefox",
+  "nestedPath": "/nested/npm-consumer/3dd5f4bf9b4e03b9cfe976bcb6f2695f/",
+  "tarball": "/home/xiong/workspace/dynarmic.js/build-npm/dynarmic.js-0.1.0-alpha.0.tgz",
+  "tarballSha256": "634dc62a8ebb1471131c4f78d5979931126dcf5bbfe81af8fc49173a604d9bdf",
+  "requests": [
+    "cases.mjs",
+    "consumer-worker.mjs",
+    "index.html",
+    "node_modules/dynarmic.js/index.js",
+    "node_modules/dynarmic.js/runtime.mjs",
+    "node_modules/dynarmic.js/runtime.wasm",
+    "relocated/runtime.wasm"
+  ],
+  "phaseRequests": {
+    "default": [
+      "index.html",
+      "consumer-worker.mjs",
+      "node_modules/dynarmic.js/index.js",
+      "cases.mjs",
+      "node_modules/dynarmic.js/runtime.mjs",
+      "node_modules/dynarmic.js/runtime.wasm",
+      "node_modules/dynarmic.js/runtime.wasm",
+      "node_modules/dynarmic.js/runtime.wasm",
+      "node_modules/dynarmic.js/runtime.wasm",
+      "relocated/runtime.wasm"
+    ],
+    "wasmURL": [
+      "relocated/runtime.wasm"
+    ],
+    "wasmBinary": [],
+    "invalidWasmBinary": []
+  }
+}

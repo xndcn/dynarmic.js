@@ -1,0 +1,66 @@
+{
+  "README.md": {
+    "bytes": 5862,
+    "sha256": "62bc7ee00c1e3719947833ad469f402e4181771a575aeb9039325479a996e78f"
+  },
+  "analyze.py": {
+    "bytes": 5066,
+    "sha256": "0841cb758fddcac9dcedd304fbb5292e932f03c951cc4af4b99d6446ece37eff"
+  },
+  "browser-binary.json": {
+    "bytes": 278,
+    "sha256": "5b6e32821cfa01b453c6c3bb9e0b43e1126b7d468f1d4066480736640cf2eeae"
+  },
+  "c-bench-manifest.json": {
+    "bytes": 15826,
+    "sha256": "3b4698ec946656fed67b284800a9c61f1d2b91b40216e94259f14ef8cd1e51c8"
+  },
+  "c-bench-reference.json": {
+    "bytes": 2619,
+    "sha256": "1ec94ac79cf3c1500da93240f9c6af607bca0b9527c3a63ff0a2b2330812343f"
+  },
+  "chromium133-incomplete-raw.tar.gz": {
+    "bytes": 16457,
+    "sha256": "8b3aa0d5865a3adc2d3633828b9b40d482228dc8244626e9b822e26a00703682"
+  },
+  "chromium149-raw.tar.gz": {
+    "bytes": 55339,
+    "sha256": "b228a4aa22431d9af33d36569d1277b1e0d508108d421e00101d92147677c532"
+  },
+  "chromium149.log": {
+    "bytes": 370,
+    "sha256": "29fb1f9d1ffb78ce75f8fde2ebfeed14e3a33531fcf3f0389e7f2ea14da5a722"
+  },
+  "comparison.png": {
+    "bytes": 95628,
+    "sha256": "6106976d2c2c9ebd48e04766a8e054d517d1f08ba1237cd0666eefb471f1dfad"
+  },
+  "comparison.svg": {
+    "bytes": 83561,
+    "sha256": "bffbe544f8bb711fef627d5866011de9c2a0fa2546a3ba7d872851a9f9dfbb68"
+  },
+  "independent-review.json": {
+    "bytes": 45245,
+    "sha256": "b7936dc6632e94865737c919e74f1c6d6a39e771676cc3e2ddfe704ff74b6518"
+  },
+  "measurement.log": {
+    "bytes": 2450,
+    "sha256": "f133c7fbb79cb79d9f004fdb31d4145b140e5148c87159991cc1f341c4f68f55"
+  },
+  "plot.py": {
+    "bytes": 1812,
+    "sha256": "63a2fa614ec83903e85a71896951002f953e533dcbdbe0b1ebdf66ef2fc2fdbf"
+  },
+  "samples.csv": {
+    "bytes": 34081,
+    "sha256": "bdfb3de9a642f3743dd4433aadd16c1c985e42dc7c0f87254800a968c4fff5c8"
+  },
+  "summary.json": {
+    "bytes": 40146,
+    "sha256": "484cf8daf803bf1feb069495c39206bcf14f44339a7ddd9357e0ca640d9c8d3a"
+  },
+  "wasm-build-manifest.json": {
+    "bytes": 1498,
+    "sha256": "5c0f64b5d40747e2e8b738c1875145ef6077ec9e4c7376dcc595064cc5b4e6e2"
+  }
+}

@@ -1,0 +1,801 @@
+{
+  "schema": "dynarmic.js/official-v8-node-v1",
+  "engine": "v24.19.0",
+  "platform": "linux",
+  "arch": "x64",
+  "timeoutMs": 180000,
+  "methodology": {
+    "mode": "upstream",
+    "warmupMs": 1000,
+    "measurementBatchMs": 1000,
+    "minimumRuns": 32,
+    "harness": "Unchanged upstream RunStep and RunSingleBenchmark; only Date timing calls use the host monotonic clock",
+    "standaloneDependencies": "Decrypt prepares one Encrypt input outside timing because its original suite ran Encrypt first",
+    "score": "Complete suite only: 100 times reference microseconds divided by geometric mean of all case times; partial multi-case suites have no score",
+    "comparison": "Each runtime receives the same official benchmark source and case. Scores are local observations and are not cross-device claims."
+  },
+  "reports": [
+    {
+      "runtime": "wasm",
+      "caseId": "Richards/Richards",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "Richards",
+        "caseId": "Richards/Richards",
+        "name": "Richards",
+        "status": "pass",
+        "referenceUs": 35302,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          4.087371408163266
+        ],
+        "summary": {
+          "minMs": 4.087371408163266,
+          "maxMs": 4.087371408163266,
+          "medianMs": 4.087371408163266,
+          "meanMs": 4.087371408163266,
+          "stddevMs": 0
+        },
+        "runs": [
+          245
+        ],
+        "elapsedMs": [
+          1001.4059950000001
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1000.908454,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1001.4059950000001,
+            "runs": 245
+          }
+        ],
+        "microsecondsPerRun": [
+          4087.371408163266
+        ],
+        "score": 863.6846636812872,
+        "completeSuite": true,
+        "suiteCases": [
+          "Richards/Richards"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true,
+          "independentOracle": false,
+          "scope": "All checks present in the upstream case; RegExp and NavierStokes have no numerical result assertion"
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 5.227080000000001,
+      "runMs": 2051.933191,
+      "memoryBytes": 16777216,
+      "stats": null
+    },
+    {
+      "runtime": "wasm",
+      "caseId": "DeltaBlue/DeltaBlue",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "DeltaBlue",
+        "caseId": "DeltaBlue/DeltaBlue",
+        "name": "DeltaBlue",
+        "status": "pass",
+        "referenceUs": 66118,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          8.243984295081965
+        ],
+        "summary": {
+          "minMs": 8.243984295081965,
+          "maxMs": 8.243984295081965,
+          "medianMs": 8.243984295081965,
+          "meanMs": 8.243984295081965,
+          "stddevMs": 0
+        },
+        "runs": [
+          122
+        ],
+        "elapsedMs": [
+          1005.7660839999999
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1004.9528290000003,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1005.7660839999999,
+            "runs": 122
+          }
+        ],
+        "microsecondsPerRun": [
+          8243.984295081966
+        ],
+        "score": 802.0151134863683,
+        "completeSuite": true,
+        "suiteCases": [
+          "DeltaBlue/DeltaBlue"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true,
+          "independentOracle": false,
+          "scope": "All checks present in the upstream case; RegExp and NavierStokes have no numerical result assertion"
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 4.556497000000036,
+      "runMs": 2065.2431400000005,
+      "memoryBytes": 16777216,
+      "stats": null
+    },
+    {
+      "runtime": "wasm",
+      "caseId": "Crypto/Encrypt",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "Crypto",
+        "caseId": "Crypto/Encrypt",
+        "name": "Encrypt",
+        "status": "pass",
+        "referenceUs": 266181,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          9.467115575471695
+        ],
+        "summary": {
+          "minMs": 9.467115575471695,
+          "maxMs": 9.467115575471695,
+          "medianMs": 9.467115575471695,
+          "meanMs": 9.467115575471695,
+          "stddevMs": 0
+        },
+        "runs": [
+          106
+        ],
+        "elapsedMs": [
+          1003.5142509999996
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1007.6917729999996,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1003.5142509999996,
+            "runs": 106
+          }
+        ],
+        "microsecondsPerRun": [
+          9467.115575471695
+        ],
+        "score": null,
+        "completeSuite": false,
+        "suiteCases": [
+          "Crypto/Encrypt",
+          "Crypto/Decrypt"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true,
+          "independentOracle": false,
+          "scope": "All checks present in the upstream case; RegExp and NavierStokes have no numerical result assertion"
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 6.378454000000602,
+      "runMs": 2335.289997,
+      "memoryBytes": 16777216,
+      "stats": null
+    },
+    {
+      "runtime": "wasm",
+      "caseId": "Crypto/Decrypt",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "Crypto",
+        "caseId": "Crypto/Decrypt",
+        "name": "Decrypt",
+        "status": "pass",
+        "referenceUs": 266181,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          140.10339499999992
+        ],
+        "summary": {
+          "minMs": 140.10339499999992,
+          "maxMs": 140.10339499999992,
+          "medianMs": 140.10339499999992,
+          "meanMs": 140.10339499999992,
+          "stddevMs": 0
+        },
+        "runs": [
+          38
+        ],
+        "elapsedMs": [
+          5323.929009999998
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1108.2096490000004,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1040.7956809999996,
+            "runs": 8
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1045.7467799999995,
+            "runs": 8
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1051.4755530000002,
+            "runs": 8
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1078.4505499999996,
+            "runs": 6
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1107.4604459999991,
+            "runs": 8
+          }
+        ],
+        "microsecondsPerRun": [
+          140103.39499999993
+        ],
+        "score": null,
+        "completeSuite": false,
+        "suiteCases": [
+          "Crypto/Encrypt",
+          "Crypto/Decrypt"
+        ],
+        "logs": [],
+        "dependencies": [
+          "Crypto/Encrypt"
+        ],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true,
+          "independentOracle": false,
+          "scope": "All checks present in the upstream case; RegExp and NavierStokes have no numerical result assertion"
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 6.712443999999778,
+      "runMs": 6511.841101999999,
+      "memoryBytes": 16777216,
+      "stats": null
+    },
+    {
+      "runtime": "wasm",
+      "caseId": "RayTrace/RayTrace",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "RayTrace",
+        "caseId": "RayTrace/RayTrace",
+        "name": "RayTrace",
+        "status": "pass",
+        "referenceUs": 739989,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          76.73948014999996
+        ],
+        "summary": {
+          "minMs": 76.73948014999996,
+          "maxMs": 76.73948014999996,
+          "medianMs": 76.73948014999996,
+          "meanMs": 76.73948014999996,
+          "stddevMs": 0
+        },
+        "runs": [
+          40
+        ],
+        "elapsedMs": [
+          3069.5792059999985
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1004.6221700000006,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1010.2616149999994,
+            "runs": 13
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1047.5946619999995,
+            "runs": 14
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1011.7229289999996,
+            "runs": 13
+          }
+        ],
+        "microsecondsPerRun": [
+          76739.48014999996
+        ],
+        "score": 964.2872202855291,
+        "completeSuite": true,
+        "suiteCases": [
+          "RayTrace/RayTrace"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true,
+          "independentOracle": false,
+          "scope": "All checks present in the upstream case; RegExp and NavierStokes have no numerical result assertion"
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 4.967670999998518,
+      "runMs": 4123.819289000001,
+      "memoryBytes": 16777216,
+      "stats": null
+    },
+    {
+      "runtime": "wasm",
+      "caseId": "EarleyBoyer/Earley",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "EarleyBoyer",
+        "caseId": "EarleyBoyer/Earley",
+        "name": "Earley",
+        "status": "pass",
+        "referenceUs": 666463,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          9.09270330909094
+        ],
+        "summary": {
+          "minMs": 9.09270330909094,
+          "maxMs": 9.09270330909094,
+          "medianMs": 9.09270330909094,
+          "meanMs": 9.09270330909094,
+          "stddevMs": 0
+        },
+        "runs": [
+          110
+        ],
+        "elapsedMs": [
+          1000.1973640000033
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1005.6727719999981,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1000.1973640000033,
+            "runs": 110
+          }
+        ],
+        "microsecondsPerRun": [
+          9092.703309090939
+        ],
+        "score": null,
+        "completeSuite": false,
+        "suiteCases": [
+          "EarleyBoyer/Earley",
+          "EarleyBoyer/Boyer"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true,
+          "independentOracle": false,
+          "scope": "All checks present in the upstream case; RegExp and NavierStokes have no numerical result assertion"
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 4.919345999998768,
+      "runMs": 2055.7155060000005,
+      "memoryBytes": 16777216,
+      "stats": null
+    },
+    {
+      "runtime": "wasm",
+      "caseId": "EarleyBoyer/Boyer",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "EarleyBoyer",
+        "caseId": "EarleyBoyer/Boyer",
+        "name": "Boyer",
+        "status": "pass",
+        "referenceUs": 666463,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          114.50904586486473
+        ],
+        "summary": {
+          "minMs": 114.50904586486473,
+          "maxMs": 114.50904586486473,
+          "medianMs": 114.50904586486473,
+          "meanMs": 114.50904586486473,
+          "stddevMs": 0
+        },
+        "runs": [
+          37
+        ],
+        "elapsedMs": [
+          4236.834696999995
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1100.228965000002,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1097.8312079999996,
+            "runs": 10
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1039.784717999999,
+            "runs": 9
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1052.4790399999983,
+            "runs": 9
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1046.7397309999978,
+            "runs": 9
+          }
+        ],
+        "microsecondsPerRun": [
+          114509.04586486473
+        ],
+        "score": null,
+        "completeSuite": false,
+        "suiteCases": [
+          "EarleyBoyer/Earley",
+          "EarleyBoyer/Boyer"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true,
+          "independentOracle": false,
+          "scope": "All checks present in the upstream case; RegExp and NavierStokes have no numerical result assertion"
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 4.1228050000027,
+      "runMs": 5382.072376,
+      "memoryBytes": 20185088,
+      "stats": null
+    },
+    {
+      "runtime": "wasm",
+      "caseId": "RegExp/RegExp",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "RegExp",
+        "caseId": "RegExp/RegExp",
+        "name": "RegExp",
+        "status": "pass",
+        "referenceUs": 910985,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          285.5903260285715
+        ],
+        "summary": {
+          "minMs": 285.5903260285715,
+          "maxMs": 285.5903260285715,
+          "medianMs": 285.5903260285715,
+          "meanMs": 285.5903260285715,
+          "stddevMs": 0
+        },
+        "runs": [
+          35
+        ],
+        "elapsedMs": [
+          9995.661411000005
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1135.2164409999968,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1196.2913750000007,
+            "runs": 4
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1159.610133000002,
+            "runs": 3
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1174.8723480000008,
+            "runs": 4
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1115.807123999999,
+            "runs": 4
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1054.080807000002,
+            "runs": 4
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1047.5357330000006,
+            "runs": 4
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1081.0436499999996,
+            "runs": 4
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1086.1572339999984,
+            "runs": 4
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1080.2630070000014,
+            "runs": 4
+          }
+        ],
+        "microsecondsPerRun": [
+          285590.3260285715
+        ],
+        "score": 318.9831436758336,
+        "completeSuite": true,
+        "suiteCases": [
+          "RegExp/RegExp"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true,
+          "independentOracle": false,
+          "scope": "All checks present in the upstream case; RegExp and NavierStokes have no numerical result assertion"
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 4.097002000002249,
+      "runMs": 11498.783346999997,
+      "memoryBytes": 16777216,
+      "stats": null
+    },
+    {
+      "runtime": "wasm",
+      "caseId": "Splay/Splay",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "Splay",
+        "caseId": "Splay/Splay",
+        "name": "Splay",
+        "status": "pass",
+        "referenceUs": 81491,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          3.4302064554794423
+        ],
+        "summary": {
+          "minMs": 3.4302064554794423,
+          "maxMs": 3.4302064554794423,
+          "medianMs": 3.4302064554794423,
+          "meanMs": 3.4302064554794423,
+          "stddevMs": 0
+        },
+        "runs": [
+          292
+        ],
+        "elapsedMs": [
+          1001.6202849999972
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1000.4921899999972,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1001.6202849999972,
+            "runs": 292
+          }
+        ],
+        "microsecondsPerRun": [
+          3430.2064554794424
+        ],
+        "score": 2375.687908517155,
+        "completeSuite": true,
+        "suiteCases": [
+          "Splay/Splay"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true,
+          "independentOracle": false,
+          "scope": "All checks present in the upstream case; RegExp and NavierStokes have no numerical result assertion"
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 3.9964710000058403,
+      "runMs": 2540.9190699999963,
+      "memoryBytes": 180682752,
+      "stats": null
+    },
+    {
+      "runtime": "wasm",
+      "caseId": "NavierStokes/NavierStokes",
+      "status": "pass",
+      "official": {
+        "schema": "dynarmic.js/official-v8-case-v1",
+        "version": "7",
+        "mode": "upstream",
+        "suite": "NavierStokes",
+        "caseId": "NavierStokes/NavierStokes",
+        "name": "NavierStokes",
+        "status": "pass",
+        "referenceUs": 1484000,
+        "warmupMs": 1000,
+        "measureMs": 1000,
+        "minimumRuns": 32,
+        "warmRuns": null,
+        "samplesMs": [
+          91.6185810000001
+        ],
+        "summary": {
+          "minMs": 91.6185810000001,
+          "maxMs": 91.6185810000001,
+          "medianMs": 91.6185810000001,
+          "meanMs": 91.6185810000001,
+          "stddevMs": 0
+        },
+        "runs": [
+          34
+        ],
+        "elapsedMs": [
+          3115.0317540000033
+        ],
+        "batches": [
+          {
+            "phase": "warmup",
+            "elapsedMs": 1091.917604999995,
+            "runs": null
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1026.4264330000005,
+            "runs": 11
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1006.6543610000008,
+            "runs": 11
+          },
+          {
+            "phase": "measurement",
+            "elapsedMs": 1081.950960000002,
+            "runs": 12
+          }
+        ],
+        "microsecondsPerRun": [
+          91618.58100000011
+        ],
+        "score": 1619.7587692391767,
+        "completeSuite": true,
+        "suiteCases": [
+          "NavierStokes/NavierStokes"
+        ],
+        "logs": [],
+        "dependencies": [],
+        "validation": {
+          "upstreamAssertions": true,
+          "setupAndTearDown": true,
+          "independentOracle": false,
+          "scope": "All checks present in the upstream case; RegExp and NavierStokes have no numerical result assertion"
+        },
+        "methodology": "Upstream V8 v7 harness: one-second warmup, one-second measurement batches until at least 32 runs; host monotonic clock"
+      },
+      "loadMs": 4.688694000004034,
+      "runMs": 4261.6437309999965,
+      "memoryBytes": 16777216,
+      "stats": null
+    }
+  ],
+  "verified": true
+}

@@ -1,0 +1,29 @@
+{
+  "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/133.0.0.0 Safari/537.36",
+  "artifactHashes": {
+    "c-bench-arm.bin": "abf71d3a0f2a4b57a62d03c886126eec97499944dd68634f4969a2862068edfa",
+    "c-bench-x86.elf": "3f780a81b70ec71339b5abeb95e45f58d3fc4bb66db8c4ecaae5039a48aadb4b",
+    "c-bench.wasm": "ce492306c7ec5d91f4f5fe420f6fd332642ad5c92649c21c583ae2fe10183c1e",
+    "c-bench-reference.json": "1ec94ac79cf3c1500da93240f9c6af607bca0b9527c3a63ff0a2b2330812343f",
+    "c-bench-source.c": "e320aef8b6978e5c08888284026cb9a3cf41c8961770a958d236ddc6cc948fb9",
+    "c-bench-v86.js": "e257912c4a1129e36a86c1e2df69904ab969d87bffd24aa6676e84d6ddffc1c6",
+    "c-bench-v86.wasm": "2f0c4150f266415b754a84a32e6f8e4c975a1d3abb94c78b047fa30027db1ef1",
+    "c-bench-v86-LICENSE.txt": "3f61ba65e3215b09ef264ba8d777d73c19644309fbb705967634eb5147e500a0",
+    "c-bench-manifest.json": "bbc4bb2976e1662d0ef78bafaea3d52285fb1a06fe3c57fa69cead8baa7a8939",
+    "c-bench-app.js": "8fbccaeb09ffa7acbe1f2d577afea389ab0eaee9af6a4da92c87bb6a1b5c39eb",
+    "c-bench-worker.js": "f26085efc1dd97eff0d8ce283ca9b032fd0073e7d9a1fc31cd847ca15a52dbaf",
+    "c-bench-protocol.js": "d2fd4cbc7e7c183edf06924d4f44e7410e2b1fa275b002968294f8ee43ca4f67",
+    "index.html": "e0a38795df35f4eedd0c4ccb20da332937fee794498859e5985d65db51c11b24",
+    "styles.css": "072d8617f3321abe88a8816ca4e2ca1f0ca80cf5231b646c2d2f2a47ee4119c9",
+    "arm_jit.js": "16747bdfd6585d6fb21ff5c9416a5702853dc3b2b2274ecf971070b60bfd0073",
+    "arm_jit.wasm": "8bf2ed617b83da078d415b2347624c795029356842f8d3cd2dcf8c93e75d4171",
+    "wasm-build-manifest.json": "3bed4b3e7984e40658470b43ec0bca7d015d0e9e06ccf9305d96e0f0d30dbe91"
+  },
+  "checks": [
+    "C benchmark engines load on demand at a nested path",
+    {
+      "error": "Some observations failed. Partial measurements and errors are retained; inspect the results or export JSON.\n\n'fail' !== 'pass'\n"
+    }
+  ],
+  "reports": {}
+}

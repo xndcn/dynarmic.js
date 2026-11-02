@@ -1,0 +1,15 @@
+Use compact compile-time ARM decode buckets in the wasm frontend adapter.
+
+Keep upstream instruction definitions and argument extraction.
+
+--- a/src/dynarmic/frontend/A32/translate/translate_arm.cpp
++++ b/src/dynarmic/frontend/A32/translate/translate_arm.cpp
+@@ -10 +10 @@
+-#include "dynarmic/frontend/A32/decoder/arm.h"
++#include "dynarmic/frontend/wasm/arm_decoder.h"
+@@ -48 +48 @@
+-            } else if (const auto decoder = DecodeArm<TranslatorVisitor>(*arm_instruction)) {
++            } else if (const auto decoder = DecodeArmIndexed<TranslatorVisitor>(*arm_instruction)) {
+@@ -99 +99 @@
+-    } else if (const auto decoder = DecodeArm<TranslatorVisitor>(arm_instruction)) {
++    } else if (const auto decoder = DecodeArmIndexed<TranslatorVisitor>(arm_instruction)) {

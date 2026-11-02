@@ -1,0 +1,15 @@
+{
+  "schema": "dynarmic.js/official-v8-build-verification-v1",
+  "testedArtifactsUnchanged": {
+    "quickjs-arm.bin": "aeba400ff697b77cef6b47019b1af4d373040a22e50e270040e283178a26d2f0",
+    "quickjs-wasm.js": "7fa29bd1612f75f99422dcd654c10ac429dcd60d6d31b0142febe5d7fcd39102",
+    "quickjs-wasm.wasm": "ca565f0194b415c45704d6bf5c3a6e076a32d09de5a8d5cf5067ca5e056fd9ce",
+    "official-v8.js": "87f7553a974678a422e9d9d245f6b3ac80f86a503d17224d3dd33c38819400da",
+    "official-v8-adapter.js": "14ac511bfd497c6686c901919a6f8222e53501d7e835b47af976ffa4874ab9ff",
+    "arm_bench_jit.js": "ff2cf9ac1f6c4097539dedcb0c7c2e158067f7309a266a901cef8cd05290dbe2",
+    "arm_bench_jit.wasm": "6ef0ecb11f8f633af9f9e3eec027404f0c055fac8b21066a577b44a854dd3d8b"
+  },
+  "manifestSourcesAndArtifactsMatch": true,
+  "officialQuickjsMemoryLimitBytes": 201326592,
+  "quickjsWasmMaximumMemoryBytes": 268435456
+}

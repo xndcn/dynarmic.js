@@ -1,0 +1,18 @@
+IR::Block: start its instruction pool with 256 slots, not 4096
+
+The pool grows by whole slabs, so the first slab is all a typical block
+uses. With 4096 slots every block holds a few hundred KiB; the wasm
+backend keeps all blocks of a region (up to 64) alive while it emits
+them, which ran a 64 MiB heap out of memory.
+
+--- a/src/dynarmic/ir/basic_block.cpp
++++ b/src/dynarmic/ir/basic_block.cpp
+@@ -22,7 +22,7 @@
+ namespace Dynarmic::IR {
+ 
+ Block::Block(const LocationDescriptor& location)
+-        : location{location}, end_location{location}, cond{Cond::AL}, instruction_alloc_pool{std::make_unique<Common::Pool>(sizeof(Inst), 4096)} {}
++        : location{location}, end_location{location}, cond{Cond::AL}, instruction_alloc_pool{std::make_unique<Common::Pool>(sizeof(Inst), 256)} {}
+ 
+ Block::~Block() = default;
+ 

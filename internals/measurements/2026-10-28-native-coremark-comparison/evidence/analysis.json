@@ -1,0 +1,308 @@
+{
+  "schema": "dynarmic.js/native-coremark-comparison-analysis-v1",
+  "iterations": 200000,
+  "implementations": {
+    "x86Native": {
+      "samples": 5,
+      "kernelMedianMs": 5167.138,
+      "kernelMadMs": 108.82099999999991,
+      "kernelRangeMs": [
+        4941.7,
+        5275.959
+      ],
+      "coreMarkPerSecond": 38706.14641993305,
+      "wallMedianMs": 5168.913071999996,
+      "durationQualified": false
+    },
+    "qemuUser": {
+      "samples": 5,
+      "kernelMedianMs": 20287.766,
+      "kernelMadMs": 215.6219999999994,
+      "kernelRangeMs": [
+        19829.919,
+        21094.101
+      ],
+      "coreMarkPerSecond": 9858.157867159942,
+      "wallMedianMs": 20298.416916000016,
+      "durationQualified": true
+    },
+    "dynarmicNative": {
+      "samples": 5,
+      "kernelMedianMs": 18368.734,
+      "kernelMadMs": 174.39300000000003,
+      "kernelRangeMs": [
+        17958.314,
+        18543.127
+      ],
+      "coreMarkPerSecond": 10888.066646291465,
+      "wallMedianMs": 18435.857617,
+      "durationQualified": true
+    }
+  },
+  "ratios": {
+    "qemuUserOverX86NativeTime": 3.926306206646697,
+    "dynarmicNativeOverX86NativeTime": 3.554914538764012,
+    "qemuUserOverDynarmicNativeTime": 1.10447274156183,
+    "x86NativeSpeedupOverQemuUser": 3.926306206646697,
+    "x86NativeSpeedupOverDynarmicNative": 3.554914538764012,
+    "dynarmicNativeSpeedupOverQemuUser": 1.10447274156183
+  },
+  "validFixedWorkloadComparison": true,
+  "durationQualified": false,
+  "startedAt": "2026-10-28T06:32:50.941Z",
+  "finishedAt": "2026-10-28T06:36:30.241Z",
+  "workload": {
+    "iterations": 200000,
+    "upstreamRevision": "1f483d5b8316753a742cbf5590caf5bd0a4e4777",
+    "dynarmicMemoryMode": 2,
+    "artifacts": {
+      "x86Native": {
+        "path": "/tmp/dynarmic-native-coremark-linux-v3/coremark_x86_64",
+        "sha256": "213b8e26ef79812bada9285c270eaf96045b703ea9530ea30dead5604485d709",
+        "bytes": 1421880
+      },
+      "qemuUser": {
+        "path": "/tmp/dynarmic-native-coremark-linux-v3/coremark_aarch64",
+        "sha256": "7cf5ba7e8293c9839d96a39b87001c02ea28273a01f6ba4c06b912ccd6b5761c",
+        "bytes": 1592616
+      },
+      "qemuExecutable": {
+        "path": "/usr/bin/qemu-aarch64-static",
+        "sha256": "5f0dc411dcf208a2946db2f07a3ecfee9e4bad1c20ba21197e4d1637de845b21",
+        "bytes": 5624384
+      },
+      "dynarmicHost": {
+        "path": "/tmp/dynarmic-native-x64-coremark/a64_coremark_host",
+        "sha256": "a249e0a7cf161b3f5c59b6b10755f3904e53ce95139c126ea44c0213de96a039",
+        "bytes": 6504024
+      },
+      "a64Guest": {
+        "path": "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+        "sha256": "8f96e0f0f3beb9a5fb8765405926655c182bfcdfe93a8f99dc6ea32dec227ab1",
+        "bytes": 196620
+      }
+    }
+  },
+  "runtime": {
+    "affinity": "0,2,4,6",
+    "qemuVersion": "qemu-aarch64 version 6.2.0 (Debian 1:6.2+dfsg-2ubuntu6.30)",
+    "compiler": "clang version 22.1.8\nTarget: x86_64-unknown-linux6.8.0-gnu2.35.0\nThread model: posix\nInstalledDir: /home/xiong/.local/lib/python3.10/site-packages/ziglang",
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12700",
+    "uname": "Linux xiong-HP-Pro-Tower-ZHAN-99-G9-Desktop-PC 6.8.0-138-generic #138~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:43:15 UTC  x86_64 x86_64 x86_64 GNU/Linux",
+    "repositoryHead": "15705f3b1b46342e1c7de277f754609507f0ad29",
+    "dynarmicRevision": "a41c380246d3d9f9874f0f792d234dc0cc17c180",
+    "nativeBuild": {
+      "schema": "dynarmic.js/native-coremark-host-build-v1",
+      "buildType": "Release",
+      "compiler": {
+        "id": "GNU",
+        "version": "12.3.0",
+        "path": "/usr/bin/c++"
+      },
+      "flags": {
+        "cxx": "",
+        "configuration": "-O3 -DNDEBUG"
+      },
+      "sources": {
+        "hostSha256": "ab8e4c5dc7f81f7fef76f1717bbbbe8845861ddd525e965b80156e9b305b2ae4",
+        "cmakeSha256": "cdbd4ca492a2cc17242dd43a04a0e41e6ff788e3bedb07e5358b62aa89b46e5d",
+        "manifestScriptSha256": "242834bc65add0cf8ebb749ec127383c78c73da767055a8a1ac24e2900de8502"
+      },
+      "revisions": {
+        "repositoryHead": "15705f3b1b46342e1c7de277f754609507f0ad29",
+        "dynarmicRevision": "a41c380246d3d9f9874f0f792d234dc0cc17c180"
+      },
+      "artifact": {
+        "path": "/tmp/dynarmic-native-x64-coremark/a64_coremark_host",
+        "sha256": "a249e0a7cf161b3f5c59b6b10755f3904e53ce95139c126ea44c0213de96a039",
+        "bytes": 6504024
+      }
+    }
+  },
+  "methodology": {
+    "execution": "one fresh process per sample; three implementations rotate within each round",
+    "timing": "CoreMark CLOCK_MONOTONIC wrapping-u32 microseconds around iterate; separate whole-process wall time",
+    "aggregation": "per-implementation median guest ticks; ratios of medians; MAD and range retained",
+    "crc": "every sample must have all expected individual CRCs and accumulated crcfinal 0x4983",
+    "duration": "fixed 200000-iteration comparison; samples below ten seconds are retained but not duration-qualified",
+    "workloadEquivalence": "qemu-user runs an AArch64 Linux-musl HOST build; dynarmic runs an AArch64 freestanding build; matching CRCs do not imply identical instruction streams",
+    "certification": "fixed-workload end-to-end throughput comparison, not an official CoreMark score or a pure engine-only overhead measurement"
+  },
+  "observations": [
+    {
+      "sequence": 0,
+      "round": 0,
+      "implementation": "x86Native",
+      "ticks": 4973352,
+      "coreMarkPerSecond": 40214.326273,
+      "wallMilliseconds": 4974.851121,
+      "durationValid": false,
+      "dynarmic": null
+    },
+    {
+      "sequence": 1,
+      "round": 0,
+      "implementation": "qemuUser",
+      "ticks": 20072144,
+      "coreMarkPerSecond": 9964.057651,
+      "wallMilliseconds": 20086.599968,
+      "durationValid": true,
+      "dynarmic": null
+    },
+    {
+      "sequence": 2,
+      "round": 0,
+      "implementation": "dynarmicNative",
+      "ticks": 17958314,
+      "coreMarkPerSecond": 11136.902941,
+      "wallMilliseconds": 18024.392092000002,
+      "durationValid": true,
+      "dynarmic": {
+        "memoryMode": 2,
+        "guestBytes": 196620,
+        "runMilliseconds": 17999.21471,
+        "haltReason": "01000000"
+      }
+    },
+    {
+      "sequence": 3,
+      "round": 1,
+      "implementation": "qemuUser",
+      "ticks": 19829919,
+      "coreMarkPerSecond": 10085.769891,
+      "wallMilliseconds": 19839.609462,
+      "durationValid": true,
+      "dynarmic": null
+    },
+    {
+      "sequence": 4,
+      "round": 1,
+      "implementation": "dynarmicNative",
+      "ticks": 18130605,
+      "coreMarkPerSecond": 11031.071495,
+      "wallMilliseconds": 18206.006955999997,
+      "durationValid": true,
+      "dynarmic": {
+        "memoryMode": 2,
+        "guestBytes": 196620,
+        "runMilliseconds": 18171.893994,
+        "haltReason": "01000000"
+      }
+    },
+    {
+      "sequence": 5,
+      "round": 1,
+      "implementation": "x86Native",
+      "ticks": 5246140,
+      "coreMarkPerSecond": 38123.267774,
+      "wallMilliseconds": 5247.779383000001,
+      "durationValid": false,
+      "dynarmic": null
+    },
+    {
+      "sequence": 6,
+      "round": 2,
+      "implementation": "dynarmicNative",
+      "ticks": 18469351,
+      "coreMarkPerSecond": 10828.750832,
+      "wallMilliseconds": 18533.893442,
+      "durationValid": true,
+      "dynarmic": {
+        "memoryMode": 2,
+        "guestBytes": 196620,
+        "runMilliseconds": 18509.838603,
+        "haltReason": "01000000"
+      }
+    },
+    {
+      "sequence": 7,
+      "round": 2,
+      "implementation": "x86Native",
+      "ticks": 5167138,
+      "coreMarkPerSecond": 38706.14642,
+      "wallMilliseconds": 5168.913071999996,
+      "durationValid": false,
+      "dynarmic": null
+    },
+    {
+      "sequence": 8,
+      "round": 2,
+      "implementation": "qemuUser",
+      "ticks": 21094101,
+      "coreMarkPerSecond": 9481.323712,
+      "wallMilliseconds": 21103.628997000007,
+      "durationValid": true,
+      "dynarmic": null
+    },
+    {
+      "sequence": 9,
+      "round": 3,
+      "implementation": "x86Native",
+      "ticks": 4941700,
+      "coreMarkPerSecond": 40471.902382,
+      "wallMilliseconds": 4943.358561000001,
+      "durationValid": false,
+      "dynarmic": null
+    },
+    {
+      "sequence": 10,
+      "round": 3,
+      "implementation": "qemuUser",
+      "ticks": 20481783,
+      "coreMarkPerSecond": 9764.774873,
+      "wallMilliseconds": 20490.831176999985,
+      "durationValid": true,
+      "dynarmic": null
+    },
+    {
+      "sequence": 11,
+      "round": 3,
+      "implementation": "dynarmicNative",
+      "ticks": 18368734,
+      "coreMarkPerSecond": 10888.066646,
+      "wallMilliseconds": 18435.857617,
+      "durationValid": true,
+      "dynarmic": {
+        "memoryMode": 2,
+        "guestBytes": 196620,
+        "runMilliseconds": 18411.113414,
+        "haltReason": "01000000"
+      }
+    },
+    {
+      "sequence": 12,
+      "round": 4,
+      "implementation": "qemuUser",
+      "ticks": 20287766,
+      "coreMarkPerSecond": 9858.157867,
+      "wallMilliseconds": 20298.416916000016,
+      "durationValid": true,
+      "dynarmic": null
+    },
+    {
+      "sequence": 13,
+      "round": 4,
+      "implementation": "dynarmicNative",
+      "ticks": 18543127,
+      "coreMarkPerSecond": 10785.66738,
+      "wallMilliseconds": 18610.15965799999,
+      "durationValid": true,
+      "dynarmic": {
+        "memoryMode": 2,
+        "guestBytes": 196620,
+        "runMilliseconds": 18585.173863,
+        "haltReason": "01000000"
+      }
+    },
+    {
+      "sequence": 14,
+      "round": 4,
+      "implementation": "x86Native",
+      "ticks": 5275959,
+      "coreMarkPerSecond": 37907.800269,
+      "wallMilliseconds": 5277.728491999995,
+      "durationValid": false,
+      "dynarmic": null
+    }
+  ]
+}

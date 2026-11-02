@@ -1,0 +1,695 @@
+{
+  "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/133.0.0.0 Safari/537.36",
+  "artifactHashes": {
+    "index.html": "1a2c9dd8409552bae815a970c82e4192a9cc538145db3941b76ec490eee1788c",
+    "styles.css": "fc67703d9409d96c3edf38897ef6956516706ce767037258362c11de4526264d",
+    "quickjs-app.js": "9b311f550c30d66e21e62ffd9e88d08df7e2ec3a0a42488755ac38059d56580d",
+    "quickjs-worker.js": "c9b8c4b2b907d5b0ad67b9c17646a0649fbc893b5894695a627a2ed6690a556c",
+    "quickjs-workloads.js": "cff32113b074e4a0ede55920f1b4ac8a29bbf4996f2c9deb321f7e45f8c6c31e",
+    "quickjs-arm.bin": "aeba400ff697b77cef6b47019b1af4d373040a22e50e270040e283178a26d2f0",
+    "quickjs-wasm.js": "7fa29bd1612f75f99422dcd654c10ac429dcd60d6d31b0142febe5d7fcd39102",
+    "quickjs-wasm.wasm": "ca565f0194b415c45704d6bf5c3a6e076a32d09de5a8d5cf5067ca5e056fd9ce",
+    "quickjs-manifest.json": "2d808518d9746d4fbad0f22bb8a56f8c46c2b801003b1576cfa66ef801135e85",
+    "wasm-build-manifest.json": "b8b46d63ba68c0649b64981e97e3e5a5fe715340872b5dc41a98d8cca81af7fa",
+    "arm_jit.js": "16747bdfd6585d6fb21ff5c9416a5702853dc3b2b2274ecf971070b60bfd0073",
+    "arm_jit.wasm": "8bf2ed617b83da078d415b2347624c795029356842f8d3cd2dcf8c93e75d4171"
+  },
+  "checks": [
+    "QuickJS comparison loads on demand at a nested path",
+    "all three actual runtimes match reference outputs and retain valid repeated statistics",
+    "Export JSON downloads the checked measurements and environment unchanged",
+    "QuickJS results and statistics fit 320–1440px",
+    "Stop terminates a synchronous ARM loop and restores both demo controls",
+    "Stop cancels pending Worker initialization and releases controls",
+    "a missing QuickJS Worker reports failure and releases controls",
+    "retry after an asset failure runs all three runtimes successfully"
+  ],
+  "report": {
+    "schema": "dynarmic-quickjs-comparison-v1",
+    "measuredAt": "2026-10-30T18:47:01.865Z",
+    "build": {
+      "schema": "dynarmic.js/quickjs-build-v1",
+      "upstream": {
+        "version": "2025-09-13",
+        "url": "https://bellard.org/quickjs/quickjs-2025-09-13-2.tar.xz",
+        "sha256": "996c6b5018fc955ad4d06426d0e9cb713685a00c825aa5c0418bd53f7df8b0b4",
+        "archive": "quickjs-source.tar.xz"
+      },
+      "artifacts": [
+        {
+          "path": "quickjs-arm.bin",
+          "sha256": "aeba400ff697b77cef6b47019b1af4d373040a22e50e270040e283178a26d2f0",
+          "bytes": 683252
+        },
+        {
+          "path": "quickjs-wasm.js",
+          "sha256": "7fa29bd1612f75f99422dcd654c10ac429dcd60d6d31b0142febe5d7fcd39102",
+          "bytes": 8298
+        },
+        {
+          "path": "quickjs-wasm.wasm",
+          "sha256": "ca565f0194b415c45704d6bf5c3a6e076a32d09de5a8d5cf5067ca5e056fd9ce",
+          "bytes": 733884
+        },
+        {
+          "path": "quickjs-workloads.js",
+          "sha256": "cff32113b074e4a0ede55920f1b4ac8a29bbf4996f2c9deb321f7e45f8c6c31e",
+          "bytes": 3108
+        },
+        {
+          "path": "quickjs-LICENSE.txt",
+          "sha256": "598fd7fc928e4350abce36e337ba5a1346923c5c692f5be92c3d8e29ddd7c18d",
+          "bytes": 1130
+        },
+        {
+          "path": "quickjs-source.tar.xz",
+          "sha256": "996c6b5018fc955ad4d06426d0e9cb713685a00c825aa5c0418bd53f7df8b0b4",
+          "bytes": 596244
+        },
+        {
+          "path": "quickjs-runtime-licenses.txt",
+          "sha256": "62a0cf80c6099b4e0356da250832be80859581ce72c0dffd5f6b958daf128444",
+          "bytes": 75565
+        },
+        {
+          "path": "official-v8-upstream.js",
+          "sha256": "784c263ca755de0d6ed90b1ed2bb09663313bd9f2dbbd2bbae1f4f4b80be8594",
+          "bytes": 457790
+        },
+        {
+          "path": "official-v8.js",
+          "sha256": "87f7553a974678a422e9d9d245f6b3ac80f86a503d17224d3dd33c38819400da",
+          "bytes": 458563
+        },
+        {
+          "path": "official-v8-adapter.js",
+          "sha256": "14ac511bfd497c6686c901919a6f8222e53501d7e835b47af976ffa4874ab9ff",
+          "bytes": 5898
+        },
+        {
+          "path": "official-benchmarks.json",
+          "sha256": "0ff4d09a59ffe52c01fdedeb9b3299f71d694bd314c7616020ebaa61fbc93fc5",
+          "bytes": 3450
+        },
+        {
+          "path": "quickjs-extras-source.tar.xz",
+          "sha256": "7e5aa54376aad91c952b6a6f44f150856073da71973c8914f041932969e9f4e8",
+          "bytes": 716732
+        }
+      ],
+      "sources": [
+        {
+          "path": "examples/quickjs/build.py",
+          "sha256": "b064b4bccecefc62c8a02dd08d589148d6430f1b10b489d8049978ca3736e4b5",
+          "bytes": 11864
+        },
+        {
+          "path": "examples/quickjs/workloads.js",
+          "sha256": "cff32113b074e4a0ede55920f1b4ac8a29bbf4996f2c9deb321f7e45f8c6c31e",
+          "bytes": 3108
+        },
+        {
+          "path": "examples/quickjs/runner.c",
+          "sha256": "f26f0c670f552bcdb48d73de9b5506dd10d5c4a351230d029da75482156c6f0a",
+          "bytes": 5786
+        },
+        {
+          "path": "examples/quickjs/syscalls.c",
+          "sha256": "4dc31248e0cf7a332c184319bc2c5e64ee34319e009677eecd9f730838714723",
+          "bytes": 1975
+        },
+        {
+          "path": "examples/quickjs/start.S",
+          "sha256": "558e0253688f8cf03ed1d029293bac970ae1e3a6b6ba95237578282b85b6619b",
+          "bytes": 235
+        },
+        {
+          "path": "examples/quickjs/link.ld",
+          "sha256": "f708b440e74c9925791c25faf6a45f5f12af72f59bd5c84f02317a6021ab8697",
+          "bytes": 418
+        },
+        {
+          "path": "examples/quickjs/reference.py",
+          "sha256": "f6238185e2c870f30d5bcc3e2f131d995ea29955e032aa879cd4f6b69c339b3b",
+          "bytes": 1118
+        },
+        {
+          "path": "examples/quickjs/runtime_notices.py",
+          "sha256": "95f48a4bb0cff716dc3adb113fd89e7f1ad5cb03947337d6cd7632a602cbe257",
+          "bytes": 2630
+        },
+        {
+          "path": "examples/quickjs/official_benchmarks.py",
+          "sha256": "5c8c63308a63579b4a560000f040011de595302a6e1eb0b8395fe9127b0b7cd9",
+          "bytes": 5964
+        },
+        {
+          "path": "examples/quickjs/official-v8-adapter.js",
+          "sha256": "14ac511bfd497c6686c901919a6f8222e53501d7e835b47af976ffa4874ab9ff",
+          "bytes": 5898
+        },
+        {
+          "path": "examples/quickjs/licenses/GCC-Runtime-Exception-3.1.txt",
+          "sha256": "9d6b43ce4d8de0c878bf16b54d8e7a10d9bd42b75178153e3af6a815bdc90f74",
+          "bytes": 3324
+        },
+        {
+          "path": "examples/quickjs/licenses/GPL-3.0.txt",
+          "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+          "bytes": 35147
+        },
+        {
+          "path": "examples/quickjs/licenses/README.md",
+          "sha256": "63e11f2e10dd3e88174e90e6579581a611f64a27439ae21cac22acb3cc5ad6f4",
+          "bytes": 929
+        }
+      ],
+      "runtimeNotices": {
+        "path": "quickjs-runtime-licenses.txt",
+        "toolchain": "arm-none-eabi-gcc (15:10.3-2021.07-4) 10.3.1 20210621 (release)",
+        "inputs": [
+          {
+            "component": "newlib",
+            "origin": "system ARM newlib package",
+            "sha256": "0383bc85177c121b1ee5e00ff07f51d0cab2dd5bbe51875fdff01a91c234c3ae",
+            "bytes": 36391
+          },
+          {
+            "component": "libgcc license",
+            "origin": "examples/quickjs/licenses/GPL-3.0.txt",
+            "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+            "bytes": 35147
+          },
+          {
+            "component": "libgcc license",
+            "origin": "examples/quickjs/licenses/GCC-Runtime-Exception-3.1.txt",
+            "sha256": "9d6b43ce4d8de0c878bf16b54d8e7a10d9bd42b75178153e3af6a815bdc90f74",
+            "bytes": 3324
+          }
+        ]
+      },
+      "officialBenchmarks": {
+        "inventory": "official-benchmarks.json",
+        "suites": [
+          {
+            "id": "Richards",
+            "title": "Richards",
+            "benchmarks": [
+              "Richards"
+            ]
+          },
+          {
+            "id": "DeltaBlue",
+            "title": "DeltaBlue",
+            "benchmarks": [
+              "DeltaBlue"
+            ]
+          },
+          {
+            "id": "Crypto",
+            "title": "Crypto",
+            "benchmarks": [
+              "Encrypt",
+              "Decrypt"
+            ]
+          },
+          {
+            "id": "RayTrace",
+            "title": "RayTrace",
+            "benchmarks": [
+              "RayTrace"
+            ]
+          },
+          {
+            "id": "EarleyBoyer",
+            "title": "EarleyBoyer",
+            "benchmarks": [
+              "Earley",
+              "Boyer"
+            ]
+          },
+          {
+            "id": "RegExp",
+            "title": "RegExp",
+            "benchmarks": [
+              "RegExp"
+            ]
+          },
+          {
+            "id": "Splay",
+            "title": "Splay",
+            "benchmarks": [
+              "Splay"
+            ]
+          },
+          {
+            "id": "NavierStokes",
+            "title": "NavierStokes",
+            "benchmarks": [
+              "NavierStokes"
+            ]
+          }
+        ]
+      },
+      "toolchains": {
+        "arm": "arm-none-eabi-gcc (15:10.3-2021.07-4) 10.3.1 20210621 (release)",
+        "wasm": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 6.0.13 (e13ee988ce3d87a738dd8f3661d02223308c412a)",
+        "emscriptenVersion": "\"6.0.13\""
+      },
+      "flags": {
+        "common": [
+          "-fwrapv",
+          "-fno-strict-aliasing",
+          "-D_GNU_SOURCE",
+          "-DCONFIG_VERSION=\"2025-09-13\"",
+          "-DEMSCRIPTEN",
+          "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13",
+          "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache"
+        ],
+        "arm": [
+          "-O2",
+          "-march=armv7-a",
+          "-mfpu=vfpv3",
+          "-mfloat-abi=softfp",
+          "-marm",
+          "-nostartfiles",
+          "-ffunction-sections",
+          "-fdata-sections",
+          "-Wl,--gc-sections",
+          "-T",
+          "/home/xiong/workspace/dynarmic.js/examples/quickjs/link.ld"
+        ],
+        "wasm": [
+          "-O2",
+          "--no-entry",
+          "-sMODULARIZE=1",
+          "-sEXPORT_NAME=createQuickJS",
+          "-sENVIRONMENT=web,worker,node",
+          "-sEXPORTED_FUNCTIONS=[\"_qjs_bench\",\"_qjs_eval\",\"_qjs_set_memory_limit\",\"_malloc\",\"_free\"]",
+          "-sEXPORTED_RUNTIME_METHODS=[\"HEAPU8\"]",
+          "-sINITIAL_MEMORY=16777216",
+          "-sSTACK_SIZE=1048576",
+          "-sALLOW_MEMORY_GROWTH=1",
+          "-sMAXIMUM_MEMORY=268435456",
+          "-sFILESYSTEM=0"
+        ],
+        "armEffective": [
+          "-O2",
+          "-fwrapv",
+          "-fno-strict-aliasing",
+          "-D_GNU_SOURCE",
+          "-DCONFIG_VERSION=\"2025-09-13\"",
+          "-DEMSCRIPTEN",
+          "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13",
+          "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache",
+          "-march=armv7-a",
+          "-mfpu=vfpv3",
+          "-mfloat-abi=softfp",
+          "-marm",
+          "-nostartfiles",
+          "-ffunction-sections",
+          "-fdata-sections",
+          "-Wl,--gc-sections",
+          "-T",
+          "/home/xiong/workspace/dynarmic.js/examples/quickjs/link.ld"
+        ],
+        "wasmEffective": [
+          "-O2",
+          "-fwrapv",
+          "-fno-strict-aliasing",
+          "-D_GNU_SOURCE",
+          "-DCONFIG_VERSION=\"2025-09-13\"",
+          "-DEMSCRIPTEN",
+          "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13",
+          "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache",
+          "--no-entry",
+          "-sMODULARIZE=1",
+          "-sEXPORT_NAME=createQuickJS",
+          "-sENVIRONMENT=web,worker,node",
+          "-sEXPORTED_FUNCTIONS=[\"_qjs_bench\",\"_qjs_eval\",\"_qjs_set_memory_limit\",\"_malloc\",\"_free\"]",
+          "-sEXPORTED_RUNTIME_METHODS=[\"HEAPU8\"]",
+          "-sINITIAL_MEMORY=16777216",
+          "-sSTACK_SIZE=1048576",
+          "-sALLOW_MEMORY_GROWTH=1",
+          "-sMAXIMUM_MEMORY=268435456",
+          "-sFILESYSTEM=0"
+        ]
+      },
+      "configuration": {
+        "dispatcher": {
+          "arm": "switch",
+          "wasm": "switch"
+        },
+        "atomics": false,
+        "quickjsMemoryLimitBytes": 8388608,
+        "officialQuickjsMemoryLimitBytes": 201326592,
+        "filesystem": false,
+        "timezone": "UTC-only adaptation on both targets",
+        "targets": {
+          "arm": {
+            "optimization": "O2",
+            "dispatch": "switch",
+            "lto": false,
+            "isa": "arm",
+            "architecture": "armv7-a",
+            "noGcse": false,
+            "noCrossjumping": false,
+            "fpu": "vfpv3",
+            "floatAbi": "softfp",
+            "platformMacro": "EMSCRIPTEN",
+            "atomics": false,
+            "stackChecks": false,
+            "engineSource": {
+              "path": "quickjs.c",
+              "sha256": "a2b4b52368375244dc8b7651cb30225bd12af731b58b3569c8369dc75a002c45",
+              "bytes": 1834040
+            }
+          },
+          "wasm": {
+            "optimization": "O2",
+            "dispatch": "switch",
+            "lto": false,
+            "isa": "wasm32",
+            "platformMacro": "EMSCRIPTEN",
+            "atomics": false,
+            "stackChecks": false,
+            "engineSource": {
+              "path": "quickjs.c",
+              "sha256": "a2b4b52368375244dc8b7651cb30225bd12af731b58b3569c8369dc75a002c45",
+              "bytes": 1834040
+            }
+          }
+        }
+      },
+      "reference": {
+        "source": "examples/quickjs/reference.py",
+        "method": "Independent Python integer LCG, trial-division prime count and Decimal Leibniz sum",
+        "results": {
+          "light": {
+            "lcg": 2778886796,
+            "sieve": 1028,
+            "pi": 3141542
+          },
+          "full": {
+            "lcg": 428440788,
+            "sieve": 6542,
+            "pi": 3141587
+          }
+        }
+      }
+    },
+    "dynarmicBuild": {
+      "schema": "dynarmic.js/wasm-coremark-host-build-v1",
+      "sourceRoot": "/home/xiong/workspace/dynarmic.js",
+      "build": {
+        "type": "Release",
+        "profile": false,
+        "a64RegionFocus": "",
+        "compilerId": "Clang",
+        "compilerVersion": "24.0.0",
+        "emscriptenVersion": "\"6.0.13\"",
+        "cxxFlags": "",
+        "configCxxFlags": "-O3 -DNDEBUG",
+        "linkFlags": "",
+        "configLinkFlags": ""
+      },
+      "configuration": {
+        "regionDiagnostics": false,
+        "focusTestExceptions": false,
+        "examples": true,
+        "guestRamBytes": 16777216,
+        "initialMemoryBytes": 67108864
+      },
+      "buildEnvironment": {
+        "configureEmccCflags": "",
+        "buildEmccCflags": ""
+      },
+      "source": {
+        "revision": "4b4270ed31921b1ff080c27c145db33354dd8981",
+        "upstream": "a41c380246d3d9f9874f0f792d234dc0cc17c180",
+        "dirty": true
+      },
+      "artifacts": {
+        "js": {
+          "path": "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist/arm_jit.js",
+          "sha256": "16747bdfd6585d6fb21ff5c9416a5702853dc3b2b2274ecf971070b60bfd0073",
+          "bytes": 25394
+        },
+        "wasm": {
+          "path": "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist/arm_jit.wasm",
+          "sha256": "8bf2ed617b83da078d415b2347624c795029356842f8d3cd2dcf8c93e75d4171",
+          "bytes": 2244534
+        }
+      },
+      "buildSources": {
+        "browserCmakeSha256": "cc2778f830f60da2b227e3d31ef6bd746519cc212aa5726fb7a4fcc4fcd2b1d1",
+        "manifestScriptSha256": "41cd7b788ce283cb1756be111f5192b1848b4b64a8c036f0de8ee2a8c82ad075"
+      }
+    },
+    "environment": {
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/133.0.0.0 Safari/537.36",
+      "hardwareConcurrency": 20,
+      "crossOriginIsolated": false,
+      "timeOrigin": 1793386021730.9,
+      "visibilityChanged": false
+    },
+    "profile": "light",
+    "parameters": {
+      "lcg": 20000,
+      "sieve": 8192,
+      "pi": 20000
+    },
+    "runtimeOrder": [
+      "dynarmic",
+      "wasm",
+      "native"
+    ],
+    "methodology": {
+      "firstPasses": 1,
+      "warmupPasses": 1,
+      "measuredPasses": 3,
+      "memoryMode": "flat window",
+      "sequentialWorkers": true,
+      "timingBoundaries": {
+        "quickjs": "Benchmark call includes interpreter/context creation, JavaScript parsing, all kernel passes, reporting and cleanup. Module loading is separate.",
+        "browser": "Benchmark call includes all kernel passes and statistics. Source import/parsing is counted in prepare/load; there is no QuickJS setup or cleanup.",
+        "kernels": "Only the kernel call is timed. First pass, one discarded warmup, then three retained samples."
+      }
+    },
+    "runtimes": {
+      "dynarmic": {
+        "ok": true,
+        "runtime": "dynarmic",
+        "benchmark": {
+          "profile": "light",
+          "parameters": {
+            "lcg": 20000,
+            "sieve": 8192,
+            "pi": 20000
+          },
+          "outputs": {
+            "lcg": 2778886796,
+            "sieve": 1028,
+            "pi": 3141542
+          },
+          "coldMs": {
+            "lcg": 68,
+            "sieve": 34.700000000000045,
+            "pi": 15.398999999999887
+          },
+          "samplesMs": {
+            "lcg": [
+              30.90000000000009,
+              30.798999999999978,
+              29.5
+            ],
+            "sieve": [
+              8.600000000000136,
+              8.900000000000091,
+              8.599999999999909
+            ],
+            "pi": [
+              12.399999999999864,
+              12.399999999999864,
+              12.299999999999955
+            ]
+          },
+          "summary": {
+            "lcg": {
+              "medianMs": 30.798999999999978,
+              "minMs": 29.5,
+              "maxMs": 30.90000000000009,
+              "meanMs": 30.39966666666669,
+              "stddevMs": 0.6374952723136437
+            },
+            "sieve": {
+              "medianMs": 8.600000000000136,
+              "minMs": 8.599999999999909,
+              "maxMs": 8.900000000000091,
+              "meanMs": 8.700000000000045,
+              "stddevMs": 0.14142135623734164
+            },
+            "pi": {
+              "medianMs": 12.399999999999864,
+              "minMs": 12.299999999999955,
+              "maxMs": 12.399999999999864,
+              "meanMs": 12.36666666666656,
+              "stddevMs": 0.04714045207906029
+            }
+          },
+          "warmupRuns": 1,
+          "measuredRuns": 3
+        },
+        "loadMs": 26.19999998807907,
+        "runMs": 1714.699999988079,
+        "stats": {
+          "blocks": 1908,
+          "bytes": 15390148,
+          "translateMs": 223.19999927282333,
+          "optMs": 151.8999988436699,
+          "emitMs": 308.7999999523163,
+          "compileMs": 142.3999997973442,
+          "instMs": 21.300000071525574,
+          "tableMs": 6.000000178813934
+        },
+        "memoryBytes": 67108864
+      },
+      "wasm": {
+        "ok": true,
+        "runtime": "wasm",
+        "benchmark": {
+          "profile": "light",
+          "parameters": {
+            "lcg": 20000,
+            "sieve": 8192,
+            "pi": 20000
+          },
+          "outputs": {
+            "lcg": 2778886796,
+            "sieve": 1028,
+            "pi": 3141542
+          },
+          "coldMs": {
+            "lcg": 8,
+            "sieve": 2,
+            "pi": 2.400000035762787
+          },
+          "samplesMs": {
+            "lcg": [
+              5.200000047683716,
+              5.199999988079071,
+              4.300000011920929
+            ],
+            "sieve": [
+              1.4000000357627869,
+              1.399999976158142,
+              1.199999988079071
+            ],
+            "pi": [
+              2.400000035762787,
+              2.300000011920929,
+              2.400000035762787
+            ]
+          },
+          "summary": {
+            "lcg": {
+              "medianMs": 5.199999988079071,
+              "minMs": 4.300000011920929,
+              "maxMs": 5.200000047683716,
+              "meanMs": 4.900000015894572,
+              "stddevMs": 0.42426407152171913
+            },
+            "sieve": {
+              "medianMs": 1.399999976158142,
+              "minMs": 1.199999988079071,
+              "maxMs": 1.4000000357627869,
+              "meanMs": 1.3333333333333333,
+              "stddevMs": 0.09428091258757917
+            },
+            "pi": {
+              "medianMs": 2.400000035762787,
+              "minMs": 2.300000011920929,
+              "maxMs": 2.400000035762787,
+              "meanMs": 2.3666666944821677,
+              "stddevMs": 0.04714046331826277
+            }
+          },
+          "warmupRuns": 1,
+          "measuredRuns": 3
+        },
+        "loadMs": 7.800000011920929,
+        "runMs": 62.59999996423721,
+        "stats": {},
+        "memoryBytes": 16777216
+      },
+      "native": {
+        "ok": true,
+        "runtime": "native",
+        "benchmark": {
+          "profile": "light",
+          "parameters": {
+            "lcg": 20000,
+            "sieve": 8192,
+            "pi": 20000
+          },
+          "outputs": {
+            "lcg": 2778886796,
+            "sieve": 1028,
+            "pi": 3141542
+          },
+          "coldMs": {
+            "lcg": 0.699999988079071,
+            "sieve": 0.40000003576278687,
+            "pi": 0.19999998807907104
+          },
+          "samplesMs": {
+            "lcg": [
+              0.09999996423721313,
+              0,
+              0
+            ],
+            "sieve": [
+              0.09999996423721313,
+              0.10000002384185791,
+              0
+            ],
+            "pi": [
+              0.10000002384185791,
+              0.10000002384185791,
+              0.09999996423721313
+            ]
+          },
+          "summary": {
+            "lcg": {
+              "medianMs": 0,
+              "minMs": 0,
+              "maxMs": 0.09999996423721313,
+              "meanMs": 0.03333332141240438,
+              "stddevMs": 0.04714043522036376
+            },
+            "sieve": {
+              "medianMs": 0.09999996423721313,
+              "minMs": 0,
+              "maxMs": 0.10000002384185791,
+              "meanMs": 0.06666666269302368,
+              "stddevMs": 0.04714044926931955
+            },
+            "pi": {
+              "medianMs": 0.10000002384185791,
+              "minMs": 0.09999996423721313,
+              "maxMs": 0.10000002384185791,
+              "meanMs": 0.10000000397364299,
+              "stddevMs": 2.8097899007262688e-8
+            }
+          },
+          "warmupRuns": 1,
+          "measuredRuns": 3
+        },
+        "loadMs": 2.800000011920929,
+        "runMs": 2.699999988079071,
+        "stats": {},
+        "memoryBytes": null
+      }
+    }
+  }
+}

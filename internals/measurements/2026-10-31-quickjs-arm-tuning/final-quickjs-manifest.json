@@ -1,0 +1,371 @@
+{
+  "schema": "dynarmic.js/quickjs-build-v1",
+  "upstream": {
+    "version": "2025-09-13",
+    "url": "https://bellard.org/quickjs/quickjs-2025-09-13-2.tar.xz",
+    "sha256": "996c6b5018fc955ad4d06426d0e9cb713685a00c825aa5c0418bd53f7df8b0b4",
+    "archive": "quickjs-source.tar.xz"
+  },
+  "artifacts": [
+    {
+      "path": "quickjs-arm.bin",
+      "sha256": "aeba400ff697b77cef6b47019b1af4d373040a22e50e270040e283178a26d2f0",
+      "bytes": 683252
+    },
+    {
+      "path": "quickjs-wasm.js",
+      "sha256": "7fa29bd1612f75f99422dcd654c10ac429dcd60d6d31b0142febe5d7fcd39102",
+      "bytes": 8298
+    },
+    {
+      "path": "quickjs-wasm.wasm",
+      "sha256": "ca565f0194b415c45704d6bf5c3a6e076a32d09de5a8d5cf5067ca5e056fd9ce",
+      "bytes": 733884
+    },
+    {
+      "path": "quickjs-workloads.js",
+      "sha256": "cff32113b074e4a0ede55920f1b4ac8a29bbf4996f2c9deb321f7e45f8c6c31e",
+      "bytes": 3108
+    },
+    {
+      "path": "quickjs-LICENSE.txt",
+      "sha256": "598fd7fc928e4350abce36e337ba5a1346923c5c692f5be92c3d8e29ddd7c18d",
+      "bytes": 1130
+    },
+    {
+      "path": "quickjs-source.tar.xz",
+      "sha256": "996c6b5018fc955ad4d06426d0e9cb713685a00c825aa5c0418bd53f7df8b0b4",
+      "bytes": 596244
+    },
+    {
+      "path": "quickjs-runtime-licenses.txt",
+      "sha256": "62a0cf80c6099b4e0356da250832be80859581ce72c0dffd5f6b958daf128444",
+      "bytes": 75565
+    },
+    {
+      "path": "official-v8-upstream.js",
+      "sha256": "784c263ca755de0d6ed90b1ed2bb09663313bd9f2dbbd2bbae1f4f4b80be8594",
+      "bytes": 457790
+    },
+    {
+      "path": "official-v8.js",
+      "sha256": "87f7553a974678a422e9d9d245f6b3ac80f86a503d17224d3dd33c38819400da",
+      "bytes": 458563
+    },
+    {
+      "path": "official-v8-adapter.js",
+      "sha256": "14ac511bfd497c6686c901919a6f8222e53501d7e835b47af976ffa4874ab9ff",
+      "bytes": 5898
+    },
+    {
+      "path": "official-benchmarks.json",
+      "sha256": "0ff4d09a59ffe52c01fdedeb9b3299f71d694bd314c7616020ebaa61fbc93fc5",
+      "bytes": 3450
+    },
+    {
+      "path": "quickjs-extras-source.tar.xz",
+      "sha256": "7e5aa54376aad91c952b6a6f44f150856073da71973c8914f041932969e9f4e8",
+      "bytes": 716732
+    }
+  ],
+  "sources": [
+    {
+      "path": "examples/quickjs/build.py",
+      "sha256": "b064b4bccecefc62c8a02dd08d589148d6430f1b10b489d8049978ca3736e4b5",
+      "bytes": 11864
+    },
+    {
+      "path": "examples/quickjs/workloads.js",
+      "sha256": "cff32113b074e4a0ede55920f1b4ac8a29bbf4996f2c9deb321f7e45f8c6c31e",
+      "bytes": 3108
+    },
+    {
+      "path": "examples/quickjs/runner.c",
+      "sha256": "f26f0c670f552bcdb48d73de9b5506dd10d5c4a351230d029da75482156c6f0a",
+      "bytes": 5786
+    },
+    {
+      "path": "examples/quickjs/syscalls.c",
+      "sha256": "4dc31248e0cf7a332c184319bc2c5e64ee34319e009677eecd9f730838714723",
+      "bytes": 1975
+    },
+    {
+      "path": "examples/quickjs/start.S",
+      "sha256": "558e0253688f8cf03ed1d029293bac970ae1e3a6b6ba95237578282b85b6619b",
+      "bytes": 235
+    },
+    {
+      "path": "examples/quickjs/link.ld",
+      "sha256": "f708b440e74c9925791c25faf6a45f5f12af72f59bd5c84f02317a6021ab8697",
+      "bytes": 418
+    },
+    {
+      "path": "examples/quickjs/reference.py",
+      "sha256": "f6238185e2c870f30d5bcc3e2f131d995ea29955e032aa879cd4f6b69c339b3b",
+      "bytes": 1118
+    },
+    {
+      "path": "examples/quickjs/runtime_notices.py",
+      "sha256": "95f48a4bb0cff716dc3adb113fd89e7f1ad5cb03947337d6cd7632a602cbe257",
+      "bytes": 2630
+    },
+    {
+      "path": "examples/quickjs/official_benchmarks.py",
+      "sha256": "5c8c63308a63579b4a560000f040011de595302a6e1eb0b8395fe9127b0b7cd9",
+      "bytes": 5964
+    },
+    {
+      "path": "examples/quickjs/official-v8-adapter.js",
+      "sha256": "14ac511bfd497c6686c901919a6f8222e53501d7e835b47af976ffa4874ab9ff",
+      "bytes": 5898
+    },
+    {
+      "path": "examples/quickjs/licenses/GCC-Runtime-Exception-3.1.txt",
+      "sha256": "9d6b43ce4d8de0c878bf16b54d8e7a10d9bd42b75178153e3af6a815bdc90f74",
+      "bytes": 3324
+    },
+    {
+      "path": "examples/quickjs/licenses/GPL-3.0.txt",
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+      "bytes": 35147
+    },
+    {
+      "path": "examples/quickjs/licenses/README.md",
+      "sha256": "63e11f2e10dd3e88174e90e6579581a611f64a27439ae21cac22acb3cc5ad6f4",
+      "bytes": 929
+    }
+  ],
+  "runtimeNotices": {
+    "path": "quickjs-runtime-licenses.txt",
+    "toolchain": "arm-none-eabi-gcc (15:10.3-2021.07-4) 10.3.1 20210621 (release)",
+    "inputs": [
+      {
+        "component": "newlib",
+        "origin": "system ARM newlib package",
+        "sha256": "0383bc85177c121b1ee5e00ff07f51d0cab2dd5bbe51875fdff01a91c234c3ae",
+        "bytes": 36391
+      },
+      {
+        "component": "libgcc license",
+        "origin": "examples/quickjs/licenses/GPL-3.0.txt",
+        "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+        "bytes": 35147
+      },
+      {
+        "component": "libgcc license",
+        "origin": "examples/quickjs/licenses/GCC-Runtime-Exception-3.1.txt",
+        "sha256": "9d6b43ce4d8de0c878bf16b54d8e7a10d9bd42b75178153e3af6a815bdc90f74",
+        "bytes": 3324
+      }
+    ]
+  },
+  "officialBenchmarks": {
+    "inventory": "official-benchmarks.json",
+    "suites": [
+      {
+        "id": "Richards",
+        "title": "Richards",
+        "benchmarks": [
+          "Richards"
+        ]
+      },
+      {
+        "id": "DeltaBlue",
+        "title": "DeltaBlue",
+        "benchmarks": [
+          "DeltaBlue"
+        ]
+      },
+      {
+        "id": "Crypto",
+        "title": "Crypto",
+        "benchmarks": [
+          "Encrypt",
+          "Decrypt"
+        ]
+      },
+      {
+        "id": "RayTrace",
+        "title": "RayTrace",
+        "benchmarks": [
+          "RayTrace"
+        ]
+      },
+      {
+        "id": "EarleyBoyer",
+        "title": "EarleyBoyer",
+        "benchmarks": [
+          "Earley",
+          "Boyer"
+        ]
+      },
+      {
+        "id": "RegExp",
+        "title": "RegExp",
+        "benchmarks": [
+          "RegExp"
+        ]
+      },
+      {
+        "id": "Splay",
+        "title": "Splay",
+        "benchmarks": [
+          "Splay"
+        ]
+      },
+      {
+        "id": "NavierStokes",
+        "title": "NavierStokes",
+        "benchmarks": [
+          "NavierStokes"
+        ]
+      }
+    ]
+  },
+  "toolchains": {
+    "arm": "arm-none-eabi-gcc (15:10.3-2021.07-4) 10.3.1 20210621 (release)",
+    "wasm": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 6.0.13 (e13ee988ce3d87a738dd8f3661d02223308c412a)",
+    "emscriptenVersion": "\"6.0.13\""
+  },
+  "flags": {
+    "common": [
+      "-fwrapv",
+      "-fno-strict-aliasing",
+      "-D_GNU_SOURCE",
+      "-DCONFIG_VERSION=\"2025-09-13\"",
+      "-DEMSCRIPTEN",
+      "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13",
+      "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache"
+    ],
+    "arm": [
+      "-O2",
+      "-march=armv7-a",
+      "-mfpu=vfpv3",
+      "-mfloat-abi=softfp",
+      "-marm",
+      "-nostartfiles",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-Wl,--gc-sections",
+      "-T",
+      "/home/xiong/workspace/dynarmic.js/examples/quickjs/link.ld"
+    ],
+    "wasm": [
+      "-O2",
+      "--no-entry",
+      "-sMODULARIZE=1",
+      "-sEXPORT_NAME=createQuickJS",
+      "-sENVIRONMENT=web,worker,node",
+      "-sEXPORTED_FUNCTIONS=[\"_qjs_bench\",\"_qjs_eval\",\"_qjs_set_memory_limit\",\"_malloc\",\"_free\"]",
+      "-sEXPORTED_RUNTIME_METHODS=[\"HEAPU8\"]",
+      "-sINITIAL_MEMORY=16777216",
+      "-sSTACK_SIZE=1048576",
+      "-sALLOW_MEMORY_GROWTH=1",
+      "-sMAXIMUM_MEMORY=268435456",
+      "-sFILESYSTEM=0"
+    ],
+    "armEffective": [
+      "-O2",
+      "-fwrapv",
+      "-fno-strict-aliasing",
+      "-D_GNU_SOURCE",
+      "-DCONFIG_VERSION=\"2025-09-13\"",
+      "-DEMSCRIPTEN",
+      "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13",
+      "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache",
+      "-march=armv7-a",
+      "-mfpu=vfpv3",
+      "-mfloat-abi=softfp",
+      "-marm",
+      "-nostartfiles",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-Wl,--gc-sections",
+      "-T",
+      "/home/xiong/workspace/dynarmic.js/examples/quickjs/link.ld"
+    ],
+    "wasmEffective": [
+      "-O2",
+      "-fwrapv",
+      "-fno-strict-aliasing",
+      "-D_GNU_SOURCE",
+      "-DCONFIG_VERSION=\"2025-09-13\"",
+      "-DEMSCRIPTEN",
+      "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13",
+      "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache",
+      "--no-entry",
+      "-sMODULARIZE=1",
+      "-sEXPORT_NAME=createQuickJS",
+      "-sENVIRONMENT=web,worker,node",
+      "-sEXPORTED_FUNCTIONS=[\"_qjs_bench\",\"_qjs_eval\",\"_qjs_set_memory_limit\",\"_malloc\",\"_free\"]",
+      "-sEXPORTED_RUNTIME_METHODS=[\"HEAPU8\"]",
+      "-sINITIAL_MEMORY=16777216",
+      "-sSTACK_SIZE=1048576",
+      "-sALLOW_MEMORY_GROWTH=1",
+      "-sMAXIMUM_MEMORY=268435456",
+      "-sFILESYSTEM=0"
+    ]
+  },
+  "configuration": {
+    "dispatcher": {
+      "arm": "switch",
+      "wasm": "switch"
+    },
+    "atomics": false,
+    "quickjsMemoryLimitBytes": 8388608,
+    "officialQuickjsMemoryLimitBytes": 201326592,
+    "filesystem": false,
+    "timezone": "UTC-only adaptation on both targets",
+    "targets": {
+      "arm": {
+        "optimization": "O2",
+        "dispatch": "switch",
+        "lto": false,
+        "isa": "arm",
+        "architecture": "armv7-a",
+        "noGcse": false,
+        "noCrossjumping": false,
+        "fpu": "vfpv3",
+        "floatAbi": "softfp",
+        "platformMacro": "EMSCRIPTEN",
+        "atomics": false,
+        "stackChecks": false,
+        "engineSource": {
+          "path": "quickjs.c",
+          "sha256": "a2b4b52368375244dc8b7651cb30225bd12af731b58b3569c8369dc75a002c45",
+          "bytes": 1834040
+        }
+      },
+      "wasm": {
+        "optimization": "O2",
+        "dispatch": "switch",
+        "lto": false,
+        "isa": "wasm32",
+        "platformMacro": "EMSCRIPTEN",
+        "atomics": false,
+        "stackChecks": false,
+        "engineSource": {
+          "path": "quickjs.c",
+          "sha256": "a2b4b52368375244dc8b7651cb30225bd12af731b58b3569c8369dc75a002c45",
+          "bytes": 1834040
+        }
+      }
+    }
+  },
+  "reference": {
+    "source": "examples/quickjs/reference.py",
+    "method": "Independent Python integer LCG, trial-division prime count and Decimal Leibniz sum",
+    "results": {
+      "light": {
+        "lcg": 2778886796,
+        "sieve": 1028,
+        "pi": 3141542
+      },
+      "full": {
+        "lcg": 428440788,
+        "sieve": 6542,
+        "pi": 3141587
+      }
+    }
+  }
+}

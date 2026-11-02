@@ -1,0 +1,235 @@
+{
+  "schema": "dynarmic.js/coremark-comparison-v1",
+  "durationQualified": true,
+  "pass": false,
+  "cases": [
+    {
+      "name": "a32-thunk",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 69686.05,
+          "candidate": 70599.859,
+          "ratio": 1.0131132271092993,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 69764.867,
+          "candidate": 70669.19948000001,
+          "ratio": 1.012962577281198,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 84.70044700043444,
+          "candidate": 143.70896200007178,
+          "ratio": 1.6966730057438149,
+          "limit": 1.15,
+          "pass": false
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 751278,
+          "candidate": 735561,
+          "ratio": 0.979079648279332,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": false
+    },
+    {
+      "name": "a32-page-table",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 32258.134,
+          "candidate": 32437.277,
+          "ratio": 1.005553421037931,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 32345.158906,
+          "candidate": 32513.350852,
+          "ratio": 1.005199910950779,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 93.52301800003441,
+          "candidate": 87.28799800002517,
+          "ratio": 0.9333317066392474,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 847382,
+          "candidate": 831665,
+          "ratio": 0.9814522848018957,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "a32-flat-window",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 26167.198,
+          "candidate": 25906.04,
+          "ratio": 0.9900196421489225,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 26252.206294000003,
+          "candidate": 25985.849636,
+          "ratio": 0.9898539324650637,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 93.2480289999955,
+          "candidate": 85.22226399998797,
+          "ratio": 0.9139309957960837,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 820635,
+          "candidate": 804918,
+          "ratio": 0.9808477581385147,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "a64-thunk",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 64787.952,
+          "candidate": 63239.538,
+          "ratio": 0.9761002786443999,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 64904.882117,
+          "candidate": 63359.698331,
+          "ratio": 0.9761931038837017,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 174.01004500006107,
+          "candidate": 140.63542599965615,
+          "ratio": 0.808202917248868,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 652432,
+          "candidate": 619484,
+          "ratio": 0.949499717978272,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "a64-page-table",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 33090.037,
+          "candidate": 33219.479,
+          "ratio": 1.0039118118846468,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 33209.394539,
+          "candidate": 33350.237137000004,
+          "ratio": 1.0042410468469878,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 132.3628710000956,
+          "candidate": 148.25770800001771,
+          "ratio": 1.1200853145585716,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 768021,
+          "candidate": 735073,
+          "ratio": 0.957100131376616,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "a64-flat-window",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 24040.253,
+          "candidate": 23706.546,
+          "ratio": 0.9861188232919178,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 24216.676133,
+          "candidate": 23900.438737,
+          "ratio": 0.986941337685519,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 146.4300050000341,
+          "candidate": 147.21653600017905,
+          "ratio": 1.005371378633394,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 708917,
+          "candidate": 675969,
+          "ratio": 0.9535234731287302,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+eq128.wasm: generated module fails WebAssembly validation
+{
+  filename: 'qdmull16.wasm',
+  a: [
+    1n,     1n, 1n,
+    1n, 32768n, 1n,
+    1n,     1n
+  ],
+  b: [
+    1n,     1n, 1n,
+    1n, 32768n, 1n,
+    1n,     1n
+  ],
+  expected: [ 2n, 2n, 2n, 2n ],
+  actual: [ 2n, 2n, 2n, 2n ],
+  expectedFlags: 145,
+  actualFlags: 134217873
+}
+{
+  filename: 'qdmull16.wasm',
+  a: [
+    1n, 1n,     1n,
+    1n, 1n, 32768n,
+    1n, 1n
+  ],
+  b: [
+    1n, 1n,     1n,
+    1n, 1n, 32768n,
+    1n, 1n
+  ],
+  expected: [ 2n, 2n, 2n, 2n ],
+  actual: [ 2n, 2n, 2n, 2n ],
+  expectedFlags: 145,
+  actualFlags: 134217873
+}
+{
+  filename: 'qdmull16.wasm',
+  a: [
+        1n, 1n, 1n,
+        1n, 1n, 1n,
+    32768n, 1n
+  ],
+  b: [
+        1n, 1n, 1n,
+        1n, 1n, 1n,
+    32768n, 1n
+  ],
+  expected: [ 2n, 2n, 2n, 2n ],
+  actual: [ 2n, 2n, 2n, 2n ],
+  expectedFlags: 145,
+  actualFlags: 134217873
+}
+{
+  filename: 'qdmull16.wasm',
+  a: [
+    1n,     1n, 1n,
+    1n,     1n, 1n,
+    1n, 32768n
+  ],
+  b: [
+    1n,     1n, 1n,
+    1n,     1n, 1n,
+    1n, 32768n
+  ],
+  expected: [ 2n, 2n, 2n, 2n ],
+  actual: [ 2n, 2n, 2n, 2n ],
+  expectedFlags: 145,
+  actualFlags: 134217873
+}
+{
+  filename: 'qdmull32.wasm',
+  a: [ 1n, 1n, 2147483648n, 1n ],
+  b: [ 1n, 1n, 2147483648n, 1n ],
+  expected: [ 2n, 2n ],
+  actual: [ 2n, 2n ],
+  expectedFlags: 145,
+  actualFlags: 134217873
+}
+{
+  filename: 'qdmull32.wasm',
+  a: [ 1n, 1n, 1n, 2147483648n ],
+  b: [ 1n, 1n, 1n, 2147483648n ],
+  expected: [ 2n, 2n ],
+  actual: [ 2n, 2n ],
+  expectedFlags: 145,
+  actualFlags: 134217873
+}
+{
+  filename: 'sext64.wasm',
+  a: [ 9223372036854775808n, 1n ],
+  b: [ 0n, 1n ],
+  expected: [ 340282366920938463454151235394913435648n ],
+  actual: [ 9223372036854775808n ],
+  expectedFlags: 145,
+  actualFlags: 145
+}
+{"cases":82724,"failures":210,"moduleBytes":26379,"seed":"0x7a63d291"}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: vector results and sticky FPSR.QC must match the BigInt reference
+
+210 !== 0
+
+    at file:///home/xiong/workspace/dynarmic.js/tests/ir/vector_edge_test.mjs:127:12 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 210,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

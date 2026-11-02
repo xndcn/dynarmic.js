@@ -1,0 +1,50 @@
+[  2%] Built target browser_page
+[  3%] Built target fmt
+[  3%] Built target mcl
+[  4%] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/__/__/__/__/src/dynarmic/backend/wasm/emit_wasm_vector_fp.cpp.o
+[  5%] Linking CXX static library libdynarmic.a
+[ 83%] Built target dynarmic
+[ 84%] Linking CXX executable a64_runbin.js
+[ 84%] Linking CXX executable a64_fuzz.js
+[ 84%] Linking CXX executable jit_runbin.js
+[ 84%] Linking CXX executable a32_fuzz.js
+[ 84%] Built target a32_fuzz
+[ 85%] Linking CXX executable smc_test.js
+[ 86%] Built target a64_fuzz
+[ 86%] Built target a64_runbin
+[ 87%] Linking CXX executable instance_test.js
+[ 87%] Linking CXX executable region_diagnostics_test.js
+[ 88%] Built target jit_runbin
+[ 88%] Linking CXX executable a64_region_alias_test.js
+[ 89%] Built target region_diagnostics_test
+[ 90%] Linking CXX executable a64_region_focus_test.js
+[ 91%] Built target a64_region_alias_test
+[ 92%] Linking CXX executable lifecycle_test.js
+[ 92%] Built target smc_test
+[ 92%] Linking CXX executable runtime_table_test.js
+[ 92%] Built target instance_test
+[ 92%] Linking CXX executable jit_bench.js
+[ 93%] Built target runtime_table_test
+[ 94%] Linking CXX executable jit_thumb_bench.js
+[ 94%] Built target a64_region_focus_test
+[ 94%] Linking CXX executable jit_a64_bench.js
+[ 94%] Built target lifecycle_test
+[ 94%] Linking CXX executable jit_a64_simd_bench.js
+[ 95%] Built target jit_bench
+[ 95%] Linking CXX executable jit_callbench.js
+[ 95%] Built target jit_thumb_bench
+[ 96%] Linking CXX executable jit_cachebench.js
+[ 96%] Built target jit_a64_bench
+[ 97%] Linking CXX executable jit_cachepopbench.js
+[ 98%] Built target jit_a64_simd_bench
+[ 98%] Linking CXX executable jit_demo.js
+[ 98%] Built target jit_callbench
+[ 99%] Linking CXX executable stats_test.js
+[ 99%] Built target stats_test
+[ 99%] Linking CXX executable dist/arm_jit.js
+[ 99%] Built target jit_cachebench
+[ 99%] Built target jit_cachepopbench
+[100%] Built target jit_demo
+Writing arm_jit build manifest
+-- Found Git: /usr/bin/git (found version "2.34.1")
+[100%] Built target arm_jit

@@ -1,0 +1,22 @@
+{
+  "schema": "dynarmic.js/c-bench-release-checks-v1",
+  "chromium": {
+    "quick": {
+      "observations": 45,
+      "checksums": 270,
+      "valid": true
+    },
+    "full": {
+      "observations": 45,
+      "checksums": 270,
+      "valid": true
+    }
+  },
+  "firefoxQuickSmoke": true,
+  "unitTests": 72,
+  "sourcePackageTests": 22,
+  "existingRuntimeAssetsUnchanged": 11,
+  "sharedCompiler": "Zig 0.17.0 / Clang 22.1.8",
+  "originalQuickjsAndGuestInteractionsPassed": true,
+  "noDeployment": true
+}

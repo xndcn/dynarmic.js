@@ -1,0 +1,2572 @@
+TAP version 13
+# Subtest: runs both architectures in every memory mode and shows exact-reference results
+ok 1 - runs both architectures in every memory mode and shows exact-reference results
+  ---
+  duration_ms: 36.647931
+  type: 'test'
+  ...
+# Subtest: HTTP failure, rejected fetch and empty reference fail cleanly and permit retry
+ok 2 - HTTP failure, rejected fetch and empty reference fail cleanly and permit retry
+  ---
+  duration_ms: 20.088918
+  type: 'test'
+  ...
+# Subtest: startup, execution, unreadable-message and postMessage errors discard Workers and permit retries
+ok 3 - startup, execution, unreadable-message and postMessage errors discard Workers and permit retries
+  ---
+  duration_ms: 29.619353
+  type: 'test'
+  ...
+# Subtest: mismatch, unexpected halt, Worker error and malformed reply never pass
+ok 4 - mismatch, unexpected halt, Worker error and malformed reply never pass
+  ---
+  duration_ms: 8.539846
+  type: 'test'
+  ...
+# Subtest: caught runtime failures discard poisoned modules before the next guest or rerun
+ok 5 - caught runtime failures discard poisoned modules before the next guest or rerun
+  ---
+  duration_ms: 4.619102
+  type: 'test'
+  ...
+# Subtest: a rerun clears previous success and statistics before fetching
+ok 6 - a rerun clears previous success and statistics before fetching
+  ---
+  duration_ms: 1.946398
+  type: 'test'
+  ...
+# Subtest: Stop aborts a pending fetch, re-enables controls and allows a fresh run
+ok 7 - Stop aborts a pending fetch, re-enables controls and allows a fresh run
+  ---
+  duration_ms: 2.142335
+  type: 'test'
+  ...
+# Subtest: Stop terminates a synchronous guest Worker, ignores its late replies and permits retry
+ok 8 - Stop terminates a synchronous guest Worker, ignores its late replies and permits retry
+  ---
+  duration_ms: 17.193544
+  type: 'test'
+  ...
+# Subtest: the whole run deadline covers stalled fetches and stalled Workers
+ok 9 - the whole run deadline covers stalled fetches and stalled Workers
+  ---
+  duration_ms: 5.419469
+  type: 'test'
+  ...
+# Subtest: file URLs and missing browser capabilities fail with actionable feedback
+ok 10 - file URLs and missing browser capabilities fail with actionable feedback
+  ---
+  duration_ms: 4.731716
+  type: 'test'
+  ...
+# Subtest: reports failures to a same-origin smoke driver, preserves query and refuses foreign callbacks
+ok 11 - reports failures to a same-origin smoke driver, preserves query and refuses foreign callbacks
+  ---
+  duration_ms: 3.095506
+  type: 'test'
+  ...
+# Subtest: Firefox runner waits for profile writes on graceful shutdown before reporting success
+ok 12 - Firefox runner waits for profile writes on graceful shutdown before reporting success
+  ---
+  duration_ms: 537.807582
+  type: 'test'
+  ...
+# Subtest: Firefox runner kills a browser that ignores SIGTERM and cleans its profile
+ok 13 - Firefox runner kills a browser that ignores SIGTERM and cleans its profile
+  ---
+  duration_ms: 1843.898239
+  type: 'test'
+  ...
+# Subtest: Firefox runner handles startup failure without waiting for the report timeout
+ok 14 - Firefox runner handles startup failure without waiting for the report timeout
+  ---
+  duration_ms: 83.742003
+  type: 'test'
+  ...
+# Subtest: Firefox runner checks the complete page bundle before starting a browser
+ok 15 - Firefox runner checks the complete page bundle before starting a browser
+  ---
+  duration_ms: 153.090037
+  type: 'test'
+  ...
+# Subtest: Firefox runner handles early browser exit and cleans its profile
+ok 16 - Firefox runner handles early browser exit and cleans its profile
+  ---
+  duration_ms: 135.972009
+  type: 'test'
+  ...
+# Subtest: Firefox runner still waits for browser closure after a failed page report
+ok 17 - Firefox runner still waits for browser closure after a failed page report
+  ---
+  duration_ms: 292.334437
+  type: 'test'
+  ...
+# Subtest: Chrome smoke rejects invalid arguments before discovery
+ok 18 - Chrome smoke rejects invalid arguments before discovery
+  ---
+  duration_ms: 290.850081
+  type: 'test'
+  ...
+# Subtest: Chrome smoke handles malformed or empty target discovery
+ok 19 - Chrome smoke handles malformed or empty target discovery
+  ---
+  duration_ms: 634.439632
+  type: 'test'
+  ...
+# Subtest: Chrome smoke bounds connection and request failures
+ok 20 - Chrome smoke bounds connection and request failures
+  ---
+  duration_ms: 600.266147
+  type: 'test'
+  ...
+# Subtest: Chrome smoke still recognizes a passing page and prints its output
+ok 21 - Chrome smoke still recognizes a passing page and prints its output
+  ---
+  duration_ms: 68.901336
+  type: 'test'
+  ...
+# Subtest: Chrome smoke does not accept a previous DONE title while navigation is stalled
+ok 22 - Chrome smoke does not accept a previous DONE title while navigation is stalled
+  ---
+  duration_ms: 2487.476845
+  type: 'test'
+  ...
+# Subtest: Worker rejects oversized or malformed requests before changing guest memory
+ok 23 - Worker rejects oversized or malformed requests before changing guest memory
+  ---
+  duration_ms: 13.135699
+  type: 'test'
+  ...
+# Subtest: Worker loads a maximum-size binary entirely within guest RAM
+ok 24 - Worker loads a maximum-size binary entirely within guest RAM
+  ---
+  duration_ms: 3.543218
+  type: 'test'
+  ...
+# Subtest: Worker retries a failed module load and reuses a later successful instance
+ok 25 - Worker retries a failed module load and reuses a later successful instance
+  ---
+  duration_ms: 2.608646
+  type: 'test'
+  ...
+# Subtest: Worker rejects concurrent requests during module loading without replacing the running guest
+ok 26 - Worker rejects concurrent requests during module loading without replacing the running guest
+  ---
+  duration_ms: 6.643406
+  type: 'test'
+  ...
+# Subtest: Worker identifies missing Wasm features before loading the module
+ok 27 - Worker identifies missing Wasm features before loading the module
+  ---
+  duration_ms: 15.697229
+  type: 'test'
+  ...
+# Subtest: Worker rejects empty input without loading Wasm and permits a valid retry
+ok 28 - Worker rejects empty input without loading Wasm and permits a valid retry
+  ---
+  duration_ms: 2.9596
+  type: 'test'
+  ...
+# Subtest: Worker releases the request lock after initialization errors and guest faults
+ok 29 - Worker releases the request lock after initialization errors and guest faults
+  ---
+  duration_ms: 5.722789
+  type: 'test'
+  ...
+# Subtest: Worker reports a Wasm runtime trap as an ordinary failure reply
+ok 30 - Worker reports a Wasm runtime trap as an ordinary failure reply
+  ---
+  duration_ms: 4.580588
+  type: 'test'
+  ...
+# Subtest: Worker reports compile counters only from the active JIT instance
+ok 31 - Worker reports compile counters only from the active JIT instance
+  ---
+  duration_ms: 5.942017
+  type: 'test'
+  ...
+# Subtest: browser benchmark report validates
+ok 32 - browser benchmark report validates
+  ---
+  duration_ms: 4.470675
+  type: 'test'
+  ...
+# Subtest: browser report rejects wrong schema
+ok 33 - browser report rejects wrong schema
+  ---
+  duration_ms: 4.593132
+  type: 'test'
+  ...
+# Subtest: browser report rejects missing artifact hash
+ok 34 - browser report rejects missing artifact hash
+  ---
+  duration_ms: 0.495186
+  type: 'test'
+  ...
+# Subtest: browser report rejects missing guest hash
+ok 35 - browser report rejects missing guest hash
+  ---
+  duration_ms: 0.371464
+  type: 'test'
+  ...
+# Subtest: browser report rejects wrong kernel set
+ok 36 - browser report rejects wrong kernel set
+  ---
+  duration_ms: 1.583784
+  type: 'test'
+  ...
+# Subtest: browser report rejects incorrect result
+ok 37 - browser report rejects incorrect result
+  ---
+  duration_ms: 0.518467
+  type: 'test'
+  ...
+# Subtest: browser report rejects missing sample
+ok 38 - browser report rejects missing sample
+  ---
+  duration_ms: 1.193903
+  type: 'test'
+  ...
+# Subtest: browser report rejects negative timing
+ok 39 - browser report rejects negative timing
+  ---
+  duration_ms: 10.653685
+  type: 'test'
+  ...
+# Subtest: browser report rejects missing memory mode
+ok 40 - browser report rejects missing memory mode
+  ---
+  duration_ms: 2.937747
+  type: 'test'
+  ...
+# Subtest: browser report rejects duplicate case
+ok 41 - browser report rejects duplicate case
+  ---
+  duration_ms: 2.911291
+  type: 'test'
+  ...
+# Subtest: browser report rejects wrong architecture
+ok 42 - browser report rejects wrong architecture
+  ---
+  duration_ms: 2.968517
+  type: 'test'
+  ...
+# Subtest: browser report rejects truthy non-boolean result
+ok 43 - browser report rejects truthy non-boolean result
+  ---
+  duration_ms: 0.631766
+  type: 'test'
+  ...
+# Subtest: browser report rejects forged total summary
+ok 44 - browser report rejects forged total summary
+  ---
+  duration_ms: 1.922527
+  type: 'test'
+  ...
+# Subtest: browser report rejects forged kernel summary
+ok 45 - browser report rejects forged kernel summary
+  ---
+  duration_ms: 0.653388
+  type: 'test'
+  ...
+# Subtest: browser report rejects kernel duration exceeds Run
+ok 46 - browser report rejects kernel duration exceeds Run
+  ---
+  duration_ms: 0.369306
+  type: 'test'
+  ...
+# Subtest: browser collector validates complete report and refuses to overwrite evidence
+ok 47 - browser collector validates complete report and refuses to overwrite evidence
+  ---
+  duration_ms: 239.226796
+  type: 'test'
+  ...
+# Subtest: browser collector fails closed on wrong guest result
+ok 48 - browser collector fails closed on wrong guest result
+  ---
+  duration_ms: 99.444095
+  type: 'test'
+  ...
+# Subtest: browser collector fails closed on missing mark
+ok 49 - browser collector fails closed on missing mark
+  ---
+  duration_ms: 109.929408
+  type: 'test'
+  ...
+# Subtest: browser collector fails closed on nonmonotonic marks
+ok 50 - browser collector fails closed on nonmonotonic marks
+  ---
+  duration_ms: 109.836825
+  type: 'test'
+  ...
+# Subtest: browser collector rejects missing guest and invalid CLI inputs
+ok 51 - browser collector rejects missing guest and invalid CLI inputs
+  ---
+  duration_ms: 624.59045
+  type: 'test'
+  ...
+# Subtest: cache comparator accepts identical compatible reports
+ok 52 - cache comparator accepts identical compatible reports
+  ---
+  duration_ms: 18.696264
+  type: 'test'
+  ...
+# Subtest: cache comparator rejects total latency regression
+ok 53 - cache comparator rejects total latency regression
+  ---
+  duration_ms: 3.927736
+  type: 'test'
+  ...
+# Subtest: cache comparator rejects a single cycle regression
+ok 54 - cache comparator rejects a single cycle regression
+  ---
+  duration_ms: 10.090233
+  type: 'test'
+  ...
+# Subtest: cache comparator rejects incompatible workload and process count
+ok 55 - cache comparator rejects incompatible workload and process count
+  ---
+  duration_ms: 13.570039
+  type: 'test'
+  ...
+# Subtest: cache report rejects malformed provenance
+ok 56 - cache report rejects malformed provenance
+  ---
+  duration_ms: 2.629396
+  type: 'test'
+  ...
+# Subtest: cache comparison rejects incompatible affinity
+ok 57 - cache comparison rejects incompatible affinity
+  ---
+  duration_ms: 10.623884
+  type: 'test'
+  ...
+# Subtest: cache comparison rejects incompatible engine flags
+ok 58 - cache comparison rejects incompatible engine flags
+  ---
+  duration_ms: 9.02842
+  type: 'test'
+  ...
+# Subtest: cache comparison rejects incompatible compiler flags
+ok 59 - cache comparison rejects incompatible compiler flags
+  ---
+  duration_ms: 17.525017
+  type: 'test'
+  ...
+# Subtest: cache comparison rejects incompatible focus option
+ok 60 - cache comparison rejects incompatible focus option
+  ---
+  duration_ms: 8.973671
+  type: 'test'
+  ...
+# Subtest: cache comparison rejects incompatible upstream
+ok 61 - cache comparison rejects incompatible upstream
+  ---
+  duration_ms: 6.248547
+  type: 'test'
+  ...
+# Subtest: cache comparison rejects incompatible missing build flags
+ok 62 - cache comparison rejects incompatible missing build flags
+  ---
+  duration_ms: 4.00517
+  type: 'test'
+  ...
+# Subtest: cache comparison rejects incompatible missing affinity
+ok 63 - cache comparison rejects incompatible missing affinity
+  ---
+  duration_ms: 3.658085
+  type: 'test'
+  ...
+# Subtest: cache population production report validates
+ok 64 - cache population production report validates
+  ---
+  duration_ms: 9.885318
+  type: 'test'
+  ...
+# Subtest: cache population profile report validates
+ok 65 - cache population profile report validates
+  ---
+  duration_ms: 8.101977
+  type: 'test'
+  ...
+# Subtest: cache population summary uses each pass across fresh processes
+ok 66 - cache population summary uses each pass across fresh processes
+  ---
+  duration_ms: 1.710241
+  type: 'test'
+  ...
+# Subtest: cache population rejects wrong schema
+ok 67 - cache population rejects wrong schema
+  ---
+  duration_ms: 4.004208
+  type: 'test'
+  ...
+# Subtest: cache population rejects missing population case
+ok 68 - cache population rejects missing population case
+  ---
+  duration_ms: 3.077585
+  type: 'test'
+  ...
+# Subtest: cache population rejects duplicate population case
+ok 69 - cache population rejects duplicate population case
+  ---
+  duration_ms: 2.110071
+  type: 'test'
+  ...
+# Subtest: cache population rejects wrong module count
+ok 70 - cache population rejects wrong module count
+  ---
+  duration_ms: 1.55836
+  type: 'test'
+  ...
+# Subtest: cache population rejects wrong cache peak
+ok 71 - cache population rejects wrong cache peak
+  ---
+  duration_ms: 3.141547
+  type: 'test'
+  ...
+# Subtest: cache population rejects inflated cache peak
+ok 72 - cache population rejects inflated cache peak
+  ---
+  duration_ms: 3.485619
+  type: 'test'
+  ...
+# Subtest: cache population rejects evicted module
+ok 73 - cache population rejects evicted module
+  ---
+  duration_ms: 2.325114
+  type: 'test'
+  ...
+# Subtest: cache population rejects warm compilation
+ok 74 - cache population rejects warm compilation
+  ---
+  duration_ms: 1.788892
+  type: 'test'
+  ...
+# Subtest: cache population rejects warm compile timing
+ok 75 - cache population rejects warm compile timing
+  ---
+  duration_ms: 4.283348
+  type: 'test'
+  ...
+# Subtest: cache population rejects missing warm pass
+ok 76 - cache population rejects missing warm pass
+  ---
+  duration_ms: 11.743109
+  type: 'test'
+  ...
+# Subtest: cache population rejects reordered passes
+ok 77 - cache population rejects reordered passes
+  ---
+  duration_ms: 5.50209
+  type: 'test'
+  ...
+# Subtest: cache population rejects duplicate process
+ok 78 - cache population rejects duplicate process
+  ---
+  duration_ms: 2.369422
+  type: 'test'
+  ...
+# Subtest: cache population rejects invalid process
+ok 79 - cache population rejects invalid process
+  ---
+  duration_ms: 11.176038
+  type: 'test'
+  ...
+# Subtest: cache population rejects bad summary
+ok 80 - cache population rejects bad summary
+  ---
+  duration_ms: 2.948912
+  type: 'test'
+  ...
+# Subtest: cache population rejects missing build flags
+ok 81 - cache population rejects missing build flags
+  ---
+  duration_ms: 1.869393
+  type: 'test'
+  ...
+# Subtest: cache population rejects missing affinity
+ok 82 - cache population rejects missing affinity
+  ---
+  duration_ms: 2.522679
+  type: 'test'
+  ...
+# Subtest: cache population rejects missing artifact hash
+ok 83 - cache population rejects missing artifact hash
+  ---
+  duration_ms: 2.834193
+  type: 'test'
+  ...
+# Subtest: cache population rejects missing upstream revision
+ok 84 - cache population rejects missing upstream revision
+  ---
+  duration_ms: 0.976527
+  type: 'test'
+  ...
+# Subtest: cache population rejects missing profile counter
+ok 85 - cache population rejects missing profile counter
+  ---
+  duration_ms: 1.025607
+  type: 'test'
+  ...
+# Subtest: cache population rejects coerced artifact hash
+ok 86 - cache population rejects coerced artifact hash
+  ---
+  duration_ms: 1.357455
+  type: 'test'
+  ...
+# Subtest: cache population rejects coerced revision
+ok 87 - cache population rejects coerced revision
+  ---
+  duration_ms: 2.390384
+  type: 'test'
+  ...
+# Subtest: cache population rejects coerced timestamp
+ok 88 - cache population rejects coerced timestamp
+  ---
+  duration_ms: 2.09659
+  type: 'test'
+  ...
+# Subtest: cache population requires profile when requested
+ok 89 - cache population requires profile when requested
+  ---
+  duration_ms: 0.636046
+  type: 'test'
+  ...
+# Subtest: population comparator accepts compatible reports and changed implementation hashes
+ok 90 - population comparator accepts compatible reports and changed implementation hashes
+  ---
+  duration_ms: 11.729777
+  type: 'test'
+  ...
+# Subtest: population comparator catches cold latency regression
+ok 91 - population comparator catches cold latency regression
+  ---
+  duration_ms: 11.174761
+  type: 'test'
+  ...
+# Subtest: population comparator catches warm latency regression
+ok 92 - population comparator catches warm latency regression
+  ---
+  duration_ms: 7.844694
+  type: 'test'
+  ...
+# Subtest: population comparator catches emitted-byte and peak regressions
+ok 93 - population comparator catches emitted-byte and peak regressions
+  ---
+  duration_ms: 21.264687
+  type: 'test'
+  ...
+# Subtest: population comparator rejects incompatible affinity
+ok 94 - population comparator rejects incompatible affinity
+  ---
+  duration_ms: 9.244542
+  type: 'test'
+  ...
+# Subtest: population comparator rejects incompatible flags
+ok 95 - population comparator rejects incompatible flags
+  ---
+  duration_ms: 6.763116
+  type: 'test'
+  ...
+# Subtest: population comparator rejects incompatible workload
+ok 96 - population comparator rejects incompatible workload
+  ---
+  duration_ms: 3.987852
+  type: 'test'
+  ...
+# Subtest: population comparator rejects incompatible upstream
+ok 97 - population comparator rejects incompatible upstream
+  ---
+  duration_ms: 3.157441
+  type: 'test'
+  ...
+# Subtest: population comparator requires five fresh processes
+ok 98 - population comparator requires five fresh processes
+  ---
+  duration_ms: 10.391985
+  type: 'test'
+  ...
+# Subtest: cache sample requires recompilation on every cycle
+ok 99 - cache sample requires recompilation on every cycle
+  ---
+  duration_ms: 6.419973
+  type: 'test'
+  ...
+# Subtest: profile cache cycles require invalidation accounting
+ok 100 - profile cache cycles require invalidation accounting
+  ---
+  duration_ms: 6.753503
+  type: 'test'
+  ...
+# Subtest: cache summary includes one median per cycle
+ok 101 - cache summary includes one median per cycle
+  ---
+  duration_ms: 0.813936
+  type: 'test'
+  ...
+# Subtest: cache report rejects missing case and wrong cycle order
+ok 102 - cache report rejects missing case and wrong cycle order
+  ---
+  duration_ms: 7.2765
+  type: 'test'
+  ...
+# Subtest: cache collector records full provenance and rotates cases without overwriting prior reports
+ok 103 - cache collector records full provenance and rotates cases without overwriting prior reports
+  ---
+  duration_ms: 898.624162
+  type: 'test'
+  ...
+# Subtest: cache collector rejects wrong guest with PASS
+ok 104 - cache collector rejects wrong guest with PASS
+  ---
+  duration_ms: 258.111873
+  type: 'test'
+  ...
+# Subtest: cache collector rejects artifact mutation
+ok 105 - cache collector rejects artifact mutation
+  ---
+  duration_ms: 472.854344
+  type: 'test'
+  ...
+# Subtest: cache collector rejects nonzero exit with PASS
+ok 106 - cache collector rejects nonzero exit with PASS
+  ---
+  duration_ms: 206.879177
+  type: 'test'
+  ...
+# Subtest: cache collector rejects incomplete options and instrumentation before launching
+ok 107 - cache collector rejects incomplete options and instrumentation before launching
+  ---
+  duration_ms: 149.004433
+  type: 'test'
+  ...
+# Subtest: fixed collector validates complete reports and refuses to overwrite them
+ok 108 - fixed collector validates complete reports and refuses to overwrite them
+  ---
+  duration_ms: 1040.878085
+  type: 'test'
+  ...
+# Subtest: population collector validates complete reports and refuses to overwrite them
+ok 109 - population collector validates complete reports and refuses to overwrite them
+  ---
+  duration_ms: 885.897262
+  type: 'test'
+  ...
+# Subtest: fixed collector preserves raw output and earlier samples on nonzero exit after PASS
+ok 110 - fixed collector preserves raw output and earlier samples on nonzero exit after PASS
+  ---
+  duration_ms: 203.987987
+  type: 'test'
+  ...
+# Subtest: fixed collector preserves raw output and earlier samples on invalid timing with PASS
+ok 111 - fixed collector preserves raw output and earlier samples on invalid timing with PASS
+  ---
+  duration_ms: 212.195512
+  type: 'test'
+  ...
+# Subtest: cache collector preserves raw output and earlier samples on nonzero exit after PASS
+ok 112 - cache collector preserves raw output and earlier samples on nonzero exit after PASS
+  ---
+  duration_ms: 203.536661
+  type: 'test'
+  ...
+# Subtest: cache collector preserves raw output and earlier samples on invalid timing with PASS
+ok 113 - cache collector preserves raw output and earlier samples on invalid timing with PASS
+  ---
+  duration_ms: 343.565832
+  type: 'test'
+  ...
+# Subtest: population collector preserves raw output and earlier samples on nonzero exit after PASS
+ok 114 - population collector preserves raw output and earlier samples on nonzero exit after PASS
+  ---
+  duration_ms: 199.821236
+  type: 'test'
+  ...
+# Subtest: population collector preserves raw output and earlier samples on invalid timing with PASS
+ok 115 - population collector preserves raw output and earlier samples on invalid timing with PASS
+  ---
+  duration_ms: 869.107882
+  type: 'test'
+  ...
+# Subtest: identical measurements pass even when executable hashes change
+ok 116 - identical measurements pass even when executable hashes change
+  ---
+  duration_ms: 29.557596
+  type: 'test'
+  ...
+# Subtest: warm throughput boundary
+ok 117 - warm throughput boundary
+  ---
+  duration_ms: 30.32089
+  type: 'test'
+  ...
+# Subtest: warm throughput regression
+ok 118 - warm throughput regression
+  ---
+  duration_ms: 37.358478
+  type: 'test'
+  ...
+# Subtest: warm throughput improvement
+ok 119 - warm throughput improvement
+  ---
+  duration_ms: 8.524855
+  type: 'test'
+  ...
+# Subtest: cold bytes=110 budget
+ok 120 - cold bytes=110 budget
+  ---
+  duration_ms: 14.836945
+  type: 'test'
+  ...
+# Subtest: cold bytes=111 budget
+ok 121 - cold bytes=111 budget
+  ---
+  duration_ms: 26.174683
+  type: 'test'
+  ...
+# Subtest: cold translateMs=0.115 budget
+ok 122 - cold translateMs=0.115 budget
+  ---
+  duration_ms: 20.009145
+  type: 'test'
+  ...
+# Subtest: cold translateMs=0.116 budget
+ok 123 - cold translateMs=0.116 budget
+  ---
+  duration_ms: 19.430129
+  type: 'test'
+  ...
+# Subtest: cold execution does not masquerade as compilation
+ok 124 - cold execution does not masquerade as compilation
+  ---
+  duration_ms: 10.370651
+  type: 'test'
+  ...
+# Subtest: incompatible engine rejected
+ok 125 - incompatible engine rejected
+  ---
+  duration_ms: 8.552246
+  type: 'test'
+  ...
+# Subtest: incompatible CPU rejected
+ok 126 - incompatible CPU rejected
+  ---
+  duration_ms: 22.375147
+  type: 'test'
+  ...
+# Subtest: incompatible CPU affinity rejected
+ok 127 - incompatible CPU affinity rejected
+  ---
+  duration_ms: 8.900758
+  type: 'test'
+  ...
+# Subtest: incompatible engine flags rejected
+ok 128 - incompatible engine flags rejected
+  ---
+  duration_ms: 15.21002
+  type: 'test'
+  ...
+# Subtest: incompatible compiler rejected
+ok 129 - incompatible compiler rejected
+  ---
+  duration_ms: 13.220953
+  type: 'test'
+  ...
+# Subtest: incompatible flags rejected
+ok 130 - incompatible flags rejected
+  ---
+  duration_ms: 31.001731
+  type: 'test'
+  ...
+# Subtest: incompatible upstream rejected
+ok 131 - incompatible upstream rejected
+  ---
+  duration_ms: 17.022061
+  type: 'test'
+  ...
+# Subtest: incompatible workload rejected
+ok 132 - incompatible workload rejected
+  ---
+  duration_ms: 20.000387
+  type: 'test'
+  ...
+# Subtest: incompatible instructions rejected
+ok 133 - incompatible instructions rejected
+  ---
+  duration_ms: 27.535574
+  type: 'test'
+  ...
+# Subtest: incompatible insufficient processes rejected
+ok 134 - incompatible insufficient processes rejected
+  ---
+  duration_ms: 22.736792
+  type: 'test'
+  ...
+# Subtest: profile cannot be compared against production
+ok 135 - profile cannot be compared against production
+  ---
+  duration_ms: 62.567059
+  type: 'test'
+  ...
+# Subtest: regionDiagnostics cannot be hidden in a speed or overhead comparison
+ok 136 - regionDiagnostics cannot be hidden in a speed or overhead comparison
+  ---
+  duration_ms: 49.438402
+  type: 'test'
+  ...
+# Subtest: testExceptions cannot be hidden in a speed or overhead comparison
+ok 137 - testExceptions cannot be hidden in a speed or overhead comparison
+  ---
+  duration_ms: 62.092584
+  type: 'test'
+  ...
+# Subtest: profile overhead accepts otherwise identical builds
+ok 138 - profile overhead accepts otherwise identical builds
+  ---
+  duration_ms: 23.620327
+  type: 'test'
+  ...
+# Subtest: profile overhead rejects same profile mode
+ok 139 - profile overhead rejects same profile mode
+  ---
+  duration_ms: 12.051291
+  type: 'test'
+  ...
+# Subtest: profile overhead rejects different CPU
+ok 140 - profile overhead rejects different CPU
+  ---
+  duration_ms: 23.973695
+  type: 'test'
+  ...
+# Subtest: profile overhead rejects different workload
+ok 141 - profile overhead rejects different workload
+  ---
+  duration_ms: 23.814943
+  type: 'test'
+  ...
+# Subtest: profile overhead rejects different upstream
+ok 142 - profile overhead rejects different upstream
+  ---
+  duration_ms: 10.550694
+  type: 'test'
+  ...
+# Subtest: profile overhead rejects different implementation
+ok 143 - profile overhead rejects different implementation
+  ---
+  duration_ms: 8.252502
+  type: 'test'
+  ...
+# Subtest: profile overhead rejects different focus policy
+ok 144 - profile overhead rejects different focus policy
+  ---
+  duration_ms: 9.586861
+  type: 'test'
+  ...
+# Subtest: profile overhead rejects too few processes
+ok 145 - profile overhead rejects too few processes
+  ---
+  duration_ms: 8.783406
+  type: 'test'
+  ...
+# Subtest: profile overhead represents undefined compile ratio without Infinity
+ok 146 - profile overhead represents undefined compile ratio without Infinity
+  ---
+  duration_ms: 19.199273
+  type: 'test'
+  ...
+# Subtest: zero compile baseline never silently divides by zero
+ok 147 - zero compile baseline never silently divides by zero
+  ---
+  duration_ms: 4.732541
+  type: 'test'
+  ...
+# Subtest: CLI distinguishes pass, regression and incompatible experiment
+ok 148 - CLI distinguishes pass, regression and incompatible experiment
+  ---
+  duration_ms: 365.042779
+  type: 'test'
+  ...
+# Subtest: CoreMark collector writes validated short reports and rejects overwrites
+ok 149 - CoreMark collector writes validated short reports and rejects overwrites
+  ---
+  duration_ms: 1044.041634
+  type: 'test'
+  ...
+# Subtest: CoreMark require-duration retains short report and explicit failure
+ok 150 - CoreMark require-duration retains short report and explicit failure
+  ---
+  duration_ms: 633.192956
+  type: 'test'
+  ...
+# Subtest: CoreMark failure after valid output retains child status and stderr
+ok 151 - CoreMark failure after valid output retains child status and stderr
+  ---
+  duration_ms: 208.708145
+  type: 'test'
+  ...
+# Subtest: CoreMark collector rejects changed binary before running the oracle
+ok 152 - CoreMark collector rejects changed binary before running the oracle
+  ---
+  duration_ms: 102.84837
+  type: 'test'
+  ...
+# Subtest: CoreMark noise follow-up pools every sample without mutating raw cohorts
+ok 153 - CoreMark noise follow-up pools every sample without mutating raw cohorts
+  ---
+  duration_ms: 69.115973
+  type: 'test'
+  ...
+# Subtest: CoreMark noise follow-up rejects changed implementation identity
+ok 154 - CoreMark noise follow-up rejects changed implementation identity
+  ---
+  duration_ms: 38.702827
+  type: 'test'
+  ...
+# Subtest: CoreMark noise follow-up requires exactly five fresh processes per cohort
+ok 155 - CoreMark noise follow-up requires exactly five fresh processes per cohort
+  ---
+  duration_ms: 23.605535
+  type: 'test'
+  ...
+# Subtest: profile preserves the ordinary sample and enables names before init/run
+ok 156 - profile preserves the ordinary sample and enables names before init/run
+  ---
+  duration_ms: 403.82595
+  type: 'test'
+  ...
+# Subtest: guest failure retains its profile and emits no successful sample
+ok 157 - guest failure retains its profile and emits no successful sample
+  ---
+  duration_ms: 176.291909
+  type: 'test'
+  ...
+# Subtest: guest fault and profile write failure retain both errors
+ok 158 - guest fault and profile write failure retain both errors
+  ---
+  duration_ms: 161.011603
+  type: 'test'
+  ...
+# Subtest: existing profile output is unchanged and the guest does not run
+ok 159 - existing profile output is unchanged and the guest does not run
+  ---
+  duration_ms: 102.472984
+  type: 'test'
+  ...
+# Subtest: CoreMark short correctness and duration-qualified reports in both profile modes
+ok 160 - CoreMark short correctness and duration-qualified reports in both profile modes
+  ---
+  duration_ms: 71.081088
+  type: 'test'
+  ...
+# Subtest: CoreMark rejects wrong stage CRC
+ok 161 - CoreMark rejects wrong stage CRC
+  ---
+  duration_ms: 1.38987
+  type: 'test'
+  ...
+# Subtest: CoreMark rejects unrecognized diagnostic
+ok 162 - CoreMark rejects unrecognized diagnostic
+  ---
+  duration_ms: 0.551641
+  type: 'test'
+  ...
+# Subtest: CoreMark rejects missing long summary
+ok 163 - CoreMark rejects missing long summary
+  ---
+  duration_ms: 0.38162
+  type: 'test'
+  ...
+# Subtest: CoreMark rejects wrong long summary
+ok 164 - CoreMark rejects wrong long summary
+  ---
+  duration_ms: 0.451124
+  type: 'test'
+  ...
+# Subtest: CoreMark rejects unknown error
+ok 165 - CoreMark rejects unknown error
+  ---
+  duration_ms: 0.750478
+  type: 'test'
+  ...
+# Subtest: CoreMark rejects unknown error with valid marker
+ok 166 - CoreMark rejects unknown error with valid marker
+  ---
+  duration_ms: 0.490389
+  type: 'test'
+  ...
+# Subtest: CoreMark rejects missing short error
+ok 167 - CoreMark rejects missing short error
+  ---
+  duration_ms: 0.522399
+  type: 'test'
+  ...
+# Subtest: CoreMark rejects duplicate ticks
+ok 168 - CoreMark rejects duplicate ticks
+  ---
+  duration_ms: 0.645001
+  type: 'test'
+  ...
+# Subtest: CoreMark rejects missing final CRC
+ok 169 - CoreMark rejects missing final CRC
+  ---
+  duration_ms: 0.723321
+  type: 'test'
+  ...
+# Subtest: CoreMark rejects inconsistent seconds
+ok 170 - CoreMark rejects inconsistent seconds
+  ---
+  duration_ms: 0.384936
+  type: 'test'
+  ...
+# Subtest: CoreMark rejects inconsistent rate
+ok 171 - CoreMark rejects inconsistent rate
+  ---
+  duration_ms: 0.236781
+  type: 'test'
+  ...
+# Subtest: CoreMark rejects wrong iterations
+ok 172 - CoreMark rejects wrong iterations
+  ---
+  duration_ms: 0.3067
+  type: 'test'
+  ...
+# Subtest: CoreMark rejects wrap timer
+ok 173 - CoreMark rejects wrap timer
+  ---
+  duration_ms: 0.18118
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects fault after valid output
+ok 174 - CoreMark report rejects fault after valid output
+  ---
+  duration_ms: 11.316212
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects missing case
+ok 175 - CoreMark report rejects missing case
+  ---
+  duration_ms: 12.089084
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects duplicate case
+ok 176 - CoreMark report rejects duplicate case
+  ---
+  duration_ms: 10.576307
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects missing process
+ok 177 - CoreMark report rejects missing process
+  ---
+  duration_ms: 19.02502
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects duplicate process
+ok 178 - CoreMark report rejects duplicate process
+  ---
+  duration_ms: 22.118001
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects tampered summary
+ok 179 - CoreMark report rejects tampered summary
+  ---
+  duration_ms: 12.422803
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects partial profile
+ok 180 - CoreMark report rejects partial profile
+  ---
+  duration_ms: 10.021928
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects wrong profile mode
+ok 181 - CoreMark report rejects wrong profile mode
+  ---
+  duration_ms: 9.667994
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects wrong cache peak
+ok 182 - CoreMark report rejects wrong cache peak
+  ---
+  duration_ms: 11.945353
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects wrong run count
+ok 183 - CoreMark report rejects wrong run count
+  ---
+  duration_ms: 9.624367
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects invalidation
+ok 184 - CoreMark report rejects invalidation
+  ---
+  duration_ms: 8.845157
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects missing affinity
+ok 185 - CoreMark report rejects missing affinity
+  ---
+  duration_ms: 7.915345
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects manifest mutation
+ok 186 - CoreMark report rejects manifest mutation
+  ---
+  duration_ms: 8.62332
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects compiler flags
+ok 187 - CoreMark report rejects compiler flags
+  ---
+  duration_ms: 8.237961
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects final CRC differs from native
+ok 188 - CoreMark report rejects final CRC differs from native
+  ---
+  duration_ms: 10.017803
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects kernel exceeds Run
+ok 189 - CoreMark report rejects kernel exceeds Run
+  ---
+  duration_ms: 8.948644
+  type: 'test'
+  ...
+# Subtest: CoreMark report rejects phases exceed Run
+ok 190 - CoreMark report rejects phases exceed Run
+  ---
+  duration_ms: 11.753075
+  type: 'test'
+  ...
+# Subtest: CoreMark workload identity includes nested inputs and ignores command paths
+ok 191 - CoreMark workload identity includes nested inputs and ignores command paths
+  ---
+  duration_ms: 4.226192
+  type: 'test'
+  ...
+# Subtest: CoreMark comparator enforces experiment identity, five processes and duration
+ok 192 - CoreMark comparator enforces experiment identity, five processes and duration
+  ---
+  duration_ms: 47.483111
+  type: 'test'
+  ...
+# Subtest: CoreMark comparator catches kernel, Run, compile and size regressions independently
+ok 193 - CoreMark comparator catches kernel, Run, compile and size regressions independently
+  ---
+  duration_ms: 103.094626
+  type: 'test'
+  ...
+# Subtest: CoreMark diagnostic report retains raw history and derives exact duplication
+ok 194 - CoreMark diagnostic report retains raw history and derives exact duplication
+  ---
+  duration_ms: 8.314761
+  type: 'test'
+  ...
+# Subtest: CoreMark report retains optional raw transfer history and exact analysis
+ok 195 - CoreMark report retains optional raw transfer history and exact analysis
+  ---
+  duration_ms: 2.678676
+  type: 'test'
+  ...
+# Subtest: CoreMark transfer report retains exact Run conservation and input immutability
+ok 196 - CoreMark transfer report retains exact Run conservation and input immutability
+  ---
+  duration_ms: 1.313666
+  type: 'test'
+  ...
+# Subtest: CoreMark transfer conservation rejects mismatches and non-Run profiles
+ok 197 - CoreMark transfer conservation rejects mismatches and non-Run profiles
+  ---
+  duration_ms: 4.194126
+  type: 'test'
+  ...
+# Subtest: CoreMark transfer conservation validates every profile counter
+ok 198 - CoreMark transfer conservation validates every profile counter
+  ---
+  duration_ms: 28.463396
+  type: 'test'
+  ...
+# Subtest: CoreMark diagnostic report checks profile totals when present
+ok 199 - CoreMark diagnostic report checks profile totals when present
+  ---
+  duration_ms: 0.645802
+  type: 'test'
+  ...
+# Subtest: CoreMark diagnostic report fails closed on missing history and inconsistent totals
+ok 200 - CoreMark diagnostic report fails closed on missing history and inconsistent totals
+  ---
+  duration_ms: 4.294599
+  type: 'test'
+  ...
+# Subtest: CoreMark sample adds the transfer leaf only when published
+ok 201 - CoreMark sample adds the transfer leaf only when published
+  ---
+  duration_ms: 14.877472
+  type: 'test'
+  ...
+# Subtest: unweighted counts preserve frame identity and deduplicate recursive inclusive samples
+ok 202 - unweighted counts preserve frame identity and deduplicate recursive inclusive samples
+  ---
+  duration_ms: 44.070739
+  type: 'test'
+  ...
+# Subtest: subtree shares exclude callers and detached GC; overlapping roots do not duplicate samples
+ok 203 - subtree shares exclude callers and detached GC; overlapping roots do not duplicate samples
+  ---
+  duration_ms: 6.431067
+  type: 'test'
+  ...
+# Subtest: hitCount is not substituted for samples; tree order and node IDs are irrelevant
+ok 204 - hitCount is not substituted for samples; tree order and node IDs are irrelevant
+  ---
+  duration_ms: 0.718118
+  type: 'test'
+  ...
+# Subtest: reject duplicate IDs
+ok 205 - reject duplicate IDs
+  ---
+  duration_ms: 4.598114
+  type: 'test'
+  ...
+# Subtest: reject unknown child
+ok 206 - reject unknown child
+  ---
+  duration_ms: 0.439127
+  type: 'test'
+  ...
+# Subtest: reject multiple parents
+ok 207 - reject multiple parents
+  ---
+  duration_ms: 0.292466
+  type: 'test'
+  ...
+# Subtest: reject disconnected cycle
+ok 208 - reject disconnected cycle
+  ---
+  duration_ms: 3.023259
+  type: 'test'
+  ...
+# Subtest: reject root cycle
+ok 209 - reject root cycle
+  ---
+  duration_ms: 1.973724
+  type: 'test'
+  ...
+# Subtest: reject multiple roots
+ok 210 - reject multiple roots
+  ---
+  duration_ms: 0.863756
+  type: 'test'
+  ...
+# Subtest: reject invalid frame
+ok 211 - reject invalid frame
+  ---
+  duration_ms: 1.653606
+  type: 'test'
+  ...
+# Subtest: reject unknown sample
+ok 212 - reject unknown sample
+  ---
+  duration_ms: 0.984211
+  type: 'test'
+  ...
+# Subtest: reject missing samples
+ok 213 - reject missing samples
+  ---
+  duration_ms: 0.50746
+  type: 'test'
+  ...
+# Subtest: reject missing deltas
+ok 214 - reject missing deltas
+  ---
+  duration_ms: 0.318861
+  type: 'test'
+  ...
+# Subtest: reject negative delta
+ok 215 - reject negative delta
+  ---
+  duration_ms: 0.387748
+  type: 'test'
+  ...
+# Subtest: reject nonfinite delta
+ok 216 - reject nonfinite delta
+  ---
+  duration_ms: 1.405293
+  type: 'test'
+  ...
+# Subtest: reject time overflow
+ok 217 - reject time overflow
+  ---
+  duration_ms: 0.357355
+  type: 'test'
+  ...
+# Subtest: reject invalid range
+ok 218 - reject invalid range
+  ---
+  duration_ms: 0.225147
+  type: 'test'
+  ...
+# Subtest: root filter fails on invalid regex, missing frame and unsampled subtree
+ok 219 - root filter fails on invalid regex, missing frame and unsampled subtree
+  ---
+  duration_ms: 0.933396
+  type: 'test'
+  ...
+# Subtest: CLI binds raw input hash and reports malformed input with exit 2
+ok 220 - CLI binds raw input hash and reports malformed input with exit 2
+  ---
+  duration_ms: 613.075948
+  type: 'test'
+  ...
+# Subtest: configured build provenance resolves compiler and flags without invoking a compiler
+ok 221 - configured build provenance resolves compiler and flags without invoking a compiler
+  ---
+  duration_ms: 28.5932
+  type: 'test'
+  ...
+# Subtest: A64 region focus is optional in historical reports and strictly validated when present
+ok 222 - A64 region focus is optional in historical reports and strictly validated when present
+  ---
+  duration_ms: 9.269402
+  type: 'test'
+  ...
+# Subtest: observed system metadata validates while missing provenance is rejected
+ok 223 - observed system metadata validates while missing provenance is rejected
+  ---
+  duration_ms: 6.905138
+  type: 'test'
+  ...
+# Subtest: actual embedded benchmark guests have independently counted instruction totals
+ok 224 - actual embedded benchmark guests have independently counted instruction totals
+  ---
+  duration_ms: 9877.418883
+  type: 'test'
+  ...
+# Subtest: instruction audit rejects a false denominator and a wrong guest result
+ok 225 - instruction audit rejects a false denominator and a wrong guest result
+  ---
+  duration_ms: 104.706162
+  type: 'test'
+  ...
+# Subtest: collector preserves every process and produces a verifiable smoke artifact
+ok 226 - collector preserves every process and produces a verifiable smoke artifact
+  ---
+  duration_ms: 1213.385482
+  type: 'test'
+  ...
+# Subtest: failed native child retains raw diagnostics without publishing a valid report
+ok 227 - failed native child retains raw diagnostics without publishing a valid report
+  ---
+  duration_ms: 233.463382
+  type: 'test'
+  ...
+# Subtest: collector detects executable replacement between the paired processes
+ok 228 - collector detects executable replacement between the paired processes
+  ---
+  duration_ms: 158.978799
+  type: 'test'
+  ...
+# Subtest: collector rejects diagnostics overhead before launching children
+ok 229 - collector rejects diagnostics overhead before launching children
+  ---
+  duration_ms: 130.806625
+  type: 'test'
+  ...
+# Subtest: collector rejects exceptions overhead before launching children
+ok 230 - collector rejects exceptions overhead before launching children
+  ---
+  duration_ms: 135.046454
+  type: 'test'
+  ...
+# Subtest: native comparison retains every cold/warm observation and paired ratio direction
+ok 231 - native comparison retains every cold/warm observation and paired ratio direction
+  ---
+  duration_ms: 39.987207
+  type: 'test'
+  ...
+# Subtest: ratios use paired process medians rather than a ratio of unpaired totals
+ok 232 - ratios use paired process medians rather than a ratio of unpaired totals
+  ---
+  duration_ms: 3.977293
+  type: 'test'
+  ...
+# Subtest: smoke reports validate but cannot qualify a performance comparison
+ok 233 - smoke reports validate but cannot qualify a performance comparison
+  ---
+  duration_ms: 19.018714
+  type: 'test'
+  ...
+# Subtest: native parser rejects missing PASS
+ok 234 - native parser rejects missing PASS
+  ---
+  duration_ms: 0.959971
+  type: 'test'
+  ...
+# Subtest: native parser rejects guest failure
+ok 235 - native parser rejects guest failure
+  ---
+  duration_ms: 0.327892
+  type: 'test'
+  ...
+# Subtest: native parser rejects truncated samples
+ok 236 - native parser rejects truncated samples
+  ---
+  duration_ms: 0.938343
+  type: 'test'
+  ...
+# Subtest: native parser rejects out of order
+ok 237 - native parser rejects out of order
+  ---
+  duration_ms: 0.570717
+  type: 'test'
+  ...
+# Subtest: native parser rejects zero duration
+ok 238 - native parser rejects zero duration
+  ---
+  duration_ms: 0.315858
+  type: 'test'
+  ...
+# Subtest: native parser rejects fabricated compilation
+ok 239 - native parser rejects fabricated compilation
+  ---
+  duration_ms: 0.695158
+  type: 'test'
+  ...
+# Subtest: native parser rejects inconsistent throughput
+ok 240 - native parser rejects inconsistent throughput
+  ---
+  duration_ms: 0.638315
+  type: 'test'
+  ...
+# Subtest: native report rejects profile build
+ok 241 - native report rejects profile build
+  ---
+  duration_ms: 5.708248
+  type: 'test'
+  ...
+# Subtest: native report rejects missing CPU affinity
+ok 242 - native report rejects missing CPU affinity
+  ---
+  duration_ms: 8.828088
+  type: 'test'
+  ...
+# Subtest: native report rejects non-string hash
+ok 243 - native report rejects non-string hash
+  ---
+  duration_ms: 10.663752
+  type: 'test'
+  ...
+# Subtest: native report rejects non-string revision
+ok 244 - native report rejects non-string revision
+  ---
+  duration_ms: 5.437625
+  type: 'test'
+  ...
+# Subtest: native report rejects diagnostics build
+ok 245 - native report rejects diagnostics build
+  ---
+  duration_ms: 4.46064
+  type: 'test'
+  ...
+# Subtest: native report rejects test exceptions
+ok 246 - native report rejects test exceptions
+  ---
+  duration_ms: 17.78184
+  type: 'test'
+  ...
+# Subtest: native report rejects unsupported platform
+ok 247 - native report rejects unsupported platform
+  ---
+  duration_ms: 6.584208
+  type: 'test'
+  ...
+# Subtest: native report rejects wrong native architecture
+ok 248 - native report rejects wrong native architecture
+  ---
+  duration_ms: 16.951857
+  type: 'test'
+  ...
+# Subtest: native report rejects debug native
+ok 249 - native report rejects debug native
+  ---
+  duration_ms: 9.219802
+  type: 'test'
+  ...
+# Subtest: native report rejects different upstream
+ok 250 - native report rejects different upstream
+  ---
+  duration_ms: 8.14213
+  type: 'test'
+  ...
+# Subtest: native report rejects modified upstream
+ok 251 - native report rejects modified upstream
+  ---
+  duration_ms: 20.524084
+  type: 'test'
+  ...
+# Subtest: native report rejects missing native binary identity
+ok 252 - native report rejects missing native binary identity
+  ---
+  duration_ms: 6.063741
+  type: 'test'
+  ...
+# Subtest: native report rejects incomplete suite
+ok 253 - native report rejects incomplete suite
+  ---
+  duration_ms: 5.854573
+  type: 'test'
+  ...
+# Subtest: native report rejects duplicate case
+ok 254 - native report rejects duplicate case
+  ---
+  duration_ms: 9.905627
+  type: 'test'
+  ...
+# Subtest: native report rejects incomplete pair
+ok 255 - native report rejects incomplete pair
+  ---
+  duration_ms: 13.791574
+  type: 'test'
+  ...
+# Subtest: native report rejects nonzero process status
+ok 256 - native report rejects nonzero process status
+  ---
+  duration_ms: 13.487733
+  type: 'test'
+  ...
+# Subtest: native report rejects terminated process
+ok 257 - native report rejects terminated process
+  ---
+  duration_ms: 3.725716
+  type: 'test'
+  ...
+# Subtest: native report rejects raw output mismatch
+ok 258 - native report rejects raw output mismatch
+  ---
+  duration_ms: 11.720738
+  type: 'test'
+  ...
+# Subtest: native report rejects nonalternating order
+ok 259 - native report rejects nonalternating order
+  ---
+  duration_ms: 9.09168
+  type: 'test'
+  ...
+# Subtest: native report rejects duplicate pair
+ok 260 - native report rejects duplicate pair
+  ---
+  duration_ms: 7.605006
+  type: 'test'
+  ...
+# Subtest: native report rejects wrong ratio
+ok 261 - native report rejects wrong ratio
+  ---
+  duration_ms: 14.473083
+  type: 'test'
+  ...
+# Subtest: native report rejects instruction mismatch
+ok 262 - native report rejects instruction mismatch
+  ---
+  duration_ms: 9.281238
+  type: 'test'
+  ...
+# Subtest: CLI validates reports and distinguishes smoke qualification
+ok 263 - CLI validates reports and distinguishes smoke qualification
+  ---
+  duration_ms: 439.681294
+  type: 'test'
+  ...
+# Subtest: collector invocation rejects malformed and duplicate options
+ok 264 - collector invocation rejects malformed and duplicate options
+  ---
+  duration_ms: 1.019061
+  type: 'test'
+  ...
+# Subtest: paired fixed CLI retains samples and alternates order
+ok 265 - paired fixed CLI retains samples and alternates order
+  ---
+  duration_ms: 5027.052573
+  type: 'test'
+  ...
+# Subtest: paired population CLI retains samples and alternates order
+ok 266 - paired population CLI retains samples and alternates order
+  ---
+  duration_ms: 4159.064289
+  type: 'test'
+  ...
+# Subtest: paired collector rejects changed executable before launching
+ok 267 - paired collector rejects changed executable before launching
+  ---
+  duration_ms: 73.531029
+  type: 'test'
+  ...
+# Subtest: paired collector rejects nonzero exit even after PASS
+ok 268 - paired collector rejects nonzero exit even after PASS
+  ---
+  duration_ms: 187.64537
+  type: 'test'
+  ...
+# Subtest: paired collector rejects upstream mismatch before launching
+ok 269 - paired collector rejects upstream mismatch before launching
+  ---
+  duration_ms: 81.463557
+  type: 'test'
+  ...
+# Subtest: median averages the middle pair
+ok 270 - median averages the middle pair
+  ---
+  duration_ms: 3.943484
+  type: 'test'
+  ...
+# Subtest: valid samples retain all observations
+ok 271 - valid samples retain all observations
+  ---
+  duration_ms: 2.34682
+  type: 'test'
+  ...
+# Subtest: run indices expose the warmup curve
+ok 272 - run indices expose the warmup curve
+  ---
+  duration_ms: 0.54245
+  type: 'test'
+  ...
+# Subtest: wrong guest result is rejected even with timings and PASS
+ok 273 - wrong guest result is rejected even with timings and PASS
+  ---
+  duration_ms: 0.970865
+  type: 'test'
+  ...
+# Subtest: missing completion marker is rejected
+ok 274 - missing completion marker is rejected
+  ---
+  duration_ms: 0.484422
+  type: 'test'
+  ...
+# Subtest: production and profile reports validate
+ok 275 - production and profile reports validate
+  ---
+  duration_ms: 35.540787
+  type: 'test'
+  ...
+# Subtest: negative timing
+ok 276 - negative timing
+  ---
+  duration_ms: 0.526709
+  type: 'test'
+  ...
+# Subtest: inconsistent throughput
+ok 277 - inconsistent throughput
+  ---
+  duration_ms: 0.426659
+  type: 'test'
+  ...
+# Subtest: fractional modules
+ok 278 - fractional modules
+  ---
+  duration_ms: 0.576112
+  type: 'test'
+  ...
+# Subtest: invalid run index
+ok 279 - invalid run index
+  ---
+  duration_ms: 0.682674
+  type: 'test'
+  ...
+# Subtest: truncated profile
+ok 280 - truncated profile
+  ---
+  duration_ms: 1.022044
+  type: 'test'
+  ...
+# Subtest: cold without compilation
+ok 281 - cold without compilation
+  ---
+  duration_ms: 0.280835
+  type: 'test'
+  ...
+# Subtest: warm blocks invalidates experiment
+ok 282 - warm blocks invalidates experiment
+  ---
+  duration_ms: 0.450439
+  type: 'test'
+  ...
+# Subtest: warm bytes invalidates experiment
+ok 283 - warm bytes invalidates experiment
+  ---
+  duration_ms: 0.23203
+  type: 'test'
+  ...
+# Subtest: warm translateMs invalidates experiment
+ok 284 - warm translateMs invalidates experiment
+  ---
+  duration_ms: 0.172777
+  type: 'test'
+  ...
+# Subtest: warm optMs invalidates experiment
+ok 285 - warm optMs invalidates experiment
+  ---
+  duration_ms: 0.252782
+  type: 'test'
+  ...
+# Subtest: warm emitMs invalidates experiment
+ok 286 - warm emitMs invalidates experiment
+  ---
+  duration_ms: 0.169803
+  type: 'test'
+  ...
+# Subtest: warm compileMs invalidates experiment
+ok 287 - warm compileMs invalidates experiment
+  ---
+  duration_ms: 0.157346
+  type: 'test'
+  ...
+# Subtest: warm instMs invalidates experiment
+ok 288 - warm instMs invalidates experiment
+  ---
+  duration_ms: 0.1382
+  type: 'test'
+  ...
+# Subtest: warm tableMs invalidates experiment
+ok 289 - warm tableMs invalidates experiment
+  ---
+  duration_ms: 0.266535
+  type: 'test'
+  ...
+# Subtest: unknown case
+ok 290 - unknown case
+  ---
+  duration_ms: 1.869808
+  type: 'test'
+  ...
+# Subtest: missing architecture
+ok 291 - missing architecture
+  ---
+  duration_ms: 8.413532
+  type: 'test'
+  ...
+# Subtest: wrong memory mode
+ok 292 - wrong memory mode
+  ---
+  duration_ms: 15.677707
+  type: 'test'
+  ...
+# Subtest: missing artifact
+ok 293 - missing artifact
+  ---
+  duration_ms: 5.366567
+  type: 'test'
+  ...
+# Subtest: bad workload hash
+ok 294 - bad workload hash
+  ---
+  duration_ms: 6.122292
+  type: 'test'
+  ...
+# Subtest: missing CPU
+ok 295 - missing CPU
+  ---
+  duration_ms: 2.360955
+  type: 'test'
+  ...
+# Subtest: missing build identity
+ok 296 - missing build identity
+  ---
+  duration_ms: 1.100885
+  type: 'test'
+  ...
+# Subtest: wrong summary
+ok 297 - wrong summary
+  ---
+  duration_ms: 3.278991
+  type: 'test'
+  ...
+# Subtest: missing process
+ok 298 - missing process
+  ---
+  duration_ms: 1.397864
+  type: 'test'
+  ...
+# Subtest: out of range process
+ok 299 - out of range process
+  ---
+  duration_ms: 1.393544
+  type: 'test'
+  ...
+# Subtest: duplicate process samples
+ok 300 - duplicate process samples
+  ---
+  duration_ms: 5.778295
+  type: 'test'
+  ...
+# Subtest: misordered phases
+ok 301 - misordered phases
+  ---
+  duration_ms: 2.965631
+  type: 'test'
+  ...
+# Subtest: mixed profile modes
+ok 302 - mixed profile modes
+  ---
+  duration_ms: 2.265442
+  type: 'test'
+  ...
+# Subtest: changed instruction count
+ok 303 - changed instruction count
+  ---
+  duration_ms: 2.75337
+  type: 'test'
+  ...
+# Subtest: profile required fails closed
+ok 304 - profile required fails closed
+  ---
+  duration_ms: 5.529395
+  type: 'test'
+  ...
+# Subtest: cache peak cannot under-report cold compilation
+ok 305 - cache peak cannot under-report cold compilation
+  ---
+  duration_ms: 8.359834
+  type: 'test'
+  ...
+# Subtest: warm cache peak must be a zero delta
+ok 306 - warm cache peak must be a zero delta
+  ---
+  duration_ms: 4.285214
+  type: 'test'
+  ...
+# Subtest: coverage requires a live eligible fallback return-site owner and counts each entry once
+ok 307 - coverage requires a live eligible fallback return-site owner and counts each entry once
+  ---
+  duration_ms: 3.342919
+  type: 'test'
+  ...
+# Subtest: the pre-registered default threshold stops at eight and permits nine
+ok 308 - the pre-registered default threshold stops at eight and permits nine
+  ---
+  duration_ms: 3.016764
+  type: 'test'
+  ...
+# Subtest: an A64 owner cannot cover a later A32 entry
+ok 309 - an A64 owner cannot cover a later A32 entry
+  ---
+  duration_ms: 0.345237
+  type: 'test'
+  ...
+# Subtest: non-A64, original-entry and return-site filters are fail closed
+ok 310 - non-A64, original-entry and return-site filters are fail closed
+  ---
+  duration_ms: 0.399994
+  type: 'test'
+  ...
+# Subtest: coverage rejects invalid live-generation evidence
+ok 311 - coverage rejects invalid live-generation evidence
+  ---
+  duration_ms: 0.414172
+  type: 'test'
+  ...
+# Subtest: single region has no duplicated selections
+ok 312 - single region has no duplicated selections
+  ---
+  duration_ms: 3.698051
+  type: 'test'
+  ...
+# Subtest: ordered attribution distinguishes selected and emitted-entry duplication
+ok 313 - ordered attribution distinguishes selected and emitted-entry duplication
+  ---
+  duration_ms: 0.714641
+  type: 'test'
+  ...
+# Subtest: empty compilation history and invalidation recompilation have explicit totals
+ok 314 - empty compilation history and invalidation recompilation have explicit totals
+  ---
+  duration_ms: 0.46718
+  type: 'test'
+  ...
+# Subtest: reject schema
+ok 315 - reject schema
+  ---
+  duration_ms: 0.798108
+  type: 'test'
+  ...
+# Subtest: reject region array
+ok 316 - reject region array
+  ---
+  duration_ms: 0.316476
+  type: 'test'
+  ...
+# Subtest: reject region sequence gap
+ok 317 - reject region sequence gap
+  ---
+  duration_ms: 0.212548
+  type: 'test'
+  ...
+# Subtest: reject fractional region id
+ok 318 - reject fractional region id
+  ---
+  duration_ms: 0.228717
+  type: 'test'
+  ...
+# Subtest: reject frontend
+ok 319 - reject frontend
+  ---
+  duration_ms: 0.25689
+  type: 'test'
+  ...
+# Subtest: reject numeric descriptor
+ok 320 - reject numeric descriptor
+  ---
+  duration_ms: 0.414277
+  type: 'test'
+  ...
+# Subtest: reject short descriptor
+ok 321 - reject short descriptor
+  ---
+  duration_ms: 0.556537
+  type: 'test'
+  ...
+# Subtest: reject uppercase descriptor
+ok 322 - reject uppercase descriptor
+  ---
+  duration_ms: 0.305404
+  type: 'test'
+  ...
+# Subtest: reject entry pc
+ok 323 - reject entry pc
+  ---
+  duration_ms: 0.155008
+  type: 'test'
+  ...
+# Subtest: reject entry index
+ok 324 - reject entry index
+  ---
+  duration_ms: 0.431456
+  type: 'test'
+  ...
+# Subtest: reject entry membership
+ok 325 - reject entry membership
+  ---
+  duration_ms: 0.159913
+  type: 'test'
+  ...
+# Subtest: reject duplicate descriptor within region
+ok 326 - reject duplicate descriptor within region
+  ---
+  duration_ms: 0.08887
+  type: 'test'
+  ...
+# Subtest: reject unsafe module bytes
+ok 327 - reject unsafe module bytes
+  ---
+  duration_ms: 0.086177
+  type: 'test'
+  ...
+# Subtest: reject zero body bytes
+ok 328 - reject zero body bytes
+  ---
+  duration_ms: 0.094336
+  type: 'test'
+  ...
+# Subtest: reject body exceeds module
+ok 329 - reject body exceeds module
+  ---
+  duration_ms: 0.08988
+  type: 'test'
+  ...
+# Subtest: rejects duplicate region IDs even when sequence positions differ
+ok 330 - rejects duplicate region IDs even when sequence positions differ
+  ---
+  duration_ms: 0.299736
+  type: 'test'
+  ...
+# Subtest: v2 projects every v1 field exactly and retains high-bit descriptor identity
+ok 331 - v2 projects every v1 field exactly and retains high-bit descriptor identity
+  ---
+  duration_ms: 1.101237
+  type: 'test'
+  ...
+# Subtest: reject v2 block list
+ok 332 - reject v2 block list
+  ---
+  duration_ms: 0.36335
+  type: 'test'
+  ...
+# Subtest: reject v2 layout
+ok 333 - reject v2 layout
+  ---
+  duration_ms: 0.202526
+  type: 'test'
+  ...
+# Subtest: reject v2 single layout with multiple blocks
+ok 334 - reject v2 single layout with multiple blocks
+  ---
+  duration_ms: 0.128448
+  type: 'test'
+  ...
+# Subtest: reject v2 missing block flag
+ok 335 - reject v2 missing block flag
+  ---
+  duration_ms: 0.131704
+  type: 'test'
+  ...
+# Subtest: reject v2 non-boolean return-site flag
+ok 336 - reject v2 non-boolean return-site flag
+  ---
+  duration_ms: 0.109984
+  type: 'test'
+  ...
+# Subtest: reject v2 unemitted entry
+ok 337 - reject v2 unemitted entry
+  ---
+  duration_ms: 0.087866
+  type: 'test'
+  ...
+# Subtest: reject v2 unreachable entry
+ok 338 - reject v2 unreachable entry
+  ---
+  duration_ms: 0.08952
+  type: 'test'
+  ...
+# Subtest: reject v2 structured emission mismatch
+ok 339 - reject v2 structured emission mismatch
+  ---
+  duration_ms: 0.082255
+  type: 'test'
+  ...
+# Subtest: reject v2 fallback unemitted block
+ok 340 - reject v2 fallback unemitted block
+  ---
+  duration_ms: 0.113024
+  type: 'test'
+  ...
+# Subtest: reject v2 unsorted live IDs
+ok 341 - reject v2 unsorted live IDs
+  ---
+  duration_ms: 0.100526
+  type: 'test'
+  ...
+# Subtest: reject v2 current live ID
+ok 342 - reject v2 current live ID
+  ---
+  duration_ms: 0.092964
+  type: 'test'
+  ...
+# Subtest: reject v2 unsafe live ID
+ok 343 - reject v2 unsafe live ID
+  ---
+  duration_ms: 0.090927
+  type: 'test'
+  ...
+# Subtest: empty history has exact zero totals without Number conversion
+ok 344 - empty history has exact zero totals without Number conversion
+  ---
+  duration_ms: 3.361985
+  type: 'test'
+  ...
+# Subtest: analysis retains exact counts and useful per-region attribution
+ok 345 - analysis retains exact counts and useful per-region attribution
+  ---
+  duration_ms: 1.78669
+  type: 'test'
+  ...
+# Subtest: aggregate counters wrap modulo 2^64 and never reject overflow
+ok 346 - aggregate counters wrap modulo 2^64 and never reject overflow
+  ---
+  duration_ms: 0.541707
+  type: 'test'
+  ...
+# Subtest: Run-only conservation reports exact expected and observed entry counts
+ok 347 - Run-only conservation reports exact expected and observed entry counts
+  ---
+  duration_ms: 3.841675
+  type: 'test'
+  ...
+# Subtest: Run-only conservation handles wrapping and rejects invalid dispatch counts
+ok 348 - Run-only conservation handles wrapping and rejects invalid dispatch counts
+  ---
+  duration_ms: 1.436735
+  type: 'test'
+  ...
+# Subtest: strict validation rejects null snapshot
+ok 349 - strict validation rejects null snapshot
+  ---
+  duration_ms: 1.184765
+  type: 'test'
+  ...
+# Subtest: strict validation rejects array snapshot
+ok 350 - strict validation rejects array snapshot
+  ---
+  duration_ms: 0.430674
+  type: 'test'
+  ...
+# Subtest: strict validation rejects schema
+ok 351 - strict validation rejects schema
+  ---
+  duration_ms: 0.205013
+  type: 'test'
+  ...
+# Subtest: strict validation rejects missing regions
+ok 352 - strict validation rejects missing regions
+  ---
+  duration_ms: 0.48027
+  type: 'test'
+  ...
+# Subtest: strict validation rejects non-array regions
+ok 353 - strict validation rejects non-array regions
+  ---
+  duration_ms: 0.742229
+  type: 'test'
+  ...
+# Subtest: strict validation rejects unknown snapshot field
+ok 354 - strict validation rejects unknown snapshot field
+  ---
+  duration_ms: 0.267305
+  type: 'test'
+  ...
+# Subtest: strict validation rejects null region
+ok 355 - strict validation rejects null region
+  ---
+  duration_ms: 0.197171
+  type: 'test'
+  ...
+# Subtest: strict validation rejects array region
+ok 356 - strict validation rejects array region
+  ---
+  duration_ms: 0.141072
+  type: 'test'
+  ...
+# Subtest: strict validation rejects unknown region field
+ok 357 - strict validation rejects unknown region field
+  ---
+  duration_ms: 0.194186
+  type: 'test'
+  ...
+# Subtest: strict validation rejects missing region field
+ok 358 - strict validation rejects missing region field
+  ---
+  duration_ms: 0.174787
+  type: 'test'
+  ...
+# Subtest: strict validation rejects region sequence gap
+ok 359 - strict validation rejects region sequence gap
+  ---
+  duration_ms: 0.267227
+  type: 'test'
+  ...
+# Subtest: strict validation rejects duplicate region ID
+ok 360 - strict validation rejects duplicate region ID
+  ---
+  duration_ms: 0.34513
+  type: 'test'
+  ...
+# Subtest: strict validation rejects fractional region ID
+ok 361 - strict validation rejects fractional region ID
+  ---
+  duration_ms: 0.600641
+  type: 'test'
+  ...
+# Subtest: strict validation rejects unsafe region ID
+ok 362 - strict validation rejects unsafe region ID
+  ---
+  duration_ms: 0.32651
+  type: 'test'
+  ...
+# Subtest: strict validation rejects frontend
+ok 363 - strict validation rejects frontend
+  ---
+  duration_ms: 0.422723
+  type: 'test'
+  ...
+# Subtest: strict validation rejects numeric caller descriptor
+ok 364 - strict validation rejects numeric caller descriptor
+  ---
+  duration_ms: 0.425799
+  type: 'test'
+  ...
+# Subtest: strict validation rejects uppercase caller PC
+ok 365 - strict validation rejects uppercase caller PC
+  ---
+  duration_ms: 0.444311
+  type: 'test'
+  ...
+# Subtest: strict validation rejects short caller descriptor
+ok 366 - strict validation rejects short caller descriptor
+  ---
+  duration_ms: 0.160882
+  type: 'test'
+  ...
+# Subtest: strict validation rejects Unicode caller PC
+ok 367 - strict validation rejects Unicode caller PC
+  ---
+  duration_ms: 0.24525
+  type: 'test'
+  ...
+# Subtest: strict validation rejects Number entry count
+ok 368 - strict validation rejects Number entry count
+  ---
+  duration_ms: 0.160411
+  type: 'test'
+  ...
+# Subtest: strict validation rejects BigInt entry count
+ok 369 - strict validation rejects BigInt entry count
+  ---
+  duration_ms: 0.135923
+  type: 'test'
+  ...
+# Subtest: strict validation rejects uppercase entry count
+ok 370 - strict validation rejects uppercase entry count
+  ---
+  duration_ms: 0.135051
+  type: 'test'
+  ...
+# Subtest: strict validation rejects oversized entry count
+ok 371 - strict validation rejects oversized entry count
+  ---
+  duration_ms: 0.1314
+  type: 'test'
+  ...
+# Subtest: strict validation rejects non-array exits
+ok 372 - strict validation rejects non-array exits
+  ---
+  duration_ms: 0.381792
+  type: 'test'
+  ...
+# Subtest: strict validation rejects null exit
+ok 373 - strict validation rejects null exit
+  ---
+  duration_ms: 0.281288
+  type: 'test'
+  ...
+# Subtest: strict validation rejects array exit
+ok 374 - strict validation rejects array exit
+  ---
+  duration_ms: 0.308882
+  type: 'test'
+  ...
+# Subtest: strict validation rejects unknown exit field
+ok 375 - strict validation rejects unknown exit field
+  ---
+  duration_ms: 0.441565
+  type: 'test'
+  ...
+# Subtest: strict validation rejects missing exit field
+ok 376 - strict validation rejects missing exit field
+  ---
+  duration_ms: 6.694702
+  type: 'test'
+  ...
+# Subtest: strict validation rejects exit site gap
+ok 377 - strict validation rejects exit site gap
+  ---
+  duration_ms: 0.423233
+  type: 'test'
+  ...
+# Subtest: strict validation rejects second exit site gap
+ok 378 - strict validation rejects second exit site gap
+  ---
+  duration_ms: 0.3051
+  type: 'test'
+  ...
+# Subtest: strict validation rejects fractional exit site
+ok 379 - strict validation rejects fractional exit site
+  ---
+  duration_ms: 0.210102
+  type: 'test'
+  ...
+# Subtest: strict validation rejects unsafe exit site
+ok 380 - strict validation rejects unsafe exit site
+  ---
+  duration_ms: 0.192166
+  type: 'test'
+  ...
+# Subtest: strict validation rejects exit block descriptor
+ok 381 - strict validation rejects exit block descriptor
+  ---
+  duration_ms: 1.587039
+  type: 'test'
+  ...
+# Subtest: strict validation rejects kind
+ok 382 - strict validation rejects kind
+  ---
+  duration_ms: 0.385079
+  type: 'test'
+  ...
+# Subtest: strict validation rejects direct call without static target
+ok 383 - strict validation rejects direct call without static target
+  ---
+  duration_ms: 0.328174
+  type: 'test'
+  ...
+# Subtest: strict validation rejects direct call with malformed static target
+ok 384 - strict validation rejects direct call with malformed static target
+  ---
+  duration_ms: 0.345633
+  type: 'test'
+  ...
+# Subtest: strict validation rejects RSB return with static target
+ok 385 - strict validation rejects RSB return with static target
+  ---
+  duration_ms: 0.457823
+  type: 'test'
+  ...
+# Subtest: strict validation rejects other transfer with static target
+ok 386 - strict validation rejects other transfer with static target
+  ---
+  duration_ms: 0.297402
+  type: 'test'
+  ...
+# Subtest: strict validation rejects Number exit count
+ok 387 - strict validation rejects Number exit count
+  ---
+  duration_ms: 0.409921
+  type: 'test'
+  ...
+# Subtest: strict validation rejects negative exit count
+ok 388 - strict validation rejects negative exit count
+  ---
+  duration_ms: 0.353058
+  type: 'test'
+  ...
+# Subtest: strict validation rejects last dynamic descriptor
+ok 389 - strict validation rejects last dynamic descriptor
+  ---
+  duration_ms: 0.326919
+  type: 'test'
+  ...
+# Subtest: strict validation rejects last dynamic PC
+ok 390 - strict validation rejects last dynamic PC
+  ---
+  duration_ms: 2.880912
+  type: 'test'
+  ...
+# Subtest: strict validation rejects last descriptor on a zero-count exit
+ok 391 - strict validation rejects last descriptor on a zero-count exit
+  ---
+  duration_ms: 0.659447
+  type: 'test'
+  ...
+# Subtest: strict validation rejects last PC on a zero-count exit
+ok 392 - strict validation rejects last PC on a zero-count exit
+  ---
+  duration_ms: 0.315838
+  type: 'test'
+  ...
+# Subtest: validation handles 10000 regions without approximate aggregation
+ok 393 - validation handles 10000 regions without approximate aggregation
+  ---
+  duration_ms: 276.766073
+  type: 'test'
+  ...
+# Subtest: captures an async callback and returns its value
+ok 394 - captures an async callback and returns its value
+  ---
+  duration_ms: 139.80797
+  type: 'test'
+  ...
+# Subtest: sync throw and async rejection retain profiles and preserve errors
+ok 395 - sync throw and async rejection retain profiles and preserve errors
+  ---
+  duration_ms: 201.260147
+  type: 'test'
+  ...
+# Subtest: falsy callback failures remain rejections and compose with cleanup errors
+ok 396 - falsy callback failures remain rejections and compose with cleanup errors
+  ---
+  duration_ms: 717.405861
+  type: 'test'
+  ...
+# Subtest: never overwrites an existing destination, including a creation race
+ok 397 - never overwrites an existing destination, including a creation race
+  ---
+  duration_ms: 117.984686
+  type: 'test'
+  ...
+# Subtest: validates arguments before invoking the callback
+ok 398 - validates arguments before invoking the callback
+  ---
+  duration_ms: 2.848151
+  type: 'test'
+  ...
+# Subtest: rejects reentrant captures without invoking the second callback
+ok 399 - rejects reentrant captures without invoking the second callback
+  ---
+  duration_ms: 61.255408
+  type: 'test'
+  ...
+# Subtest: independent CMake grammar accepts valid values and rejects malformed values
+ok 400 - independent CMake grammar accepts valid values and rejects malformed values
+  ---
+  duration_ms: 148.475347
+  type: 'test'
+  ...
+# Subtest: root configuration rejects malformed focus instead of truncating or normalizing it
+ok 401 - root configuration rejects malformed focus instead of truncating or normalizing it
+  ---
+  duration_ms: 850.489737
+  type: 'test'
+  ...
+# Subtest: explicit empty focus is a valid disabled STRING cache value
+ok 402 - explicit empty focus is a valid disabled STRING cache value
+  ---
+  duration_ms: 767.028516
+  type: 'test'
+  ...
+# Subtest: valid nonmatching focus is preserved exactly and enables the private definition
+ok 403 - valid nonmatching focus is preserved exactly and enables the private definition
+  ---
+  duration_ms: 596.240071
+  type: 'test'
+  ...
+# Subtest: strict browser configuration reports each missing prerequisite before compilation
+ok 404 - strict browser configuration reports each missing prerequisite before compilation
+  ---
+  duration_ms: 1186.340908
+  type: 'test'
+  ...
+# Subtest: native reference capture preserves exact stdout and spaced executable/output paths
+ok 405 - native reference capture preserves exact stdout and spaced executable/output paths
+  ---
+  duration_ms: 150.534886
+  type: 'test'
+  ...
+# Subtest: native reference failures remove partial or stale output and fail the build
+ok 406 - native reference failures remove partial or stale output and fail the build
+  ---
+  duration_ms: 266.998293
+  type: 'test'
+  ...
+# Subtest: Wasm post-link manifest binds source, production configuration and actual artifacts
+ok 407 - Wasm post-link manifest binds source, production configuration and actual artifacts
+  ---
+  duration_ms: 472.380549
+  type: 'test'
+  ...
+# Subtest: Wasm post-link manifest records configure and build EMCC_CFLAGS independently
+ok 408 - Wasm post-link manifest records configure and build EMCC_CFLAGS independently
+  ---
+  duration_ms: 472.169943
+  type: 'test'
+  ...
+# Subtest: Wasm post-link manifest observes dirty source at generation time
+ok 409 - Wasm post-link manifest observes dirty source at generation time
+  ---
+  duration_ms: 267.581214
+  type: 'test'
+  ...
+# Subtest: Wasm source cleanliness cannot hide modified submodules through Git configuration
+ok 410 - Wasm source cleanliness cannot hide modified submodules through Git configuration
+  ---
+  duration_ms: 271.71542
+  type: 'test'
+  ...
+# Subtest: Wasm source cleanliness cannot hide untracked files through Git configuration
+ok 411 - Wasm source cleanliness cannot hide untracked files through Git configuration
+  ---
+  duration_ms: 218.961539
+  type: 'test'
+  ...
+# Subtest: Wasm post-link manifest fails closed for missing inputs and artifacts
+ok 412 - Wasm post-link manifest fails closed for missing inputs and artifacts
+  ---
+  duration_ms: 372.422388
+  type: 'test'
+  ...
+# Subtest: source archives build with explicitly unknown Git provenance
+ok 413 - source archives build with explicitly unknown Git provenance
+  ---
+  duration_ms: 196.331742
+  type: 'test'
+  ...
+# Subtest: a source archive inside another repository never reports the parent revision
+ok 414 - a source archive inside another repository never reports the parent revision
+  ---
+  duration_ms: 207.202272
+  type: 'test'
+  ...
+# Subtest: an unpacked upstream never inherits the containing project revision
+ok 415 - an unpacked upstream never inherits the containing project revision
+  ---
+  duration_ms: 175.824289
+  type: 'test'
+  ...
+# Subtest: Git is optional for generating a usable build manifest
+ok 416 - Git is optional for generating a usable build manifest
+  ---
+  duration_ms: 176.679494
+  type: 'test'
+  ...
+# Subtest: broken checkout metadata fails instead of claiming unknown or clean provenance
+ok 417 - broken checkout metadata fails instead of claiming unknown or clean provenance
+  ---
+  duration_ms: 174.020256
+  type: 'test'
+  ...
+# Subtest: configuration strings round-trip JSON escapes
+ok 418 - configuration strings round-trip JSON escapes
+  ---
+  duration_ms: 184.187401
+  type: 'test'
+  ...
+# Subtest: A32/A64 campaigns reject empty, incomplete and excessive unsupported coverage
+ok 419 - A32/A64 campaigns reject empty, incomplete and excessive unsupported coverage
+  ---
+  duration_ms: 2102.724822
+  type: 'test'
+  ...
+# Subtest: strict successful regression retains unique guest, command and fuzz evidence
+ok 420 - strict successful regression retains unique guest, command and fuzz evidence
+  ---
+  duration_ms: 2118.972378
+  type: 'test'
+  ...
+# Subtest: an early fuzz mismatch and replay corpus survive later successful campaigns
+ok 421 - an early fuzz mismatch and replay corpus survive later successful campaigns
+  ---
+  duration_ms: 1665.720252
+  type: 'test'
+  ...
+# Subtest: a PASS marker never masks nonzero process exit, and stderr is retained
+ok 422 - a PASS marker never masks nonzero process exit, and stderr is retained
+  ---
+  duration_ms: 1618.335286
+  type: 'test'
+  ...
+# Subtest: strict missing fuzz dependencies fail while ordinary regression explicitly skips
+ok 423 - strict missing fuzz dependencies fail while ordinary regression explicitly skips
+  ---
+  duration_ms: 3027.533657
+  type: 'test'
+  ...
+# Subtest: native reference failures cannot pass using otherwise matching checksum output
+ok 424 - native reference failures cannot pass using otherwise matching checksum output
+  ---
+  duration_ms: 3079.534072
+  type: 'test'
+  ...
+# Subtest: explicit CoreMark evidence remains inside the retained regression directory
+ok 425 - explicit CoreMark evidence remains inside the retained regression directory
+  ---
+  duration_ms: 1567.404501
+  type: 'test'
+  ...
+# Subtest: artifact output rejects existing directories and symlinks without changing contents
+ok 426 - artifact output rejects existing directories and symlinks without changing contents
+  ---
+  duration_ms: 19.196634
+  type: 'test'
+  ...
+# Subtest: temporary successful runs clean up and failed runs retain diagnostics
+ok 427 - temporary successful runs clean up and failed runs retain diagnostics
+  ---
+  duration_ms: 3187.59661
+  type: 'test'
+  ...
+1..427
+# tests 427
+# suites 0
+# pass 427
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17079.398594

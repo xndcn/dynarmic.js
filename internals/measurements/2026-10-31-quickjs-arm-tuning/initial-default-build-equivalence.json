@@ -1,0 +1,48 @@
+{
+  "artifactsEqualToFrozenBaseline": {
+    "quickjs-arm.bin": "aeba400ff697b77cef6b47019b1af4d373040a22e50e270040e283178a26d2f0",
+    "quickjs-wasm.js": "7fa29bd1612f75f99422dcd654c10ac429dcd60d6d31b0142febe5d7fcd39102",
+    "quickjs-wasm.wasm": "ca565f0194b415c45704d6bf5c3a6e076a32d09de5a8d5cf5067ca5e056fd9ce",
+    "quickjs-workloads.js": "cff32113b074e4a0ede55920f1b4ac8a29bbf4996f2c9deb321f7e45f8c6c31e",
+    "official-v8.js": "87f7553a974678a422e9d9d245f6b3ac80f86a503d17224d3dd33c38819400da",
+    "official-v8-adapter.js": "14ac511bfd497c6686c901919a6f8222e53501d7e835b47af976ffa4874ab9ff",
+    "official-benchmarks.json": "0ff4d09a59ffe52c01fdedeb9b3299f71d694bd314c7616020ebaa61fbc93fc5"
+  },
+  "manifestArm": {
+    "optimization": "O2",
+    "dispatch": "switch",
+    "lto": false,
+    "isa": "arm",
+    "architecture": "armv7-a",
+    "fpu": "vfpv3",
+    "floatAbi": "softfp",
+    "platformMacro": "EMSCRIPTEN",
+    "atomics": false,
+    "stackChecks": false,
+    "engineSource": {
+      "path": "quickjs.c",
+      "sha256": "a2b4b52368375244dc8b7651cb30225bd12af731b58b3569c8369dc75a002c45",
+      "bytes": 1834040
+    }
+  },
+  "manifestWasm": {
+    "optimization": "O2",
+    "dispatch": "switch",
+    "lto": false,
+    "isa": "wasm32",
+    "platformMacro": "EMSCRIPTEN",
+    "atomics": false,
+    "stackChecks": false,
+    "engineSource": {
+      "path": "quickjs.c",
+      "sha256": "a2b4b52368375244dc8b7651cb30225bd12af731b58b3569c8369dc75a002c45",
+      "bytes": 1834040
+    }
+  },
+  "threadedMacroAudit": {
+    "DIRECT_DISPATCH": 1,
+    "EMSCRIPTEN": 1,
+    "CONFIG_ATOMICS": false,
+    "CONFIG_STACK_CHECK": false
+  }
+}

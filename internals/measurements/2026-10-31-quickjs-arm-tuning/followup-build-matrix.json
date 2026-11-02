@@ -1,0 +1,164 @@
+[
+  {
+    "id": "o2-switch-thumb",
+    "configuration": {
+      "optimization": "O2",
+      "dispatch": "switch",
+      "lto": false,
+      "isa": "thumb",
+      "architecture": "armv7-a",
+      "noGcse": false,
+      "noCrossjumping": false,
+      "fpu": "vfpv3",
+      "floatAbi": "softfp",
+      "platformMacro": "EMSCRIPTEN",
+      "atomics": false,
+      "stackChecks": false,
+      "engineSource": {
+        "path": "quickjs.c",
+        "sha256": "a2b4b52368375244dc8b7651cb30225bd12af731b58b3569c8369dc75a002c45",
+        "bytes": 1834040
+      }
+    },
+    "command": [
+      "python3",
+      "examples/quickjs/build.py",
+      "--dist",
+      "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/o2-switch-thumb",
+      "--cache",
+      "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache",
+      "--emcc",
+      "/home/xiong/sandbox/emsdk/upstream/emscripten/emcc",
+      "--arm-isa",
+      "thumb"
+    ],
+    "directory": "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/o2-switch-thumb",
+    "seconds": 44.465869188308716,
+    "armBytes": 512644,
+    "armSha256": "564ba9da3f0cfad1beccd47d2dcca8023eef73f8c8efa51ee40949028bdd079e",
+    "fixedControlsMatch": true
+  },
+  {
+    "id": "o3-switch-thumb",
+    "configuration": {
+      "optimization": "O3",
+      "dispatch": "switch",
+      "lto": false,
+      "isa": "thumb",
+      "architecture": "armv7-a",
+      "noGcse": false,
+      "noCrossjumping": false,
+      "fpu": "vfpv3",
+      "floatAbi": "softfp",
+      "platformMacro": "EMSCRIPTEN",
+      "atomics": false,
+      "stackChecks": false,
+      "engineSource": {
+        "path": "quickjs.c",
+        "sha256": "a2b4b52368375244dc8b7651cb30225bd12af731b58b3569c8369dc75a002c45",
+        "bytes": 1834040
+      }
+    },
+    "command": [
+      "python3",
+      "examples/quickjs/build.py",
+      "--dist",
+      "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/o3-switch-thumb",
+      "--cache",
+      "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache",
+      "--emcc",
+      "/home/xiong/sandbox/emsdk/upstream/emscripten/emcc",
+      "--arm-isa",
+      "thumb",
+      "--arm-opt",
+      "O3"
+    ],
+    "directory": "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/o3-switch-thumb",
+    "seconds": 54.621772050857544,
+    "armBytes": 604604,
+    "armSha256": "e8b116fce9b4a87ebaf297f1a27856ebf3df22931cd271db3a3523d791e50375",
+    "fixedControlsMatch": true
+  },
+  {
+    "id": "o2-threaded-no-gcse",
+    "configuration": {
+      "optimization": "O2",
+      "dispatch": "threaded",
+      "lto": false,
+      "isa": "arm",
+      "architecture": "armv7-a",
+      "noGcse": true,
+      "noCrossjumping": false,
+      "fpu": "vfpv3",
+      "floatAbi": "softfp",
+      "platformMacro": "EMSCRIPTEN",
+      "atomics": false,
+      "stackChecks": false,
+      "engineSource": {
+        "path": "quickjs-arm.c",
+        "sha256": "f400c98ed9cc203a18e2be001f4d783f180bba3e05de328d1267478bbef9ae0a",
+        "bytes": 1834366
+      }
+    },
+    "command": [
+      "python3",
+      "examples/quickjs/build.py",
+      "--dist",
+      "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/o2-threaded-no-gcse",
+      "--cache",
+      "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache",
+      "--emcc",
+      "/home/xiong/sandbox/emsdk/upstream/emscripten/emcc",
+      "--arm-dispatch",
+      "threaded",
+      "--arm-no-gcse"
+    ],
+    "directory": "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/o2-threaded-no-gcse",
+    "seconds": 19.082521677017212,
+    "armBytes": 691252,
+    "armSha256": "6c7e25a522370e70fe1f50c158158d8ed3d3ae42c2909b5e51c86586046ee59c",
+    "fixedControlsMatch": true
+  },
+  {
+    "id": "os-threaded-no-crossjumping",
+    "configuration": {
+      "optimization": "Os",
+      "dispatch": "threaded",
+      "lto": false,
+      "isa": "arm",
+      "architecture": "armv7-a",
+      "noGcse": false,
+      "noCrossjumping": true,
+      "fpu": "vfpv3",
+      "floatAbi": "softfp",
+      "platformMacro": "EMSCRIPTEN",
+      "atomics": false,
+      "stackChecks": false,
+      "engineSource": {
+        "path": "quickjs-arm.c",
+        "sha256": "f400c98ed9cc203a18e2be001f4d783f180bba3e05de328d1267478bbef9ae0a",
+        "bytes": 1834366
+      }
+    },
+    "command": [
+      "python3",
+      "examples/quickjs/build.py",
+      "--dist",
+      "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/os-threaded-no-crossjumping",
+      "--cache",
+      "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache",
+      "--emcc",
+      "/home/xiong/sandbox/emsdk/upstream/emscripten/emcc",
+      "--arm-opt",
+      "Os",
+      "--arm-dispatch",
+      "threaded",
+      "--arm-no-crossjumping"
+    ],
+    "directory": "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/os-threaded-no-crossjumping",
+    "seconds": 19.88859272003174,
+    "armBytes": 544564,
+    "armSha256": "1c0d9aee3dda7ad29a7415ebfe46b490e82a3ae32d832ac3d9c749f2d98490b7",
+    "fixedControlsMatch": true
+  }
+]

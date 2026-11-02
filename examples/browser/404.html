@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f2">
+  <script>
+    try {
+      const theme = localStorage.getItem('dynarmic-theme');
+      if (theme === 'light' || theme === 'dark') {
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#101b20' : '#f5f6f2';
+      }
+    } catch { /* System colors remain available when storage is blocked. */ }
+  </script>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/dynarmic.js/icon.svg" type="image/svg+xml">
+  <title>Page not found · dynarmic.js</title>
+  <link rel="stylesheet" href="/dynarmic.js/styles.css">
+</head>
+<body>
+  <main class="not-found" aria-labelledby="title">
+    <p class="eyebrow">404 / Not found</p>
+    <h1 id="title">Nothing mapped<br>at this address.</h1>
+    <p class="lede">The address does not point to a published example. Return to the benchmark labs or browse the source on GitHub.</p>
+    <p><a class="button-link" href="/dynarmic.js/">Open the benchmarks <span aria-hidden="true">→</span></a> <a href="https://github.com/xndcn/dynarmic.js">View source ↗</a></p>
+  </main>
+</body>
+</html>

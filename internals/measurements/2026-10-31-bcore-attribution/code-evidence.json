@@ -1,0 +1,43 @@
+{
+  "integer_cp": {
+    "file": "capture/integer-0/9.wasm",
+    "sha256": "cbcfe7e17c2edbb6120be6e69d287b9202113efb7d44ae7ae2e486550ceea5cd",
+    "bytes": 3970,
+    "exportedFunctions": [
+      "f"
+    ],
+    "wasmLoops": 0,
+    "note": "Static captured module, including cold paths; opcode counts are not executed instruction counts."
+  },
+  "integer_llvm": {
+    "file": "capture/integer-1/9.wasm",
+    "sha256": "35b8629f9ecd61d7e596a7ece3830880bf9f14aefd0d691b088c930d5ffe0fd5",
+    "bytes": 2720,
+    "exportedFunctions": [
+      "bb_0x000100ec"
+    ],
+    "wasmLoops": 2,
+    "note": "Static captured module, including cold paths; opcode counts are not executed instruction counts."
+  },
+  "stream_cp": {
+    "file": "capture/stream-0/11.wasm",
+    "sha256": "5e33a72ef9b4594fc433243e7e6c0b07c8b12721cb4fb6d7e6048e81f4e8397e",
+    "bytes": 7346,
+    "exportedFunctions": [
+      "0",
+      "1"
+    ],
+    "wasmLoops": 2,
+    "note": "Static captured module, including cold paths; opcode counts are not executed instruction counts."
+  },
+  "stream_llvm": {
+    "file": "capture/stream-1/12.wasm",
+    "sha256": "4388f32c74b572aa64ab30be1c56fdf9a422be36960485c4a70b7d73a46db43d",
+    "bytes": 3824,
+    "exportedFunctions": [
+      "bb_0x000101ba"
+    ],
+    "wasmLoops": 2,
+    "note": "Static captured module, including cold paths; opcode counts are not executed instruction counts."
+  }
+}

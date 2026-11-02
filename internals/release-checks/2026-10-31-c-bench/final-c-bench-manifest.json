@@ -1,0 +1,562 @@
+{
+  "schema": "dynarmic.js/c-bench-build-v1",
+  "compiler": {
+    "version": "clang version 22.1.8\nTarget: x86_64-unknown-linux6.8.0-gnu2.35.0\nThread model: posix\nInstalledDir: /home/xiong/.local/lib/python3.10/site-packages/ziglang",
+    "zigVersion": "0.17.0",
+    "binary": {
+      "path": "/home/xiong/.local/lib/python3.10/site-packages/ziglang/zig",
+      "bytes": 185514480,
+      "sha256": "7c61539af19fa4082c94848f1c2b57b89e76dc6cfd5bd4c57764c3caf8f82272"
+    },
+    "frontend": "One Zig-provided Clang frontend for ARM, x86 and Wasm"
+  },
+  "commonFlags": [
+    "-O2",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-strict-aliasing",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-vectorize",
+    "-fno-slp-vectorize",
+    "-fno-unroll-loops",
+    "-fno-stack-protector",
+    "-fno-pic",
+    "-fno-pie",
+    "-fno-unwind-tables",
+    "-fno-asynchronous-unwind-tables",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-nostdlib"
+  ],
+  "targets": {
+    "arm": {
+      "flags": [
+        "-target",
+        "arm-freestanding-eabi",
+        "-mcpu=cortex_a8-neon",
+        "-mfpu=vfpv3",
+        "-mfloat-abi=softfp",
+        "-marm"
+      ],
+      "startup": "start-arm.S",
+      "linker": "link-arm.ld",
+      "isa": "ARMv7-A, VFPv3 softfp, ARM state",
+      "effectiveFlags": [
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-strict-aliasing",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-fno-vectorize",
+        "-fno-slp-vectorize",
+        "-fno-unroll-loops",
+        "-fno-stack-protector",
+        "-fno-pic",
+        "-fno-pie",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-nostdlib",
+        "-target",
+        "arm-freestanding-eabi",
+        "-mcpu=cortex_a8-neon",
+        "-mfpu=vfpv3",
+        "-mfloat-abi=softfp",
+        "-marm",
+        "-I/home/xiong/workspace/dynarmic.js/examples/c-bench"
+      ],
+      "linkFlags": [
+        "-Wl,--gc-sections",
+        "-Wl,--build-id=none",
+        "-T",
+        "/home/xiong/workspace/dynarmic.js/examples/c-bench/link-arm.ld"
+      ],
+      "assembly": {
+        "path": "arm-kernels.s",
+        "bytes": 108243,
+        "sha256": "13b16de4cbe6430b5c238eac132f783947816dc921981a115550718140779f3e"
+      }
+    },
+    "x86": {
+      "flags": [
+        "-target",
+        "x86-freestanding-none",
+        "-mcpu=pentium4",
+        "-msse2",
+        "-mfpmath=sse"
+      ],
+      "startup": "start-x86.S",
+      "linker": "link-x86.ld",
+      "isa": "i386 Pentium 4, SSE2 arithmetic, standard i386 ABI",
+      "effectiveFlags": [
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-strict-aliasing",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-fno-vectorize",
+        "-fno-slp-vectorize",
+        "-fno-unroll-loops",
+        "-fno-stack-protector",
+        "-fno-pic",
+        "-fno-pie",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-nostdlib",
+        "-target",
+        "x86-freestanding-none",
+        "-mcpu=pentium4",
+        "-msse2",
+        "-mfpmath=sse",
+        "-I/home/xiong/workspace/dynarmic.js/examples/c-bench"
+      ],
+      "linkFlags": [
+        "-Wl,--gc-sections",
+        "-Wl,--build-id=none",
+        "-T",
+        "/home/xiong/workspace/dynarmic.js/examples/c-bench/link-x86.ld"
+      ],
+      "assembly": {
+        "path": "x86-kernels.s",
+        "bytes": 114140,
+        "sha256": "74baf2d63571f83bda884618b7ede661626049c81d8376be432104e286d4a261"
+      }
+    },
+    "wasm": {
+      "flags": [
+        "-target",
+        "wasm32-freestanding"
+      ],
+      "isa": "WebAssembly scalar wasm32",
+      "effectiveFlags": [
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-strict-aliasing",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-fno-vectorize",
+        "-fno-slp-vectorize",
+        "-fno-unroll-loops",
+        "-fno-stack-protector",
+        "-fno-pic",
+        "-fno-pie",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-nostdlib",
+        "-target",
+        "wasm32-freestanding",
+        "-I/home/xiong/workspace/dynarmic.js/examples/c-bench"
+      ],
+      "linkFlags": [
+        "-Wl,--no-entry",
+        "-Wl,--export=bench_init",
+        "-Wl,--export=bench_run",
+        "-Wl,--export-memory",
+        "-Wl,--initial-memory=16777216",
+        "-Wl,--max-memory=16777216",
+        "-Wl,-z,stack-size=65536"
+      ],
+      "assembly": {
+        "path": "wasm-kernels.s",
+        "bytes": 115399,
+        "sha256": "cf05ce98a426ee720c67e4aeab06e5a198bdc3ac685260130a17a443f585f3c9"
+      }
+    }
+  },
+  "commands": [
+    [
+      "/usr/bin/python3",
+      "-m",
+      "ziglang",
+      "cc",
+      "-O2",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-strict-aliasing",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-fno-vectorize",
+      "-fno-slp-vectorize",
+      "-fno-unroll-loops",
+      "-fno-stack-protector",
+      "-fno-pic",
+      "-fno-pie",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-nostdlib",
+      "-target",
+      "arm-freestanding-eabi",
+      "-mcpu=cortex_a8-neon",
+      "-mfpu=vfpv3",
+      "-mfloat-abi=softfp",
+      "-marm",
+      "-I/home/xiong/workspace/dynarmic.js/examples/c-bench",
+      "-S",
+      "/home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c",
+      "-o",
+      "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/c-bench-cache/arm-kernels.s"
+    ],
+    [
+      "/usr/bin/python3",
+      "-m",
+      "ziglang",
+      "cc",
+      "-O2",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-strict-aliasing",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-fno-vectorize",
+      "-fno-slp-vectorize",
+      "-fno-unroll-loops",
+      "-fno-stack-protector",
+      "-fno-pic",
+      "-fno-pie",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-nostdlib",
+      "-target",
+      "arm-freestanding-eabi",
+      "-mcpu=cortex_a8-neon",
+      "-mfpu=vfpv3",
+      "-mfloat-abi=softfp",
+      "-marm",
+      "-I/home/xiong/workspace/dynarmic.js/examples/c-bench",
+      "/home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c",
+      "/home/xiong/workspace/dynarmic.js/examples/c-bench/guest.c",
+      "/home/xiong/workspace/dynarmic.js/examples/c-bench/start-arm.S",
+      "-Wl,--gc-sections",
+      "-Wl,--build-id=none",
+      "-T",
+      "/home/xiong/workspace/dynarmic.js/examples/c-bench/link-arm.ld",
+      "-o",
+      "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/c-bench-cache/c-bench-arm.elf"
+    ],
+    [
+      "/usr/bin/python3",
+      "-m",
+      "ziglang",
+      "objcopy",
+      "-O",
+      "binary",
+      "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/c-bench-cache/c-bench-arm.elf",
+      "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist/c-bench-arm.bin"
+    ],
+    [
+      "/usr/bin/python3",
+      "-m",
+      "ziglang",
+      "cc",
+      "-O2",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-strict-aliasing",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-fno-vectorize",
+      "-fno-slp-vectorize",
+      "-fno-unroll-loops",
+      "-fno-stack-protector",
+      "-fno-pic",
+      "-fno-pie",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-nostdlib",
+      "-target",
+      "x86-freestanding-none",
+      "-mcpu=pentium4",
+      "-msse2",
+      "-mfpmath=sse",
+      "-I/home/xiong/workspace/dynarmic.js/examples/c-bench",
+      "-S",
+      "/home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c",
+      "-o",
+      "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/c-bench-cache/x86-kernels.s"
+    ],
+    [
+      "/usr/bin/python3",
+      "-m",
+      "ziglang",
+      "cc",
+      "-O2",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-strict-aliasing",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-fno-vectorize",
+      "-fno-slp-vectorize",
+      "-fno-unroll-loops",
+      "-fno-stack-protector",
+      "-fno-pic",
+      "-fno-pie",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-nostdlib",
+      "-target",
+      "x86-freestanding-none",
+      "-mcpu=pentium4",
+      "-msse2",
+      "-mfpmath=sse",
+      "-I/home/xiong/workspace/dynarmic.js/examples/c-bench",
+      "/home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c",
+      "/home/xiong/workspace/dynarmic.js/examples/c-bench/guest.c",
+      "/home/xiong/workspace/dynarmic.js/examples/c-bench/start-x86.S",
+      "-Wl,--gc-sections",
+      "-Wl,--build-id=none",
+      "-T",
+      "/home/xiong/workspace/dynarmic.js/examples/c-bench/link-x86.ld",
+      "-o",
+      "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist/c-bench-x86.elf"
+    ],
+    [
+      "/usr/bin/python3",
+      "-m",
+      "ziglang",
+      "cc",
+      "-O2",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-strict-aliasing",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-fno-vectorize",
+      "-fno-slp-vectorize",
+      "-fno-unroll-loops",
+      "-fno-stack-protector",
+      "-fno-pic",
+      "-fno-pie",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-nostdlib",
+      "-target",
+      "wasm32-freestanding",
+      "-I/home/xiong/workspace/dynarmic.js/examples/c-bench",
+      "-S",
+      "/home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c",
+      "-o",
+      "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/c-bench-cache/wasm-kernels.s"
+    ],
+    [
+      "/usr/bin/python3",
+      "-m",
+      "ziglang",
+      "cc",
+      "-O2",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-strict-aliasing",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-fno-vectorize",
+      "-fno-slp-vectorize",
+      "-fno-unroll-loops",
+      "-fno-stack-protector",
+      "-fno-pic",
+      "-fno-pie",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-nostdlib",
+      "-target",
+      "wasm32-freestanding",
+      "-I/home/xiong/workspace/dynarmic.js/examples/c-bench",
+      "/home/xiong/workspace/dynarmic.js/examples/c-bench/kernels.c",
+      "-Wl,--no-entry",
+      "-Wl,--export=bench_init",
+      "-Wl,--export=bench_run",
+      "-Wl,--export-memory",
+      "-Wl,--initial-memory=16777216",
+      "-Wl,--max-memory=16777216",
+      "-Wl,-z,stack-size=65536",
+      "-o",
+      "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist/c-bench.wasm"
+    ]
+  ],
+  "artifacts": [
+    {
+      "path": "c-bench-arm.bin",
+      "bytes": 1196,
+      "sha256": "abf71d3a0f2a4b57a62d03c886126eec97499944dd68634f4969a2862068edfa"
+    },
+    {
+      "path": "c-bench-x86.elf",
+      "bytes": 16140,
+      "sha256": "3f780a81b70ec71339b5abeb95e45f58d3fc4bb66db8c4ecaae5039a48aadb4b"
+    },
+    {
+      "path": "c-bench.wasm",
+      "bytes": 6124,
+      "sha256": "ce492306c7ec5d91f4f5fe420f6fd332642ad5c92649c21c583ae2fe10183c1e"
+    },
+    {
+      "path": "c-bench-reference.json",
+      "bytes": 2619,
+      "sha256": "1ec94ac79cf3c1500da93240f9c6af607bca0b9527c3a63ff0a2b2330812343f"
+    },
+    {
+      "path": "c-bench-source.c",
+      "bytes": 4623,
+      "sha256": "e320aef8b6978e5c08888284026cb9a3cf41c8961770a958d236ddc6cc948fb9"
+    },
+    {
+      "path": "c-bench-v86.js",
+      "bytes": 359857,
+      "sha256": "e257912c4a1129e36a86c1e2df69904ab969d87bffd24aa6676e84d6ddffc1c6"
+    },
+    {
+      "path": "c-bench-v86.wasm",
+      "bytes": 2007347,
+      "sha256": "2f0c4150f266415b754a84a32e6f8e4c975a1d3abb94c78b047fa30027db1ef1"
+    },
+    {
+      "path": "c-bench-v86-LICENSE.txt",
+      "bytes": 41452,
+      "sha256": "b0a9ae8782911c74a3301f79a106ba11f57ec58b2ca48b4f1f51d5456802607e"
+    }
+  ],
+  "sources": [
+    {
+      "path": "examples/c-bench/build.py",
+      "bytes": 8135,
+      "sha256": "068c21f804557909084f9fc40aef350c687e8ff98c4e2d480a0e1e1a327ecece"
+    },
+    {
+      "path": "examples/c-bench/reference.py",
+      "bytes": 4943,
+      "sha256": "ce5e2461a21cec72aea19fddb8b57d69b5647a8bd4ab6b80369bc58b5ddb498e"
+    },
+    {
+      "path": "examples/c-bench/kernels.c",
+      "bytes": 4239,
+      "sha256": "7b042c7adf8c6d78945431dce38e27cb435abb161f8f3939a5571baa4ba7bf75"
+    },
+    {
+      "path": "examples/c-bench/kernels.h",
+      "bytes": 349,
+      "sha256": "094738020bc75a76f0b8c3a0fd0530db70c4f9f728ac4d02a4254fb6810e4825"
+    },
+    {
+      "path": "examples/c-bench/guest.c",
+      "bytes": 924,
+      "sha256": "273e37d49725b9253d1176b800a19abbf9cfcc4c9ec68bf9771ed83f7b173faa"
+    },
+    {
+      "path": "examples/c-bench/start-arm.S",
+      "bytes": 184,
+      "sha256": "66751fc591220002502dba7c6527905b66cdd92dda5d5e645352ed0732a87000"
+    },
+    {
+      "path": "examples/c-bench/start-x86.S",
+      "bytes": 687,
+      "sha256": "5b356b1706b99d37099f96fa28b0d9b1ea2112a91315a6c05b1602c11e5f1699"
+    },
+    {
+      "path": "examples/c-bench/link-arm.ld",
+      "bytes": 389,
+      "sha256": "b58ed28357f87d6f64852c1a64f1f326822c781589849493779d6a16f799275f"
+    },
+    {
+      "path": "examples/c-bench/link-x86.ld",
+      "bytes": 560,
+      "sha256": "ba531baabecd32cb5c6e2fd10ec4c6051e533ee465d89d4859936d0fc770c59c"
+    },
+    {
+      "path": "examples/c-bench/licenses/v86-third-party.txt",
+      "bytes": 40144,
+      "sha256": "be31e05bd419dbcb184506d49190983caecd9f778f094e7c69f4ce70c0b1c649"
+    }
+  ],
+  "v86": {
+    "version": "0.5.473+g315b2b0",
+    "revision": "315b2b0b758703ef0e6cc7b4088d6068f83f3c20",
+    "url": "https://registry.npmjs.org/v86/-/v86-0.5.473.tgz",
+    "archiveIntegrity": "sha512-mNHB0DXDmfxn0CrlqCmlgMR1W7aKuD+sHmSctLcTROOwpOvbE4qsAhmaE6Vy+riQfcE4PfA2xvW59/ZXsYnHNw==",
+    "archive": {
+      "path": "v86-0.5.473.tgz",
+      "bytes": 4218519,
+      "sha256": "364ab67a68c1d83646e2ddf7caf73c24574694a132b2b43689ad0f72e7242636"
+    },
+    "additionalNotices": {
+      "path": "examples/c-bench/licenses/v86-third-party.txt",
+      "bytes": 40144,
+      "sha256": "be31e05bd419dbcb184506d49190983caecd9f778f094e7c69f4ce70c0b1c649"
+    }
+  },
+  "protocol": {
+    "firstRuns": 1,
+    "warmupRuns": 2,
+    "measuredRuns": 3,
+    "totalRuns": 6,
+    "rounds": 3,
+    "guestRamBytes": 16777216,
+    "mailboxAddress": 61440,
+    "magic": 1128418865,
+    "mailbox": {
+      "request": [
+        "magic",
+        "caseIndex",
+        "iterations",
+        "seed"
+      ],
+      "statusWord": 4,
+      "completedRunsWord": 5,
+      "checksumsWord": 6,
+      "status": {
+        "running": 1,
+        "complete": 2,
+        "invalid": 3
+      }
+    },
+    "arm": {
+      "entry": 65536,
+      "markSvc": 3,
+      "exitSvc": 0
+    },
+    "x86": {
+      "markPort": 57856,
+      "exitPort": 57864,
+      "markValues": [
+        0,
+        1
+      ]
+    },
+    "wasm": {
+      "initExport": "bench_init",
+      "runExport": "bench_run"
+    }
+  },
+  "semantics": {
+    "optimization": "O2",
+    "scalar": true,
+    "vectorization": false,
+    "unrolling": false,
+    "fastMath": false,
+    "fpContraction": false,
+    "libc": false,
+    "malloc": false,
+    "floatingPointOracle": "All dyadic operations are exact in binary64, verified by independent integer numerators",
+    "branchWork": "Data-dependent branch selects distinct noinline callees"
+  }
+}

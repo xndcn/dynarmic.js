@@ -1,0 +1,214 @@
+name: Browser Worker
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+    paths:
+      - 'examples/**'
+      - 'src/**'
+      - 'patches/**'
+      - 'externals/dynarmic'
+      - 'tests/bench/**'
+      - 'tests/browser/**'
+      - 'tests/guest/start.S'
+      - 'tests/guest/link.ld'
+      - 'tests/guest64/**'
+      - 'tests/hosts/jit_cachepopbench.cpp'
+      - 'tests/hosts/stats_test.cpp'
+      - 'tests/hosts/region_diagnostics_test.cpp'
+      - 'tests/hosts/runtime_table_test.cpp'
+      - 'tests/fuzz/**'
+      - 'cmake/**'
+      - 'CMakeLists.txt'
+      - 'tests/CMakeLists.txt'
+      - '.github/workflows/browser.yml'
+permissions:
+  contents: read
+jobs:
+  worker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      matrix:
+        profile: ['OFF', 'ON']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 6.0.13
+          actions-cache-folder: .cache/emsdk
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+          install-dependencies: true
+      - uses: browser-actions/setup-firefox@v1
+        id: firefox
+        with:
+          firefox-version: latest
+      - name: Install guest and browser tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libnewlib-dev libboost-dev
+          python3 -m pip install --user ziglang==0.17.0
+      - name: Configure and build
+        run: |
+          mkdir -p /tmp/boost-headers
+          cp -a /usr/include/boost /tmp/boost-headers/
+          emcmake cmake -S . -B build-em -DCMAKE_BUILD_TYPE=Release \
+            -DBoost_INCLUDE_DIR=/tmp/boost-headers -DDYNARMIC_JS_PROFILE=${{ matrix.profile }} \
+            -DDYNARMIC_JS_EXAMPLES_REQUIRE_GUESTS=ON
+          cmake --build build-em -j2
+      - name: Minimal Node example and UI lifecycle checks
+        run: |
+          node examples/node/hello.mjs build-em/examples/browser/dist
+          python3 examples/quickjs/reference.py
+          python3 examples/c-bench/reference.py --output "$RUNNER_TEMP/c-bench-reference.json"
+          cmp "$RUNNER_TEMP/c-bench-reference.json" build-em/examples/browser/dist/c-bench-reference.json
+          node examples/quickjs/run.mjs build-em/examples/browser/dist light
+          node examples/quickjs/official-run.mjs build-em/examples/browser/dist --runtime all --case all --report official-node.json
+          node --test examples/browser/*.test.mjs examples/quickjs/*.test.mjs examples/quickjs/v86/*.test.mjs
+          python3 -m unittest discover -s tests/browser -p '*_test.py'
+      - name: Statistics snapshots and heap growth
+        run: |
+          node build-em/tests/stats_test.js
+          node build-em/tests/region_diagnostics_test.js
+          node build-em/tests/runtime_table_test.js
+          node --test tests/bench/*.test.mjs
+      - name: Browser host fault handling
+        run: node examples/browser/fault_test.mjs build-em/examples/browser
+      - name: CoreMark workload correctness
+        run: |
+          git clone https://github.com/eembc/coremark.git /tmp/coremark-source
+          git -C /tmp/coremark-source checkout --detach 1f483d5b8316753a742cbf5590caf5bd0a4e4777
+          python3 tests/bench/coremark/build.py /tmp/coremark-source /tmp/coremark-workload --iterations 4000
+          node tests/bench/coremark/run.mjs build-em/examples/browser /tmp/coremark-workload --runs 1 --output coremark.json
+          node tests/bench/coremark/validate.mjs coremark.json
+      - name: Retain CoreMark observations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coremark-${{ matrix.profile }}
+          path: |
+            coremark.json
+            coremark.json.failure.json
+            /tmp/coremark-workload/manifest.json
+      - name: Browser interaction and recovery checks
+        run: |
+          node tests/browser/verify_interactions.mjs \
+            "${{ steps.chrome.outputs.chrome-path }}" \
+            build-em/examples/browser/dist --report browser-interactions.json
+          node tests/browser/verify_quickjs.mjs \
+            "${{ steps.chrome.outputs.chrome-path }}" \
+            build-em/examples/browser/dist --report quickjs-interactions.json
+          node tests/browser/verify_official.mjs \
+            "${{ steps.chrome.outputs.chrome-path }}" \
+            build-em/examples/browser/dist --report official-browser.json
+          node tests/browser/verify_c_bench.mjs \
+            "${{ steps.chrome.outputs.chrome-path }}" \
+            build-em/examples/browser/dist --report c-bench-browser.json
+      - name: Retain browser interaction evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-interactions-${{ matrix.profile }}
+          path: |
+            browser-interactions.json
+            quickjs-interactions.json
+            official-node.json
+            official-browser.json
+            official-browser-*.png
+            c-bench-browser.json
+      - name: Browser benchmark artifact
+        run: |
+          node examples/browser/bench.mjs build-em/examples/browser 1 --json browser.json
+          node tests/bench/browser_validate.mjs browser.json
+      - name: Cache population correctness
+        run: |
+          node tests/bench/cache_population_run.mjs build-em/tests --runs 1 --output cache-population.json
+          node tests/bench/cache_population_validate.mjs cache-population.json
+      - name: Retain cache population samples
+        uses: actions/upload-artifact@v4
+        with:
+          name: cache-population-${{ matrix.profile }}
+          path: cache-population.json
+      - name: Firefox Worker page
+        run: |
+          node examples/browser/verify_browser.mjs \
+            "${{ steps.firefox.outputs.firefox-path }}" \
+            build-em/examples/browser/dist --report browser-firefox-worker.json
+          node examples/browser/verify_browser.mjs \
+            "${{ steps.firefox.outputs.firefox-path }}" \
+            build-em/examples/browser/dist --quickjs --report browser-firefox-quickjs.json
+          node examples/browser/verify_browser.mjs \
+            "${{ steps.firefox.outputs.firefox-path }}" \
+            build-em/examples/browser/dist --official --report browser-firefox-official.json
+          node examples/browser/verify_browser.mjs \
+            "${{ steps.firefox.outputs.firefox-path }}" \
+            build-em/examples/browser/dist --cbench --report browser-firefox-cbench.json
+      - name: Retain Firefox reports on success and failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-firefox-${{ matrix.profile }}-${{ github.run_attempt }}
+          path: browser-firefox-*.json
+          if-no-files-found: warn
+      - name: Checked-in Unicorn corpus
+        run: |
+          python3 -m pip install --user unicorn==2.1.4 capstone==5.0.9
+          python3 tests/fuzz/check_corpus.py \
+            --a32-host build-em/tests/a32_fuzz.js \
+            --a64-host build-em/tests/a64_fuzz.js
+
+  region-diagnostics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        profile: ['OFF', 'ON']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 6.0.13
+          actions-cache-folder: .cache/emsdk
+      - uses: browser-actions/setup-firefox@v1
+        id: firefox
+        with:
+          firefox-version: latest
+      - name: Install guest and Boost tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libnewlib-dev libboost-dev
+          python3 -m pip install --user ziglang==0.17.0
+          mkdir -p /tmp/boost-headers
+          cp -a /usr/include/boost /tmp/boost-headers/
+      - name: Configure diagnostic host
+        run: |
+          emcmake cmake -S . -B build-em -DCMAKE_BUILD_TYPE=Release \
+            -DBoost_INCLUDE_DIR=/tmp/boost-headers \
+            -DDYNARMIC_JS_PROFILE=${{ matrix.profile }} \
+            -DDYNARMIC_JS_REGION_DIAGNOSTICS=ON \
+            -DDYNARMIC_JS_TESTS=ON -DDYNARMIC_JS_EXAMPLES=ON \
+            -DDYNARMIC_JS_EXAMPLES_REQUIRE_GUESTS=ON
+          grep -q '^DYNARMIC_JS_REGION_DIAGNOSTICS:BOOL=ON$' build-em/CMakeCache.txt
+          grep -q '^DYNARMIC_JS_PROFILE:BOOL=${{ matrix.profile }}$' build-em/CMakeCache.txt
+          cmake --build build-em -j2 --target region_diagnostics_test arm_jit browser_page
+      - name: Diagnostic publication and ownership
+        run: node build-em/tests/region_diagnostics_test.js
+      - name: Diagnostic browser host and Firefox Worker
+        run: |
+          node examples/browser/fault_test.mjs build-em/examples/browser
+          node examples/browser/verify_browser.mjs \
+            "${{ steps.firefox.outputs.firefox-path }}" \
+            build-em/examples/browser/dist

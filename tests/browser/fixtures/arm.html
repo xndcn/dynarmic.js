@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARM host regression fixture</title><link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script><script src="site.js" defer></script></head>
+<body><main>
+  <section id="demo" class="demo section" aria-labelledby="demo-title">
+    <div class="section-heading"><div><p class="eyebrow">03 / ARM playground</p><h2 id="demo-title">Don't take our word for it.<br><span>Run the instructions.</span></h2></div><p class="section-intro">One C program, compiled for two architectures. Both outputs are checked against a native reference on this device.</p></div>
+    <div class="workbench">
+      <div class="bench-header"><span class="mono-label">ARM execution lab</span><span class="local-label"><span aria-hidden="true">●</span> Execution stays on your device</span></div>
+      <div class="controls">
+        <div class="actions"><button id="run" type="button" disabled>Run demo guests <span aria-hidden="true">→</span></button><button id="stop" class="secondary" type="button" disabled>Stop</button></div>
+        <div class="mode-control"><label for="memory-mode">Guest memory</label><select id="memory-mode" aria-describedby="mode-hint"><option value="2" selected>Flat window</option><option value="1">Page table</option><option value="0">Callbacks</option></select></div>
+      </div>
+      <p id="mode-hint" class="hint">Flat window uses contiguous guest RAM with bounds checks and callbacks outside the window.</p>
+      <p id="status" class="status" role="status" aria-live="polite" aria-atomic="true">Ready. Run both guests to verify the results.</p>
+      <noscript><p class="notice">Enable JavaScript to run this demo. You can still explore the architecture and build guides below.</p></noscript>
+      <div class="result-grid">
+        <article class="result-card" aria-labelledby="arch0">
+          <div class="card-heading"><h3 id="arch0">ARM32 <span>ARMv7-A</span></h3><span id="status0" class="badge">Not run</span></div>
+          <div class="output-heading" aria-hidden="true"><span>stdout</span><span>guest / 01</span></div><pre id="out0">Guest output will appear here.</pre>
+          <details><summary>Timing &amp; JIT statistics</summary><dl id="stats0"><dt>Status</dt><dd>Run the guest to see statistics.</dd></dl></details>
+        </article>
+        <article class="result-card" aria-labelledby="arch1">
+          <div class="card-heading"><h3 id="arch1">AArch64 <span>ARMv8-A</span></h3><span id="status1" class="badge">Not run</span></div>
+          <div class="output-heading" aria-hidden="true"><span>stdout</span><span>guest / 02</span></div><pre id="out1">Guest output will appear here.</pre>
+          <details><summary>Timing &amp; JIT statistics</summary><dl id="stats1"><dt>Status</dt><dd>Run the guest to see statistics.</dd></dl></details>
+        </article>
+      </div>
+      <details class="reference"><summary>Native reference output</summary><p class="hint">Generated from the same C source by the build machine's native compiler. Each guest must match this text exactly.</p><pre id="expected">Loaded when you run the demo.</pre></details>
+      <p class="hint timing-note">Each guest starts with a fresh JIT. Timings include translation and compilation; they are observations on this device, not a controlled benchmark. Stop ends the Worker. A run is limited to 120 seconds.</p>
+    </div>
+    <div class="workloads-heading"><h3>Inside the guest</h3><a class="text-link" href="https://github.com/xndcn/dynarmic.js/blob/main/examples/browser/guest/demo.c">Read the C source <span aria-hidden="true">↗</span></a></div>
+    <div class="kernel-grid">
+      <article><span class="kernel-number" aria-hidden="true">01</span><div><p class="kernel-kind">Integer arithmetic</p><h3>LCG loop</h3><p>64 million pseudo-random steps. A tight loop through integer operations.</p></div></article>
+      <article><span class="kernel-number" aria-hidden="true">02</span><div><p class="kernel-kind">Memory access</p><h3>Prime sieve</h3><p>Find primes below four million with loads and stores in guest RAM.</p></div></article>
+      <article><span class="kernel-number" aria-hidden="true">03</span><div><p class="kernel-kind">Floating point</p><h3>Pi approximation</h3><p>20 million terms of the Leibniz series in double-precision arithmetic.</p></div></article>
+    </div>
+  </section>
+</main></body></html>

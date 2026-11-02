@@ -1,0 +1,169 @@
+{
+  "status": "pass",
+  "command": "tests/regress.sh --strict build-em build-native",
+  "exitCode": 0,
+  "skips": [],
+  "fuzz": {
+    "campaigns": [
+      {
+        "campaign": "a32-region-mode0-seed60",
+        "cases": 800,
+        "compared": 717,
+        "unsupported": 83,
+        "mismatches": 0
+      },
+      {
+        "campaign": "a32-region-mode1-seed61",
+        "cases": 800,
+        "compared": 713,
+        "unsupported": 87,
+        "mismatches": 0
+      },
+      {
+        "campaign": "a32-region-mode2-seed62",
+        "cases": 800,
+        "compared": 733,
+        "unsupported": 67,
+        "mismatches": 0
+      },
+      {
+        "campaign": "a32-straight-mode0-seed50",
+        "cases": 1500,
+        "compared": 1138,
+        "unsupported": 362,
+        "mismatches": 0
+      },
+      {
+        "campaign": "a32-straight-mode1-seed51",
+        "cases": 1500,
+        "compared": 1127,
+        "unsupported": 373,
+        "mismatches": 0
+      },
+      {
+        "campaign": "a32-straight-mode2-seed52",
+        "cases": 1500,
+        "compared": 1162,
+        "unsupported": 338,
+        "mismatches": 0
+      },
+      {
+        "campaign": "a64-loop-mode0-seed80",
+        "cases": 1000,
+        "compared": 973,
+        "unsupported": 27,
+        "mismatches": 0
+      },
+      {
+        "campaign": "a64-loop-mode1-seed81",
+        "cases": 1000,
+        "compared": 973,
+        "unsupported": 27,
+        "mismatches": 0
+      },
+      {
+        "campaign": "a64-loop-mode2-seed82",
+        "cases": 1000,
+        "compared": 984,
+        "unsupported": 16,
+        "mismatches": 0
+      },
+      {
+        "campaign": "a64-region-mode0-seed90",
+        "cases": 1000,
+        "compared": 980,
+        "unsupported": 20,
+        "mismatches": 0
+      },
+      {
+        "campaign": "a64-region-mode1-seed91",
+        "cases": 1000,
+        "compared": 981,
+        "unsupported": 19,
+        "mismatches": 0
+      },
+      {
+        "campaign": "a64-region-mode2-seed92",
+        "cases": 1000,
+        "compared": 983,
+        "unsupported": 17,
+        "mismatches": 0
+      },
+      {
+        "campaign": "a64-straight-mode0-seed70",
+        "cases": 1500,
+        "compared": 1452,
+        "unsupported": 48,
+        "mismatches": 0
+      },
+      {
+        "campaign": "a64-straight-mode1-seed71",
+        "cases": 1500,
+        "compared": 1458,
+        "unsupported": 42,
+        "mismatches": 0
+      },
+      {
+        "campaign": "a64-straight-mode2-seed72",
+        "cases": 1500,
+        "compared": 1458,
+        "unsupported": 42,
+        "mismatches": 0
+      },
+      {
+        "campaign": "thumb-region-mode0-seed60",
+        "cases": 800,
+        "compared": 780,
+        "unsupported": 20,
+        "mismatches": 0
+      },
+      {
+        "campaign": "thumb-region-mode1-seed61",
+        "cases": 800,
+        "compared": 768,
+        "unsupported": 32,
+        "mismatches": 0
+      },
+      {
+        "campaign": "thumb-region-mode2-seed62",
+        "cases": 800,
+        "compared": 777,
+        "unsupported": 23,
+        "mismatches": 0
+      },
+      {
+        "campaign": "thumb-straight-mode0-seed50",
+        "cases": 1500,
+        "compared": 1430,
+        "unsupported": 70,
+        "mismatches": 0
+      },
+      {
+        "campaign": "thumb-straight-mode1-seed51",
+        "cases": 1500,
+        "compared": 1439,
+        "unsupported": 61,
+        "mismatches": 0
+      },
+      {
+        "campaign": "thumb-straight-mode2-seed52",
+        "cases": 1500,
+        "compared": 1433,
+        "unsupported": 67,
+        "mismatches": 0
+      }
+    ],
+    "totals": {
+      "cases": 24300,
+      "compared": 22459,
+      "unsupported": 1841,
+      "mismatches": 0
+    }
+  },
+  "browserHost": {
+    "normalAndFaultRuns": 18,
+    "ramBoundaryRuns": 216
+  },
+  "artifacts": "test-results/npm-strict-regression",
+  "note": "CoreMark was not requested; no CoreMark or comparative-performance claim is made."
+}

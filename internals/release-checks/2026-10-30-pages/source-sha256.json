@@ -1,0 +1,17 @@
+{
+  "examples/browser/index.html": "927c789678ab7ef3d3972e9d3302302e9709daa56134be93fa46e1d19b1df6b2",
+  "examples/browser/styles.css": "a3e549f7bc5dc0edbf58151eadaf1aab69ccc2ff278c27aee9aa2532006664e3",
+  "examples/browser/site.js": "033e22c81188f9f4e94e23f820e2ade2eb4886e9fff63d18ff59674378f0198a",
+  "examples/browser/app.js": "99012c5819f3e45842fd9b017a4a50cbfc9d43c9f0f4e23bbd8df54b6e9e92d9",
+  "examples/browser/worker.js": "e39b04e15598faeeebc83d4145a2ccd62604277ae6fc20f80975460da8c6b8f1",
+  "examples/browser/404.html": "bd256b50165b8595476db488a73e5d7f044bd2d3ee986c8bc5c83301d9134fa0",
+  "examples/browser/package_source.py": "815033908f8167dcfdeb6690472d91f2647fd8ada2d9d6eb0f5e8a6e136425e0",
+  "examples/browser/CMakeLists.txt": "ac0aa84ff49bb9c1366b4c1986faeb64d7d6094c97cf82c48b7ae17e9f575c02",
+  "examples/browser/social-card.svg": "77b99d4178e19be98236566c302d58650166511e546e0605679c86e252c21409",
+  "examples/browser/social-card.png": "b1d660b4cbde739fd93a6232580f86dfc586e5f6186d32606febcc19b094aa80",
+  "examples/browser/site.webmanifest": "6b4f63da77852c86af24db060f3fefdbd952a282ba507c439bebeede8f8b0e1b",
+  ".github/workflows/pages.yml": "c47f33fddc2afe11e901da7a9842ffa35cff565cd66ab8e93a95faf98c18f010",
+  "tests/browser/verify_interactions.mjs": "bf5243e3de22dde2d10855ab27bfc06a1198fd25f011749e6744d7db6ca0592f",
+  "tests/browser/package_source_test.py": "25812f0877ec33677a18a623d3169eb2aa4b7a91e41276cd6a44e9679c9c5d27",
+  "THIRD_PARTY_NOTICES.md": "2766482ceac3cb3819ed078c7b34b488d27f820c4aa1c70e3cc3066c1aea3d57"
+}

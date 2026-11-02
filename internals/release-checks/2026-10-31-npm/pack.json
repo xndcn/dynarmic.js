@@ -1,0 +1,86 @@
+[
+  {
+    "id": "dynarmic.js@0.1.0-alpha.0",
+    "name": "dynarmic.js",
+    "version": "0.1.0-alpha.0",
+    "size": 5831756,
+    "unpackedSize": 8078064,
+    "shasum": "63c7f7e37a5416f629aa61b4a2bd9005daf30707",
+    "integrity": "sha512-L1v+v6oMjVuUPPFfeO4xMl/eB9J6j0M3XzvCOQLIXEdQI1Ft5SagMJzb1B9odf6ujaRoFr1QSv77mkJfNkg6cQ==",
+    "filename": "dynarmic.js-0.1.0-alpha.0.tgz",
+    "files": [
+      {
+        "path": "LICENSE",
+        "size": 18092,
+        "mode": 420
+      },
+      {
+        "path": "README.md",
+        "size": 5328,
+        "mode": 420
+      },
+      {
+        "path": "REBUILD.md",
+        "size": 2010,
+        "mode": 420
+      },
+      {
+        "path": "THIRD_PARTY_NOTICES.md",
+        "size": 6682,
+        "mode": 420
+      },
+      {
+        "path": "index.d.ts",
+        "size": 3908,
+        "mode": 420
+      },
+      {
+        "path": "index.js",
+        "size": 7530,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 1251,
+        "mode": 420
+      },
+      {
+        "path": "runtime-build-manifest.json",
+        "size": 432809,
+        "mode": 420
+      },
+      {
+        "path": "runtime-licenses.txt",
+        "size": 102691,
+        "mode": 420
+      },
+      {
+        "path": "runtime.mjs",
+        "size": 25234,
+        "mode": 420
+      },
+      {
+        "path": "runtime.wasm",
+        "size": 2246214,
+        "mode": 420
+      },
+      {
+        "path": "source-manifest.json",
+        "size": 6730,
+        "mode": 420
+      },
+      {
+        "path": "source.tar.gz",
+        "size": 5216337,
+        "mode": 420
+      },
+      {
+        "path": "verify.mjs",
+        "size": 3248,
+        "mode": 420
+      }
+    ],
+    "entryCount": 14,
+    "bundled": []
+  }
+]

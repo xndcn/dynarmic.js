@@ -1,0 +1,19 @@
+[
+  "taskset",
+  "-c",
+  "8,10,12,14",
+  "node",
+  "examples/quickjs/tune-arm.mjs",
+  "--variant",
+  "o2-switch=/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/o2-switch",
+  "--variant",
+  "o2-switch-thumb=/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/o2-switch-thumb",
+  "--baseline",
+  "o2-switch",
+  "--cases",
+  "all",
+  "--repeats",
+  "3",
+  "--output",
+  "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/confirmation-results"
+]

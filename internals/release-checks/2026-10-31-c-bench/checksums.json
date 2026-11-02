@@ -1,0 +1,130 @@
+{
+  "README.md": {
+    "bytes": 3118,
+    "sha256": "f16aa76119c38558f61c6012302d85c7dc1c41a0f7ed63509554818af83903b1"
+  },
+  "auto-quick-repeat.json": {
+    "bytes": 93584,
+    "sha256": "654a5997a9f06ac75f0f6ae7c6e4eb5ac0f63b0f5ba06194bd1bd9bc3f171a21"
+  },
+  "browser-build-complete.log": {
+    "bytes": 4643,
+    "sha256": "d1f09c70de4ee801fc6ce6d5b49c57c330a4b6d5bb6bf6fe378669eb050ebf86"
+  },
+  "browser-build-last.log": {
+    "bytes": 246,
+    "sha256": "89b43860ce47ad8eda7015a1dd2f5c2011ee4eb0b2b5c35c5b437a260ee662d7"
+  },
+  "browser-build.log": {
+    "bytes": 14905,
+    "sha256": "254cf6fba7fc50209382d7705dfccfbb6c368538a32766ae7b4c20a6faf011a6"
+  },
+  "c-bench-manifest.json": {
+    "bytes": 15442,
+    "sha256": "bbc4bb2976e1662d0ef78bafaea3d52285fb1a06fe3c57fa69cead8baa7a8939"
+  },
+  "c-bench-reference.json": {
+    "bytes": 2619,
+    "sha256": "1ec94ac79cf3c1500da93240f9c6af607bca0b9527c3a63ff0a2b2330812343f"
+  },
+  "chromium-final.json": {
+    "bytes": 1972,
+    "sha256": "30f4a602f4581fe50c683d93456369abf6890270a61efe456a80d627fc0f7b73"
+  },
+  "chromium-final.log": {
+    "bytes": 6046,
+    "sha256": "657750e711db4ad4e571a1d7da14ff175a1f9631a2d9571821f02885dd55e16c"
+  },
+  "chromium-reviewed.json": {
+    "bytes": 218198,
+    "sha256": "ca035585421dea7eea53d5891f7d9ebab78dbe6ef273a96b9a8882a815ce50bd"
+  },
+  "chromium-reviewed.log": {
+    "bytes": 12162,
+    "sha256": "047727e37568f00c426463322c88c0387d536ca13d11b49a4b2860eb57f1bf93"
+  },
+  "dark.png": {
+    "bytes": 257573,
+    "sha256": "9d7734e084a5cf00166e94a9e544ce0feb3893b019d92315ec1ebe46d272938b"
+  },
+  "desktop.png": {
+    "bytes": 256098,
+    "sha256": "03d6ecd2dd43f4c0fc1aa8f0068e3973ae18fd7f84f6831a6f9776759bc3b5ac"
+  },
+  "final-build-verification.json": {
+    "bytes": 349,
+    "sha256": "749cf9746799470f9ee7b3df7bdea955e831877c750b517c5e86beb84ac90374"
+  },
+  "final-c-bench-manifest.json": {
+    "bytes": 15826,
+    "sha256": "3b4698ec946656fed67b284800a9c61f1d2b91b40216e94259f14ef8cd1e51c8"
+  },
+  "final-c-bench-v86-LICENSE.txt": {
+    "bytes": 41452,
+    "sha256": "b0a9ae8782911c74a3301f79a106ba11f57ec58b2ca48b4f1f51d5456802607e"
+  },
+  "final-wasm-build-manifest.json": {
+    "bytes": 1498,
+    "sha256": "5c0f64b5d40747e2e8b738c1875145ef6077ec9e4c7376dcc595064cc5b4e6e2"
+  },
+  "firefox.log": {
+    "bytes": 496,
+    "sha256": "8e3e7d9f162b5299511b8cae9e0b12001cb1a3c10701d9e58609417b9e5fb0e2"
+  },
+  "legacy-interactions-final.json": {
+    "bytes": 8749,
+    "sha256": "7990971215ab7db1ec0eb072f6e569854daea104d80d2832f8ae62932f1adf51"
+  },
+  "legacy-interactions-final.log": {
+    "bytes": 840,
+    "sha256": "8eea5845f9c3d25b511195343167860d36118822a1e9409e4ba52920e47f91a8"
+  },
+  "loader-validation.json": {
+    "bytes": 201,
+    "sha256": "a2c604fad1cae9bd9294da7281ca49e31b43e914ff0c9a0d9d096f1a50804e1e"
+  },
+  "loader-validation.log": {
+    "bytes": 139,
+    "sha256": "bc20c3764732c8d20a1b4f6b611abe388f3275216768f686cb94a7429daf0e9f"
+  },
+  "mobile.png": {
+    "bytes": 242702,
+    "sha256": "e2a5c3cd5580e8f54ba71f528eb744ddf9eab3b7e96573f05458fd28d1d127f9"
+  },
+  "node-tests-final.log": {
+    "bytes": 7395,
+    "sha256": "c1644a4e0892ae1fe47f2edd931bbd9558b354dec4eeac794dc0172366bf7ead"
+  },
+  "package-tests-final.log": {
+    "bytes": 121,
+    "sha256": "ccdf6465b1cb6d3448cc3735ab9c6079e0204d8a830ca966c42257abd334fcbc"
+  },
+  "package-tests.log": {
+    "bytes": 121,
+    "sha256": "0ba390e7591dde2bd2ebd6136230b06e8da870678fb893e26bb67a0fce4c17b1"
+  },
+  "quickjs-regression.json": {
+    "bytes": 23109,
+    "sha256": "072b755ddbb9724bbca94d73506422a5e810fe31842e3fdcb11548dcbdbf17cc"
+  },
+  "quickjs-regression.log": {
+    "bytes": 709,
+    "sha256": "f0fd84914bee59e7d8dc0896fc6993e9862e784e284bf5193397f3230489af36"
+  },
+  "small.png": {
+    "bytes": 250425,
+    "sha256": "cc0532d15b6983e5419d8b03ddaacf185d451cce756244b85a27824b356db441"
+  },
+  "unchanged-existing-assets.json": {
+    "bytes": 2133,
+    "sha256": "c292a39d3e095f7b3a7546892f9558ab8395bd848f24ca9edc20bdcc45dc38d2"
+  },
+  "validation.json": {
+    "bytes": 501,
+    "sha256": "f4989c2e5ef498f9c72fc985e8965975866b52aeb0f04a82424443c182d4604b"
+  },
+  "wasm-build-manifest.json": {
+    "bytes": 1498,
+    "sha256": "3bed4b3e7984e40658470b43ec0bca7d015d0e9e06ccf9305d96e0f0d30dbe91"
+  }
+}

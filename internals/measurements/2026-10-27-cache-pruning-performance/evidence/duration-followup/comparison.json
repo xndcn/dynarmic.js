@@ -1,0 +1,235 @@
+{
+  "schema": "dynarmic.js/coremark-comparison-v1",
+  "durationQualified": true,
+  "pass": false,
+  "cases": [
+    {
+      "name": "a32-thunk",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 68244.253,
+          "candidate": 68389.878,
+          "ratio": 1.0021338793172812,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 68315.453552,
+          "candidate": 68463.044845,
+          "ratio": 1.002160437870586,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 81.32515699980104,
+          "candidate": 83.14004799979551,
+          "ratio": 1.0223164770527147,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 751278,
+          "candidate": 735561,
+          "ratio": 0.979079648279332,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "a32-page-table",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 31167.913,
+          "candidate": 31594.377,
+          "ratio": 1.0136827897331464,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 31248.537517,
+          "candidate": 31678.487405,
+          "ratio": 1.0137590403316026,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 84.94749299993885,
+          "candidate": 93.1849820000667,
+          "ratio": 1.0969715374664886,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 873161,
+          "candidate": 857444,
+          "ratio": 0.9819998831830555,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "a32-flat-window",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 25474.304,
+          "candidate": 25280.814,
+          "ratio": 0.9924045029846545,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 25552.947175999998,
+          "candidate": 25365.10755,
+          "ratio": 0.992649003470863,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 80.30691299999495,
+          "candidate": 88.52237900003811,
+          "ratio": 1.1023008567150836,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 820635,
+          "candidate": 804918,
+          "ratio": 0.9808477581385147,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "a64-thunk",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 62164.901,
+          "candidate": 64626.798,
+          "ratio": 1.039602685122912,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 62282.406083999995,
+          "candidate": 64744.94859,
+          "ratio": 1.0395383329070298,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 132.89071400003945,
+          "candidate": 131.70247699980473,
+          "ratio": 0.9910585400253447,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 652432,
+          "candidate": 619484,
+          "ratio": 0.949499717978272,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "a64-page-table",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 32369.929,
+          "candidate": 32492.5,
+          "ratio": 1.0037865699365605,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 32521.976332,
+          "candidate": 32620.553494,
+          "ratio": 1.0030310938361704,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 136.3040659998523,
+          "candidate": 143.07756600001255,
+          "ratio": 1.0496940421437435,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 768021,
+          "candidate": 735073,
+          "ratio": 0.957100131376616,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "a64-flat-window",
+      "metrics": [
+        {
+          "metric": "kernelMedianMs",
+          "baseline": 23803.374,
+          "candidate": 22903.428,
+          "ratio": 0.9621925026258883,
+          "limit": 1.0526315789473684,
+          "pass": true
+        },
+        {
+          "metric": "runMedianMs",
+          "baseline": 23919.663049,
+          "candidate": 23033.98574,
+          "ratio": 0.9629728350610263,
+          "limit": 1.15,
+          "pass": true
+        },
+        {
+          "metric": "compileMedianMs",
+          "baseline": 126.85211699995959,
+          "candidate": 148.9647320000812,
+          "ratio": 1.1743180604556143,
+          "limit": 1.15,
+          "pass": false
+        },
+        {
+          "metric": "emittedBytesMedian",
+          "baseline": 708917,
+          "candidate": 675969,
+          "ratio": 0.9535234731287302,
+          "limit": 1.1,
+          "pass": true
+        }
+      ],
+      "pass": false
+    }
+  ]
+}

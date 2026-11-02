@@ -1,0 +1,541 @@
+{
+  "schema": "dynarmic.js/arm-tuning-followup-static-review-v1",
+  "reviewedAt": "2026-10-30T17:54:53.849143+00:00",
+  "scope": "Static inspection only; no compilation or benchmark execution",
+  "matrixSha256": "5207226340bf57049fe69b0c87eb3bf80635796892c2d187279b3e38f2d8f64e",
+  "variants": [
+    {
+      "id": "o2-switch-thumb",
+      "baseline": "o2-switch",
+      "configuration": {
+        "optimization": "O2",
+        "dispatch": "switch",
+        "lto": false,
+        "isa": "thumb",
+        "architecture": "armv7-a",
+        "noGcse": false,
+        "noCrossjumping": false,
+        "fpu": "vfpv3",
+        "floatAbi": "softfp",
+        "platformMacro": "EMSCRIPTEN",
+        "atomics": false,
+        "stackChecks": false,
+        "engineSource": {
+          "path": "quickjs.c",
+          "sha256": "a2b4b52368375244dc8b7651cb30225bd12af731b58b3569c8369dc75a002c45",
+          "bytes": 1834040
+        }
+      },
+      "effectiveFlags": [
+        "-O2",
+        "-fwrapv",
+        "-fno-strict-aliasing",
+        "-D_GNU_SOURCE",
+        "-DCONFIG_VERSION=\"2025-09-13\"",
+        "-DEMSCRIPTEN",
+        "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13",
+        "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache",
+        "-march=armv7-a",
+        "-mfpu=vfpv3",
+        "-mfloat-abi=softfp",
+        "-mthumb",
+        "-nostartfiles",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wl,--gc-sections",
+        "-T",
+        "/home/xiong/workspace/dynarmic.js/examples/quickjs/link.ld"
+      ],
+      "fixedControlsMatchBaseline": {
+        "arm_jit.js": true,
+        "arm_jit.wasm": true,
+        "arm_bench_jit.js": true,
+        "arm_bench_jit.wasm": true,
+        "quickjs-wasm.js": true,
+        "quickjs-wasm.wasm": true,
+        "official-v8.js": true,
+        "official-v8-adapter.js": true,
+        "official-benchmarks.json": true,
+        "quickjs-workloads.js": true
+      },
+      "candidate": {
+        "elfSha256": "0e99f807064dfff90996dbb0410c89d3c71113954fa5027393515070713b70f7",
+        "binarySha256": "564ba9da3f0cfad1beccd47d2dcca8023eef73f8c8efa51ee40949028bdd079e",
+        "binaryBytes": 512644,
+        "elfImageMatchesBinary": true,
+        "interpreter": {
+          "symbol": "JS_CallInternal",
+          "address": "00016c10",
+          "bytes": 28676,
+          "movPcRegisterSites": 0,
+          "pcRelativeTableSites": 0,
+          "thumbTableBranches": 3,
+          "dispatchTable": null,
+          "samples": [
+            "   16d8e:\t1e63      \tsubs\tr3, r4, #1\n   16d90:\t2bf6      \tcmp\tr3, #246\t; 0xf6\n   16d92:\tf206 8715 \tbhi.w\t1dbc0 <JS_CallInternal+0x6fb0>\n   16d96:\te8df f013 \ttbh\t[pc, r3, lsl #1]",
+            "   1713e:\t3c76      \tsubs\tr4, #118\t; 0x76\n   17140:\t2c03      \tcmp\tr4, #3\n   17142:\tf206 850c \tbhi.w\t1db5e <JS_CallInternal+0x6f4e>\n   17146:\te8df f014 \ttbh\t[pc, r4, lsl #1]",
+            "   18a48:\t1cb5      \tadds\tr5, r6, #2\n   18a4a:\t2b06      \tcmp\tr3, #6\n   18a4c:\tf205 8085 \tbhi.w\t1db5a <JS_CallInternal+0x6f4a>\n   18a50:\te8df f013 \ttbh\t[pc, r3, lsl #1]"
+          ]
+        },
+        "startup": "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/objects/o2-switch-thumb.elf:     file format elf32-littlearm\n\n\nDisassembly of section .text:\n\n00010000 <_start>:\n   10000:\te59fd01c \tldr\tsp, [pc, #28]\t; 10024 <_start+0x24>\n   10004:\te3a00a0f \tmov\tr0, #61440\t; 0xf000\n   10008:\te5901000 \tldr\tr1, [r0]\n   1000c:\te3510002 \tcmp\tr1, #2\n   10010:\t05901014 \tldreq\tr1, [r0, #20]\n   10014:\t01a0d001 \tmoveq\tsp, r1\n   10018:\tfa015e61 \tblx\t679a4 <guest_main>\n   1001c:\tef000000 \tsvc\t0x00000000\n   10020:\teafffffe \tb\t10020 <_start+0x20>\n   10024:\t00ff0000 \t.word\t0x00ff0000",
+        "mainEntryInstructions": [
+          "000679a4 <guest_main>:",
+          "   679a4:\tf44f 4370 \tmov.w\tr3, #61440\t; 0xf000",
+          "   679a8:\t681a      \tldr\tr2, [r3, #0]",
+          "   679aa:\t2a02      \tcmp\tr2, #2",
+          "   679ac:\td12e      \tbne.n\t67a0c <guest_main+0x68>",
+          "   679ae:\tb410      \tpush\t{r4}",
+          "   679b0:\t6858      \tldr\tr0, [r3, #4]",
+          "   679b2:\t6899      \tldr\tr1, [r3, #8]"
+        ],
+        "functionSymbols": [
+          "492: 00016c11 28676 FUNC    LOCAL  DEFAULT    1 JS_CallInternal",
+          "3501: 000679a5   152 FUNC    GLOBAL DEFAULT    1 guest_main"
+        ],
+        "attributes": "Attribute Section: aeabi\nFile Attributes\n  Tag_CPU_name: \"7-A\"\n  Tag_CPU_arch: v7\n  Tag_CPU_arch_profile: Application\n  Tag_ARM_ISA_use: Yes\n  Tag_THUMB_ISA_use: Thumb-2\n  Tag_FP_arch: VFPv3\n  Tag_ABI_PCS_wchar_t: 4\n  Tag_ABI_FP_denormal: Needed\n  Tag_ABI_FP_exceptions: Needed\n  Tag_ABI_FP_number_model: IEEE 754\n  Tag_ABI_align_needed: 8-byte\n  Tag_ABI_enum_size: small\n  Tag_ABI_optimization_goals: Aggressive Speed\n  Tag_CPU_unaligned_access: v6"
+      },
+      "baselineObject": {
+        "elfSha256": "8a0736894f051d93eeaaa7865e480f7d304c2a6393b7fbd8ef8f04877ac80205",
+        "binarySha256": "aeba400ff697b77cef6b47019b1af4d373040a22e50e270040e283178a26d2f0",
+        "binaryBytes": 683252,
+        "elfImageMatchesBinary": true,
+        "interpreter": {
+          "symbol": "JS_CallInternal",
+          "address": "0001a448",
+          "bytes": 37444,
+          "movPcRegisterSites": 0,
+          "pcRelativeTableSites": 3,
+          "thumbTableBranches": 0,
+          "dispatchTable": null,
+          "samples": [
+            "   1a61c:\te4d84001 \tldrb\tr4, [r8], #1\n   1a620:\te2443001 \tsub\tr3, r4, #1\n   1a624:\te35300f6 \tcmp\tr3, #246\t; 0xf6\n   1a628:\t979ff103 \tldrls\tpc, [pc, r3, lsl #2]",
+            "   1ac60:\t1a001a42 \tbne\t21570 <JS_CallInternal+0x7128>\n   1ac64:\te2444076 \tsub\tr4, r4, #118\t; 0x76\n   1ac68:\te3540003 \tcmp\tr4, #3\n   1ac6c:\t979ff104 \tldrls\tpc, [pc, r4, lsl #2]",
+            "   1d204:\te5d63001 \tldrb\tr3, [r6, #1]\n   1d208:\te2868002 \tadd\tr8, r6, #2\n   1d20c:\te3530006 \tcmp\tr3, #6\n   1d210:\t979ff103 \tldrls\tpc, [pc, r3, lsl #2]"
+          ]
+        },
+        "startup": "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/objects/o2-switch.elf:     file format elf32-littlearm\n\n\nDisassembly of section .text:\n\n00010000 <_start>:\n   10000:\te59fd01c \tldr\tsp, [pc, #28]\t; 10024 <_start+0x24>\n   10004:\te3a00a0f \tmov\tr0, #61440\t; 0xf000\n   10008:\te5901000 \tldr\tr1, [r0]\n   1000c:\te3510002 \tcmp\tr1, #2\n   10010:\t05901014 \tldreq\tr1, [r0, #20]\n   10014:\t01a0d001 \tmoveq\tsp, r1\n   10018:\teb0204c3 \tbl\t9132c <guest_main>\n   1001c:\tef000000 \tsvc\t0x00000000\n   10020:\teafffffe \tb\t10020 <_start+0x20>\n   10024:\t00ff0000 \t.word\t0x00ff0000",
+        "mainEntryInstructions": [
+          "0009132c <guest_main>:",
+          "   9132c:\te3a03a0f \tmov\tr3, #61440\t; 0xf000",
+          "   91330:\te5932000 \tldr\tr2, [r3]",
+          "   91334:\te3520002 \tcmp\tr2, #2",
+          "   91338:\t1a00001f \tbne\t913bc <guest_main+0x90>",
+          "   9133c:\te5930004 \tldr\tr0, [r3, #4]",
+          "   91340:\te5931008 \tldr\tr1, [r3, #8]",
+          "   91344:\te5932010 \tldr\tr2, [r3, #16]"
+        ],
+        "functionSymbols": [
+          "502: 0001a448 37444 FUNC    LOCAL  DEFAULT    1 JS_CallInternal",
+          "3502: 0009132c   196 FUNC    GLOBAL DEFAULT    1 guest_main"
+        ],
+        "attributes": "Attribute Section: aeabi\nFile Attributes\n  Tag_CPU_name: \"7-A\"\n  Tag_CPU_arch: v7\n  Tag_CPU_arch_profile: Application\n  Tag_ARM_ISA_use: Yes\n  Tag_THUMB_ISA_use: Thumb-2\n  Tag_FP_arch: VFPv3\n  Tag_ABI_PCS_wchar_t: 4\n  Tag_ABI_FP_denormal: Needed\n  Tag_ABI_FP_exceptions: Needed\n  Tag_ABI_FP_number_model: IEEE 754\n  Tag_ABI_align_needed: 8-byte\n  Tag_ABI_enum_size: small\n  Tag_ABI_optimization_goals: Aggressive Speed\n  Tag_CPU_unaligned_access: v6"
+      },
+      "delta": {
+        "binaryBytes": -170608,
+        "interpreterBytes": -8768,
+        "movPcRegisterSites": 0
+      }
+    },
+    {
+      "id": "o3-switch-thumb",
+      "baseline": "o3-switch",
+      "configuration": {
+        "optimization": "O3",
+        "dispatch": "switch",
+        "lto": false,
+        "isa": "thumb",
+        "architecture": "armv7-a",
+        "noGcse": false,
+        "noCrossjumping": false,
+        "fpu": "vfpv3",
+        "floatAbi": "softfp",
+        "platformMacro": "EMSCRIPTEN",
+        "atomics": false,
+        "stackChecks": false,
+        "engineSource": {
+          "path": "quickjs.c",
+          "sha256": "a2b4b52368375244dc8b7651cb30225bd12af731b58b3569c8369dc75a002c45",
+          "bytes": 1834040
+        }
+      },
+      "effectiveFlags": [
+        "-O3",
+        "-fwrapv",
+        "-fno-strict-aliasing",
+        "-D_GNU_SOURCE",
+        "-DCONFIG_VERSION=\"2025-09-13\"",
+        "-DEMSCRIPTEN",
+        "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13",
+        "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache",
+        "-march=armv7-a",
+        "-mfpu=vfpv3",
+        "-mfloat-abi=softfp",
+        "-mthumb",
+        "-nostartfiles",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wl,--gc-sections",
+        "-T",
+        "/home/xiong/workspace/dynarmic.js/examples/quickjs/link.ld"
+      ],
+      "fixedControlsMatchBaseline": {
+        "arm_jit.js": true,
+        "arm_jit.wasm": true,
+        "arm_bench_jit.js": true,
+        "arm_bench_jit.wasm": true,
+        "quickjs-wasm.js": true,
+        "quickjs-wasm.wasm": true,
+        "official-v8.js": true,
+        "official-v8-adapter.js": true,
+        "official-benchmarks.json": true,
+        "quickjs-workloads.js": true
+      },
+      "candidate": {
+        "elfSha256": "3c76366f48ac0be53ce0367814f51eb783a4a88fbe244ba27edef4d540701597",
+        "binarySha256": "e8b116fce9b4a87ebaf297f1a27856ebf3df22931cd271db3a3523d791e50375",
+        "binaryBytes": 604604,
+        "elfImageMatchesBinary": true,
+        "interpreter": {
+          "symbol": "JS_CallInternal",
+          "address": "00018e60",
+          "bytes": 27886,
+          "movPcRegisterSites": 0,
+          "pcRelativeTableSites": 0,
+          "thumbTableBranches": 3,
+          "dispatchTable": null,
+          "samples": [
+            "   18fd6:\t1e63      \tsubs\tr3, r4, #1\n   18fd8:\t2bf6      \tcmp\tr3, #246\t; 0xf6\n   18fda:\tf206 8593 \tbhi.w\t1fb04 <JS_CallInternal+0x6ca4>\n   18fde:\te8df f013 \ttbh\t[pc, r3, lsl #1]",
+            "   19388:\t3c76      \tsubs\tr4, #118\t; 0x76\n   1938a:\t2c03      \tcmp\tr4, #3\n   1938c:\tf206 8391 \tbhi.w\t1fab2 <JS_CallInternal+0x6c52>\n   19390:\te8df f014 \ttbh\t[pc, r4, lsl #1]",
+            "   1b7b0:\tf106 0902 \tadd.w\tr9, r6, #2\n   1b7b4:\t2b06      \tcmp\tr3, #6\n   1b7b6:\tf204 81b4 \tbhi.w\t1fb22 <JS_CallInternal+0x6cc2>\n   1b7ba:\te8df f013 \ttbh\t[pc, r3, lsl #1]"
+          ]
+        },
+        "startup": "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/objects/o3-switch-thumb.elf:     file format elf32-littlearm\n\n\nDisassembly of section .text:\n\n00010000 <_start>:\n   10000:\te59fd01c \tldr\tsp, [pc, #28]\t; 10024 <_start+0x24>\n   10004:\te3a00a0f \tmov\tr0, #61440\t; 0xf000\n   10008:\te5901000 \tldr\tr1, [r0]\n   1000c:\te3510002 \tcmp\tr1, #2\n   10010:\t05901014 \tldreq\tr1, [r0, #20]\n   10014:\t01a0d001 \tmoveq\tsp, r1\n   10018:\tfa01b848 \tblx\t7e140 <guest_main>\n   1001c:\tef000000 \tsvc\t0x00000000\n   10020:\teafffffe \tb\t10020 <_start+0x20>\n   10024:\t00ff0000 \t.word\t0x00ff0000",
+        "mainEntryInstructions": [
+          "0007e140 <guest_main>:",
+          "   7e140:\tf44f 4370 \tmov.w\tr3, #61440\t; 0xf000",
+          "   7e144:\t681a      \tldr\tr2, [r3, #0]",
+          "   7e146:\t2a02      \tcmp\tr2, #2",
+          "   7e148:\td015      \tbeq.n\t7e176 <guest_main+0x36>",
+          "   7e14a:\t6819      \tldr\tr1, [r3, #0]",
+          "   7e14c:\t2901      \tcmp\tr1, #1",
+          "   7e14e:\td83d      \tbhi.n\t7e1cc <guest_main+0x8c>"
+        ],
+        "functionSymbols": [
+          "483: 00018e61 27886 FUNC    LOCAL  DEFAULT    1 JS_CallInternal",
+          "3560: 0007e141   152 FUNC    GLOBAL DEFAULT    1 guest_main"
+        ],
+        "attributes": "Attribute Section: aeabi\nFile Attributes\n  Tag_CPU_name: \"7-A\"\n  Tag_CPU_arch: v7\n  Tag_CPU_arch_profile: Application\n  Tag_ARM_ISA_use: Yes\n  Tag_THUMB_ISA_use: Thumb-2\n  Tag_FP_arch: VFPv3\n  Tag_ABI_PCS_wchar_t: 4\n  Tag_ABI_FP_denormal: Needed\n  Tag_ABI_FP_exceptions: Needed\n  Tag_ABI_FP_number_model: IEEE 754\n  Tag_ABI_align_needed: 8-byte\n  Tag_ABI_enum_size: small\n  Tag_ABI_optimization_goals: Aggressive Speed\n  Tag_CPU_unaligned_access: v6"
+      },
+      "baselineObject": {
+        "elfSha256": "5239be1961493099fc52dc26e4f93c66e8e7706f502451dfafbe1e53ac434845",
+        "binarySha256": "b3828fb67fb91091f47f8923a871cf2bde0fbd218964822f8300af039b2f4544",
+        "binaryBytes": 815516,
+        "elfImageMatchesBinary": true,
+        "interpreter": {
+          "symbol": "JS_CallInternal",
+          "address": "0001d570",
+          "bytes": 37828,
+          "movPcRegisterSites": 0,
+          "pcRelativeTableSites": 3,
+          "thumbTableBranches": 0,
+          "dispatchTable": null,
+          "samples": [
+            "   1d744:\te4d84001 \tldrb\tr4, [r8], #1\n   1d748:\te2443001 \tsub\tr3, r4, #1\n   1d74c:\te35300f6 \tcmp\tr3, #246\t; 0xf6\n   1d750:\t979ff103 \tldrls\tpc, [pc, r3, lsl #2]",
+            "   1dda0:\t1a001b28 \tbne\t24a48 <JS_CallInternal+0x74d8>\n   1dda4:\te2444076 \tsub\tr4, r4, #118\t; 0x76\n   1dda8:\te3540003 \tcmp\tr4, #3\n   1ddac:\t979ff104 \tldrls\tpc, [pc, r4, lsl #2]",
+            "   207d8:\te5d63001 \tldrb\tr3, [r6, #1]\n   207dc:\te2868002 \tadd\tr8, r6, #2\n   207e0:\te3530006 \tcmp\tr3, #6\n   207e4:\t979ff103 \tldrls\tpc, [pc, r3, lsl #2]"
+          ]
+        },
+        "startup": "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/objects/o3-switch.elf:     file format elf32-littlearm\n\n\nDisassembly of section .text:\n\n00010000 <_start>:\n   10000:\te59fd01c \tldr\tsp, [pc, #28]\t; 10024 <_start+0x24>\n   10004:\te3a00a0f \tmov\tr0, #61440\t; 0xf000\n   10008:\te5901000 \tldr\tr1, [r0]\n   1000c:\te3510002 \tcmp\tr1, #2\n   10010:\t05901014 \tldreq\tr1, [r0, #20]\n   10014:\t01a0d001 \tmoveq\tsp, r1\n   10018:\teb028608 \tbl\tb1840 <guest_main>\n   1001c:\tef000000 \tsvc\t0x00000000\n   10020:\teafffffe \tb\t10020 <_start+0x20>\n   10024:\t00ff0000 \t.word\t0x00ff0000",
+        "mainEntryInstructions": [
+          "000b1840 <guest_main>:",
+          "   b1840:\te3a03a0f \tmov\tr3, #61440\t; 0xf000",
+          "   b1844:\te5932000 \tldr\tr2, [r3]",
+          "   b1848:\te3520002 \tcmp\tr2, #2",
+          "   b184c:\t0a00000c \tbeq\tb1884 <guest_main+0x44>",
+          "   b1850:\te5931000 \tldr\tr1, [r3]",
+          "   b1854:\te3510001 \tcmp\tr1, #1",
+          "   b1858:\t8a00000f \tbhi\tb189c <guest_main+0x5c>"
+        ],
+        "functionSymbols": [
+          "491: 0001d570 37828 FUNC    LOCAL  DEFAULT    1 JS_CallInternal",
+          "3567: 000b1840   196 FUNC    GLOBAL DEFAULT    1 guest_main"
+        ],
+        "attributes": "Attribute Section: aeabi\nFile Attributes\n  Tag_CPU_name: \"7-A\"\n  Tag_CPU_arch: v7\n  Tag_CPU_arch_profile: Application\n  Tag_ARM_ISA_use: Yes\n  Tag_THUMB_ISA_use: Thumb-2\n  Tag_FP_arch: VFPv3\n  Tag_ABI_PCS_wchar_t: 4\n  Tag_ABI_FP_denormal: Needed\n  Tag_ABI_FP_exceptions: Needed\n  Tag_ABI_FP_number_model: IEEE 754\n  Tag_ABI_align_needed: 8-byte\n  Tag_ABI_enum_size: small\n  Tag_ABI_optimization_goals: Aggressive Speed\n  Tag_CPU_unaligned_access: v6"
+      },
+      "delta": {
+        "binaryBytes": -210912,
+        "interpreterBytes": -9942,
+        "movPcRegisterSites": 0
+      }
+    },
+    {
+      "id": "o2-threaded-no-gcse",
+      "baseline": "o2-threaded",
+      "configuration": {
+        "optimization": "O2",
+        "dispatch": "threaded",
+        "lto": false,
+        "isa": "arm",
+        "architecture": "armv7-a",
+        "noGcse": true,
+        "noCrossjumping": false,
+        "fpu": "vfpv3",
+        "floatAbi": "softfp",
+        "platformMacro": "EMSCRIPTEN",
+        "atomics": false,
+        "stackChecks": false,
+        "engineSource": {
+          "path": "quickjs-arm.c",
+          "sha256": "f400c98ed9cc203a18e2be001f4d783f180bba3e05de328d1267478bbef9ae0a",
+          "bytes": 1834366
+        }
+      },
+      "effectiveFlags": [
+        "-O2",
+        "-fwrapv",
+        "-fno-strict-aliasing",
+        "-D_GNU_SOURCE",
+        "-DCONFIG_VERSION=\"2025-09-13\"",
+        "-DEMSCRIPTEN",
+        "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13",
+        "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache",
+        "-march=armv7-a",
+        "-mfpu=vfpv3",
+        "-mfloat-abi=softfp",
+        "-marm",
+        "-nostartfiles",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wl,--gc-sections",
+        "-T",
+        "/home/xiong/workspace/dynarmic.js/examples/quickjs/link.ld",
+        "-DDYNARMIC_QUICKJS_ARM_DISPATCH=1",
+        "-fno-gcse"
+      ],
+      "fixedControlsMatchBaseline": {
+        "arm_jit.js": true,
+        "arm_jit.wasm": true,
+        "arm_bench_jit.js": true,
+        "arm_bench_jit.wasm": true,
+        "quickjs-wasm.js": true,
+        "quickjs-wasm.wasm": true,
+        "official-v8.js": true,
+        "official-v8-adapter.js": true,
+        "official-benchmarks.json": true,
+        "quickjs-workloads.js": true
+      },
+      "candidate": {
+        "elfSha256": "dae70fd662bb45169481992c28cc7298c7c59f164a67b8a825bf32221ef7ca2f",
+        "binarySha256": "6c7e25a522370e70fe1f50c158158d8ed3d3ae42c2909b5e51c86586046ee59c",
+        "binaryBytes": 691252,
+        "elfImageMatchesBinary": true,
+        "interpreter": {
+          "symbol": "JS_CallInternal",
+          "address": "0001a4a0",
+          "bytes": 39452,
+          "movPcRegisterSites": 210,
+          "pcRelativeTableSites": 2,
+          "thumbTableBranches": 0,
+          "dispatchTable": "000a5960 00000400 r dispatch_table.78",
+          "samples": [
+            "   1a664:\te59b1018 \tldr\tr1, [fp, #24]\n   1a668:\te0822001 \tadd\tr2, r2, r1\n   1a66c:\te50b214c \tstr\tr2, [fp, #-332]\t; 0xfffffeb4\n   1a670:\te1a0f003 \tmov\tpc, r3",
+            "   1a690:\te340300a \tmovt\tr3, #10\n   1a694:\te4da4001 \tldrb\tr4, [sl], #1\n   1a698:\te7933104 \tldr\tr3, [r3, r4, lsl #2]\n   1a69c:\te1a0f003 \tmov\tpc, r3",
+            "   1a6e4:\t1a00038f \tbne\t1b528 <JS_CallInternal+0x1088>\n   1a6e8:\te2444075 \tsub\tr4, r4, #117\t; 0x75\n   1a6ec:\te3540004 \tcmp\tr4, #4\n   1a6f0:\t979ff104 \tldrls\tpc, [pc, r4, lsl #2]"
+          ]
+        },
+        "startup": "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/objects/o2-threaded-no-gcse.elf:     file format elf32-littlearm\n\n\nDisassembly of section .text:\n\n00010000 <_start>:\n   10000:\te59fd01c \tldr\tsp, [pc, #28]\t; 10024 <_start+0x24>\n   10004:\te3a00a0f \tmov\tr0, #61440\t; 0xf000\n   10008:\te5901000 \tldr\tr1, [r0]\n   1000c:\te3510002 \tcmp\tr1, #2\n   10010:\t05901014 \tldreq\tr1, [r0, #20]\n   10014:\t01a0d001 \tmoveq\tsp, r1\n   10018:\teb020b97 \tbl\t92e7c <guest_main>\n   1001c:\tef000000 \tsvc\t0x00000000\n   10020:\teafffffe \tb\t10020 <_start+0x20>\n   10024:\t00ff0000 \t.word\t0x00ff0000",
+        "mainEntryInstructions": [
+          "00092e7c <guest_main>:",
+          "   92e7c:\te3a03a0f \tmov\tr3, #61440\t; 0xf000",
+          "   92e80:\te5932000 \tldr\tr2, [r3]",
+          "   92e84:\te3520002 \tcmp\tr2, #2",
+          "   92e88:\t1a00001f \tbne\t92f0c <guest_main+0x90>",
+          "   92e8c:\te5930004 \tldr\tr0, [r3, #4]",
+          "   92e90:\te5931008 \tldr\tr1, [r3, #8]",
+          "   92e94:\te5932010 \tldr\tr2, [r3, #16]"
+        ],
+        "functionSymbols": [
+          "502: 0001a4a0 39452 FUNC    LOCAL  DEFAULT    1 JS_CallInternal",
+          "3495: 00092e7c   196 FUNC    GLOBAL DEFAULT    1 guest_main"
+        ],
+        "attributes": "Attribute Section: aeabi\nFile Attributes\n  Tag_CPU_name: \"7-A\"\n  Tag_CPU_arch: v7\n  Tag_CPU_arch_profile: Application\n  Tag_ARM_ISA_use: Yes\n  Tag_THUMB_ISA_use: Thumb-2\n  Tag_FP_arch: VFPv3\n  Tag_ABI_PCS_wchar_t: 4\n  Tag_ABI_FP_denormal: Needed\n  Tag_ABI_FP_exceptions: Needed\n  Tag_ABI_FP_number_model: IEEE 754\n  Tag_ABI_align_needed: 8-byte\n  Tag_ABI_enum_size: small\n  Tag_ABI_optimization_goals: Aggressive Speed\n  Tag_CPU_unaligned_access: v6"
+      },
+      "baselineObject": {
+        "elfSha256": "b39df7c1fe5c5f4e1c1ab855bf45daa7b57c47812e3e11150969b848d4aecaa8",
+        "binarySha256": "1beab8c7beff675e86b597e4a4a55ea513d3d819c47b84df5c119d1bc8408a9d",
+        "binaryBytes": 685748,
+        "elfImageMatchesBinary": true,
+        "interpreter": {
+          "symbol": "JS_CallInternal",
+          "address": "0001a448",
+          "bytes": 38948,
+          "movPcRegisterSites": 298,
+          "pcRelativeTableSites": 2,
+          "thumbTableBranches": 0,
+          "dispatchTable": "000a43e0 00000400 r dispatch_table.78",
+          "samples": [
+            "   1a610:\te0833002 \tadd\tr3, r3, r2\n   1a614:\te50b3154 \tstr\tr3, [fp, #-340]\t; 0xfffffeac\n   1a618:\te7963104 \tldr\tr3, [r6, r4, lsl #2]\n   1a61c:\te1a0f003 \tmov\tpc, r3",
+            "   1a634:\te1a08003 \tmov\tr8, r3\n   1a638:\te4da4001 \tldrb\tr4, [sl], #1\n   1a63c:\te7963104 \tldr\tr3, [r6, r4, lsl #2]\n   1a640:\te1a0f003 \tmov\tpc, r3",
+            "   1a690:\t1a00038a \tbne\t1b4c0 <JS_CallInternal+0x1078>\n   1a694:\te2444075 \tsub\tr4, r4, #117\t; 0x75\n   1a698:\te3540004 \tcmp\tr4, #4\n   1a69c:\t979ff104 \tldrls\tpc, [pc, r4, lsl #2]"
+          ]
+        },
+        "startup": "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/objects/o2-threaded.elf:     file format elf32-littlearm\n\n\nDisassembly of section .text:\n\n00010000 <_start>:\n   10000:\te59fd01c \tldr\tsp, [pc, #28]\t; 10024 <_start+0x24>\n   10004:\te3a00a0f \tmov\tr0, #61440\t; 0xf000\n   10008:\te5901000 \tldr\tr1, [r0]\n   1000c:\te3510002 \tcmp\tr1, #2\n   10010:\t05901014 \tldreq\tr1, [r0, #20]\n   10014:\t01a0d001 \tmoveq\tsp, r1\n   10018:\teb020635 \tbl\t918f4 <guest_main>\n   1001c:\tef000000 \tsvc\t0x00000000\n   10020:\teafffffe \tb\t10020 <_start+0x20>\n   10024:\t00ff0000 \t.word\t0x00ff0000",
+        "mainEntryInstructions": [
+          "000918f4 <guest_main>:",
+          "   918f4:\te3a03a0f \tmov\tr3, #61440\t; 0xf000",
+          "   918f8:\te5932000 \tldr\tr2, [r3]",
+          "   918fc:\te3520002 \tcmp\tr2, #2",
+          "   91900:\t1a00001f \tbne\t91984 <guest_main+0x90>",
+          "   91904:\te5930004 \tldr\tr0, [r3, #4]",
+          "   91908:\te5931008 \tldr\tr1, [r3, #8]",
+          "   9190c:\te5932010 \tldr\tr2, [r3, #16]"
+        ],
+        "functionSymbols": [
+          "502: 0001a448 38948 FUNC    LOCAL  DEFAULT    1 JS_CallInternal",
+          "3499: 000918f4   196 FUNC    GLOBAL DEFAULT    1 guest_main"
+        ],
+        "attributes": "Attribute Section: aeabi\nFile Attributes\n  Tag_CPU_name: \"7-A\"\n  Tag_CPU_arch: v7\n  Tag_CPU_arch_profile: Application\n  Tag_ARM_ISA_use: Yes\n  Tag_THUMB_ISA_use: Thumb-2\n  Tag_FP_arch: VFPv3\n  Tag_ABI_PCS_wchar_t: 4\n  Tag_ABI_FP_denormal: Needed\n  Tag_ABI_FP_exceptions: Needed\n  Tag_ABI_FP_number_model: IEEE 754\n  Tag_ABI_align_needed: 8-byte\n  Tag_ABI_enum_size: small\n  Tag_ABI_optimization_goals: Aggressive Speed\n  Tag_CPU_unaligned_access: v6"
+      },
+      "delta": {
+        "binaryBytes": 5504,
+        "interpreterBytes": 504,
+        "movPcRegisterSites": -88
+      }
+    },
+    {
+      "id": "os-threaded-no-crossjumping",
+      "baseline": "os-threaded",
+      "configuration": {
+        "optimization": "Os",
+        "dispatch": "threaded",
+        "lto": false,
+        "isa": "arm",
+        "architecture": "armv7-a",
+        "noGcse": false,
+        "noCrossjumping": true,
+        "fpu": "vfpv3",
+        "floatAbi": "softfp",
+        "platformMacro": "EMSCRIPTEN",
+        "atomics": false,
+        "stackChecks": false,
+        "engineSource": {
+          "path": "quickjs-arm.c",
+          "sha256": "f400c98ed9cc203a18e2be001f4d783f180bba3e05de328d1267478bbef9ae0a",
+          "bytes": 1834366
+        }
+      },
+      "effectiveFlags": [
+        "-Os",
+        "-fwrapv",
+        "-fno-strict-aliasing",
+        "-D_GNU_SOURCE",
+        "-DCONFIG_VERSION=\"2025-09-13\"",
+        "-DEMSCRIPTEN",
+        "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache/quickjs-2025-09-13",
+        "-I/home/xiong/workspace/dynarmic.js/build-em/examples/browser/quickjs-cache",
+        "-march=armv7-a",
+        "-mfpu=vfpv3",
+        "-mfloat-abi=softfp",
+        "-marm",
+        "-nostartfiles",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wl,--gc-sections",
+        "-T",
+        "/home/xiong/workspace/dynarmic.js/examples/quickjs/link.ld",
+        "-DDYNARMIC_QUICKJS_ARM_DISPATCH=1",
+        "-fno-crossjumping"
+      ],
+      "fixedControlsMatchBaseline": {
+        "arm_jit.js": true,
+        "arm_jit.wasm": true,
+        "arm_bench_jit.js": true,
+        "arm_bench_jit.wasm": true,
+        "quickjs-wasm.js": true,
+        "quickjs-wasm.wasm": true,
+        "official-v8.js": true,
+        "official-v8-adapter.js": true,
+        "official-benchmarks.json": true,
+        "quickjs-workloads.js": true
+      },
+      "candidate": {
+        "elfSha256": "9f1d81932997f98b6e1514391214215725810ccdfd8ab9d64d82d7d0817471b6",
+        "binarySha256": "1c0d9aee3dda7ad29a7415ebfe46b490e82a3ae32d832ac3d9c749f2d98490b7",
+        "binaryBytes": 544564,
+        "elfImageMatchesBinary": true,
+        "interpreter": {
+          "symbol": "JS_CallInternal",
+          "address": "000187d8",
+          "bytes": 30036,
+          "movPcRegisterSites": 1,
+          "pcRelativeTableSites": 2,
+          "thumbTableBranches": 0,
+          "dispatchTable": "00081ccc 00000400 r dispatch_table.78",
+          "samples": [
+            "   18b18:\te7933105 \tldr\tr3, [r3, r5, lsl #2]\n   18b1c:\te0811180 \tadd\tr1, r1, r0, lsl #3\n   18b20:\te50b116c \tstr\tr1, [fp, #-364]\t; 0xfffffe94\n   18b24:\te1a0f003 \tmov\tpc, r3",
+            "   19058:\te50b20fc \tstr\tr2, [fp, #-252]\t; 0xffffff04\n   1905c:\te4d83001 \tldrb\tr3, [r8], #1\n   19060:\te3530006 \tcmp\tr3, #6\n   19064:\t979ff103 \tldrls\tpc, [pc, r3, lsl #2]",
+            "   1f71c:\t1a00000b \tbne\t1f750 <JS_CallInternal+0x6f78>\n   1f720:\te2455075 \tsub\tr5, r5, #117\t; 0x75\n   1f724:\te3550004 \tcmp\tr5, #4\n   1f728:\t979ff105 \tldrls\tpc, [pc, r5, lsl #2]"
+          ]
+        },
+        "startup": "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/objects/os-threaded-no-crossjumping.elf:     file format elf32-littlearm\n\n\nDisassembly of section .text:\n\n00010000 <_start>:\n   10000:\te59fd01c \tldr\tsp, [pc, #28]\t; 10024 <_start+0x24>\n   10004:\te3a00a0f \tmov\tr0, #61440\t; 0xf000\n   10008:\te5901000 \tldr\tr1, [r0]\n   1000c:\te3510002 \tcmp\tr1, #2\n   10010:\t05901014 \tldreq\tr1, [r0, #20]\n   10014:\t01a0d001 \tmoveq\tsp, r1\n   10018:\teb017e3e \tbl\t6f918 <guest_main>\n   1001c:\tef000000 \tsvc\t0x00000000\n   10020:\teafffffe \tb\t10020 <_start+0x20>\n   10024:\t00ff0000 \t.word\t0x00ff0000",
+        "mainEntryInstructions": [
+          "0006f918 <guest_main>:",
+          "   6f918:\te3a03a0f \tmov\tr3, #61440\t; 0xf000",
+          "   6f91c:\te5932000 \tldr\tr2, [r3]",
+          "   6f920:\te3520002 \tcmp\tr2, #2",
+          "   6f924:\t0a000001 \tbeq\t6f930 <guest_main+0x18>",
+          "   6f928:\te5930000 \tldr\tr0, [r3]",
+          "   6f92c:\teaffffe1 \tb\t6f8b8 <qjs_bench>",
+          "   6f930:\te92d4010 \tpush\t{r4, lr}"
+        ],
+        "functionSymbols": [
+          "682: 000187d8 30036 FUNC    LOCAL  DEFAULT    1 JS_CallInternal",
+          "4174: 0006f918   128 FUNC    GLOBAL DEFAULT    1 guest_main"
+        ],
+        "attributes": "Attribute Section: aeabi\nFile Attributes\n  Tag_CPU_name: \"7-A\"\n  Tag_CPU_arch: v7\n  Tag_CPU_arch_profile: Application\n  Tag_ARM_ISA_use: Yes\n  Tag_THUMB_ISA_use: Thumb-2\n  Tag_FP_arch: VFPv3\n  Tag_ABI_PCS_wchar_t: 4\n  Tag_ABI_FP_denormal: Needed\n  Tag_ABI_FP_exceptions: Needed\n  Tag_ABI_FP_number_model: IEEE 754\n  Tag_ABI_align_needed: 8-byte\n  Tag_ABI_enum_size: small\n  Tag_ABI_optimization_goals: Aggressive Size\n  Tag_CPU_unaligned_access: v6"
+      },
+      "baselineObject": {
+        "elfSha256": "8649d610c9631c8e9e26fede6b8fc74c341b2c502bf72548534e45310a92271d",
+        "binarySha256": "160dafc3e3fe4f52589715a3f15c6e6338fd4fe4b36e8beffca10456a67bef2d",
+        "binaryBytes": 529140,
+        "elfImageMatchesBinary": true,
+        "interpreter": {
+          "symbol": "JS_CallInternal",
+          "address": "00018328",
+          "bytes": 29668,
+          "movPcRegisterSites": 1,
+          "pcRelativeTableSites": 2,
+          "thumbTableBranches": 0,
+          "dispatchTable": "0007e08c 00000400 r dispatch_table.78",
+          "samples": [
+            "   18460:\te7933105 \tldr\tr3, [r3, r5, lsl #2]\n   18464:\te0811180 \tadd\tr1, r1, r0, lsl #3\n   18468:\te50b116c \tstr\tr1, [fp, #-364]\t; 0xfffffe94\n   1846c:\te1a0f003 \tmov\tpc, r3",
+            "   18b90:\te50b20fc \tstr\tr2, [fp, #-252]\t; 0xffffff04\n   18b94:\te4d83001 \tldrb\tr3, [r8], #1\n   18b98:\te3530006 \tcmp\tr3, #6\n   18b9c:\t979ff103 \tldrls\tpc, [pc, r3, lsl #2]",
+            "   1f130:\t1a00000b \tbne\t1f164 <JS_CallInternal+0x6e3c>\n   1f134:\te2455075 \tsub\tr5, r5, #117\t; 0x75\n   1f138:\te3550004 \tcmp\tr5, #4\n   1f13c:\t979ff105 \tldrls\tpc, [pc, r5, lsl #2]"
+          ]
+        },
+        "startup": "/home/xiong/workspace/dynarmic.js/build-quickjs-arm-tuning/objects/os-threaded.elf:     file format elf32-littlearm\n\n\nDisassembly of section .text:\n\n00010000 <_start>:\n   10000:\te59fd01c \tldr\tsp, [pc, #28]\t; 10024 <_start+0x24>\n   10004:\te3a00a0f \tmov\tr0, #61440\t; 0xf000\n   10008:\te5901000 \tldr\tr1, [r0]\n   1000c:\te3510002 \tcmp\tr1, #2\n   10010:\t05901014 \tldreq\tr1, [r0, #20]\n   10014:\t01a0d001 \tmoveq\tsp, r1\n   10018:\teb016f34 \tbl\t6bcf0 <guest_main>\n   1001c:\tef000000 \tsvc\t0x00000000\n   10020:\teafffffe \tb\t10020 <_start+0x20>\n   10024:\t00ff0000 \t.word\t0x00ff0000",
+        "mainEntryInstructions": [
+          "0006bcf0 <guest_main>:",
+          "   6bcf0:\te3a03a0f \tmov\tr3, #61440\t; 0xf000",
+          "   6bcf4:\te5932000 \tldr\tr2, [r3]",
+          "   6bcf8:\te3520002 \tcmp\tr2, #2",
+          "   6bcfc:\t0a000001 \tbeq\t6bd08 <guest_main+0x18>",
+          "   6bd00:\te5930000 \tldr\tr0, [r3]",
+          "   6bd04:\teaffffe1 \tb\t6bc90 <qjs_bench>",
+          "   6bd08:\te92d4010 \tpush\t{r4, lr}"
+        ],
+        "functionSymbols": [
+          "682: 00018328 29668 FUNC    LOCAL  DEFAULT    1 JS_CallInternal",
+          "4174: 0006bcf0   128 FUNC    GLOBAL DEFAULT    1 guest_main"
+        ],
+        "attributes": "Attribute Section: aeabi\nFile Attributes\n  Tag_CPU_name: \"7-A\"\n  Tag_CPU_arch: v7\n  Tag_CPU_arch_profile: Application\n  Tag_ARM_ISA_use: Yes\n  Tag_THUMB_ISA_use: Thumb-2\n  Tag_FP_arch: VFPv3\n  Tag_ABI_PCS_wchar_t: 4\n  Tag_ABI_FP_denormal: Needed\n  Tag_ABI_FP_exceptions: Needed\n  Tag_ABI_FP_number_model: IEEE 754\n  Tag_ABI_align_needed: 8-byte\n  Tag_ABI_enum_size: small\n  Tag_ABI_optimization_goals: Aggressive Size\n  Tag_CPU_unaligned_access: v6"
+      },
+      "delta": {
+        "binaryBytes": 15424,
+        "interpreterBytes": 368,
+        "movPcRegisterSites": 0
+      }
+    }
+  ],
+  "pending": []
+}

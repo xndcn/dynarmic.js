@@ -1,0 +1,9 @@
+{
+  "status": "pass",
+  "tarballSha256": "634dc62a8ebb1471131c4f78d5979931126dcf5bbfe81af8fc49173a604d9bdf",
+  "checks": [
+    "offline npm install with an initially empty cache and install scripts disabled",
+    "default Wasm initialization from the installed package"
+  ],
+  "installOutput": "added 1 package in 272ms"
+}

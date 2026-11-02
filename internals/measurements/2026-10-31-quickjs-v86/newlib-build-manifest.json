@@ -1,0 +1,49 @@
+{
+  "identity": {
+    "sourceSha256": "58dd9e3eaedf519360d92d84205c3deef0b3fc286685d1c562e245914ef72c66",
+    "compiler": {
+      "path": "/usr/bin/x86_64-linux-gnu-gcc-11",
+      "bytes": 928584,
+      "sha256": "821af3c74506283c179ca413bb33e6b528805a4dd8a5c09df125e5ad560a9e89"
+    },
+    "archFlags": [
+      "-m32",
+      "-march=pentium4",
+      "-msse2",
+      "-mfpmath=sse",
+      "-ffreestanding",
+      "-fno-pie",
+      "-fno-stack-protector",
+      "-U__linux__",
+      "-U__linux",
+      "-Ulinux",
+      "-U__gnu_linux__",
+      "-U__unix__",
+      "-U__unix",
+      "-Uunix",
+      "-U_FORTIFY_SOURCE"
+    ],
+    "cflags": "-O2 -g0 -fno-fast-math",
+    "configure": [
+      "/home/xiong/workspace/dynarmic.js/build-v86-quickjs/cache/newlib-3.3.0/configure",
+      "--target=i686-elf",
+      "--prefix=/home/xiong/workspace/dynarmic.js/build-v86-quickjs/newlib-install",
+      "--disable-multilib",
+      "--disable-newlib-supplied-syscalls",
+      "--disable-libgloss",
+      "--disable-nls"
+    ]
+  },
+  "libraries": [
+    {
+      "path": "/home/xiong/workspace/dynarmic.js/build-v86-quickjs/newlib-install/i686-elf/lib/libc.a",
+      "bytes": 1024292,
+      "sha256": "f96862a5d5ad46a231da63d171ea88842ff4cefa153a03d2650807adb0be6205"
+    },
+    {
+      "path": "/home/xiong/workspace/dynarmic.js/build-v86-quickjs/newlib-install/i686-elf/lib/libm.a",
+      "bytes": 519118,
+      "sha256": "ca3d1582f71208d20761d6939d5083ad842f3e97ae735f8ad4e59dc01031c9c3"
+    }
+  ]
+}

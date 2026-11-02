@@ -1,0 +1,85 @@
+name: Native comparison
+on:
+  workflow_dispatch:
+    inputs:
+      runs:
+        description: 'Fresh process pairs per case (5 or more for comparisons)'
+        default: '7'
+        required: true
+  push:
+    paths:
+      - 'src/**'
+      - 'tests/bench/**'
+      - 'tests/hosts/**'
+      - 'tests/CMakeLists.txt'
+      - 'externals/dynarmic'
+      - 'patches/**'
+      - 'cmake/**'
+      - 'CMakeLists.txt'
+      - '.github/workflows/benchmark.yml'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'tests/bench/**'
+      - 'tests/hosts/**'
+      - 'tests/CMakeLists.txt'
+      - 'externals/dynarmic'
+      - 'patches/**'
+      - 'cmake/**'
+      - 'CMakeLists.txt'
+      - '.github/workflows/benchmark.yml'
+permissions:
+  contents: read
+jobs:
+  paired-kernels:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 6.0.13
+          actions-cache-folder: .cache/emsdk
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build libboost-dev
+          python3 -m pip install --user unicorn==2.1.4
+          mkdir -p /tmp/boost-headers
+          cp -a /usr/include/boost /tmp/boost-headers/
+      - name: Build the same workloads for both backends
+        run: |
+          cmake -S tests/bench/native -B build-dynarmic-native -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build build-dynarmic-native --parallel 2
+          emcmake cmake -S . -B build-em -G Ninja -DCMAKE_BUILD_TYPE=Release \
+            -DBoost_INCLUDE_DIR=/tmp/boost-headers -DDYNARMIC_JS_EXAMPLES=OFF
+          cmake --build build-em --parallel 2 --target \
+            jit_bench jit_thumb_bench jit_a64_bench jit_a64_simd_bench jit_callbench
+      - name: Native result checks
+        run: |
+          ctest --test-dir build-dynarmic-native --output-on-failure
+          python3 tests/bench/check_instruction_counts.py
+      - name: Collect paired observations
+        env:
+          BENCHMARK_RUNS: ${{ github.event_name == 'workflow_dispatch' && inputs.runs || '2' }}
+        run: |
+          node tests/bench/native_run.mjs build-em/tests build-dynarmic-native \
+            --runs "$BENCHMARK_RUNS" --output native-comparison.json
+          node tests/bench/native_validate.mjs native-comparison.json
+      - name: Retain raw observations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-comparison
+          path: |
+            native-comparison.json
+            native-comparison.json.failure.json
+          if-no-files-found: warn
+
+# Shared hosted runners verify correctness and the collection protocol. They do
+# not impose speed thresholds; release claims need a controlled measurement host.

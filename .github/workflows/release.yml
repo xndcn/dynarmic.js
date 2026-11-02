@@ -1,0 +1,85 @@
+name: Release artifacts
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Require a tag matching the package version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: python3 scripts/release.py check-tag --tag "$RELEASE_TAG"
+      - name: Check release packaging
+        run: python3 -m unittest discover -s tests/release -v
+
+  package:
+    needs: version
+    uses: ./.github/workflows/package.yml
+
+  pages:
+    needs: version
+    uses: ./.github/workflows/pages.yml
+    with:
+      release: true
+    # The called workflow declares a conditional deployment job; it never runs
+    # for a tag push. GitHub still checks its maximum permission requirements.
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+  draft:
+    needs: [package, pages]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: npm-package
+          path: build-release-input/npm
+      - uses: actions/download-artifact@v4
+        with:
+          name: pages-dist
+          path: build-release-input/pages
+      - name: Assemble exact tested assets
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+          RELEASE_REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          revision=$(git rev-parse HEAD)
+          python3 scripts/release.py bundle --package build-release-input/npm/*.tgz \
+            --pages build-release-input/pages --output build-release \
+            --tag "$RELEASE_TAG" --revision "$revision" --repository "$RELEASE_REPO" --run-url "$RUN_URL"
+          cat > build-release-notes.md <<EOF
+          Experimental dynarmic.js ${RELEASE_TAG}. See the [support status](https://github.com/${RELEASE_REPO}/blob/${RELEASE_TAG}/docs/Roadmap.md) before integrating it.
+
+          - Install the downloaded package: \`npm install ./dynarmic.js-${RELEASE_TAG#v}.tgz\`.
+          - Extract \`dynarmic.js-${RELEASE_TAG#v}-pages.tar.gz\` and serve the directory over HTTP to run all browser examples without compilers.
+          - Both distributions include matching recursive source and license notices. GitHub's automatic source archives omit submodules.
+          - \`SHA256SUMS\` and \`release.json\` identify these exact tested files and their source commit.
+
+          [Validation reports](${RUN_URL}) · [Release guide](https://github.com/${RELEASE_REPO}/blob/${RELEASE_TAG}/docs/Releasing.md)
+          EOF
+      - name: Create a draft for review
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          args=(--draft --verify-tag --title "$RELEASE_TAG" --notes-file build-release-notes.md)
+          if [[ "$RELEASE_TAG" == *-* ]]; then args+=(--prerelease); fi
+          gh release create "$RELEASE_TAG" build-release/* "${args[@]}"

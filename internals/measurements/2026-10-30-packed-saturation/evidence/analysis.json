@@ -1,0 +1,170 @@
+[
+  {
+    "name": "PackedSaturatedAddU8",
+    "medianMs": {
+      "baseline": 1380.974097,
+      "candidate": 375.12917300000004
+    },
+    "bytes": {
+      "baseline": 15113,
+      "candidate": 1033
+    },
+    "timeChangePercent": -72.83590084600986,
+    "byteChangePercent": -93.16482498511216,
+    "minMs": {
+      "baseline": 1339.2504150000002,
+      "candidate": 351.811291
+    },
+    "maxMs": {
+      "baseline": 1450.208694,
+      "candidate": 376.517924
+    }
+  },
+  {
+    "name": "PackedSaturatedAddS8",
+    "medianMs": {
+      "baseline": 1358.650679,
+      "candidate": 371.03154700000005
+    },
+    "bytes": {
+      "baseline": 15113,
+      "candidate": 1033
+    },
+    "timeChangePercent": -72.69117421167535,
+    "byteChangePercent": -93.16482498511216,
+    "minMs": {
+      "baseline": 1332.9361179999999,
+      "candidate": 366.90770000000003
+    },
+    "maxMs": {
+      "baseline": 1417.8550430000003,
+      "candidate": 393.68103599999995
+    }
+  },
+  {
+    "name": "PackedSaturatedSubU8",
+    "medianMs": {
+      "baseline": 1366.7841220000005,
+      "candidate": 368.56360100000006
+    },
+    "bytes": {
+      "baseline": 15113,
+      "candidate": 1033
+    },
+    "timeChangePercent": -73.03424914969857,
+    "byteChangePercent": -93.16482498511216,
+    "minMs": {
+      "baseline": 1306.5400500000005,
+      "candidate": 366.58629399999995
+    },
+    "maxMs": {
+      "baseline": 1428.2944180000004,
+      "candidate": 373.2564350000001
+    }
+  },
+  {
+    "name": "PackedSaturatedSubS8",
+    "medianMs": {
+      "baseline": 1335.8694670000004,
+      "candidate": 377.16742299999987
+    },
+    "bytes": {
+      "baseline": 15113,
+      "candidate": 1033
+    },
+    "timeChangePercent": -71.7661468940513,
+    "byteChangePercent": -93.16482498511216,
+    "minMs": {
+      "baseline": 1295.444031,
+      "candidate": 362.1507160000001
+    },
+    "maxMs": {
+      "baseline": 1413.6783999999998,
+      "candidate": 388.8585190000001
+    }
+  },
+  {
+    "name": "PackedSaturatedAddU16",
+    "medianMs": {
+      "baseline": 938.7230649999992,
+      "candidate": 379.66550400000006
+    },
+    "bytes": {
+      "baseline": 8457,
+      "candidate": 1097
+    },
+    "timeChangePercent": -59.555110750368065,
+    "byteChangePercent": -87.02849710299161,
+    "minMs": {
+      "baseline": 916.496427,
+      "candidate": 362.8348820000001
+    },
+    "maxMs": {
+      "baseline": 1013.8241550000002,
+      "candidate": 382.8610739999999
+    }
+  },
+  {
+    "name": "PackedSaturatedAddS16",
+    "medianMs": {
+      "baseline": 867.558043,
+      "candidate": 366.0039999999999
+    },
+    "bytes": {
+      "baseline": 8457,
+      "candidate": 1097
+    },
+    "timeChangePercent": -57.81215989487405,
+    "byteChangePercent": -87.02849710299161,
+    "minMs": {
+      "baseline": 821.0638319999998,
+      "candidate": 364.75426800000014
+    },
+    "maxMs": {
+      "baseline": 872.1707339999994,
+      "candidate": 378.2868839999999
+    }
+  },
+  {
+    "name": "PackedSaturatedSubU16",
+    "medianMs": {
+      "baseline": 966.7067560000005,
+      "candidate": 365.5829090000002
+    },
+    "bytes": {
+      "baseline": 8457,
+      "candidate": 1097
+    },
+    "timeChangePercent": -62.18264673015278,
+    "byteChangePercent": -87.02849710299161,
+    "minMs": {
+      "baseline": 943.6874380000008,
+      "candidate": 362.02715100000023
+    },
+    "maxMs": {
+      "baseline": 979.901366,
+      "candidate": 381.000137
+    }
+  },
+  {
+    "name": "PackedSaturatedSubS16",
+    "medianMs": {
+      "baseline": 858.7591819999998,
+      "candidate": 368.0470220000002
+    },
+    "bytes": {
+      "baseline": 8457,
+      "candidate": 1097
+    },
+    "timeChangePercent": -57.14199862843501,
+    "byteChangePercent": -87.02849710299161,
+    "minMs": {
+      "baseline": 831.3280810000015,
+      "candidate": 357.4355579999997
+    },
+    "maxMs": {
+      "baseline": 889.2465929999998,
+      "candidate": 374.0112409999997
+    }
+  }
+]

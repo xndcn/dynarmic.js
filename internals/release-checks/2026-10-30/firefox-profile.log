@@ -1,0 +1,9 @@
+*** You are running in headless mode.
+Gtk-Message: 15:45:18.468: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[719551] Sandbox: Unexpected EOF, op open flags 00 path /snap/firefox/9036/gnome-platform/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+PASS Firefox Worker smoke

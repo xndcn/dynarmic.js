@@ -1,0 +1,21 @@
+{
+  "quickjs-arm.bin": "aeba400ff697b77cef6b47019b1af4d373040a22e50e270040e283178a26d2f0",
+  "quickjs-wasm.js": "7fa29bd1612f75f99422dcd654c10ac429dcd60d6d31b0142febe5d7fcd39102",
+  "quickjs-wasm.wasm": "ca565f0194b415c45704d6bf5c3a6e076a32d09de5a8d5cf5067ca5e056fd9ce",
+  "quickjs-workloads.js": "cff32113b074e4a0ede55920f1b4ac8a29bbf4996f2c9deb321f7e45f8c6c31e",
+  "quickjs-LICENSE.txt": "598fd7fc928e4350abce36e337ba5a1346923c5c692f5be92c3d8e29ddd7c18d",
+  "quickjs-source.tar.xz": "996c6b5018fc955ad4d06426d0e9cb713685a00c825aa5c0418bd53f7df8b0b4",
+  "quickjs-runtime-licenses.txt": "62a0cf80c6099b4e0356da250832be80859581ce72c0dffd5f6b958daf128444",
+  "official-v8-upstream.js": "784c263ca755de0d6ed90b1ed2bb09663313bd9f2dbbd2bbae1f4f4b80be8594",
+  "official-v8.js": "87f7553a974678a422e9d9d245f6b3ac80f86a503d17224d3dd33c38819400da",
+  "official-v8-adapter.js": "14ac511bfd497c6686c901919a6f8222e53501d7e835b47af976ffa4874ab9ff",
+  "official-benchmarks.json": "0ff4d09a59ffe52c01fdedeb9b3299f71d694bd314c7616020ebaa61fbc93fc5",
+  "quickjs-extras-source.tar.xz": "7e5aa54376aad91c952b6a6f44f150856073da71973c8914f041932969e9f4e8",
+  "quickjs-manifest.json": "a976c090d3d98fea096e4c4d99c4089e9181e7db0ebb497d2d74eb513ff70b31",
+  "arm_jit.js": "16747bdfd6585d6fb21ff5c9416a5702853dc3b2b2274ecf971070b60bfd0073",
+  "arm_jit.wasm": "8bf2ed617b83da078d415b2347624c795029356842f8d3cd2dcf8c93e75d4171",
+  "arm_bench_jit.js": "ff2cf9ac1f6c4097539dedcb0c7c2e158067f7309a266a901cef8cd05290dbe2",
+  "arm_bench_jit.wasm": "6ef0ecb11f8f633af9f9e3eec027404f0c055fac8b21066a577b44a854dd3d8b",
+  "wasm-build-manifest.json": "397c0c3ceeb85837db07d0b27a5982d66cd81e7623b156390d1df83a8c747258",
+  "arm-bench-build-manifest.json": "2c35c3fec15a2b6b2332d61413d414490002b4e3335ec2dfc9d9994d33c8bcc0"
+}

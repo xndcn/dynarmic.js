@@ -1,0 +1,32 @@
+name: Unit checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Benchmark protocol and regression budgets
+        run: node --test tests/bench/*.test.mjs
+      - name: Browser input and failure handling
+        run: node --test examples/browser/*.test.mjs
+      - name: CMake configuration and archive provenance
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libboost-dev
+          node --test tests/cmake/*.test.mjs
+      - name: Release archive and deployment integrity
+        run: python3 -m unittest discover -s tests/release -v
+      - name: CFG properties under ASan and UBSan
+        run: |
+          c++ -std=c++20 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -Isrc tests/unit/region_plan_test.cpp src/dynarmic/backend/wasm/region_plan.cpp -o /tmp/region_plan_test
+          /tmp/region_plan_test

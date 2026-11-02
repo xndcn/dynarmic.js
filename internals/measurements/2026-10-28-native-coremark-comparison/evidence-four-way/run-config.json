@@ -1,0 +1,308 @@
+{
+  "schema": "dynarmic.js/native-coremark-comparison-config-v2",
+  "startedAt": "2026-10-28T09:41:28.120Z",
+  "iterations": 200000,
+  "runsPerImplementation": 5,
+  "affinity": "0,2,4,6",
+  "timeoutMilliseconds": 180000,
+  "execution": "one fresh process per sample; four implementations rotate within each round",
+  "timing": "CoreMark CLOCK_MONOTONIC wrapping-u32 microseconds around iterate; separate whole-process wall time",
+  "durationPolicy": "fixed 200000-iteration comparison; samples below ten seconds are retained but not duration-qualified",
+  "commands": {
+    "x86Native": [
+      "/tmp/dynarmic-native-coremark-linux-v3/coremark_x86_64"
+    ],
+    "qemuUser": [
+      "/usr/bin/qemu-aarch64-static",
+      "/tmp/dynarmic-native-coremark-linux-v3/coremark_aarch64"
+    ],
+    "dynarmicNative": [
+      "/tmp/dynarmic-native-x64-coremark-four-way/a64_coremark_host",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "2"
+    ],
+    "dynarmicWasm": [
+      "/home/xiong/.nvm/versions/node/v24.19.0/bin/node",
+      "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/sample.mjs",
+      "/tmp/dynarmic-js-four-way-production-build/examples/browser/dist/arm_jit.js",
+      "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "a64",
+      "2"
+    ]
+  },
+  "plan": [
+    {
+      "sequence": 0,
+      "round": 0,
+      "implementation": "x86Native"
+    },
+    {
+      "sequence": 1,
+      "round": 0,
+      "implementation": "qemuUser"
+    },
+    {
+      "sequence": 2,
+      "round": 0,
+      "implementation": "dynarmicNative"
+    },
+    {
+      "sequence": 3,
+      "round": 0,
+      "implementation": "dynarmicWasm"
+    },
+    {
+      "sequence": 4,
+      "round": 1,
+      "implementation": "qemuUser"
+    },
+    {
+      "sequence": 5,
+      "round": 1,
+      "implementation": "dynarmicNative"
+    },
+    {
+      "sequence": 6,
+      "round": 1,
+      "implementation": "dynarmicWasm"
+    },
+    {
+      "sequence": 7,
+      "round": 1,
+      "implementation": "x86Native"
+    },
+    {
+      "sequence": 8,
+      "round": 2,
+      "implementation": "dynarmicNative"
+    },
+    {
+      "sequence": 9,
+      "round": 2,
+      "implementation": "dynarmicWasm"
+    },
+    {
+      "sequence": 10,
+      "round": 2,
+      "implementation": "x86Native"
+    },
+    {
+      "sequence": 11,
+      "round": 2,
+      "implementation": "qemuUser"
+    },
+    {
+      "sequence": 12,
+      "round": 3,
+      "implementation": "dynarmicWasm"
+    },
+    {
+      "sequence": 13,
+      "round": 3,
+      "implementation": "x86Native"
+    },
+    {
+      "sequence": 14,
+      "round": 3,
+      "implementation": "qemuUser"
+    },
+    {
+      "sequence": 15,
+      "round": 3,
+      "implementation": "dynarmicNative"
+    },
+    {
+      "sequence": 16,
+      "round": 4,
+      "implementation": "x86Native"
+    },
+    {
+      "sequence": 17,
+      "round": 4,
+      "implementation": "qemuUser"
+    },
+    {
+      "sequence": 18,
+      "round": 4,
+      "implementation": "dynarmicNative"
+    },
+    {
+      "sequence": 19,
+      "round": 4,
+      "implementation": "dynarmicWasm"
+    }
+  ],
+  "artifacts": {
+    "x86Native": {
+      "path": "/tmp/dynarmic-native-coremark-linux-v3/coremark_x86_64",
+      "sha256": "213b8e26ef79812bada9285c270eaf96045b703ea9530ea30dead5604485d709",
+      "bytes": 1421880
+    },
+    "qemuUser": {
+      "path": "/tmp/dynarmic-native-coremark-linux-v3/coremark_aarch64",
+      "sha256": "7cf5ba7e8293c9839d96a39b87001c02ea28273a01f6ba4c06b912ccd6b5761c",
+      "bytes": 1592616
+    },
+    "qemuExecutable": {
+      "path": "/usr/bin/qemu-aarch64-static",
+      "sha256": "5f0dc411dcf208a2946db2f07a3ecfee9e4bad1c20ba21197e4d1637de845b21",
+      "bytes": 5624384
+    },
+    "dynarmicHost": {
+      "path": "/tmp/dynarmic-native-x64-coremark-four-way/a64_coremark_host",
+      "sha256": "a249e0a7cf161b3f5c59b6b10755f3904e53ce95139c126ea44c0213de96a039",
+      "bytes": 6504024
+    },
+    "a64Guest": {
+      "path": "/tmp/dynarmic-coremark-long/coremark_a64.bin",
+      "sha256": "8f96e0f0f3beb9a5fb8765405926655c182bfcdfe93a8f99dc6ea32dec227ab1",
+      "bytes": 196620
+    },
+    "wasmJs": {
+      "path": "/tmp/dynarmic-js-four-way-production-build/examples/browser/dist/arm_jit.js",
+      "sha256": "16747bdfd6585d6fb21ff5c9416a5702853dc3b2b2274ecf971070b60bfd0073",
+      "bytes": 25394
+    },
+    "wasmModule": {
+      "path": "/tmp/dynarmic-js-four-way-production-build/examples/browser/dist/arm_jit.wasm",
+      "sha256": "ce0ad762b23e3fdeebd53711920609312d5ba47ca4cf28902044750659375b72",
+      "bytes": 2227959
+    },
+    "nodeExecutable": {
+      "path": "/home/xiong/.nvm/versions/node/v24.19.0/bin/node",
+      "sha256": "bc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12",
+      "bytes": 125989464
+    }
+  },
+  "nativeBuild": {
+    "schema": "dynarmic.js/native-coremark-host-build-v1",
+    "buildType": "Release",
+    "compiler": {
+      "id": "GNU",
+      "version": "12.3.0",
+      "path": "/usr/bin/c++"
+    },
+    "flags": {
+      "cxx": "",
+      "configuration": "-O3 -DNDEBUG"
+    },
+    "sources": {
+      "hostSha256": "ab8e4c5dc7f81f7fef76f1717bbbbe8845861ddd525e965b80156e9b305b2ae4",
+      "cmakeSha256": "cdbd4ca492a2cc17242dd43a04a0e41e6ff788e3bedb07e5358b62aa89b46e5d",
+      "manifestScriptSha256": "242834bc65add0cf8ebb749ec127383c78c73da767055a8a1ac24e2900de8502"
+    },
+    "revisions": {
+      "repositoryHead": "045107cd21d0e2bbd9fc8cf43baef74e5bea0a31",
+      "dynarmicRevision": "a41c380246d3d9f9874f0f792d234dc0cc17c180"
+    },
+    "artifact": {
+      "path": "/tmp/dynarmic-native-x64-coremark-four-way/a64_coremark_host",
+      "sha256": "a249e0a7cf161b3f5c59b6b10755f3904e53ce95139c126ea44c0213de96a039",
+      "bytes": 6504024
+    }
+  },
+  "wasmBuild": {
+    "schema": "dynarmic.js/wasm-coremark-host-build-v1",
+    "sourceRoot": "/home/xiong/workspace/dynarmic.js",
+    "build": {
+      "type": "Release",
+      "profile": false,
+      "a64RegionFocus": "",
+      "compilerId": "Clang",
+      "compilerVersion": "24.0.0",
+      "emscriptenVersion": "\"6.0.13\"",
+      "cxxFlags": "",
+      "configCxxFlags": "-O3 -DNDEBUG",
+      "linkFlags": "",
+      "configLinkFlags": ""
+    },
+    "configuration": {
+      "regionDiagnostics": false,
+      "focusTestExceptions": false,
+      "examples": true
+    },
+    "buildEnvironment": {
+      "configureEmccCflags": "",
+      "buildEmccCflags": ""
+    },
+    "source": {
+      "revision": "045107cd21d0e2bbd9fc8cf43baef74e5bea0a31",
+      "upstream": "a41c380246d3d9f9874f0f792d234dc0cc17c180",
+      "dirty": false
+    },
+    "artifacts": {
+      "js": {
+        "path": "/tmp/dynarmic-js-four-way-production-build/examples/browser/dist/arm_jit.js",
+        "sha256": "16747bdfd6585d6fb21ff5c9416a5702853dc3b2b2274ecf971070b60bfd0073",
+        "bytes": 25394
+      },
+      "wasm": {
+        "path": "/tmp/dynarmic-js-four-way-production-build/examples/browser/dist/arm_jit.wasm",
+        "sha256": "ce0ad762b23e3fdeebd53711920609312d5ba47ca4cf28902044750659375b72",
+        "bytes": 2227959
+      }
+    },
+    "buildSources": {
+      "browserCmakeSha256": "dc55a99fb30698f565ac3ff0df32e17e820ad3b245be49aaccf80efe2b2a7bee",
+      "manifestScriptSha256": "adb4bda38eba124cb6ed559357fb9cfb2c2e3a0dae13ce93919570fa9c8be301"
+    }
+  },
+  "wasmRuntime": {
+    "nodeVersion": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "nodeOptions": "",
+    "executable": {
+      "path": "/home/xiong/.nvm/versions/node/v24.19.0/bin/node",
+      "sha256": "bc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12",
+      "bytes": 125989464
+    }
+  },
+  "wasmRunner": {
+    "sampleSha256": "36ee0e24446c09b6805bac74b05d17dff0a63b7523bf0865afecedf6cf8549e6",
+    "scopedCpuProfileSha256": "979d6ae068cadb98d24df1e5eb4aee00c09d019017c2dc9432ff2f07f2c2da19",
+    "environmentSha256": "8f401168fcc414426f195028569de942e44ac81e71c61ea024405d08e6becfd9",
+    "protocolSha256": "8c850b1684f32eea3261b71690ec3adc34945cd81c61df6acf805828c733db28",
+    "coremarkProtocolSha256": "68eabf2f6af4d3ae8ebc3795bd1a5e7fbd63a5dec0aa085d0200b58c352c8d7b"
+  },
+  "childEnvironment": {
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "LC_ALL": "C",
+    "NODE_OPTIONS": ""
+  },
+  "workload": {
+    "linuxManifest": {
+      "path": "/tmp/dynarmic-native-coremark-linux-v3/linux-manifest.json",
+      "sha256": "8c4daf9153f986908d2d36b8d20e52f1defbd14806ea4be03c48a54df8a26d50",
+      "bytes": 4950
+    },
+    "baseManifest": {
+      "path": "/tmp/dynarmic-coremark-long/manifest.json",
+      "sha256": "4076aed57606318db796d4bfbe5f8cbc8aef4eeddc7e662f5619a554c289053c",
+      "bytes": 6454
+    },
+    "upstreamRevision": "1f483d5b8316753a742cbf5590caf5bd0a4e4777",
+    "dynarmicMemoryMode": 2,
+    "guestLoadAddress": "0x10000",
+    "guestCompilerFlags": "-target aarch64-freestanding -O2"
+  },
+  "provenance": {
+    "repositoryHead": "045107cd21d0e2bbd9fc8cf43baef74e5bea0a31",
+    "dynarmicRevision": "a41c380246d3d9f9874f0f792d234dc0cc17c180",
+    "qemuVersion": "qemu-aarch64 version 6.2.0 (Debian 1:6.2+dfsg-2ubuntu6.30)",
+    "compiler": "clang version 22.1.8\nTarget: x86_64-unknown-linux6.8.0-gnu2.35.0\nThread model: posix\nInstalledDir: /home/xiong/.local/lib/python3.10/site-packages/ziglang",
+    "node": "v24.19.0",
+    "uname": "Linux xiong-HP-Pro-Tower-ZHAN-99-G9-Desktop-PC 6.8.0-138-generic #138~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:43:15 UTC  x86_64 x86_64 x86_64 GNU/Linux",
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12700",
+    "logicalCpus": 20,
+    "scripts": {
+      "collect.mjs": "23df751922bdd9350fdb1ab0de2b269529955fb3bc9ffe1ef40740d29d920414",
+      "analyze.mjs": "ff93e2a3499760eb147ee73ee9db70312f79e17b6adc35efeb8103cd98997196",
+      "compare.mjs": "68cdefa4adc5d6caa3dfeb4367210e9630c524f0c21b29a176760c082d006d68",
+      "build_linux_coremark.py": "4a9358e25d9741be7f47cc48b509d423480d1d34ed43e58b9227fa9fd82fd5a3",
+      "collect_support.mjs": "f159fae8e5d8a94fa2caa3a0696536435395e6cf63580f4613b1f513bcce2a88",
+      "wasm.mjs": "0f96bafcdc20100c120d63420482e41d0758dc0572b4ea0e152254752eff5766"
+    },
+    "nativeHostSource": "ab8e4c5dc7f81f7fef76f1717bbbbe8845861ddd525e965b80156e9b305b2ae4",
+    "nativeHostCmake": "cdbd4ca492a2cc17242dd43a04a0e41e6ff788e3bedb07e5358b62aa89b46e5d"
+  }
+}

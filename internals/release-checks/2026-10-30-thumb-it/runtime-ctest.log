@@ -1,0 +1,26 @@
+Test project /home/xiong/workspace/dynarmic.js/build-em
+    Start 1: runtime_jit_demo
+1/9 Test #1: runtime_jit_demo ..................   Passed    0.06 sec
+    Start 2: runtime_instance_test
+2/9 Test #2: runtime_instance_test .............   Passed    1.14 sec
+    Start 3: runtime_thumb_it_return_test
+3/9 Test #3: runtime_thumb_it_return_test ......   Passed    0.29 sec
+    Start 4: runtime_region_diagnostics_test
+4/9 Test #4: runtime_region_diagnostics_test ...   Passed    0.31 sec
+    Start 5: runtime_a64_region_alias_test
+5/9 Test #5: runtime_a64_region_alias_test .....   Passed    0.30 sec
+    Start 6: runtime_a64_region_focus_test
+6/9 Test #6: runtime_a64_region_focus_test .....   Passed    0.29 sec
+    Start 7: runtime_lifecycle_test
+7/9 Test #7: runtime_lifecycle_test ............   Passed    0.14 sec
+    Start 8: runtime_runtime_table_test
+8/9 Test #8: runtime_runtime_table_test ........   Passed    0.03 sec
+    Start 9: runtime_stats_test
+9/9 Test #9: runtime_stats_test ................   Passed    0.03 sec
+
+100% tests passed, 0 tests failed out of 9
+
+Label Time Summary:
+runtime    =   2.60 sec*proc (9 tests)
+
+Total Test time (real) =   2.60 sec

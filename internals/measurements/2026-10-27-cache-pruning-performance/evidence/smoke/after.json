@@ -1,0 +1,507 @@
+{
+  "schema": "dynarmic.js/coremark-workload-v1",
+  "timestamp": "2026-10-27T06:28:31.612Z",
+  "node": "v24.19.0",
+  "v8": "13.6.233.17-node.51",
+  "runtime": {
+    "nodeOptions": "",
+    "cpuAffinity": "0,2,4,6"
+  },
+  "host": {
+    "platform": "linux",
+    "release": "6.8.0-138-generic",
+    "arch": "x64",
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12700",
+    "cpus": 20
+  },
+  "git": {
+    "revision": "8c91fbe886f2478aa50b7ea4cd78e1a35836e0f7",
+    "upstream": "a41c380246d3d9f9874f0f792d234dc0cc17c180",
+    "dirty": false
+  },
+  "build": {
+    "type": "Release",
+    "profile": false,
+    "compilerId": "Clang",
+    "compilerVersion": "24.0.0",
+    "emscriptenVersion": "\"6.0.13\"",
+    "cxxFlags": "",
+    "configCxxFlags": "-O3 -DNDEBUG",
+    "linkFlags": "",
+    "configLinkFlags": ""
+  },
+  "artifact": {
+    "jsSha256": "8fd2c38c325be2c1ddf7343f2b501137a8a40a5dc6dd8d0774ccda82ccbc1792",
+    "wasmSha256": "020169611e617c75bfa6492cd15f04a0de82dd975eb7699c3305dbbd0a184767"
+  },
+  "workload": {
+    "schema": "dynarmic.js/coremark-build-v1",
+    "revision": "1f483d5b8316753a742cbf5590caf5bd0a4e4777",
+    "iterations": 4000,
+    "dataSize": 2000,
+    "contexts": 1,
+    "sources": {
+      "a32/link.ld": "ead892341b03782cfb38ebf679620600a5c9fee70f429e5e320ae76f8dc23b41",
+      "a32/start.S": "61b62dcd88bd08aa1c579ffe2bdb0d1e8497ec84de84307f1418a0281b649c3b",
+      "a64/include/math.h": "2131a130299bb02e0cb99e4a6e2eb676d06b6b05015b2925d7e9aa87c3784e2e",
+      "a64/include/string.h": "cd96033fd1ba48b80854febf7acfd64403aff69f4dd49c120c9eedf55de8c0a1",
+      "a64/link.ld": "f5f5e02bfc1978aca3e08c9f0e8fb2acabe7699bf237105014f4bbb5d22bb7aa",
+      "a64/start.S": "6d3011ef944a5aceadeb822c976a108f19eb4da773d4ef84b9158b716138adb7",
+      "port/build.py": "d3c0c712f80b1240866b8d05e8444fa32e13e59a52aca5c4ba302cee1d95c2b3",
+      "port/core_portme.c": "b2d8d0cb6ac4cdc43e0e366f3a259b707fa715bf926739fec40655fba3373695",
+      "port/core_portme.h": "6a5feb460110da19fa9ae0c1773fd1ad956765a02191bd12860c1a8ad1dac009",
+      "upstream/barebones/cvt.c": "7c57eaa23c780cd707db2304365d1ded372fd73dd107f16bdd091d9dd16fd742",
+      "upstream/barebones/ee_printf.c": "535ba1feaa731d69e6f45117b9a79ef58291619248505c67aec916571612abdc",
+      "upstream/core_list_join.c": "ca00e4e010ece47d7f040cb92aa50a95345a00d3171b59d088f6b243be06ce7b",
+      "upstream/core_main.c": "17884c93c5b94378eb0ff02b4df3725756cf2addb9b8cbcaa6200a4649ff5ca7",
+      "upstream/core_matrix.c": "ecdff717b5a5c4907d221a606760e25499899cbf617582c05d40db71c91351e4",
+      "upstream/core_state.c": "f4b84bb0a3452c45a4daa664ab502bfdccbd31cb57d93e9ac490c60937717a4e",
+      "upstream/core_util.c": "a3fbfcb9bb943b638624b8ece01c5836dd56a96d7bcde2697b248d077447327f",
+      "upstream/coremark.h": "42642b9a06c7ed2b3bd9eda971b7c3868c4f5d27bf7ef6c4bba11291a0c2598a"
+    },
+    "compilers": {
+      "a32": "arm-none-eabi-gcc (15:10.3-2021.07-4) 10.3.1 20210621 (release)\nCopyright (C) 2020 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "a64": "clang version 22.1.8\nTarget: x86_64-unknown-linux6.8.0-gnu2.35.0\nThread model: posix\nInstalledDir: /home/xiong/.local/lib/python3.10/site-packages/ziglang",
+      "native": "cc (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0\nCopyright (C) 2022 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+    },
+    "flags": {
+      "a32": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp",
+      "a64": "-target aarch64-freestanding -O2",
+      "native": "-O2"
+    },
+    "commands": {
+      "a32": [
+        "arm-none-eabi-gcc",
+        "-O2",
+        "-mcpu=cortex-a15",
+        "-marm",
+        "-mfpu=vfpv3",
+        "-mfloat-abi=softfp",
+        "-DCOMPILER_FLAGS=\"-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\"",
+        "-DITERATIONS=4000",
+        "-DTOTAL_DATA_SIZE=2000",
+        "-DPERFORMANCE_RUN=1",
+        "-DMAIN_HAS_NOARGC=1",
+        "-I/home/xiong/workspace/dynarmic.js/tests/bench/coremark",
+        "-I/tmp/dynarmic-coremark-source",
+        "-ffreestanding",
+        "-nostdlib",
+        "-Dmain=guest_main",
+        "-T",
+        "/home/xiong/workspace/dynarmic.js/tests/guest/link.ld",
+        "/home/xiong/workspace/dynarmic.js/tests/guest/start.S",
+        "/tmp/dynarmic-coremark-source/core_list_join.c",
+        "/tmp/dynarmic-coremark-source/core_main.c",
+        "/tmp/dynarmic-coremark-source/core_matrix.c",
+        "/tmp/dynarmic-coremark-source/core_state.c",
+        "/tmp/dynarmic-coremark-source/core_util.c",
+        "/tmp/dynarmic-coremark-source/barebones/cvt.c",
+        "/tmp/dynarmic-coremark-short/ee_printf.c",
+        "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/core_portme.c",
+        "-lgcc",
+        "-o",
+        "/tmp/dynarmic-coremark-short/a32.elf"
+      ],
+      "a64": [
+        "python3",
+        "-m",
+        "ziglang",
+        "cc",
+        "-target",
+        "aarch64-freestanding",
+        "-O2",
+        "-DCOMPILER_FLAGS=\"-target aarch64-freestanding -O2\"",
+        "-DITERATIONS=4000",
+        "-DTOTAL_DATA_SIZE=2000",
+        "-DPERFORMANCE_RUN=1",
+        "-DMAIN_HAS_NOARGC=1",
+        "-I/home/xiong/workspace/dynarmic.js/tests/bench/coremark",
+        "-I/tmp/dynarmic-coremark-source",
+        "-ffreestanding",
+        "-nostdlib",
+        "-Dmain=guest_main",
+        "-I/home/xiong/workspace/dynarmic.js/tests/guest64/include",
+        "-T",
+        "/home/xiong/workspace/dynarmic.js/tests/guest64/link.ld",
+        "/home/xiong/workspace/dynarmic.js/tests/guest64/start.S",
+        "/tmp/dynarmic-coremark-source/core_list_join.c",
+        "/tmp/dynarmic-coremark-source/core_main.c",
+        "/tmp/dynarmic-coremark-source/core_matrix.c",
+        "/tmp/dynarmic-coremark-source/core_state.c",
+        "/tmp/dynarmic-coremark-source/core_util.c",
+        "/tmp/dynarmic-coremark-source/barebones/cvt.c",
+        "/tmp/dynarmic-coremark-short/ee_printf.c",
+        "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/core_portme.c",
+        "-o",
+        "/tmp/dynarmic-coremark-short/a64.elf"
+      ],
+      "native": [
+        "cc",
+        "-O2",
+        "-DCOMPILER_FLAGS=\"-O2\"",
+        "-DITERATIONS=4000",
+        "-DTOTAL_DATA_SIZE=2000",
+        "-DPERFORMANCE_RUN=1",
+        "-DMAIN_HAS_NOARGC=1",
+        "-I/home/xiong/workspace/dynarmic.js/tests/bench/coremark",
+        "-I/tmp/dynarmic-coremark-source",
+        "-DHOST",
+        "/tmp/dynarmic-coremark-source/core_list_join.c",
+        "/tmp/dynarmic-coremark-source/core_main.c",
+        "/tmp/dynarmic-coremark-source/core_matrix.c",
+        "/tmp/dynarmic-coremark-source/core_state.c",
+        "/tmp/dynarmic-coremark-source/core_util.c",
+        "/tmp/dynarmic-coremark-source/barebones/cvt.c",
+        "/tmp/dynarmic-coremark-short/ee_printf.c",
+        "/home/xiong/workspace/dynarmic.js/tests/bench/coremark/core_portme.c",
+        "-o",
+        "/tmp/dynarmic-coremark-short/coremark_host"
+      ]
+    },
+    "uartSourceSha256": "1be05078a3d9121bcfac8ddc67eadcccc4f7580c5968084c4a177274ee013e8b",
+    "artifacts": {
+      "a32": {
+        "file": "coremark_a32.bin",
+        "sha256": "ca1333050db8f679593cc5c2ddaf9455f018292d8dfc710bcbd39fbc0f3620c3"
+      },
+      "a64": {
+        "file": "coremark_a64.bin",
+        "sha256": "d56858a7db752d5490c0e36fffb0d2137c081b5c05bc925c8cc27939d4c83cbe"
+      },
+      "native": {
+        "file": "coremark_host",
+        "sha256": "b771a2d5decef9fa55f4d42dbec872687f1f1761515e9799dfefbcb590bba8c1"
+      }
+    }
+  },
+  "workloadSha256": "0431af1665fa2996d6bb6661242ce164ac16af633206926065dd0add7ae51d00",
+  "methodology": {
+    "workload": "CoreMark 2K performance seeds, one context, fixed compile-time iterations",
+    "process": "one new module and JIT per sample; cases rotate between fresh-process rounds",
+    "timing": "Run wall time excludes module load, RAM setup and JIT construction; includes cold compilation and publication",
+    "kernel": "guest microsecond timer around CoreMark iterate; includes JIT misses and engine tiering; no steady-state claim",
+    "duration": "durationQualified requires every guest sample to meet the upstream 10-second minimum; not certification",
+    "reference": "native executable validates CRCs, including final CRC; native timing is not a performance comparison"
+  },
+  "native": {
+    "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 101789\nTotal time (secs): 0.101789\nIterations/Sec   : 39296.977080\nERROR! Must execute for at least 10 secs for a valid result!\nIterations       : 4000\nCompiler version : GCC12.3.0\nCompiler flags   : -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x65c5\nErrors detected\n",
+    "metrics": {
+      "ticks": 101789,
+      "seconds": 0.101789,
+      "iterationsPerSecond": 39296.97708,
+      "crc": {
+        "seedcrc": "e9f5",
+        "crclist": "e714",
+        "crcmatrix": "1fd7",
+        "crcstate": "8e3a",
+        "crcfinal": "65c5"
+      },
+      "durationValid": false,
+      "compilerVersion": "GCC12.3.0",
+      "compilerFlags": "-O2"
+    }
+  },
+  "cases": [
+    {
+      "name": "a32-thunk",
+      "architecture": "a32",
+      "memoryMode": "thunk",
+      "runs": 1,
+      "samples": [
+        {
+          "haltReason": 16777216,
+          "runMs": 1435.635663,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 1366722\nTotal time (secs): 1.366722\nIterations/Sec   : 2926.710772\nERROR! Must execute for at least 10 secs for a valid result!\nIterations       : 4000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x65c5\nErrors detected\n",
+          "compile": {
+            "blocks": 114,
+            "bytes": 722524,
+            "translateMs": 21.54720099999615,
+            "optMs": 11.676543000003988,
+            "emitMs": 32.26627599999976,
+            "compileMs": 7.168774000000646,
+            "instMs": 1.3878899999991248,
+            "tableMs": 0.5966340000010248
+          },
+          "profile": null,
+          "process": 0,
+          "metrics": {
+            "ticks": 1366722,
+            "seconds": 1.366722,
+            "iterationsPerSecond": 2926.710772,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "65c5"
+            },
+            "durationValid": false,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        }
+      ],
+      "summary": {
+        "runMedianMs": 1435.635663,
+        "kernelMedianMs": 1366.722,
+        "runMadMs": 0,
+        "kernelMadMs": 0,
+        "compileMedianMs": 74.64331800000068,
+        "emittedBytesMedian": 722524,
+        "peakCachedBytesMedian": null,
+        "durationQualified": false
+      }
+    },
+    {
+      "name": "a32-page-table",
+      "architecture": "a32",
+      "memoryMode": "page-table",
+      "runs": 1,
+      "samples": [
+        {
+          "haltReason": 16777216,
+          "runMs": 716.126764,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 644994\nTotal time (secs): 0.644994\nIterations/Sec   : 6201.608077\nERROR! Must execute for at least 10 secs for a valid result!\nIterations       : 4000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x65c5\nErrors detected\n",
+          "compile": {
+            "blocks": 115,
+            "bytes": 861126,
+            "translateMs": 23.764651999998737,
+            "optMs": 11.559587000001137,
+            "emitMs": 29.957825000000234,
+            "compileMs": 7.154827000000793,
+            "instMs": 1.6851589999996364,
+            "tableMs": 0.6324500000003397
+          },
+          "profile": null,
+          "process": 0,
+          "metrics": {
+            "ticks": 644994,
+            "seconds": 0.644994,
+            "iterationsPerSecond": 6201.608077,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "65c5"
+            },
+            "durationValid": false,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        }
+      ],
+      "summary": {
+        "runMedianMs": 716.126764,
+        "kernelMedianMs": 644.994,
+        "runMadMs": 0,
+        "kernelMadMs": 0,
+        "compileMedianMs": 74.75450000000089,
+        "emittedBytesMedian": 861126,
+        "peakCachedBytesMedian": null,
+        "durationQualified": false
+      }
+    },
+    {
+      "name": "a32-flat-window",
+      "architecture": "a32",
+      "memoryMode": "flat-window",
+      "runs": 1,
+      "samples": [
+        {
+          "haltReason": 16777216,
+          "runMs": 634.069376,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 553642\nTotal time (secs): 0.553642\nIterations/Sec   : 7224.885395\nERROR! Must execute for at least 10 secs for a valid result!\nIterations       : 4000\nCompiler version : GCC10.3.1 20210621 (release)\nCompiler flags   : -O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x65c5\nErrors detected\n",
+          "compile": {
+            "blocks": 113,
+            "bytes": 774968,
+            "translateMs": 30.67735500000092,
+            "optMs": 13.477728999997467,
+            "emitMs": 36.573858000000214,
+            "compileMs": 10.387675999999892,
+            "instMs": 2.343661000000239,
+            "tableMs": 1.0389319999995479
+          },
+          "profile": null,
+          "process": 0,
+          "metrics": {
+            "ticks": 553642,
+            "seconds": 0.553642,
+            "iterationsPerSecond": 7224.885395,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "65c5"
+            },
+            "durationValid": false,
+            "compilerVersion": "GCC10.3.1 20210621 (release)",
+            "compilerFlags": "-O2 -mcpu=cortex-a15 -marm -mfpu=vfpv3 -mfloat-abi=softfp"
+          }
+        }
+      ],
+      "summary": {
+        "runMedianMs": 634.069376,
+        "kernelMedianMs": 553.642,
+        "runMadMs": 0,
+        "kernelMadMs": 0,
+        "compileMedianMs": 94.49921099999827,
+        "emittedBytesMedian": 774968,
+        "peakCachedBytesMedian": null,
+        "durationQualified": false
+      }
+    },
+    {
+      "name": "a64-thunk",
+      "architecture": "a64",
+      "memoryMode": "thunk",
+      "runs": 1,
+      "samples": [
+        {
+          "haltReason": 16777216,
+          "runMs": 1388.026556,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 1277112\nTotal time (secs): 1.277112\nIterations/Sec   : 3132.066726\nERROR! Must execute for at least 10 secs for a valid result!\nIterations       : 4000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x65c5\nErrors detected\n",
+          "compile": {
+            "blocks": 107,
+            "bytes": 609522,
+            "translateMs": 75.94155999999091,
+            "optMs": 10.881876000003544,
+            "emitMs": 28.308924999999235,
+            "compileMs": 6.43141099999967,
+            "instMs": 1.3985769999997473,
+            "tableMs": 0.579907000001981
+          },
+          "profile": null,
+          "process": 0,
+          "metrics": {
+            "ticks": 1277112,
+            "seconds": 1.277112,
+            "iterationsPerSecond": 3132.066726,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "65c5"
+            },
+            "durationValid": false,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        }
+      ],
+      "summary": {
+        "runMedianMs": 1388.026556,
+        "kernelMedianMs": 1277.112,
+        "runMadMs": 0,
+        "kernelMadMs": 0,
+        "compileMedianMs": 123.54225599999509,
+        "emittedBytesMedian": 609522,
+        "peakCachedBytesMedian": null,
+        "durationQualified": false
+      }
+    },
+    {
+      "name": "a64-page-table",
+      "architecture": "a64",
+      "memoryMode": "page-table",
+      "runs": 1,
+      "samples": [
+        {
+          "haltReason": 16777216,
+          "runMs": 807.1665350000001,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 677678\nTotal time (secs): 0.677678\nIterations/Sec   : 5902.508271\nERROR! Must execute for at least 10 secs for a valid result!\nIterations       : 4000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x65c5\nErrors detected\n",
+          "compile": {
+            "blocks": 107,
+            "bytes": 723905,
+            "translateMs": 91.53535999999798,
+            "optMs": 11.282768999997842,
+            "emitMs": 30.332916000000466,
+            "compileMs": 9.48494899999993,
+            "instMs": 1.4267589999999757,
+            "tableMs": 0.6181970000004355
+          },
+          "profile": null,
+          "process": 0,
+          "metrics": {
+            "ticks": 677678,
+            "seconds": 0.677678,
+            "iterationsPerSecond": 5902.508271,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "65c5"
+            },
+            "durationValid": false,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        }
+      ],
+      "summary": {
+        "runMedianMs": 807.1665350000001,
+        "kernelMedianMs": 677.678,
+        "runMadMs": 0,
+        "kernelMadMs": 0,
+        "compileMedianMs": 144.68094999999664,
+        "emittedBytesMedian": 723905,
+        "peakCachedBytesMedian": null,
+        "durationQualified": false
+      }
+    },
+    {
+      "name": "a64-flat-window",
+      "architecture": "a64",
+      "memoryMode": "flat-window",
+      "runs": 1,
+      "samples": [
+        {
+          "haltReason": 16777216,
+          "runMs": 644.48919,
+          "stdout": "2K performance run parameters for coremark.\nCoreMark Size    : 666\nTotal ticks      : 521190\nTotal time (secs): 0.521190\nIterations/Sec   : 7674.744335\nERROR! Must execute for at least 10 secs for a valid result!\nIterations       : 4000\nCompiler version : clang 22.1.8 \nCompiler flags   : -target aarch64-freestanding -O2\nMemory location  : STACK\nseedcrc          : 0xe9f5\n[0]crclist       : 0xe714\n[0]crcmatrix     : 0x1fd7\n[0]crcstate      : 0x8e3a\n[0]crcfinal      : 0x65c5\nErrors detected\n",
+          "compile": {
+            "blocks": 107,
+            "bytes": 665425,
+            "translateMs": 87.51200100000146,
+            "optMs": 10.777986000001192,
+            "emitMs": 28.929073000000102,
+            "compileMs": 6.838999000000186,
+            "instMs": 1.319045000000429,
+            "tableMs": 0.5886259999994792
+          },
+          "profile": null,
+          "process": 0,
+          "metrics": {
+            "ticks": 521190,
+            "seconds": 0.52119,
+            "iterationsPerSecond": 7674.744335,
+            "crc": {
+              "seedcrc": "e9f5",
+              "crclist": "e714",
+              "crcmatrix": "1fd7",
+              "crcstate": "8e3a",
+              "crcfinal": "65c5"
+            },
+            "durationValid": false,
+            "compilerVersion": "clang 22.1.8 ",
+            "compilerFlags": "-target aarch64-freestanding -O2"
+          }
+        }
+      ],
+      "summary": {
+        "runMedianMs": 644.48919,
+        "kernelMedianMs": 521.19,
+        "runMadMs": 0,
+        "kernelMadMs": 0,
+        "compileMedianMs": 135.96573000000285,
+        "emittedBytesMedian": 665425,
+        "peakCachedBytesMedian": null,
+        "durationQualified": false
+      }
+    }
+  ],
+  "durationQualified": false
+}

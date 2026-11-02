@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "fixtureDirectory": "/tmp/quickjs-cmake-options-hs5elri9",
+  "generator": "Unix Makefiles",
+  "cmakeVersion": "cmake version 4.0.2",
+  "source": {
+    "path": "examples/browser/CMakeLists.txt",
+    "sha256": "cc2778f830f60da2b227e3d31ef6bd746519cc212aa5726fb7a4fcc4fcd2b1d1"
+  },
+  "compilerInvocations": 0,
+  "buildCommandsExecuted": 0,
+  "actualBuildDirectoryTouched": false,
+  "checks": [
+    {
+      "check": "default options reach the real QuickJS custom command",
+      "options": [
+        "--arm-opt",
+        "O2",
+        "--arm-dispatch",
+        "switch",
+        "--arm-isa",
+        "arm"
+      ],
+      "stampContent": "--arm-opt;O2;--arm-dispatch;switch;--arm-isa;arm\n",
+      "stampMtimeNs": 1793384741234739284,
+      "command": "cd /tmp/quickjs-cmake-options-hs5elri9/build/browser && /usr/bin/python3 /home/xiong/workspace/dynarmic.js/examples/quickjs/build.py --dist /tmp/quickjs-cmake-options-hs5elri9/build/browser/dist --cache /tmp/quickjs-cmake-options-hs5elri9/build/browser/quickjs-cache --emcc /tmp/quickjs-cmake-options-hs5elri9/fake-sdk/emcc --arm-cc /usr/bin/arm-none-eabi-gcc --arm-objcopy /usr/bin/arm-none-eabi-objcopy --arm-opt O2 --arm-dispatch switch --arm-isa arm"
+    },
+    {
+      "check": "identical default reconfigure leaves content and mtime unchanged",
+      "stampMtimeNs": 1793384741234739284
+    },
+    {
+      "check": "all six custom choices reach command and update stamp content/mtime",
+      "options": [
+        "--arm-opt",
+        "O3",
+        "--arm-dispatch",
+        "threaded",
+        "--arm-isa",
+        "thumb",
+        "--arm-lto",
+        "--arm-no-gcse",
+        "--arm-no-crossjumping"
+      ],
+      "stampContent": "--arm-opt;O3;--arm-dispatch;threaded;--arm-isa;thumb;--arm-lto;--arm-no-gcse;--arm-no-crossjumping\n",
+      "stampMtimeNs": 1793384820665991571,
+      "command": "cd /tmp/quickjs-cmake-options-hs5elri9/build/browser && /usr/bin/python3 /home/xiong/workspace/dynarmic.js/examples/quickjs/build.py --dist /tmp/quickjs-cmake-options-hs5elri9/build/browser/dist --cache /tmp/quickjs-cmake-options-hs5elri9/build/browser/quickjs-cache --emcc /tmp/quickjs-cmake-options-hs5elri9/fake-sdk/emcc --arm-cc /usr/bin/arm-none-eabi-gcc --arm-objcopy /usr/bin/arm-none-eabi-objcopy --arm-opt O3 --arm-dispatch threaded --arm-isa thumb --arm-lto --arm-no-gcse --arm-no-crossjumping"
+    },
+    {
+      "check": "identical custom reconfigure leaves stamp content and mtime unchanged",
+      "stampMtimeNs": 1793384820665991571
+    },
+    {
+      "check": "turning optional flags off removes them and updates stamp",
+      "options": [
+        "--arm-opt",
+        "O2",
+        "--arm-dispatch",
+        "switch",
+        "--arm-isa",
+        "arm"
+      ],
+      "stampContent": "--arm-opt;O2;--arm-dispatch;switch;--arm-isa;arm\n",
+      "stampMtimeNs": 1793384820824994078,
+      "command": "cd /tmp/quickjs-cmake-options-hs5elri9/build/browser && /usr/bin/python3 /home/xiong/workspace/dynarmic.js/examples/quickjs/build.py --dist /tmp/quickjs-cmake-options-hs5elri9/build/browser/dist --cache /tmp/quickjs-cmake-options-hs5elri9/build/browser/quickjs-cache --emcc /tmp/quickjs-cmake-options-hs5elri9/fake-sdk/emcc --arm-cc /usr/bin/arm-none-eabi-gcc --arm-objcopy /usr/bin/arm-none-eabi-objcopy --arm-opt O2 --arm-dispatch switch --arm-isa arm"
+    },
+    {
+      "check": "invalid OPT string rejected at configure",
+      "value": "O2;injected",
+      "returnCode": 1
+    },
+    {
+      "check": "invalid DISPATCH string rejected at configure",
+      "value": "threaded$(injected)",
+      "returnCode": 1
+    },
+    {
+      "check": "invalid ISA string rejected at configure",
+      "value": "thumb\ninjected",
+      "returnCode": 1
+    }
+  ]
+}

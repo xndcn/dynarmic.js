@@ -1,0 +1,37 @@
+name: Internal evidence
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'internals/**'
+      - 'tests/bench/**'
+      - 'examples/browser/write_build_manifest.cmake'
+      - '.github/workflows/internals.yml'
+  push:
+    paths:
+      - 'internals/**'
+      - 'tests/bench/**'
+      - 'examples/browser/write_build_manifest.cmake'
+      - '.github/workflows/internals.yml'
+permissions:
+  contents: read
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Experiment analysis and evidence checks
+        run: |
+          find internals/measurements -name '*.test.mjs' ! -name emit_probe.test.mjs -print0 |
+            xargs -0 node --test
+          node internals/measurements/2026-10-24-push-rsb-ablation/verify.mjs
+      - name: Install retained-evidence toolchain
+        run: npm install --prefix /tmp/dynarmic-wabt --no-audit --no-fund wabt@1.0.39
+      - name: Verify retained Wasm and reject mutations
+        run: |
+          node internals/measurements/2026-10-24-region-diagnostics/verify.mjs \
+            --wabt-bin /tmp/dynarmic-wabt/node_modules/wabt/bin

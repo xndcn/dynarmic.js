@@ -1,0 +1,8 @@
+{
+  "verified": true,
+  "checks": [
+    "Auto quick: all 45 observations pass, all other labs blocked",
+    "host: rejected before guest execution",
+    "binary: rejected before guest execution"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "cpu": "12th Gen Intel(R) Core(TM) i7-12700",
+  "baseRevision": "930278597e9a288fd1e835f2814644eca5fe289b",
+  "files": {
+    "tests/ir/integer_edge_test.cpp": "a42d2e7f2f77500930b5bd384c260e94eee4ee22f6a4ad4826b69d1bc9638550",
+    "tests/ir/integer_edge_test.mjs": "1354f59c94f457214a05f3a65a1e604649a4b5143115eb987637dbb2e7203edc",
+    "src/dynarmic/backend/wasm/emit_wasm_packed.cpp": "69a599399e88b399bd2c0b0ca4af84891d9f9afabdea7d9d4c4065255c4c7fdb",
+    "src/dynarmic/backend/wasm/emit_wasm_saturation.cpp": "3c10556f36b6fd8159fb19d0750c52166ea98abefbf05549417da28c2f777e5e",
+    "/home/xiong/workspace/dynarmic.js/docs/measurements/2026-10-30-packed-saturation/collect.py": "85f70e817148ddd8d00e013c3cb3d521adc1e5050bb077948c9208c237e61e7d"
+  },
+  "modules": {
+    "baseline": {
+      "bench_PackedSaturatedAddS16.wasm": "10a22a4e253c92f4c7797611395f7a6340d1ae345688155939e8b426cbf487fd",
+      "bench_PackedSaturatedAddS8.wasm": "084c659d7e9314fd2435faac933d513b1b3ad8eea54fcf577c1345323bb0f515",
+      "bench_PackedSaturatedAddU16.wasm": "83765758d2950967e5046a093b1a43032f9bb1fb86aa4cf982386276af7bc4b0",
+      "bench_PackedSaturatedAddU8.wasm": "2167e7316c629dd6abcac8911daf2193c0900004f2db6611ef9d18d9899425b2",
+      "bench_PackedSaturatedSubS16.wasm": "21c3bb19f152aa79fd1cbc4f496d7687d536b874b5bcdc1491366eb5fbe6d135",
+      "bench_PackedSaturatedSubS8.wasm": "aa8872651d581d38e78aa4121f07cf5ed80db62caba64a6c12836bf37aa6cb3a",
+      "bench_PackedSaturatedSubU16.wasm": "7bdd7ec51e6ca68d85102567142c8afa3fe3f2b2c8e0d9bcf384f798cf100628",
+      "bench_PackedSaturatedSubU8.wasm": "e0ee951b037005f71b8ea9fa49e14d2f6067e9b812ccbec8ecdc89816246264a"
+    },
+    "candidate": {
+      "bench_PackedSaturatedAddS16.wasm": "2c2d92180a55cf24d038f0dc75438d8cb0c7a8bb2da8aa557312cf0970e5bdbd",
+      "bench_PackedSaturatedAddS8.wasm": "3ba7b673be77a7ec91b18b396b3838d03201943c3ef07f6bd1219489e5785d0e",
+      "bench_PackedSaturatedAddU16.wasm": "61aa29f073ba0418c244ca92fe00607e0a3dd6c718d33eb369cb3a28f9f6fdf1",
+      "bench_PackedSaturatedAddU8.wasm": "3ac4af5b16101a13e51bf1af3624e99a98265b1003d6c6fa8fabe2c466ef42b9",
+      "bench_PackedSaturatedSubS16.wasm": "02419b799ececfb9c59245f217668993f7c5437254193defbefbffb74bbad3f8",
+      "bench_PackedSaturatedSubS8.wasm": "c3df5f4244ce34e06ab7a020878857436dad074bb8573216b02cc1d6acbe25f1",
+      "bench_PackedSaturatedSubU16.wasm": "9ccb40f9d4b6fdbd450aacfbf180d0e331559df38dd2cba0cfa1d8415b398a60",
+      "bench_PackedSaturatedSubU8.wasm": "fc8a088f66749fbe346e82c68208a5673af2f3a57c5140b66299a9e60877f3da"
+    }
+  }
+}

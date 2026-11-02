@@ -1,0 +1,9 @@
+{
+  "examples/browser/official-benchmarks-app.js": "c6abbc0cdce10df38e805157751483392c77a155348f3bcca40fdcdc38e63930",
+  "examples/browser/official-benchmarks-worker.js": "e872a7066f7d963cc99d4b596b21ed30817b0244446109fac41f8eec717ca1b6",
+  "examples/browser/index.html": "1a2c9dd8409552bae815a970c82e4192a9cc538145db3941b76ec490eee1788c",
+  "examples/browser/styles.css": "fc67703d9409d96c3edf38897ef6956516706ce767037258362c11de4526264d",
+  "examples/quickjs/official_benchmarks.py": "5c8c63308a63579b4a560000f040011de595302a6e1eb0b8395fe9127b0b7cd9",
+  "examples/quickjs/official-v8-adapter.js": "14ac511bfd497c6686c901919a6f8222e53501d7e835b47af976ffa4874ab9ff",
+  "examples/quickjs/runner.c": "f26f0c670f552bcdb48d73de9b5506dd10d5c4a351230d029da75482156c6f0a"
+}

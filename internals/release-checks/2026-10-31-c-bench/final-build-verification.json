@@ -1,0 +1,13 @@
+{
+  "verified": true,
+  "metadataChangesAfterBrowserValidation": [
+    "c-bench-v86-LICENSE.txt",
+    "c-bench-manifest.json",
+    "wasm-build-manifest.json"
+  ],
+  "allMeasuredExecutableSourceInputAndUiBytesUnchanged": true,
+  "sourceCount": 10,
+  "artifactCount": 8,
+  "completeV86DependencyNotices": true,
+  "currentHostCmakeHashMatches": true
+}
