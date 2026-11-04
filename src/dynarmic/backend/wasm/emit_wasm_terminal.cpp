@@ -476,7 +476,8 @@ struct TerminalVisitor {
         const u32 slot_index = static_cast<u32>((A32::LocationDescriptor{next}.PC() >> 1) & 0xffff);
         bool check_hooks = true;
         if (const auto& snapshot = ctx.emit_conf.boundary_hook_snapshot) {
-            const u32 slot = snapshot->hook_slots == nullptr ? 0 : snapshot->hook_slots[slot_index];
+            const u32 slot = (snapshot->instruction_hooks & 1) == 0 || snapshot->hook_slots == nullptr
+                                ? 0 : snapshot->hook_slots[slot_index];
             check_hooks = ((snapshot->instruction_hooks | slot) & kBoundaryInstructionHookMask) != 0;
         }
         const u32 slow = ctx.Temp(ValType::I32);
@@ -503,6 +504,12 @@ struct TerminalVisitor {
             ctx.code.I32Const(static_cast<s32>(address));
             ctx.code.Load(Op::I32Load, offsetof(BoundaryState, instruction_hooks), 2);
             ctx.code.LocalSet(hooks);
+            // The filter is meaningful only when bit 0 is set. A disabled
+            // filter may be null or contain stale slot bits.
+            ctx.code.LocalGet(hooks);
+            ctx.code.I32Const(1);
+            ctx.code.U8(Op::I32And);
+            ctx.code.If();
             ctx.code.I32Const(static_cast<s32>(address));
             ctx.code.Load(Op::I32Load, offsetof(BoundaryState, hook_slots), 2);
             ctx.code.I32Const(static_cast<s32>(slot_index));
@@ -510,6 +517,9 @@ struct TerminalVisitor {
             ctx.code.Load(Op::I32Load8U, 0, 0);
             ctx.code.LocalGet(hooks);
             ctx.code.U8(Op::I32Or);
+            ctx.code.LocalSet(hooks);
+            ctx.code.End();
+            ctx.code.LocalGet(hooks);
             ctx.code.I32Const(static_cast<s32>(kBoundaryInstructionHookMask));
             ctx.code.U8(Op::I32And);
             ctx.code.U8(Op::I32Or);

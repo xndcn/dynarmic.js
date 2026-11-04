@@ -54,7 +54,7 @@ if (fail) process.exit(fail);
     const dv = new DataView(boundaryMemory.buffer);
     const slots = new Uint8Array(boundaryMemory.buffer, 0x600, 0x10000);
     const STATE = 0x100, ECTX = 0x300, BOUNDARY = 0x500;
-    const run = ({ cycles = 2n, halt = 0, flags = 0, hooks = 0, hookPC = null } = {}) => {
+    const run = ({ cycles = 2n, halt = 0, flags = 0, hooks = 0, hookPC = null, poisonSlots = false } = {}) => {
         dv.setUint32(STATE + 20, 0, true); // r0
         dv.setUint32(STATE + 24, 0, true); // r1
         dv.setUint32(STATE + 80, 0x1000, true); // r15
@@ -63,7 +63,7 @@ if (fail) process.exit(fail);
         dv.setBigInt64(ECTX + 24, cycles, true);
         dv.setUint32(BOUNDARY, flags, true);
         dv.setUint32(BOUNDARY + 4, hooks, true);
-        dv.setUint32(BOUNDARY + 8, 0x600, true);
+        dv.setUint32(BOUNDARY + 8, poisonSlots ? 0x20000 : 0x600, true);
         slots.fill(0);
         if (hookPC !== null) slots[(hookPC >>> 1) & 0xffff] = 1 << 2;
         const result = boundary.exports.f(STATE, ECTX);
@@ -84,6 +84,9 @@ if (fail) process.exit(fail);
     assert.deepEqual(run({ hooks: 1, hookPC: 0x1004 }), { result: 0, r0: 11, r1: 0, pc: 0x1004, remaining: 1n });
     assert.deepEqual(run({ hooks: 1, hookPC: 0x1000 }), { result: 0, r0: 11, r1: 21, pc: 0x1008, remaining: 0n });
     assert.deepEqual(run({ hooks: 1 << 2 }), { result: 0, r0: 11, r1: 0, pc: 0x1004, remaining: 1n });
+    assert.deepEqual(run({ hooks: 0, hookPC: 0x1004 }), { result: 0, r0: 11, r1: 21, pc: 0x1008, remaining: 0n });
+    assert.deepEqual(run({ poisonSlots: true }), { result: 0, r0: 11, r1: 21, pc: 0x1008, remaining: 0n });
+    assert.deepEqual(run({ hooks: 2, poisonSlots: true }), { result: 0, r0: 11, r1: 0, pc: 0x1004, remaining: 1n });
     console.log('a32_boundary.wasm OK');
 }
 

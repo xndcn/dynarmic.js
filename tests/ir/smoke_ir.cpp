@@ -318,6 +318,10 @@ int main(int argc, char** argv) {
     hook_slots[(0x1000 >> 1) & 0xffff] = 0;
 
     hook_slots[(0x1004 >> 1) & 0xffff] = 1 << 1;
+    const auto disabled_filter = EmitSpecializedBoundary(hook_snapshot, 0);
+    Require(disabled_filter.module_bytes == specialized.module_bytes,
+            "disabled filter bits must not retain hook guards");
+    hook_snapshot.instruction_hooks = 1;
     const auto local_code = EmitSpecializedBoundary(hook_snapshot, 1);
     WriteModule(directory + "/a32_boundary_specialized_local.wasm", local_code);
     hook_slots[(0x1004 >> 1) & 0xffff] = 1 << 2;
