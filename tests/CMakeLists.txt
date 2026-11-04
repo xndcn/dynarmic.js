@@ -7,6 +7,14 @@ if (EMSCRIPTEN)
             LINK_OPTIONS -sNODERAWFS=1 -sINITIAL_MEMORY=67108864
         )
     endforeach()
+    add_executable(a32_region_alias_test hosts/a32_region_alias_test.cpp)
+    dynarmic_js_host(a32_region_alias_test EXPORTS _main
+        LINK_OPTIONS -sNODERAWFS=1 -sINITIAL_MEMORY=67108864)
+    target_link_libraries(a32_region_alias_test PRIVATE Boost::boost)
+    add_executable(a64_region_sharing_test hosts/a64_region_sharing_test.cpp)
+    dynarmic_js_host(a64_region_sharing_test EXPORTS _main
+        LINK_OPTIONS -sNODERAWFS=1 -sINITIAL_MEMORY=67108864)
+    target_link_libraries(a64_region_sharing_test PRIVATE Boost::boost)
     target_link_libraries(a64_region_alias_test PRIVATE Boost::boost)
     target_link_libraries(a64_region_focus_test PRIVATE Boost::boost)
     set(DYNARMIC_JS_A64_REGION_FOCUS_TEST_EXCEPTIONS OFF CACHE BOOL
@@ -28,7 +36,7 @@ if (EMSCRIPTEN)
     find_program(DYNARMIC_JS_NODE node)
     if (DYNARMIC_JS_NODE)
         foreach(host jit_demo instance_test thumb_it_return_test region_diagnostics_test
-                a64_region_alias_test a64_region_focus_test lifecycle_test
+                a32_region_alias_test a64_region_alias_test a64_region_sharing_test a64_region_focus_test lifecycle_test
                 runtime_table_test stats_test)
             add_test(NAME "runtime_${host}"
                 COMMAND "${DYNARMIC_JS_NODE}" "$<TARGET_FILE:${host}>")

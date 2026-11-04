@@ -471,9 +471,10 @@ struct TerminalVisitor {
         if (boundary == nullptr) {
             return;
         }
-        ASSERT(ctx.emit_conf.frontend == Frontend::A32);
         const u32 address = static_cast<u32>(reinterpret_cast<uptr>(boundary));
-        const u32 slot_index = static_cast<u32>((A32::LocationDescriptor{next}.PC() >> 1) & 0xffff);
+        const u64 pc = ctx.emit_conf.frontend == Frontend::A32 ? A32::LocationDescriptor{next}.PC()
+                                                               : A64::LocationDescriptor{next}.PC();
+        const u32 slot_index = static_cast<u32>((pc >> 1) & 0xffff);
         bool check_hooks = true;
         if (const auto& snapshot = ctx.emit_conf.boundary_hook_snapshot) {
             const u32 slot = (snapshot->instruction_hooks & 1) == 0 || snapshot->hook_slots == nullptr
@@ -540,7 +541,6 @@ struct TerminalVisitor {
         if (boundary == nullptr) {
             return;
         }
-        ASSERT(ctx.emit_conf.frontend == Frontend::A32);
         const u32 address = static_cast<u32>(reinterpret_cast<uptr>(boundary));
         const auto& snapshot = ctx.emit_conf.boundary_hook_snapshot;
         const bool check_global_hooks = !snapshot || (snapshot->instruction_hooks & kBoundaryInstructionHookMask) != 0;
@@ -1077,6 +1077,9 @@ void EmitCondPrelude(EmitContext& ctx) {
     EmitCond(ctx, cond);
     ctx.code.If();
     ctx.code.Else();
+    // Failed conditions still enter guest instructions. This path bypasses
+    // the ordinary IR body and must debit its own cycle count before linking.
+    EmitChargeCycles(ctx, ctx.block->ConditionFailedCycleCount());
     TerminalVisitor{ctx}(IR::Term::LinkBlock{ctx.block->ConditionFailedLocation()});
     ctx.code.End();
 }

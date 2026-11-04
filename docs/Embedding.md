@@ -136,6 +136,40 @@ Backend-specific boundary-hook specialization has a stronger whole-cache
 invalidation contract. It is an internal integration feature; consult its
 [source declaration](../src/dynarmic/backend/wasm/a32_interface.h) before use.
 
+The A32 and A64 integrations opt into shared region entries through the optimization
+configuration:
+
+```cpp
+config.enable_cycle_counting = true;
+config.optimizations |= Dynarmic::OptimizationFlag::WasmRegionMultiEntry;
+Dynarmic::Backend::Wasm::BoundaryState boundary{};
+auto jit = Dynarmic::Backend::Wasm::CreateA32Jit(config, &boundary);
+```
+
+Keep `boundary` alive until the JIT is destroyed. Sharing requires both cycle
+counting and a non-null `BoundaryState`; ordinary `A32::Jit` / `A64::Jit`
+construction has no boundary and does not activate it. For A64 use
+`CreateA64Jit(config64, &boundary)` with the same optimization flag. Internal
+entries reuse one generated function, selected by the full location descriptor
+(PC/Thumb/IT/endian/FPSCR for A32, masked 56-bit PC and FPCR mode for A64). Single stepping stays separate. Cache capacity counts allocations, and invalidation or eviction removes
+all aliases and incoming links of an affected allocation together.
+
+Sharing uses the branch-table region layout, skips already cached destinations
+during selection, and keeps the existing 64-block/2000-IR limits. It can reduce
+compilation on repeated interior resumes but can cost warm throughput; qualify
+it against your application's cold and warm workloads before enabling it.
+`UserConfig::optimizations` defaults to `default_optimizations`, which excludes
+this flag. `all_safe_optimizations` includes it, so explicitly selecting that set
+opts into sharing when its prerequisites are present. The flag does not require
+`unsafe_optimizations`. Public headers are extended through a build-tree patch;
+the upstream submodule remains unmodified, and installed headers carry the same
+configuration definitions as the library.
+
+The [review and paired measurements](../internals/measurements/2026-11-04-a32-region-sharing/README.md)
+describe the tradeoff and selector optimization. The JavaScript package exposes
+`optimizations.regionMultiEntry` at creation time and owns the required boundary
+state; see the [JavaScript guide](JavaScript.md).
+
 ## Browser deployment
 
 Serve the host JavaScript, Wasm and Worker files over HTTP(S) from compatible

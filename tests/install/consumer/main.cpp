@@ -42,6 +42,22 @@ int main() {
     Callbacks callbacks;
     Dynarmic::A32::UserConfig a32{};
     Dynarmic::A64::UserConfig a64{};
+    using Dynarmic::OptimizationFlag;
+    if (a32.optimizations != Dynarmic::default_optimizations ||
+        a64.optimizations != Dynarmic::default_optimizations ||
+        a32.HasOptimization(OptimizationFlag::WasmRegionMultiEntry) ||
+        a64.HasOptimization(OptimizationFlag::WasmRegionMultiEntry)) return 1;
+    a32.optimizations |= OptimizationFlag::WasmRegionMultiEntry | OptimizationFlag::Unsafe_UnfuseFMA;
+    if (!a32.HasOptimization(OptimizationFlag::WasmRegionMultiEntry) ||
+        a32.HasOptimization(OptimizationFlag::Unsafe_UnfuseFMA)) return 1;
+    a32.unsafe_optimizations = true;
+    if (!a32.HasOptimization(OptimizationFlag::Unsafe_UnfuseFMA)) return 1;
+    a32.unsafe_optimizations = false;
+    a32.optimizations = Dynarmic::all_safe_optimizations;
+    if (!a32.HasOptimization(OptimizationFlag::WasmRegionMultiEntry)) return 1;
+    a32.optimizations = Dynarmic::no_optimizations;
+    if (a32.HasOptimization(OptimizationFlag::WasmRegionMultiEntry)) return 1;
+    a32.optimizations = Dynarmic::default_optimizations;
     a32.callbacks = &callbacks;
     a64.callbacks = &callbacks;
     Dynarmic::A32::Jit jit32(a32);

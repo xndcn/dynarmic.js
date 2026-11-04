@@ -16,7 +16,8 @@ public:
     explicit A64AddressSpace(const A64::UserConfig& conf, ProfileCounters* profiler = nullptr,
                              CompileStats* compile_stats = nullptr,
                              RegionDiagnostics* region_diagnostics = nullptr,
-                             bool enable_fallback_multi_entry = false);
+                             bool enable_fallback_multi_entry = false,
+                             const BoundaryState* boundary_state = nullptr);
     ~A64AddressSpace() override;
 
     IR::Block GenerateIR(IR::LocationDescriptor descriptor) const override;
@@ -31,6 +32,7 @@ private:
 
     const A64::UserConfig conf;
     const bool enable_fallback_multi_entry;
+    const BoundaryState* boundary_state = nullptr;
     const std::optional<RegionSelectionFocus> region_focus;
     // Flat guest window derived from fastmem_pointer + page_table (see EmitConfig).
     u32 flat_base = 0;

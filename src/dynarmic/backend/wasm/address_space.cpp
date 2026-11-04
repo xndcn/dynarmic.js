@@ -156,49 +156,48 @@ BlockFunc AddressSpace::Publish(std::shared_ptr<BlockEntry> entry, IR::LocationD
 // generated block is on the stack. Browser native-code mapping limits can be
 // reached before shared linear memory is exhausted.
 void AddressSpace::TrimCache() {
+    // A compile failure also requests trimming. Defer it while the dispatcher
+    // still holds a link slot owned by the source allocation.
+    if (suspend_trim) return;
     const EmitConfig emit_conf = MakeEmitConfig();
     if (!emit_conf.enable_cycle_counting || emit_conf.boundary_state == nullptr ||
-        block_entries.size() < cache_capacity) {
+        cached_block_count < cache_capacity) {
         return;
     }
-    const size_t batch = std::min(block_entries.size(), block_entries.size() - cache_capacity + 1024);
+    const size_t batch = std::min(cached_block_count, cached_block_count - cache_capacity + 1024);
     if (batch == 0) {
         return;
     }
-    std::vector<std::pair<u64, u64>> cold;
-    cold.reserve(block_entries.size());
+    // Capacity and recency belong to compiled allocations, not to each of
+    // their lookup aliases. Evicting aliases independently causes repeated
+    // compilation while keeping most of the underlying code allocations.
+    std::vector<std::pair<u64, const BlockEntry*>> cold;
+    cold.reserve(cached_block_count);
+    std::unordered_set<const BlockEntry*> allocations;
+    allocations.reserve(cached_block_count);
     for (const auto& [key, entry] : block_entries) {
-        cold.emplace_back(entry->last_used, key);
-    }
-    std::nth_element(cold.begin(), cold.begin() + batch, cold.end());
-    // Aliases share one allocation, and a batch may retain only some of its
-    // descriptors. Compute the surviving ownership totals before mutating the
-    // map so allocation failures cannot leave stale dispatch entries behind.
-    std::unordered_set<const BlockEntry*> retained_allocations;
-    retained_allocations.reserve(cold.size() - batch);
-    size_t retained_module_bytes = 0;
-    for (size_t i = batch; i < cold.size(); ++i) {
-        const auto& entry = block_entries.at(cold[i].second);
-        if (retained_allocations.insert(entry.get()).second) {
-            retained_module_bytes += entry->module_bytes;
+        if (allocations.insert(entry.get()).second) {
+            cold.emplace_back(entry->last_used, entry.get());
         }
     }
-    std::unordered_set<u64> dropped_descriptors;
+    std::nth_element(cold.begin(), cold.begin() + batch, cold.end());
     std::unordered_set<const BlockEntry*> dropped_allocations;
-    dropped_descriptors.reserve(batch);
     dropped_allocations.reserve(batch);
+    size_t dropped_module_bytes = 0;
     for (size_t i = 0; i < batch; ++i) {
-        dropped_descriptors.insert(cold[i].second);
-        dropped_allocations.insert(block_entries.at(cold[i].second).get());
+        dropped_allocations.insert(cold[i].second);
+        dropped_module_bytes += cold[i].second->module_bytes;
     }
-    // Chaining adds table-index references in addition to the native lookup
-    // caches. Forget slots owned by fully dropped allocations, and unlink every
-    // surviving edge into a dropped descriptor before releasing its module.
+    // Finish allocating metadata before mutating any live lookup or link.
+    std::unordered_set<u64> dropped_descriptors;
+    for (const auto& [key, entry] : block_entries) {
+        if (dropped_allocations.contains(entry.get())) {
+            dropped_descriptors.insert(key);
+        }
+    }
     for (const BlockEntry* entry : dropped_allocations) {
-        if (retained_allocations.count(entry) == 0) {
-            for (u32 i = 0; i < entry->num_link_slots; ++i) {
-                patched_slots.erase(entry->link_slots + i);
-            }
+        for (u32 i = 0; i < entry->num_link_slots; ++i) {
+            patched_slots.erase(entry->link_slots + i);
         }
     }
     for (auto it = patched_slots.begin(); it != patched_slots.end();) {
@@ -209,12 +208,12 @@ void AddressSpace::TrimCache() {
             ++it;
         }
     }
-    for (size_t i = 0; i < batch; ++i) {
-        // BlockEntry owns release of the function and chaining slots.
-        block_entries.erase(cold[i].second);
+    for (const u64 descriptor : dropped_descriptors) {
+        // The last alias releases the function and its chaining slots.
+        block_entries.erase(descriptor);
     }
-    cached_module_bytes = retained_module_bytes;
-    cached_block_count = retained_allocations.size();
+    cached_module_bytes -= dropped_module_bytes;
+    cached_block_count -= batch;
     // Neither lookup cache may retain an evicted BlockEntry or function index.
     std::fill(fast_dispatch.begin(), fast_dispatch.end(), FastDispatchEntry{});
     std::fill(dispatch_cache.begin(), dispatch_cache.end(), DispatchEntry{});
@@ -262,10 +261,9 @@ void AddressSpace::InvalidateRanges(const boost::icl::interval_set<u64>& ranges)
     std::fill(dispatch_cache.begin(), dispatch_cache.end(), DispatchEntry{});
     // Forget the dropped blocks' own slots (their memory is about to be freed)
     // before zeroing the slots of survivors that chain into them.
-    for (const u64 descriptor : dropped) {
-        const BlockEntry& entry = *block_entries.at(descriptor);
-        for (u32 i = 0; i < entry.num_link_slots; i++) {
-            patched_slots.erase(entry.link_slots + i);
+    for (const BlockEntry* entry : dropped_allocations) {
+        for (u32 i = 0; i < entry->num_link_slots; i++) {
+            patched_slots.erase(entry->link_slots + i);
         }
     }
     for (auto it = patched_slots.begin(); it != patched_slots.end();) {
@@ -293,8 +291,10 @@ std::pair<std::vector<IR::Block>, size_t> AddressSpace::GenerateRegion(IR::Locat
         [this](IR::LocationDescriptor location) { return GenerateIR(location); },
         [this](const IR::Block& block) { return RegionGuestRange{RangeOf(block).start, RangeOf(block).end}; },
         [this](IR::LocationDescriptor location) { return GuestPC(location); },
-        [this](IR::LocationDescriptor entry, IR::LocationDescriptor target) {
-            return RegionCompatible(entry, target);
+        [this, reuse_entries = emit_conf.enable_region_multi_entry](IR::LocationDescriptor entry, IR::LocationDescriptor target) {
+            // Shared entries already have an owner. Reach them through the
+            // guarded cross-module edge instead of compiling overlapping IR.
+            return (!reuse_entries || !block_entries.contains(target.Value())) && RegionCompatible(entry, target);
         },
         ChainLinkBlock() || boundary_regions, RegionSelectionLimits{}, FocusForEntry(descriptor));
     DYNARMIC_WASM_PROFILE_ADD(profiler, region_candidates, selected.stats.candidates);

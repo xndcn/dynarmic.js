@@ -129,6 +129,11 @@ std::vector<u8> FindEntryReachable(const RegionGraph& successors, u32 entry) {
 bool EmitStructuredRegion(EmitContext& ctx, const std::function<void(u32)>& emit_block,
                           std::vector<u8>* entry_reachable) {
     auto& region = ctx.region;
+    const bool multi_entry = ctx.emit_conf.enable_region_multi_entry &&
+                             !IsSingleStepping(ctx, region.blocks[region.entry]->Location());
+    // Multi-entry regions need labels for every block. Retain reachability
+    // diagnostics when requested, without paying for graph planning otherwise.
+    if (multi_entry && entry_reachable == nullptr) return false;
     const u32 n = static_cast<u32>(region.blocks.size());
     RegionGraph successors(n);
     for (u32 i = 0; i < n; ++i) {
@@ -141,6 +146,7 @@ bool EmitStructuredRegion(EmitContext& ctx, const std::function<void(u32)>& emit
     if (entry_reachable != nullptr) {
         *entry_reachable = FindEntryReachable(successors, region.entry);
     }
+    if (multi_entry) return false;
     const auto plan = PlanRegion(successors, region.entry);
     if (!plan) {
         return false;

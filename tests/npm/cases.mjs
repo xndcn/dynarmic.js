@@ -7,6 +7,10 @@ const throws = (fn, label) => {
   try { fn(); } catch { return; }
   throw new Error(`${label}: expected rejection`);
 };
+const rejects = async (fn, label) => {
+  try { const cpu = await fn(); cpu?.dispose(); } catch { return; }
+  throw new Error(`${label}: expected rejection`);
+};
 const words = (...values) => {
   const bytes = new Uint8Array(values.length * 4), view = new DataView(bytes.buffer);
   values.forEach((value, i) => view.setUint32(i * 4, value, true));
@@ -15,8 +19,10 @@ const words = (...values) => {
 
 export async function exercise(createEmulator, options = {}) {
   const checks = [];
-  for (const architecture of ['a32', 'a64']) {
-    const cpu = await createEmulator({...options, architecture, memorySize: 65536});
+  for (const [architecture, regionMultiEntry] of [['a32', undefined], ['a32', false], ['a32', true], ['a64', undefined], ['a64', false], ['a64', true]]) {
+    const label = `${architecture}, sharing=${String(regionMultiEntry)}`;
+    const cpu = await createEmulator({...options, architecture, memorySize: 65536,
+      ...(regionMultiEntry === undefined ? {} : {optimizations: {regionMultiEntry}})});
     const value = n => architecture === 'a64' ? BigInt(n) : n;
     const program = architecture === 'a32'
       ? words(0xe3a00028, 0xe2800002, 0xef000007, 0xe2800001, 0xef000008)
@@ -40,7 +46,7 @@ export async function exercise(createEmulator, options = {}) {
       const second = cpu.run();
       equal(second.svc, 8, 'resume SVC');
       equal(cpu.getRegister(0), value(101), 'resume accepts host register changes');
-      checks.push(`${architecture}: step, SVC, resume and zero budget`);
+      checks.push(`${label}: step, SVC, resume and zero budget`);
 
       cpu.writeMemory(4095, Uint8Array.of(1, 2, 3, 4));
       const copy = cpu.readMemory(4095, 4);
@@ -60,7 +66,7 @@ export async function exercise(createEmulator, options = {}) {
       throws(() => cpu.run(null), 'invalid run options');
       throws(() => cpu.writeMemory(0, new DataView(new ArrayBuffer(4))), 'invalid memory data');
       throws(() => cpu.setRegister(0, architecture === 'a32' ? 1n : 1), 'wrong register value type');
-      checks.push(`${architecture}: memory copies, boundaries and input validation`);
+      checks.push(`${label}: memory copies, boundaries and input validation`);
 
       const replacement = architecture === 'a32'
         ? words(0xe3a00009, 0xef000007) : words(0xd2800120, 0xd40000e1);
@@ -70,7 +76,7 @@ export async function exercise(createEmulator, options = {}) {
       equal(cpu.getRegister(0), value(9), 'host writes invalidate compiled code');
       cpu.invalidateCache(0x1000, replacement.length);
       cpu.clearCache();
-      checks.push(`${architecture}: code cache invalidation`);
+      checks.push(`${label}: code cache invalidation`);
 
       cpu.writeMemory(0x2000, architecture === 'a32'
         ? words(0xe2800001, 0xeafffffd) : words(0x91000400, 0x17ffffff));
@@ -80,7 +86,7 @@ export async function exercise(createEmulator, options = {}) {
       const before = cpu.getRegister(0);
       equal(cpu.run({maxTicks: 100}).reason, 'budget', 'loop resumes then yields');
       if (!(cpu.getRegister(0) > before)) throw new Error('loop did not advance');
-      checks.push(`${architecture}: cooperative budget interrupts a guest loop`);
+      checks.push(`${label}: cooperative budget interrupts a guest loop`);
 
       cpu.writeMemory(0x3000, architecture === 'a32'
         ? words(0xe5910000, 0xef000000) : words(0xf9400020, 0xd4000001));
@@ -112,7 +118,7 @@ export async function exercise(createEmulator, options = {}) {
       equal(unaligned.access, 'execute', 'instruction access kind');
       cpu.setPC(value(65536));
       equal(cpu.run().reason, 'memory-fault', 'guest instruction fetch fault');
-      checks.push(`${architecture}: data and instruction faults, boundary access and recovery`);
+      checks.push(`${label}: data and instruction faults, boundary access and recovery`);
 
       if (architecture === 'a64') {
         cpu.setRegister(1, 0xfedcba9876543210n);
@@ -124,7 +130,7 @@ export async function exercise(createEmulator, options = {}) {
         const high = cpu.run();
         equal(high.reason, 'memory-fault', 'high address fault');
         equal(high.address, 0x100000000n, 'fault address retains high bits');
-        checks.push('a64: BigInt arithmetic and fault addresses retain all 64 bits');
+        checks.push(`${label}: BigInt arithmetic and fault addresses retain all 64 bits`);
       } else {
         cpu.writeMemory(0x4000, Uint8Array.of(0x28, 0x20, 0x02, 0x30, 0x07, 0xdf, 0x01, 0x30, 0x08, 0xdf));
         cpu.setStatus(0x3f); // system mode, Thumb
@@ -136,7 +142,7 @@ export async function exercise(createEmulator, options = {}) {
         cpu.writeMemory(65534, Uint8Array.of(0x09, 0xdf));
         cpu.setPC(65534);
         equal(cpu.run().svc, 9, 'Thumb instruction at last halfword');
-        checks.push('a32: Thumb state and SVC resume');
+        checks.push(`${label}: Thumb state and SVC resume`);
       }
     } finally { cpu.dispose(); }
     cpu.dispose();
@@ -145,8 +151,15 @@ export async function exercise(createEmulator, options = {}) {
     throws(() => cpu.readMemory(0, 1), 'memory after disposal');
     throws(() => cpu.getRegister(0), 'register after disposal');
   }
+  for (const optimizations of [null, [], true, 'on', {regionMultiEntry: 1},
+    {regionMultiEntry: null}, {regionMultiEntry: 'true'}, {regionMultiEntries: true}]) {
+    await rejects(() => createEmulator({...options, memorySize: 65536, optimizations}), 'invalid optimizations');
+  }
+  checks.push('invalid optimization types and names reject');
+  await checkRegionSharing(createEmulator, options);
+  checks.push('ARM/Thumb/A64 sharing compiles one module, reuses interior entries, and invalidates aliases');
   const a = await createEmulator({...options, memorySize: 65536});
-  const b = await createEmulator({...options, memorySize: 65536});
+  const b = await createEmulator({...options, memorySize: 65536, optimizations: {regionMultiEntry: true}});
   try {
     a.writeMemory(0x1000, words(0xe3a00001, 0xef000000));
     b.writeMemory(0x1000, words(0xe3a00002, 0xef000000));
@@ -160,4 +173,62 @@ export async function exercise(createEmulator, options = {}) {
   } finally { a.dispose(); b.dispose(); }
   checks.push('independent live instances and idempotent disposal');
   return checks;
+}
+
+async function checkRegionSharing(createEmulator, options) {
+  for (const kind of ['arm', 'thumb', 'a64']) {
+    const thumb = kind === 'thumb', is64 = kind === 'a64';
+    const value = n => is64 ? BigInt(n) : n;
+    const coldCounts = [];
+    for (const enabled of [undefined, false, true]) {
+      const optimizations = enabled === undefined ? {} : {regionMultiEntry: enabled};
+      const pending = createEmulator({...options, architecture: is64 ? 'a64' : 'a32', memorySize: 65536, optimizations});
+      // The factory must snapshot options before its first asynchronous load.
+      optimizations.regionMultiEntry = !enabled;
+      const cpu = await pending;
+      const original = WebAssembly.Module;
+      let compiled = 0;
+      // Observe real generated-module allocations without a test-only runtime
+      // export or a new production statistics API. Run is synchronous.
+      WebAssembly.Module = new Proxy(original, {construct(target, args) {
+        ++compiled;
+        return Reflect.construct(target, args);
+      }});
+      try {
+        const base = 0x1000, count = 8, stride = thumb ? 4 : 8;
+        const code = thumb
+          ? Uint8Array.from([...Array.from({length: count}, () => [1, 0x30, 0xff, 0xe7]).flat(), 7, 0xdf])
+          : words(...Array.from({length: count}, () => is64 ? [0x91000400, 0x14000001] : [0xe2800001, 0xeaffffff]).flat(), is64 ? 0xd40000e1 : 0xef000007);
+        cpu.writeMemory(base, code);
+        if (!is64) cpu.setStatus(thumb ? 0x3f : 0x1f);
+        cpu.setPC(value(base));
+        equal(cpu.run().svc, 7, 'chain SVC');
+        equal(cpu.getRegister(0), value(count), 'chain result');
+        const cold = compiled;
+        coldCounts.push(cold);
+        if (enabled) equal(cold, 1, 'opt-in must compile one shared region');
+        else if (cold <= 1) throw new Error('region sharing unexpectedly enabled by default/false');
+        for (let i = 1; i < count; ++i) {
+          cpu.setRegister(0, value(0)); cpu.setPC(value(base + i * stride));
+          equal(cpu.run().svc, 7, 'interior SVC');
+          equal(cpu.getRegister(0), value(count - i), 'interior result');
+          equal(compiled, cold, 'warm interior must reuse compiled code');
+        }
+        cpu.writeMemory(base + 3 * stride, thumb ? Uint8Array.of(3, 0x30) : words(is64 ? 0x91000c00 : 0xe2800003));
+        cpu.setRegister(0, value(0)); cpu.setPC(value(base));
+        equal(cpu.run().svc, 7, 'invalidated chain SVC');
+        equal(cpu.getRegister(0), value(count + 2), 'invalidated chain result');
+        if (compiled <= cold) throw new Error('code patch did not invalidate the cached allocation');
+        const patched = compiled;
+        cpu.clearCache(); cpu.setRegister(0, value(0)); cpu.setPC(value(base + 4 * stride));
+        equal(cpu.run().svc, 7, 'cleared interior SVC');
+        equal(cpu.getRegister(0), value(count - 4), 'cleared interior result');
+        if (compiled <= patched) throw new Error('clearCache did not release the allocation');
+      } finally {
+        WebAssembly.Module = original;
+        cpu.dispose();
+      }
+    }
+    equal(coldCounts[0], coldCounts[1], 'default and explicit false must compile the same blocks');
+  }
 }

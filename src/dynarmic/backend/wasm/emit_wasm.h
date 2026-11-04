@@ -42,8 +42,8 @@ struct EmittedBlockInfo {
     std::vector<u8> module_bytes;
     size_t num_locals = 0;
     size_t entry_body_bytes = 0;
-    // Non-entry return-site descriptors accepted by the opt-in A64 fallback
-    // multi-entry selector. Empty unless fallback emission actually occurred.
+    // Additional descriptors accepted by the same generated function: selected
+    // board-region blocks, or actual A64 fallback return sites when opted in.
     std::vector<u64> fallback_aliases;
 #if defined(DYNARMIC_WASM_REGION_DIAGNOSTICS)
     RegionDiagnosticLayout region_layout = RegionDiagnosticLayout::Single;
@@ -107,6 +107,8 @@ struct EmitConfig {
     // Experiment: allow an A64 irreducible-region module to be entered at its
     // original entry or one of its actual return sites, selected from state.pc.
     bool enable_a64_fallback_multi_entry = false;
+    // Reuse every region block through a shared full-descriptor selector.
+    bool enable_region_multi_entry = false;
 
     // A64 page table geometry (A64::UserConfig): the table has
     // 2^(page_table_address_space_bits - 12) entries; with silently_mirror the
@@ -241,6 +243,7 @@ void EmitEndRegion(EmitContext& ctx);
 bool EmitStructuredRegion(EmitContext& ctx, const std::function<void(u32)>& emit_block,
                           std::vector<u8>* entry_reachable = nullptr);
 void EmitCommitCycles(EmitContext& ctx);
+void EmitChargeCycles(EmitContext& ctx, u64 cycles);
 void EmitReloadCycles(EmitContext& ctx);
 void EmitBeginStructuredRegion(EmitContext& ctx);
 void EmitEndStructuredRegion(EmitContext& ctx);

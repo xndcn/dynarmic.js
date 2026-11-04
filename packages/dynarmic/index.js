@@ -30,6 +30,13 @@ export async function createEmulator(options = {}) {
   const architecture = options.architecture === undefined ? 'a32' : options.architecture;
   if (architecture !== 'a32' && architecture !== 'a64')
     throw new TypeError('architecture must be "a32" or "a64"');
+  const optimizations = options.optimizations === undefined ? {} : object(options.optimizations, 'optimizations');
+  for (const name of Object.keys(optimizations)) {
+    if (name !== 'regionMultiEntry') throw new TypeError(`Unknown optimization: ${name}`);
+  }
+  // Read before awaiting initialization so caller mutations cannot change the policy.
+  const regionMultiEntry = optimizations.regionMultiEntry === undefined ? false : optimizations.regionMultiEntry;
+  if (typeof regionMultiEntry !== 'boolean') throw new TypeError('optimizations.regionMultiEntry must be a boolean');
   const memorySize = integer(options.memorySize === undefined ? DEFAULT_MEMORY : options.memorySize, 'memorySize', MAX_MEMORY, MIN_MEMORY);
   if (memorySize % 4096 !== 0) throw new RangeError('memorySize must be a multiple of 4096 bytes');
   if (options.wasmURL !== undefined && options.wasmBinary !== undefined)
@@ -60,7 +67,7 @@ export async function createEmulator(options = {}) {
   }
   let runtime = await createRuntime(wasmBinary === undefined ? {} : {wasmBinary});
   try {
-    if (runtime._dj_create(architecture === 'a32' ? 0 : 1, memorySize) !== 0)
+    if (runtime._dj_create(architecture === 'a32' ? 0 : 1, memorySize, Number(regionMultiEntry)) !== 0)
       throw new Error('Unable to create the dynarmic.js CPU');
   } catch (error) {
     runtime._dj_destroy();

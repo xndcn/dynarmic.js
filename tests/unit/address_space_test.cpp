@@ -87,9 +87,11 @@ struct AddressSpaceTestAccess {
     }
 
     template <typename Space>
-    static void Trim(Space& space, size_t capacity) {
+    static void Trim(Space& space, size_t capacity, bool pending_link = false) {
         space.cache_capacity = capacity;
+        space.suspend_trim = pending_link;
         space.TrimCache();
+        space.suspend_trim = false;
     }
 
     template <typename Space>
@@ -142,6 +144,7 @@ public:
     size_t chain_blocks = 0;
     bool boundary_enabled = true;
     bool chain_link_blocks = false;
+    bool reuse_entries = false;
     BoundaryState boundary{};
 
 protected:
@@ -162,6 +165,7 @@ protected:
         EmitConfig config{};
         config.enable_cycle_counting = true;
         config.boundary_state = boundary_enabled ? &boundary : nullptr;
+        config.enable_region_multi_entry = reuse_entries;
         return config;
     }
     bool ChainLinkBlock() const override { return chain_link_blocks; }
@@ -203,6 +207,17 @@ void RequireOneLiveAllocation(const AddressSpace& space) {
             "two descriptors must count as one cached allocation");
     Require(TestAccess::CachedModuleBytes(space) == 123,
             "two descriptors must count module bytes once");
+}
+
+void TestSharedSelectionStopsAtCachedEntry() {
+    TestAddressSpace space;
+    space.chain_blocks = 8;
+    TestAccess::InstallEntry(space, 0x100c, MakeEntry());
+    Require(TestAccess::GenerateRegion(space, 0x1000).first.size() == 8,
+            "ordinary selection must keep its previous behavior");
+    space.reuse_entries = true;
+    Require(TestAccess::GenerateRegion(space, 0x1000).first.size() == 3,
+            "shared selection must chain into a cached owner without retranslation");
 }
 
 void TestFastDispatchLookup() {
@@ -258,6 +273,11 @@ void TestLruTrimClearsDispatchCaches() {
     Require(TestAccess::HasRecordedLink(space, hot->link_slots),
             "test must start with a recorded link from the hot block to a cold target");
 
+    TestAccess::Trim(space, 1025, true);
+    Require(TestAccess::CachedBlockCount(space) == 1025 &&
+                TestAccess::FastDispatchMatches(space, hot_descriptor, hot) &&
+                TestAccess::HasRecordedLink(space, hot->link_slots),
+            "pending link resolution must defer eviction and preserve source slots");
     TestAccess::Trim(space, 1025);
     Require(space.Get(fallback) == nullptr,
             "trim must evict cold descriptors");
@@ -285,9 +305,22 @@ void TestLruTrimCountsSharedAllocations() {
             "shared allocation must be newer than cold entries");
 
     TestAccess::Trim(space, 1025);
-    Require(space.Get(IR::LocationDescriptor{0x1000}) == nullptr &&
+    Require(space.Get(IR::LocationDescriptor{0x1000}) == shared->fn &&
+                space.Get(IR::LocationDescriptor{0x2000}) == shared->fn &&
+                TestAccess::CachedBlockCount(space) == 1024,
+            "lookup aliases must not consume allocation capacity");
+
+    auto cold = MakeEntry();
+    TestAccess::InstallAliases(space, 0x3000, 0x4000, cold);
+    space.RecordLink(shared->link_slots, IR::LocationDescriptor{0x4000});
+    TestAccess::Trim(space, 1025);
+    Require(space.Get(IR::LocationDescriptor{0x1000}) == shared->fn &&
                 space.Get(IR::LocationDescriptor{0x2000}) == shared->fn,
-            "trim may retain only one descriptor of a shared allocation");
+            "trim must preserve every alias of the hot allocation");
+    Require(space.Get(IR::LocationDescriptor{0x3000}) == nullptr &&
+                space.Get(IR::LocationDescriptor{0x4000}) == nullptr &&
+                *shared->link_slots == 0 && !TestAccess::HasRecordedLink(space, shared->link_slots),
+            "trim must remove every cold alias and unlink incoming edges");
     Require(TestAccess::CachedBlockCount(space) == 1 &&
                 TestAccess::CachedModuleBytes(space) == 123,
             "trim must count the surviving shared allocation once");
@@ -354,6 +387,7 @@ void TestDestruction() {
 int main(int argc, char** argv) {
     if (argc == 1 || std::string_view{argv[1]} == "region_limits") {
         TestBoundaryRegionLimits();
+        TestSharedSelectionStopsAtCachedEntry();
     }
     if (argc == 1 || std::string_view{argv[1]} == "dispatch") {
         TestFastDispatchLookup();

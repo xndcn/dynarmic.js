@@ -12,6 +12,7 @@
 #include <mcl/stdint.hpp>
 
 #include "dynarmic/backend/wasm/a64_address_space.h"
+#include "dynarmic/backend/wasm/a64_interface.h"
 #include "dynarmic/backend/wasm/a64_jitstate.h"
 #include "dynarmic/backend/wasm/abi.h"
 #include "dynarmic/backend/wasm/core.h"
@@ -22,20 +23,31 @@
 #include "dynarmic/frontend/A64/a64_location_descriptor.h"
 #include "dynarmic/interface/A64/a64.h"
 
+namespace Dynarmic::Backend::Wasm {
+namespace {
+thread_local const BoundaryState* construction_boundary_state = nullptr;
+thread_local BoundaryObserver construction_boundary_observer{};
+thread_local A64::Jit* active_jit = nullptr;
+thread_local ExecutionContext* active_context = nullptr;
+thread_local A64::UserCallbacks* active_callbacks = nullptr;
+}
+}  // namespace Dynarmic::Backend::Wasm
+
 namespace Dynarmic::A64 {
 
 using namespace Backend::Wasm;
 
 struct Jit::Impl final {
-    Impl(Jit*, A64::UserConfig conf)
-            : conf(conf)
+    Impl(Jit* jit_interface, A64::UserConfig conf)
+            : jit_interface(jit_interface), conf(conf)
             , profile_instance_id(AllocateProfileInstanceId())
 #if defined(DYNARMIC_WASM_REGION_DIAGNOSTICS)
-            , current_address_space(conf, &profiler, &compile_stats, &region_diagnostics)
+            , current_address_space(conf, &profiler, &compile_stats, &region_diagnostics, false, construction_boundary_state)
 #else
-            , current_address_space(conf, &profiler, &compile_stats)
+            , current_address_space(conf, &profiler, &compile_stats, nullptr, false, construction_boundary_state)
 #endif
-            , core(conf, &profiler) {
+            , core(conf, &profiler, conf.enable_cycle_counting && construction_boundary_state != nullptr,
+                   construction_boundary_observer) {
         ectx.callback_config = &this->conf;
     }
 
@@ -50,6 +62,13 @@ struct Jit::Impl final {
         // Apply invalidations requested while the Jit was idle before running.
         RequestCacheInvalidation();
 
+        const auto old_jit = active_jit;
+        const auto old_context = active_context;
+        const auto old_callbacks = active_callbacks;
+        active_jit = jit_interface; active_context = &ectx; active_callbacks = conf.callbacks;
+        SCOPE_EXIT {
+            active_jit = old_jit; active_context = old_context; active_callbacks = old_callbacks;
+        };
         const HaltReason hr = core.Run(current_address_space, current_state, ectx);
 
         RequestCacheInvalidation();
@@ -139,6 +158,7 @@ private:
         }
     }
 
+    Jit* jit_interface;
     A64::UserConfig conf;
     A64JitState current_state{};
     ProfileCounters profiler{};
@@ -285,3 +305,27 @@ std::vector<std::string> Jit::Disassemble() const {
 }
 
 }  // namespace Dynarmic::A64
+
+namespace Dynarmic::Backend::Wasm {
+
+void CommitA64ExecutionTicks(A64::Jit& jit) {
+    ASSERT(active_jit == &jit && active_context != nullptr);
+    const u64 elapsed = static_cast<u64>(active_context->cycles_to_run - active_context->cycles_remaining);
+    active_context->cycles_to_run = active_context->cycles_remaining;
+    if (elapsed != 0) active_callbacks->AddTicks(elapsed);
+}
+
+std::unique_ptr<A64::Jit> CreateA64Jit(A64::UserConfig conf, const BoundaryState* boundary_state,
+                                    BoundaryObserver observer) {
+    const auto old_boundary = construction_boundary_state;
+    const auto old_observer = construction_boundary_observer;
+    construction_boundary_state = boundary_state;
+    construction_boundary_observer = observer;
+    SCOPE_EXIT {
+        construction_boundary_state = old_boundary;
+        construction_boundary_observer = old_observer;
+    };
+    return std::make_unique<A64::Jit>(conf);
+}
+
+}  // namespace Dynarmic::Backend::Wasm

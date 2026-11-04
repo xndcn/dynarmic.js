@@ -14,6 +14,8 @@
 // cache units (CollectA32RegisterUnits / CollectA64RegisterUnits); everything
 // else is here.
 
+#include <algorithm>
+
 #include <mcl/assert.hpp>
 
 #include <boost/variant.hpp>
@@ -562,14 +564,78 @@ void EmitEndSelfLoop(EmitContext& ctx) {
     ctx.code.U8(Op::Unreachable);
 }
 
+// Select before loading the register cache: every published descriptor is a
+// valid entry with its own ARM/Thumb, IT, endian and FPSCR state.
+void EmitRegionEntrySelector(EmitContext& ctx) {
+    const u32 location = ctx.code.AddLocals(1, ValType::I64);
+    EmitPushCurrentLocationDescriptor(ctx);
+    ctx.code.LocalSet(location);
+    ctx.code.Block();
+    const u32 selected_depth = ctx.code.Depth();
+    // The original entry is the common path, even when guest-address sorting
+    // put it after its successors. Check it before the remaining aliases.
+    const auto emit_match = [&](u32 i) {
+        ctx.code.LocalGet(location);
+        ctx.code.I64Const(static_cast<s64>(ctx.region.blocks[i]->Location().Value()));
+        ctx.code.U8(Op::I64Eq);
+        ctx.code.If();
+        ctx.code.I32Const(static_cast<s32>(i));
+        ctx.code.LocalSet(ctx.region.next);
+        ctx.code.Br(ctx.code.Depth() - selected_depth);
+        ctx.code.End();
+    };
+    emit_match(ctx.region.entry);
+    // Region order is by guest PC, which does not order Thumb/IT/endian
+    // variants of the same PC. Sort the full descriptors before branching.
+    std::vector<u32> aliases;
+    for (u32 i = 0; i < ctx.region.blocks.size(); ++i) {
+        if (i != ctx.region.entry) aliases.push_back(i);
+    }
+    const auto descriptor = [&](u32 i) { return ctx.region.blocks[i]->Location().Value(); };
+    // A bounded decision tree avoids scanning up to 63 aliases on every
+    // native resume. Leaves still test equality, so missing keys fail closed.
+    const auto emit_search = [&](auto&& self, size_t begin, size_t end) -> void {
+        if (end - begin == 1) {
+            emit_match(aliases[begin]);
+            return;
+        }
+        const size_t middle = begin + (end - begin) / 2;
+        ctx.code.LocalGet(location);
+        ctx.code.I64Const(static_cast<s64>(descriptor(aliases[middle])));
+        ctx.code.U8(Op::I64LtU);
+        ctx.code.If();
+        self(self, begin, middle);
+        ctx.code.Else();
+        self(self, middle, end);
+        ctx.code.End();
+    };
+    if (aliases.size() > 16) {
+        std::sort(aliases.begin(), aliases.end(), [&](u32 a, u32 b) { return descriptor(a) < descriptor(b); });
+        emit_search(emit_search, 0, aliases.size());
+    } else {
+        // Small regions retain the compact linear layout. Avoid perturbing
+        // hot loop bodies merely to save a few entry comparisons.
+        for (u32 i = 0; i < ctx.region.blocks.size(); ++i) {
+            if (i != ctx.region.entry) emit_match(i);
+        }
+    }
+    // A stale or mismatched descriptor must never execute another entry.
+    ctx.code.I32Const(0);
+    ctx.code.Return();
+    ctx.code.End();
+}
+
 void EmitBeginRegion(EmitContext& ctx) {
     auto& region = ctx.region;
-    const bool multi_entry = ctx.emit_conf.enable_a64_fallback_multi_entry &&
-                             ctx.emit_conf.frontend == Frontend::A64 &&
+    const bool all_entries = ctx.emit_conf.enable_region_multi_entry;
+    const bool multi_entry = (all_entries ||
+                             (ctx.emit_conf.enable_a64_fallback_multi_entry &&
+                              ctx.emit_conf.frontend == Frontend::A64)) &&
                              !IsSingleStepping(ctx, region.blocks[region.entry]->Location());
     if (multi_entry) {
         region.next = ctx.code.AddLocals(1, ValType::I32);
-        EmitA64FallbackEntrySelector(ctx);
+        if (all_entries) EmitRegionEntrySelector(ctx);
+        else EmitA64FallbackEntrySelector(ctx);
     }
     const bool cached = SetupRegisterCache(ctx, true);
     ASSERT(cached);

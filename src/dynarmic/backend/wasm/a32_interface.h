@@ -20,8 +20,12 @@ namespace Dynarmic::Backend::Wasm {
 // Does not refill the allowance or sample IRQs; cannot be called while idle.
 void CommitA32ExecutionTicks(A32::Jit& jit);
 
+// Optional cycle-counted board regions can publish their internal entries as
+// aliases of one allocation, selected using the full location descriptor.
+// Opt in through conf.optimizations (OptimizationFlag::WasmRegionMultiEntry).
+// Disabled by default; requires both cycle counting and a live boundary state.
 std::unique_ptr<A32::Jit> CreateA32Jit(A32::UserConfig conf, const BoundaryState* boundary_state,
-                                       bool specialize_boundary_hooks = false,
-                                       BoundaryObserver observer = {});
+                                    bool specialize_boundary_hooks = false,
+                                    BoundaryObserver observer = {});
 
 }  // namespace Dynarmic::Backend::Wasm

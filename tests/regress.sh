@@ -115,6 +115,8 @@ node "$HOSTS/thumb_it_return_test.js" | grep '^PASS' >/dev/null || bad thumb_it_
 node "$HOSTS/instance_test.js" | grep '^PASS' >/dev/null || bad instance_test
 node "$HOSTS/region_diagnostics_test.js" | grep '^PASS' >/dev/null || bad region_diagnostics_test
 node "$HOSTS/a64_region_alias_test.js" | grep '^PASS' >/dev/null || bad a64_region_alias_test
+node "$HOSTS/a64_region_sharing_test.js" | grep '^PASS' >/dev/null || bad a64_region_sharing_test
+node "$HOSTS/a32_region_alias_test.js" | grep '^PASS' >/dev/null || bad a32_region_alias_test
 node "$HOSTS/runtime_table_test.js" | grep '^PASS' >/dev/null || bad runtime_table_test
 node "$HOSTS/stats_test.js" | grep '^PASS' >/dev/null || bad stats_test
 node "$HOSTS/lifecycle_test.js" | grep '^PASS' >/dev/null || bad lifecycle_test

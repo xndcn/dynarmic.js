@@ -9,6 +9,8 @@
 
 #include <emscripten.h>
 
+#include "dynarmic/backend/wasm/a32_interface.h"
+#include "dynarmic/backend/wasm/a64_interface.h"
 #include "dynarmic/interface/A32/a32.h"
 #include "dynarmic/interface/A64/a64.h"
 #include "dynarmic/interface/exclusive_monitor.h"
@@ -85,7 +87,7 @@ private:
 struct Machine {
     explicit Machine(u32 architecture, u32 size) : arch(architecture), ram(size) {}
 
-    void Initialize() {
+    void Initialize(bool region_multi_entry) {
         if (arch == 0) {
             pages32 = std::make_unique<std::array<u8*, A32::UserConfig::NUM_PAGE_TABLE_ENTRIES>>();
             for (size_t page = 0; page < ram.size() / 4096; ++page) (*pages32)[page] = ram.data() + page * 4096;
@@ -95,7 +97,12 @@ struct Machine {
             config.enable_cycle_counting = true;
             config.page_table = pages32.get();
             config.fastmem_pointer = reinterpret_cast<uintptr_t>(ram.data());
-            jit32 = std::make_unique<A32::Jit>(config);
+            if (region_multi_entry) {
+                config.optimizations |= OptimizationFlag::WasmRegionMultiEntry;
+                jit32 = Backend::Wasm::CreateA32Jit(config, &boundary);
+            } else {
+                jit32 = std::make_unique<A32::Jit>(config);
+            }
             jit32->SetCpsr(0x1f); // Initial system mode, ARM state; callers may select Thumb.
         } else {
             pages64.resize(size_t{1} << (32 - 12), nullptr);
@@ -108,7 +115,12 @@ struct Machine {
             config.page_table_address_space_bits = 32;
             config.silently_mirror_page_table = false;
             config.fastmem_pointer = reinterpret_cast<uintptr_t>(ram.data());
-            jit64 = std::make_unique<A64::Jit>(config);
+            if (region_multi_entry) {
+                config.optimizations |= OptimizationFlag::WasmRegionMultiEntry;
+                jit64 = Backend::Wasm::CreateA64Jit(config, &boundary);
+            } else {
+                jit64 = std::make_unique<A64::Jit>(config);
+            }
         }
     }
 
@@ -185,7 +197,8 @@ struct Machine {
     u64 event_address = 0;
     u64 remaining = 0;
     bool running = false;
-    // Destroy JITs (and their emitted modules) before callbacks, maps and RAM.
+    Backend::Wasm::BoundaryState boundary{};
+    // Destroy JITs (and their emitted modules) before boundary, callbacks, maps and RAM.
     std::unique_ptr<A32::Jit> jit32;
     std::unique_ptr<A64::Jit> jit64;
 };
@@ -228,10 +241,11 @@ std::unique_ptr<Machine> machine;
 } // namespace
 
 extern "C" {
-EMSCRIPTEN_KEEPALIVE int dj_create(u32 arch, u32 ram_bytes) {
-    if (machine || arch > 1 || ram_bytes < 65536 || ram_bytes > 268435456 || ram_bytes % 4096) return 1;
+EMSCRIPTEN_KEEPALIVE int dj_create(u32 arch, u32 ram_bytes, u32 region_multi_entry) {
+    if (machine || arch > 1 || region_multi_entry > 1 ||
+        ram_bytes < 65536 || ram_bytes > 268435456 || ram_bytes % 4096) return 1;
     auto next = std::make_unique<Machine>(arch, ram_bytes);
-    next->Initialize();
+    next->Initialize(region_multi_entry != 0);
     machine = std::move(next);
     return 0;
 }
