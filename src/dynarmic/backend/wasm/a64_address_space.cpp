@@ -68,9 +68,11 @@ void ScalarLanePeephole(IR::Block& block) {
 }  // anonymous namespace
 
 A64AddressSpace::A64AddressSpace(const A64::UserConfig& conf, ProfileCounters* profiler, CompileStats* compile_stats,
-                                 RegionDiagnostics* region_diagnostics, bool enable_fallback_multi_entry)
+                                 RegionDiagnostics* region_diagnostics, bool enable_fallback_multi_entry,
+                                 const BoundaryState* boundary_state)
         : AddressSpace(profiler, compile_stats, region_diagnostics), conf(conf),
-          enable_fallback_multi_entry(enable_fallback_multi_entry), region_focus(ConfiguredRegionFocus()) {
+          enable_fallback_multi_entry(enable_fallback_multi_entry), boundary_state(boundary_state),
+          region_focus(ConfiguredRegionFocus()) {
     // The page table holds 32-bit linear-memory addresses; its size must be
     // addressable from wasm32.
     ASSERT(conf.page_table == nullptr || (conf.page_table_address_space_bits > 12 && conf.page_table_address_space_bits <= 32));
@@ -152,9 +154,12 @@ EmitConfig A64AddressSpace::MakeEmitConfig() const {
         .page_table_pointer_mask_bits = conf.page_table_pointer_mask_bits,
         .flat_base = flat_base,
         .flat_limit = flat_limit,
+        .boundary_state = boundary_state,
         .boundary_hook_snapshot = std::nullopt,
         .frontend = Frontend::A64,
         .enable_a64_fallback_multi_entry = enable_fallback_multi_entry,
+        .enable_region_multi_entry = conf.HasOptimization(OptimizationFlag::WasmRegionMultiEntry) &&
+                                     boundary_state != nullptr && conf.enable_cycle_counting,
         .page_table_address_space_bits = static_cast<u32>(conf.page_table_address_space_bits),
         .silently_mirror_page_table = conf.silently_mirror_page_table,
         .a64_conf = &conf,

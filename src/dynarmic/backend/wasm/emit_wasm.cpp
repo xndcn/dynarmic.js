@@ -428,23 +428,26 @@ static void EmitBlockBody(EmitContext& ctx) {
 
     reg_alloc.AssertNoMoreUses();
 
-    if (ctx.emit_conf.enable_cycle_counting) {
-        const s64 cycles = static_cast<s64>(ctx.block->CycleCount());
-        if (ctx.cycle_local != 0) {
-            code.LocalGet(ctx.cycle_local);
-            code.I64Const(cycles);
-            code.U8(Op::I64Sub);
-            code.LocalSet(ctx.cycle_local);
-        } else {
-            code.LocalGet(kParamEctx);
-            code.LocalGet(kParamEctx);
-            code.Load(Op::I64Load, offsetof(ExecutionContext, cycles_remaining), 3);
-            code.I64Const(cycles);
-            code.U8(Op::I64Sub);
-            code.Store(Op::I64Store, offsetof(ExecutionContext, cycles_remaining), 3);
-        }
-    }
+    EmitChargeCycles(ctx, ctx.block->CycleCount());
 
+}
+
+void EmitChargeCycles(EmitContext& ctx, u64 cycles) {
+    if (!ctx.emit_conf.enable_cycle_counting) return;
+    auto& code = ctx.code;
+    if (ctx.cycle_local != 0) {
+        code.LocalGet(ctx.cycle_local);
+        code.I64Const(static_cast<s64>(cycles));
+        code.U8(Op::I64Sub);
+        code.LocalSet(ctx.cycle_local);
+    } else {
+        code.LocalGet(kParamEctx);
+        code.LocalGet(kParamEctx);
+        code.Load(Op::I64Load, offsetof(ExecutionContext, cycles_remaining), 3);
+        code.I64Const(static_cast<s64>(cycles));
+        code.U8(Op::I64Sub);
+        code.Store(Op::I64Store, offsetof(ExecutionContext, cycles_remaining), 3);
+    }
 }
 
 EmittedBlockInfo EmitWASM(IR::Block block, const EmitConfig& emit_conf) {
@@ -560,12 +563,21 @@ EmittedBlockInfo EmitWASM(std::vector<IR::Block> blocks, const EmitConfig& emit_
 #if defined(DYNARMIC_WASM_REGION_DIAGNOSTICS)
         entry_reachable = &ebi.region_blocks.entry_reachable;
 #endif
+        const bool all_entries = emit_conf.enable_region_multi_entry &&
+                                 !IsSingleStepping(ctx, entry.Location());
         if (!EmitStructuredRegion(ctx, emit_block, entry_reachable)) {
+            if (all_entries) {
+                for (const auto& block : blocks) {
+                    if (block.Location() != entry.Location()) {
+                        ebi.fallback_aliases.push_back(block.Location().Value());
+                    }
+                }
+            }
 #if defined(DYNARMIC_WASM_REGION_DIAGNOSTICS)
             ebi.region_layout = RegionDiagnosticLayout::Fallback;
             std::fill(ebi.region_blocks.emitted.begin(), ebi.region_blocks.emitted.end(), 1);
 #endif
-            if (emit_conf.enable_a64_fallback_multi_entry && is_a64 && !IsSingleStepping(ctx, entry.Location())) {
+            if (!all_entries && emit_conf.enable_a64_fallback_multi_entry && is_a64 && !IsSingleStepping(ctx, entry.Location())) {
                 for (const u32 site : region.return_sites) {
                     if (site != region.entry) {
                         ebi.fallback_aliases.push_back(blocks[site].Location().Value());

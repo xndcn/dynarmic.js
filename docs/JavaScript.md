@@ -43,9 +43,17 @@ cannot run it. SharedArrayBuffer and cross-origin isolation are not required.
 ## CPU and memory
 
 Factory options are `architecture: 'a32' | 'a64'` (default A32), `memorySize`
-(default 16 MiB), and the optional asset override. RAM is zero-initialized,
+(default 16 MiB), `optimizations`, and the optional asset override. RAM is zero-initialized,
 mapped at guest address zero and constrained to 64 KiB–256 MiB in 4 KiB increments.
 A64 retains 64-bit CPU values even though this host maps a small RAM window.
+
+For ARM/Thumb/A64, `optimizations: {regionMultiEntry: true}` lets internal region
+entries share generated code, reducing repeated compilation. It is **off by
+default** because warm execution can regress. The host supplies the necessary
+cycle counting and boundary state. Omitting `optimizations`, passing `{}`, or
+setting `regionMultiEntry: false` preserves the ordinary construction path.
+The choice is fixed at creation; create a new emulator to change it. Non-boolean
+values and unknown optimization names reject the factory promise.
 
 | Method | Contract |
 | --- | --- |

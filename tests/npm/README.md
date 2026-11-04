@@ -24,6 +24,11 @@ disposal. Node additionally checks Wasm file URLs, supplied bytes, failed loads
 and memory growth. Browser checks serve a nested URL path and use actual module
 Workers with default/relocated/supplied Wasm assets.
 
+A32 and A64 run with sharing omitted, disabled and enabled. ARM/Thumb/A64 chain
+cases count real generated Wasm modules to
+prove the option reaches the backend, then check interior reuse, invalidation,
+cache clearing and option snapshots. Invalid option names and types must reject.
+
 `verify_tooling.mjs` runs strict publint and ATTW's ESM-only profile against the
 package, strict TypeScript NodeNext and Bundler consumers (including
 expected type errors), CommonJS dynamic import, then builds and executes a Vite

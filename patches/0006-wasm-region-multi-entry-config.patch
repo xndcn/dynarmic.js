@@ -1,0 +1,49 @@
+Separate safe optimization flags from the default set; expose opt-in Wasm region sharing.
+
+--- a/src/dynarmic/interface/optimization_flags.h
++++ b/src/dynarmic/interface/optimization_flags.h
+@@ -33,6 +33,11 @@
+     /// This is enables miscellaneous safe IR optimizations.
+     MiscIROpt = 0x00000020,
+
++    /// Share internal A32/Thumb/A64 Wasm region entries to avoid repeated compilation.
++    /// Safe, but opt-in: warm execution may regress. Requires cycle counting
++    /// and a live Wasm BoundaryState. Other backends ignore this flag.
++    WasmRegionMultiEntry = 0x00200000,
++
+     /// This is an UNSAFE optimization that reduces accuracy of fused multiply-add operations.
+     /// This unfuses fused instructions to improve performance on host CPUs without FMA support.
+     Unsafe_UnfuseFMA = 0x00010000,
+@@ -52,7 +57,9 @@
+ };
+
+ constexpr OptimizationFlag no_optimizations = static_cast<OptimizationFlag>(0);
+-constexpr OptimizationFlag all_safe_optimizations = static_cast<OptimizationFlag>(0x0000FFFF);
++// Safety classification is independent of the default performance policy.
++constexpr OptimizationFlag default_optimizations = static_cast<OptimizationFlag>(0x0000FFFF);
++constexpr OptimizationFlag all_safe_optimizations = static_cast<OptimizationFlag>(0x0020FFFF);
+
+ constexpr OptimizationFlag operator~(OptimizationFlag f) {
+     return static_cast<OptimizationFlag>(~static_cast<std::uint32_t>(f));
+--- a/src/dynarmic/interface/A32/config.h
++++ b/src/dynarmic/interface/A32/config.h
+@@ -135,7 +135,7 @@
+     /// - Block linking optimizations
+     /// - RSB optimizations
+     /// This is intended to be used for debugging.
+-    OptimizationFlag optimizations = all_safe_optimizations;
++    OptimizationFlag optimizations = default_optimizations;
+
+     bool HasOptimization(OptimizationFlag f) const {
+         if (!unsafe_optimizations) {
+--- a/src/dynarmic/interface/A64/config.h
++++ b/src/dynarmic/interface/A64/config.h
+@@ -147,7 +147,7 @@
+     /// - Block linking optimizations
+     /// - RSB optimizations
+     /// This is intended to be used for debugging.
+-    OptimizationFlag optimizations = all_safe_optimizations;
++    OptimizationFlag optimizations = default_optimizations;
+
+     bool HasOptimization(OptimizationFlag f) const {
+         if (!unsafe_optimizations) {

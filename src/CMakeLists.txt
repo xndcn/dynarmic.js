@@ -67,6 +67,7 @@ endif()
 target_sources(dynarmic PRIVATE
     dynarmic/backend/wasm/a32_interface.cpp
     dynarmic/backend/wasm/a64_interface.cpp
+    dynarmic/backend/wasm/a64_interface.h
 )
 
 # Backend headers are addressed as "dynarmic/backend/wasm/...", like upstream backends.

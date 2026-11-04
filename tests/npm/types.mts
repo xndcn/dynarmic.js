@@ -1,4 +1,18 @@
 import {createEmulator} from 'dynarmic.js';
+import type {OptimizationOptions} from 'dynarmic.js';
+
+const optimizations: OptimizationOptions = {regionMultiEntry: true};
+const shared = await createEmulator({architecture: 'a32', optimizations});
+shared.setRegister(0, 42);
+shared.dispose();
+const shared64 = await createEmulator({architecture: 'a64', optimizations});
+shared64.setRegister(0, 42n);
+shared64.dispose();
+await createEmulator({optimizations: {regionMultiEntry: false}});
+// @ts-expect-error Optimization switches are booleans.
+await createEmulator({optimizations: {regionMultiEntry: 1}});
+// @ts-expect-error Unknown optimization names are rejected.
+await createEmulator({optimizations: {regionMultiEntries: true}});
 
 const arm = await createEmulator();
 const a32Value: number = arm.getRegister(0);

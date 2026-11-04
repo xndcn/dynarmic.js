@@ -2,11 +2,18 @@
 export type Architecture = 'a32' | 'a64';
 export type RegisterValue<A extends Architecture> = A extends 'a64' ? bigint : number;
 
+export interface OptimizationOptions {
+  /** Share ARM/Thumb/A64 region entries to reduce repeated compilation; may reduce warm throughput. Default: false. */
+  regionMultiEntry?: boolean;
+}
+
 export interface CreateEmulatorOptions<A extends Architecture = Architecture> {
   /** Default: 'a32'. Select Thumb by setting bit 5 of the A32 status register. */
   architecture?: A;
   /** Zero-initialized guest RAM, in bytes. 64 KiB–256 MiB, a multiple of 4096. Default: 16 MiB. */
   memorySize?: number;
+  /** Compilation policy, fixed when creating the emulator. */
+  optimizations?: OptimizationOptions;
   /** Absolute URL for runtime.wasm. file: URLs work in Node.js; browsers require a fetchable URL. */
   wasmURL?: string | URL;
   /** Supply Wasm bytes instead of loading an asset. Mutually exclusive with wasmURL. */

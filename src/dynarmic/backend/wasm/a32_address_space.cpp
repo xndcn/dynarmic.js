@@ -157,6 +157,8 @@ EmitConfig A32AddressSpace::MakeEmitConfig() const {
         .boundary_hook_snapshot = specialize_boundary_hooks ? SnapshotBoundaryHooks(boundary_state) : std::nullopt,
         .coprocessors = &conf.coprocessors,
         .frontend = Frontend::A32,
+        .enable_region_multi_entry = conf.HasOptimization(OptimizationFlag::WasmRegionMultiEntry) &&
+                                         boundary_state != nullptr && conf.enable_cycle_counting,
     };
 }
 

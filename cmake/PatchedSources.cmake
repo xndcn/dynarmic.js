@@ -2,9 +2,8 @@
 #
 # The submodule is never modified. Instead, each file touched by a patch is
 # copied into the build tree, the patch is applied to the copy, and the
-# target's source entry is pointed at the patched copy. Only translation units
-# (.c/.cpp) may be patched this way; a patched header would not be picked up
-# by the files that include it.
+# target's source entry is pointed at the patched copy. Public headers under
+# src/ use a preceding include directory and replace their installed copies.
 
 find_program(PATCH_EXECUTABLE patch)
 if (NOT PATCH_EXECUTABLE)
@@ -25,10 +24,13 @@ function(dynarmic_js_patch_target_sources target src_root out_root)
     endforeach()
     list(REMOVE_DUPLICATES files)
 
+    set(headers)
     file(REMOVE_RECURSE "${out_root}")
     foreach(f IN LISTS files)
-        if (NOT f MATCHES "\\.(c|cc|cpp)$")
-            message(FATAL_ERROR "Patched file ${f} is not a translation unit")
+        if (f MATCHES "^src/.*\\.h$")
+            list(APPEND headers "${f}")
+        elseif (NOT f MATCHES "\\.(c|cc|cpp)$")
+            message(FATAL_ERROR "Patched file ${f} is not a translation unit or a public src/ header")
         endif()
         get_filename_component(dest_dir "${out_root}/${f}" DIRECTORY)
         file(COPY "${src_root}/${f}" DESTINATION "${dest_dir}")
@@ -50,6 +52,9 @@ function(dynarmic_js_patch_target_sources target src_root out_root)
     get_target_property(target_dir ${target} SOURCE_DIR)
     get_target_property(srcs ${target} SOURCES)
     foreach(f IN LISTS files)
+        if (f IN_LIST headers)
+            continue()
+        endif()
         file(RELATIVE_PATH rel "${target_dir}" "${src_root}/${f}")
         list(FIND srcs "${rel}" idx)
         if (idx EQUAL -1)
@@ -62,6 +67,18 @@ function(dynarmic_js_patch_target_sources target src_root out_root)
         list(INSERT srcs ${idx} "${out_root}/${f}")
     endforeach()
     set_target_properties(${target} PROPERTIES SOURCES "${srcs}")
+
+    if (headers)
+        target_include_directories(${target} BEFORE PUBLIC "$<BUILD_INTERFACE:${out_root}/src>")
+        include(GNUInstallDirs)
+        # Upstream installs its headers first; consumers must then receive
+        # the same config/flags definitions that compiled the library.
+        foreach(f IN LISTS headers)
+            string(REGEX REPLACE "^src/" "" include_path "${f}")
+            get_filename_component(include_dir "${include_path}" DIRECTORY)
+            install(FILES "${out_root}/${f}" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${include_dir}")
+        endforeach()
+    endif()
 
     list(LENGTH patches n)
     message(STATUS "dynarmic.js: applied ${n} patch(es) to ${target} out of tree")

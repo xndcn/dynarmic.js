@@ -86,6 +86,25 @@ budget, not a wall-clock deadline or exact instruction count. The default is
 1,000,000; `0` returns immediately. A `svc` result returns control to your host;
 implement the requested service, then call `run()` to resume.
 
+## Optimization options
+
+ARM/Thumb and A64 can share compiled regions across internal entry points:
+
+```js
+const cpu = await createEmulator({
+  architecture: 'a32',
+  optimizations: {regionMultiEntry: true},
+});
+// Load and run guest code, then release the instance.
+cpu.dispose();
+```
+
+`regionMultiEntry` defaults to `false`. Sharing can reduce repeated compilation,
+but can slow warm execution, so measure it with your workload. The choice is
+fixed when creating the emulator. The host manages the required boundary state.
+Unknown optimization names and non-boolean values reject initialization.
+Use the same option with `architecture: 'a64'` for AArch64 guests.
+
 ## Contract and limitations
 
 - Guest RAM starts at address zero; `memorySize` is 64 KiB–256 MiB in 4 KiB
