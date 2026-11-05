@@ -1,0 +1,10 @@
+{
+  "retainedBackendFiles": [
+    "src/dynarmic/backend/wasm/emit_wasm.cpp",
+    "src/dynarmic/backend/wasm/emit_wasm_terminal.cpp"
+  ],
+  "retainedRsbOnlyPatchMatches": true,
+  "frozenArtifactHashesMatch": true,
+  "workloadSha256Matches": true,
+  "otherBackendFilesMatchTaskBaseline": true
+}

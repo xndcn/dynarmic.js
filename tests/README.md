@@ -29,6 +29,10 @@ CTest also runs the installed-package consumer and all native-emitted smoke,
 saturating arithmetic, binary encoding and IR edge tests. The sanitizer build
 runs the same suite, including its exported-library consumer.
 
+`node build-em/tests/jit_callbench.js board` runs the same checked call/return
+kernel with cycle-counted board regions and entry sharing. Omitting `board`
+keeps the ordinary RSB workload used by the fixed benchmark suite.
+
 ## Full regression
 
 Build both trees before running the end-to-end gate:

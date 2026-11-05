@@ -78,6 +78,11 @@ return to the dispatcher. Returns to eligible internal continuation sites can
 remain inside the region. Their RSB effects must match the equivalent external
 call/return path.
 
+In board mode, calls omit speculative RSB writes because returns already use
+guarded dispatch by the full location descriptor. Internal returns likewise
+omit the unused RSB pop. The PushRSB IR operation remains available for finding
+region continuation sites; ordinary call/return speculation is unchanged.
+
 A32 location changes also carry Thumb, endianness and IT state. A64 and A32
 regions require compatible FP configuration. Single stepping uses separate
 location descriptors and does not speculate a multi-block region.

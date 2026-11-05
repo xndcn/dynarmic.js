@@ -137,7 +137,7 @@ logged "$NATIVE/tests/arm_decoder_test" || bad arm_decoder
 logged "$NATIVE/tests/smoke_ir" smoke.wasm >/dev/null 2>&1 && node "$ROOT/tests/ir/smoke.mjs" smoke.wasm >/dev/null || bad smoke_ir
 logged "$NATIVE/tests/sat64_ir" sat64.wasm >/dev/null && node "$ROOT/tests/ir/sat64.mjs" sat64.wasm >/dev/null || bad sat64_ir
 logged "$NATIVE/tests/wasm_binary_test" . >/dev/null && node "$ROOT/tests/ir/wasm_binary_test.mjs" . >/dev/null || bad wasm_binary_test
-for test in integer_edge_test vector_edge_test fp_edge_test memory_edge_test; do
+for test in integer_edge_test vector_edge_test fp_edge_test memory_edge_test a32_memory_edge_test; do
     node "$ROOT/tests/ir/$test.mjs" "$NATIVE/tests/$test" || bad "$test"
 done
 

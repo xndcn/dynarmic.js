@@ -820,15 +820,17 @@ struct TerminalVisitor {
             ctx.code.I64Const(static_cast<s64>(location.Value()));
             ctx.code.U8(Op::I64Eq);
             ctx.code.If();
-            // rsb_top = (rsb_top - 1) & kRsbMask
-            ctx.code.LocalGet(kParamEctx);
-            ctx.code.LocalGet(kParamEctx);
-            ctx.code.Load(Op::I32Load, offsetof(ExecutionContext, rsb_top), 2);
-            ctx.code.I32Const(1);
-            ctx.code.U8(Op::I32Sub);
-            ctx.code.I32Const(static_cast<s32>(kRsbMask));
-            ctx.code.U8(Op::I32And);
-            ctx.code.Store(Op::I32Store, offsetof(ExecutionContext, rsb_top), 2);
+            if (ctx.emit_conf.boundary_state == nullptr) {
+                // rsb_top = (rsb_top - 1) & kRsbMask
+                ctx.code.LocalGet(kParamEctx);
+                ctx.code.LocalGet(kParamEctx);
+                ctx.code.Load(Op::I32Load, offsetof(ExecutionContext, rsb_top), 2);
+                ctx.code.I32Const(1);
+                ctx.code.U8(Op::I32Sub);
+                ctx.code.I32Const(static_cast<s32>(kRsbMask));
+                ctx.code.U8(Op::I32And);
+                ctx.code.Store(Op::I32Store, offsetof(ExecutionContext, rsb_top), 2);
+            }
             EmitRegionEdge(site, location, false);
             ctx.code.End();
         }

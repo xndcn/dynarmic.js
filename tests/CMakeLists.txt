@@ -119,7 +119,7 @@ else()
     endif()
     # IR-level tests: emit modules natively (the emitter alone, or hand-built
     # IR blocks) for Node to instantiate and check.
-    foreach(tool smoke_ir sat64_ir wasm_binary_test integer_edge_test vector_edge_test fp_edge_test memory_edge_test)
+    foreach(tool smoke_ir sat64_ir wasm_binary_test integer_edge_test vector_edge_test fp_edge_test memory_edge_test a32_memory_edge_test)
         add_executable(${tool} ir/${tool}.cpp)
         target_link_libraries(${tool} PRIVATE dynarmic merry::mcl fmt::fmt Boost::boost)
     endforeach()
@@ -144,7 +144,7 @@ else()
                     -P "${CMAKE_CURRENT_SOURCE_DIR}/ir/run_emitted.cmake")
             set_tests_properties("${suite}_wasm" PROPERTIES LABELS "ir;wasm" TIMEOUT 120)
         endforeach()
-        foreach(tool integer_edge_test vector_edge_test fp_edge_test memory_edge_test)
+        foreach(tool integer_edge_test vector_edge_test fp_edge_test memory_edge_test a32_memory_edge_test)
             add_test(NAME ${tool} COMMAND "${DYNARMIC_JS_NODE}"
                 "${CMAKE_CURRENT_SOURCE_DIR}/ir/${tool}.mjs" $<TARGET_FILE:${tool}>)
         endforeach()

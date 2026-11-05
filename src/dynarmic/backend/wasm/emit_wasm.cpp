@@ -164,6 +164,10 @@ void EmitIR<IR::Opcode::CallHostFunction>(EmitContext& ctx, IR::Inst* inst) {
 
 template<>
 void EmitIR<IR::Opcode::PushRSB>(EmitContext& ctx, IR::Inst* inst) {
+    // Board returns use guarded descriptor dispatch rather than RSB guesses.
+    // Keep the IR operation for region return-site discovery, but omit the
+    // speculative stack writes that board returns never read.
+    if (ctx.emit_conf.boundary_state != nullptr) return;
     auto args = ctx.reg_alloc.GetArgumentInfo(inst);
     ASSERT(args[0].IsImmediate());
     const u64 descriptor = args[0].GetImmediateU64();

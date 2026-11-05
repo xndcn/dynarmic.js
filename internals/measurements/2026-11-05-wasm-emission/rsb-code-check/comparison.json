@@ -1,0 +1,10 @@
+{
+  "block_2.wasm": {
+    "byteIdentical": true,
+    "sha256": "d9c8002801d81480f6d6d094658e518453ffff724913131b327b53b43ced013c"
+  },
+  "block_1.wasm": {
+    "byteIdentical": true,
+    "sha256": "ec279a715c074950f36bbf1e20f1418dc7d3c0f766f0158d09c898a53e3d25e2"
+  }
+}

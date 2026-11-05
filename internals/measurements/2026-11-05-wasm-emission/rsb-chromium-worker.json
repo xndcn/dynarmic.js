@@ -1,0 +1,388 @@
+{
+  "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/133.0.0.0 Safari/537.36",
+  "directory": "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist",
+  "artifactHashes": {
+    "index.html": "abc5ede7f8c410a0a94b0e88831cf5afe52e69a124b53ae4c093d001562b7bde",
+    "styles.css": "8652f4a0e5947517eeaa15d39d33e85934ddb39d18b9eec0fe807a7b77d30af6",
+    "app.js": "496cd2b0422c79cc6d02ee9ece64182f858814ef05ec1974f867774b542db3ff",
+    "site.js": "08bbb462969e551ffc29d85b16dd61f59ced4660edc1f994d0ff8a5abd18d17c",
+    "worker.js": "e39b04e15598faeeebc83d4145a2ccd62604277ae6fc20f80975460da8c6b8f1",
+    "arm_jit.js": "16747bdfd6585d6fb21ff5c9416a5702853dc3b2b2274ecf971070b60bfd0073",
+    "arm_jit.wasm": "f7c7e0685c08c76c3e5618e039f09cc45906461330a27faeaca531f0bceea5ce",
+    "demo.bin": "3b02710c7980a705f832ff65256248e7dee1c67f223e471c9679fb864fc1125f",
+    "demo_a64.bin": "456d2979329330dcf07ddbff947d9c1093d2482872dc9fa65712779123c446ec",
+    "expected.txt": "1f93f67870cb72ff0c6e1fb33437736671ec0073ba2330f63b84a4ee86dd2e0e",
+    "quickjs-app.js": "d97e88c9f5497d9e452c2b5de7f6603f107691c17103c0806931ed606a702f54",
+    "quickjs-worker.js": "c9b8c4b2b907d5b0ad67b9c17646a0649fbc893b5894695a627a2ed6690a556c",
+    "quickjs-workloads.js": "cff32113b074e4a0ede55920f1b4ac8a29bbf4996f2c9deb321f7e45f8c6c31e",
+    "quickjs-arm.bin": "aeba400ff697b77cef6b47019b1af4d373040a22e50e270040e283178a26d2f0",
+    "quickjs-wasm.js": "7fa29bd1612f75f99422dcd654c10ac429dcd60d6d31b0142febe5d7fcd39102",
+    "quickjs-wasm.wasm": "ca565f0194b415c45704d6bf5c3a6e076a32d09de5a8d5cf5067ca5e056fd9ce",
+    "quickjs-manifest.json": "666af7487638aff9fffcf50b7a5420dba82811530e6d1f02e52567a2e22100e4",
+    "wasm-build-manifest.json": "4085b7b324ba93c62abd243487b94836b462e44af10030f3aa8616a5ded414ee",
+    "official-benchmarks-app.js": "8fbdd38f66b831fca1653a7845805767d4307935a88d73ec9b9bce2bf94e7f44",
+    "official-benchmarks-worker.js": "e872a7066f7d963cc99d4b596b21ed30817b0244446109fac41f8eec717ca1b6",
+    "official-benchmarks.json": "0ff4d09a59ffe52c01fdedeb9b3299f71d694bd314c7616020ebaa61fbc93fc5",
+    "official-v8-upstream.js": "784c263ca755de0d6ed90b1ed2bb09663313bd9f2dbbd2bbae1f4f4b80be8594",
+    "quickjs-extras-LICENSE.txt": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+    "c-bench-app.js": "a4849623d31f1cc61ce89b5bb5196c6f2a2c45336e5a841088bee19180f88799",
+    "c-bench-worker.js": "f26085efc1dd97eff0d8ce283ca9b032fd0073e7d9a1fc31cd847ca15a52dbaf",
+    "c-bench-protocol.js": "d2fd4cbc7e7c183edf06924d4f44e7410e2b1fa275b002968294f8ee43ca4f67",
+    "c-bench-manifest.json": "d9abf3882587d7b31a6844cfe371b6a5801035522016c98e64ac4179168eefa6",
+    "c-bench-reference.json": "1ec94ac79cf3c1500da93240f9c6af607bca0b9527c3a63ff0a2b2330812343f",
+    "c-bench-source.c": "e320aef8b6978e5c08888284026cb9a3cf41c8961770a958d236ddc6cc948fb9",
+    "c-bench-arm.bin": "abf71d3a0f2a4b57a62d03c886126eec97499944dd68634f4969a2862068edfa",
+    "c-bench-x86.elf": "8a5bc59f87038a308e3fa048b05c733dc68f9d7fcb68b8a652ee2d2aa89944eb",
+    "c-bench.wasm": "ce492306c7ec5d91f4f5fe420f6fd332642ad5c92649c21c583ae2fe10183c1e",
+    "c-bench-v86.js": "e257912c4a1129e36a86c1e2df69904ab969d87bffd24aa6676e84d6ddffc1c6",
+    "c-bench-v86.wasm": "2f0c4150f266415b754a84a32e6f8e4c975a1d3abb94c78b047fa30027db1ef1",
+    "c-bench-v86-LICENSE.txt": "b0a9ae8782911c74a3301f79a106ba11f57ec58b2ca48b4f1f51d5456802607e",
+    "vendor/prism-1.30.0/prism-core.js": "6fe39cc3a95b3da596218fbca3acf03f1208bc936f9fb84d08a2b4a61e2b9af7",
+    "vendor/prism-1.30.0/prism-clike.js": "6a7e077bbcb4a2259bc3152e55681f804ec8a3c2b969f234bb220df0f2d79654",
+    "vendor/prism-1.30.0/prism-c.js": "326fe0f50c2f00c5c9cf741b693654e215017b5d16a86c1c7938455cc64b340b",
+    "vendor/prism-1.30.0/prism-javascript.js": "7be3e7caf699bfddcd6d94d01e9df233257477f7f521e6c6765f03bd936a2d3e",
+    "vendor/prism-1.30.0/LICENSE": "2b947f0901a7ffcf08a89957da9783c0e9c6e72cb6ce8e959f501ab5409e4d2b",
+    "icon.svg": "ec790c918d3181d0a684d86cb8f329bbdf98cbfe2297f94e7c48db9035f76e99",
+    "icon-192.png": "bc06f9165494eea7d22f4b9bab4c7f1996dce0ff9327afa769dda7360e11a664",
+    "icon-512.png": "1dbb6b735ad746ba37923059602fdc5128ff249bb86f12858e0125e808b7b6d9",
+    "site.webmanifest": "6b4f63da77852c86af24db060f3fefdbd952a282ba507c439bebeede8f8b0e1b",
+    "social-card.png": "0ce70def01701c97aff34209d66f72ea46bd5903974eb95b4e9f782d551fb61b",
+    "404.html": "343760b4c0c8a64e510f564c32bd5c3dfe57ab8b1c9497923473a0a266d369d3",
+    "robots.txt": "3ea8b51e2db70bfa2a5be58f8568b3713e6d5270e0bb71830b0a5e8ccb6a586c",
+    "sitemap.xml": "3b65e2b551e6d2ba07ae652fdb7ec53ccff2ed11c77a6b530be52a9a23502127"
+  },
+  "checks": [
+    {
+      "check": "a returning visitor with cached playground scripts loads the matching new QuickJS UI"
+    },
+    {
+      "check": "nested-path first load and accessible status",
+      "title": "ARM code. Your browser. · dynarmic.js",
+      "status": "Ready. Keep this tab visible while the comparison runs.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "output": [
+        null,
+        null
+      ],
+      "width": 1265,
+      "scrollWidth": 1265
+    },
+    {
+      "check": "keyboard skip link"
+    },
+    {
+      "375": {
+        "id": "",
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": 3,
+        "top": 16,
+        "bottom": 63.96875,
+        "headerBottom": 110.578125,
+        "viewportHeight": 844,
+        "hit": true
+      },
+      "1280": {
+        "id": "",
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": 3,
+        "top": 16,
+        "bottom": 63.96875,
+        "headerBottom": 80,
+        "viewportHeight": 900,
+        "hit": true
+      },
+      "check": "focused skip link is hit-testable above the sticky header at desktop and narrow widths"
+    },
+    {
+      "check": "visible first action and on-demand runtime"
+    },
+    {
+      "check": "package-first layout, one QuickJS benchmark area and no ARM playground"
+    },
+    {
+      "check": "System to Light to Dark theme cycling persists explicit choices across reloads"
+    },
+    {
+      "check": "System theme removes the stored preference and remains the default after reload"
+    },
+    {
+      "check": "blocked localStorage does not prevent System, Light and Dark theme changes"
+    },
+    {
+      "check": "pipeline pause and play update animation and accessible control state"
+    },
+    {
+      "check": "active-section navigation exposes exactly one aria-current location"
+    },
+    {
+      "check": "pipeline automatically pauses offscreen and resumes when visible"
+    },
+    {
+      "check": "reduced motion makes the pipeline static and hides its motion control"
+    },
+    {
+      "check": "theme control has visible, unobstructed keyboard focus"
+    },
+    {
+      "check": "pipeline control has visible keyboard focus clear of the sticky header"
+    },
+    {
+      "check": "architecture stages expose the selected content and state"
+    },
+    {
+      "check": "complete package examples copy as plain executable source"
+    },
+    {
+      "check": "copy commands and denied-clipboard selection fallback"
+    },
+    {
+      "check": "both QuickJS suites and C show exact benchmark code, retry failed loads and load no engines"
+    },
+    {
+      "check": "missing syntax grammar falls back to readable, copyable original source"
+    },
+    {
+      "check": "memory choices explain the active path"
+    },
+    {
+      "check": "stop an infinite ARM guest loop",
+      "title": "DONE CANCELLED",
+      "status": "Run stopped. You can run the guests again.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "2",
+      "output": [
+        "Run stopped.",
+        "Run stopped."
+      ],
+      "width": 1265,
+      "scrollWidth": 1265
+    },
+    {
+      "check": "retry after termination / flat-window memory",
+      "title": "DONE PASS",
+      "status": "PASS — both guests match the native reference.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "2",
+      "output": [
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n",
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n"
+      ],
+      "width": 1265,
+      "scrollWidth": 1265
+    },
+    {
+      "check": "memory mode 0",
+      "title": "DONE PASS",
+      "status": "PASS — both guests match the native reference.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "0",
+      "output": [
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n",
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n"
+      ],
+      "width": 1265,
+      "scrollWidth": 1265
+    },
+    {
+      "check": "memory mode 1",
+      "title": "DONE PASS",
+      "status": "PASS — both guests match the native reference.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "1",
+      "output": [
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n",
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n"
+      ],
+      "width": 1265,
+      "scrollWidth": 1265
+    },
+    {
+      "check": "375px layout with expanded statistics",
+      "title": "ARM code. Your browser. · dynarmic.js",
+      "status": "Ready. Keep this tab visible while the comparison runs.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "output": [
+        null,
+        null
+      ],
+      "width": 375,
+      "scrollWidth": 375
+    },
+    {
+      "check": "320px through 1440px layout without hidden overflow"
+    },
+    {
+      "300": {
+        "c": {
+          "position": "static",
+          "toolbarTop": 33.609375,
+          "toolbarBottom": 247.46875,
+          "stickyTop": 112,
+          "headerBottom": 110.578125,
+          "labBottom": 496.484375,
+          "stopTop": 181.609375,
+          "stopBottom": 231.46875,
+          "viewportHeight": 300,
+          "stopHit": true
+        },
+        "quickjs": {
+          "position": "static",
+          "toolbarTop": 158.046875,
+          "toolbarBottom": 310.90625,
+          "stickyTop": 112,
+          "headerBottom": 110.578125,
+          "labBottom": 384.90625,
+          "stopTop": 182.046875,
+          "stopBottom": 231.90625,
+          "viewportHeight": 300,
+          "stopHit": true
+        },
+        "official": {
+          "position": "static",
+          "toolbarTop": 5.359375,
+          "toolbarBottom": 253.53125,
+          "stickyTop": 112,
+          "headerBottom": 110.578125,
+          "labBottom": 567.09375,
+          "stopTop": 182.140625,
+          "stopBottom": 230.140625,
+          "viewportHeight": 300,
+          "stopHit": true
+        }
+      },
+      "320": {
+        "c": {
+          "position": "static",
+          "toolbarTop": 43.609375,
+          "toolbarBottom": 257.46875,
+          "stickyTop": 112,
+          "headerBottom": 110.578125,
+          "labBottom": 506.484375,
+          "stopTop": 191.609375,
+          "stopBottom": 241.46875,
+          "viewportHeight": 320,
+          "stopHit": true
+        },
+        "quickjs": {
+          "position": "static",
+          "toolbarTop": 168.046875,
+          "toolbarBottom": 320.90625,
+          "stickyTop": 112,
+          "headerBottom": 110.578125,
+          "labBottom": 394.90625,
+          "stopTop": 192.046875,
+          "stopBottom": 241.90625,
+          "viewportHeight": 320,
+          "stopHit": true
+        },
+        "official": {
+          "position": "static",
+          "toolbarTop": 15.359375,
+          "toolbarBottom": 263.53125,
+          "stickyTop": 112,
+          "headerBottom": 110.578125,
+          "labBottom": 577.09375,
+          "stopTop": 192.140625,
+          "stopBottom": 240.140625,
+          "viewportHeight": 320,
+          "stopHit": true
+        }
+      },
+      "900": {
+        "c": {
+          "position": "sticky",
+          "toolbarTop": 112,
+          "toolbarBottom": 325.859375,
+          "stickyTop": 112,
+          "headerBottom": 110.578125,
+          "labBottom": 525.484375,
+          "stopTop": 260,
+          "stopBottom": 309.859375,
+          "viewportHeight": 900,
+          "stopHit": true
+        },
+        "quickjs": {
+          "position": "sticky",
+          "toolbarTop": 112,
+          "toolbarBottom": 264.859375,
+          "stickyTop": 112,
+          "headerBottom": 110.578125,
+          "labBottom": 288.90625,
+          "stopTop": 136,
+          "stopBottom": 185.859375,
+          "viewportHeight": 900,
+          "stopHit": true
+        },
+        "official": {
+          "position": "sticky",
+          "toolbarTop": 112,
+          "toolbarBottom": 360.171875,
+          "stickyTop": 112,
+          "headerBottom": 110.578125,
+          "labBottom": 624.09375,
+          "stopTop": 288.78125,
+          "stopBottom": 336.78125,
+          "viewportHeight": 900,
+          "stopHit": true
+        }
+      },
+      "check": "640px running C, QuickJS and official toolbars keep Stop hit-testable below the header in 900px, 320px and 300px viewports"
+    },
+    {
+      "check": "reduced motion disables smooth scrolling and animation"
+    },
+    {
+      "check": "missing asset failure",
+      "title": "DONE FAIL",
+      "status": "Could not run demo: Could not load expected.txt: HTTP 404. Build the browser_page target and serve its complete dist/ directory.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "2",
+      "output": [
+        "Guest was not run.",
+        "Guest was not run."
+      ],
+      "width": 625,
+      "scrollWidth": 625
+    },
+    {
+      "check": "retry after asset recovery",
+      "title": "DONE PASS",
+      "status": "PASS — both guests match the native reference.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "2",
+      "output": [
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n",
+        "lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n"
+      ],
+      "width": 625,
+      "scrollWidth": 625
+    },
+    {
+      "check": "stop while loading",
+      "title": "DONE CANCELLED",
+      "status": "Run stopped. You can run the guests again.",
+      "runDisabled": false,
+      "stopDisabled": true,
+      "mode": "2",
+      "output": [
+        "Run stopped.",
+        "Run stopped."
+      ],
+      "width": 625,
+      "scrollWidth": 625
+    },
+    {
+      "check": "file URL deployment guidance"
+    }
+  ]
+}

@@ -281,6 +281,57 @@ void Benchmark(bool aliases, bool thumb, bool boundaries) {
         Require(sample == 0 || h.stats.blocks == before.blocks, "warm compilation");
     }
 }
+void CheckRegisterExits() {
+    Harness h, reference(false, 0, false, false);
+    std::vector<u32> code;
+    for (u32 repeat = 0; repeat < 8; ++repeat) {
+        for (u32 reg = 0; reg < 13; ++reg)
+            code.push_back(0xe2800000 | reg << 16 | reg << 12 | (reg + 1));
+        code.insert(code.end(), {0xe150000e, 0x1a000000, 0xe2822005}); // cmp r0,lr; bne skip; add r2,#5
+    }
+    const u32 branch_pc = base + static_cast<u32>(code.size()) * 4;
+    code.push_back(0xea000000 | (((base - branch_pc - 8) >> 2) & 0xffffff));
+    for (Harness* backend : {&h, &reference}) {
+        std::memcpy(backend->callbacks.ram.data() + base, code.data(), code.size() * 4);
+        backend->state.regs[14] = 3;
+    }
+    auto step = CreateA32Jit(reference.conf, nullptr);
+    step->SetCpsr(h.state.Cpsr()); step->Regs() = h.state.regs; step->Regs()[15] = base;
+    for (const u64 budget : {1, 17, 33, 63, 7, 111, 513}) {
+        h.Run(h.state.regs[15] ? h.state.regs[15] : base, budget);
+        Require(h.callbacks.ticks >= budget, "register-exit budget not charged");
+        for (u64 i = 0; i < h.callbacks.ticks; ++i) step->Step();
+        Require(h.state.regs == step->Regs() && h.state.Cpsr() == step->Cpsr(),
+                "shared exit differs from instruction-by-instruction registers/flags");
+    }
+}
+void CheckNestedCalls() {
+    // push {r4,lr}; mov r4,r1; bl inner; add r0,r4; pop {r4,pc};
+    // inner: push {lr}; blx r3; adds r0,#1; pop {pc}
+    constexpr std::array<u32, 9> caller{0xe92d4010,0xe1a04001,0xeb000001,0xe0800004,
+        0xe8bd8010,0xe52de004,0xe12fff33,0xe2900001,0xe49df004};
+    for (const bool board : {false, true}) {
+        Harness h(true, 0, true, board);
+        std::memcpy(h.callbacks.ram.data() + base, caller.data(), sizeof(caller));
+        h.callbacks.Write<u32>(0x8000, 0xe2900002); // adds r0,#2
+        h.callbacks.Write<u32>(0x8004, 0xe12fff1e); // bx lr
+        h.callbacks.Write<u32>(0xf000, 0xef000000);
+        h.context.rsb_top = 7;
+        for (auto& entry : h.context.rsb) { entry.descriptor = 0xdeadbeefdeadbeefULL; entry.index = 0; }
+        for (u32 i = 0; i < 40; ++i) {
+            h.state.regs[0] = i; h.state.regs[1] = 7; h.state.regs[3] = 0x8000;
+            h.state.regs[4] = 0x12345678; h.state.regs[13] = 0xe000; h.state.regs[14] = 0xf000;
+            h.Run(base);
+            Require(h.state.regs[0] == i + 10 && h.state.regs[4] == 0x12345678 && h.state.regs[13] == 0xe000,
+                    "nested BL/BLX register/stack result");
+            if (board) {
+                Require(h.context.rsb_top == 7, "board call/return changed RSB top");
+                for (const auto& entry : h.context.rsb)
+                    Require(entry.descriptor == 0xdeadbeefdeadbeefULL && entry.index == 0, "board call wrote unused RSB");
+            }
+        }
+    }
+}
 void BenchmarkLoop(bool aliases, int mode) {
     Harness h(aliases, mode);
     // Same independently checked nested memory workload as jit_bench, with
@@ -317,5 +368,6 @@ int main(int argc, char** argv) {
         CheckEndian(mode);
     }
     CheckDescriptor(); CheckIT(0); CheckIT(1); CheckOptInAndStep(); CheckBackwardAndReturn(); CheckDisabledHookFilter();
+    CheckRegisterExits(); CheckNestedCalls();
     std::puts("PASS A32 shared entries: ARM/Thumb, memory modes, boundaries, IT/FPSCR/endian, stale selectors, invalidation, links, opt-in and Step");
 }

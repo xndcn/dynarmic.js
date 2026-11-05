@@ -1,0 +1,16 @@
+    01000: 0700a0e3   mov r0, #7
+    01004: 0510a0e3   mov r1, #5
+PASS replay
+    01000: 000091e5   ldr r0, [r1]
+PASS replay
+    d2800020  mov x0, #1
+    91000800  add x0, x0, #2
+PASS replay
+    f9400020  ldr x0, [x1]
+PASS replay
+    4ea18400  add v0.4s, v0.4s, v1.4s
+PASS replay
+    01000: 0720       movs r0, #7
+    01002: 0921       movs r1, #9
+PASS replay
+PASS checked-in fuzz corpus cases=6

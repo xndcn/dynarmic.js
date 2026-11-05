@@ -16,6 +16,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <memory>
 #include <optional>
 
 #include "benchmark.h"
@@ -25,6 +26,9 @@
 #include "dynarmic/interface/A32/a32.h"
 #include "dynarmic/interface/A32/config.h"
 #include "dynarmic/interface/exclusive_monitor.h"
+#ifdef __EMSCRIPTEN__
+#include "dynarmic/backend/wasm/a32_interface.h"
+#endif
 
 
 using namespace Dynarmic;
@@ -107,7 +111,12 @@ bool RunOnce(A32::Jit& jit, bool cold, int run_index) {
 
 }  // namespace
 
-int main() {
+int main(int argc, char** argv) {
+    const bool board = argc == 2 && std::strcmp(argv[1], "board") == 0;
+    if (argc > 2 || (argc == 2 && !board)) return 2;
+#ifndef __EMSCRIPTEN__
+    if (board) return 2;
+#endif
     std::memcpy(g_ram.data() + kCodeBase, kCode.data(), sizeof(kCode));
 
     static BenchCallbacks callbacks;
@@ -117,13 +126,18 @@ int main() {
     conf.callbacks = &callbacks;
     conf.global_monitor = &monitor;
     conf.processor_id = 0;
-    conf.enable_cycle_counting = false;
-
-    A32::Jit jit{conf};
-    if (!RunOnce(jit, true, 0)) return 1;
+    conf.enable_cycle_counting = board;
+#ifdef __EMSCRIPTEN__
+    if (board) conf.optimizations |= OptimizationFlag::WasmRegionMultiEntry;
+    Backend::Wasm::BoundaryState boundary{};
+    auto jit = board ? Backend::Wasm::CreateA32Jit(conf, &boundary) : std::make_unique<A32::Jit>(conf);
+#else
+    auto jit = std::make_unique<A32::Jit>(conf);
+#endif
+    if (!RunOnce(*jit, true, 0)) return 1;
     // Allow the engine to optimize the same modules; preserve the JIT cache.
     for (int i = 0; i < 8; ++i) {
-        if (!RunOnce(jit, false, i + 1)) return 1;
+        if (!RunOnce(*jit, false, i + 1)) return 1;
     }
     std::puts("PASS");
     return 0;
