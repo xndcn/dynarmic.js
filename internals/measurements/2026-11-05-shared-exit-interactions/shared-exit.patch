@@ -1,0 +1,104 @@
+--- a/src/dynarmic/backend/wasm/emit_context.h
++++ b/src/dynarmic/backend/wasm/emit_context.h
+@@ -132,6 +132,9 @@
+         // 1 after a host call that requested a halt, so the next back-edge
+         // leaves).
+         u32 budget = 0;
++        u32 exit_depth = 0;
++        u32 exit_result = 0;
++        u32 exit_target = 0;
+         u32 gpr_base = 0;
+         std::array<u32, 16> local{};
+         std::array<bool, 16> cached{};
+--- a/src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp
++++ b/src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp
+@@ -606,6 +606,30 @@
+         ctx.code.LocalSet(region.next);
+     }
+
++    if (all_entries && ctx.emit_conf.frontend == Frontend::A32 && multi_entry) {
++        auto& rc = ctx.reg_cache;
++        rc.exit_result = ctx.code.AddLocals(1, ValType::I32);
++        rc.exit_target = ctx.code.AddLocals(1, ValType::I32);
++        ctx.code.Block();
++        rc.exit_depth = ctx.code.Depth();
++        ctx.code.return_override = [&ctx] {
++            ctx.code.LocalSet(ctx.reg_cache.exit_result);
++            ctx.code.I32Const(0);
++            ctx.code.LocalSet(ctx.reg_cache.exit_target);
++            if (ctx.flags.active) EmitMaterializeDeferredFlags(ctx);
++            ctx.code.Br(ctx.code.Depth() - ctx.reg_cache.exit_depth);
++        };
++        ctx.code.tail_return_override = [&ctx](u32 type, u32 table) {
++            ASSERT(table == 0 && type == ctx.Type({{ValType::I32, ValType::I32}, {ValType::I32}}));
++            // All region chains pass the unchanged state and execution-context
++            // parameters. Keep only the function-table target across the exit.
++            ctx.code.LocalSet(ctx.reg_cache.exit_target);
++            ctx.code.U8(Op::Drop);
++            ctx.code.U8(Op::Drop);
++            if (ctx.flags.active) EmitMaterializeDeferredFlags(ctx);
++            ctx.code.Br(ctx.code.Depth() - ctx.reg_cache.exit_depth);
++        };
++    }
+     const u32 n = static_cast<u32>(region.blocks.size());
+     region.label_depth.assign(n, 0);
+     ctx.code.Loop();
+@@ -686,9 +710,28 @@
+ }
+
+ void EmitEndRegion(EmitContext& ctx) {
+-    TeardownRegisterCache(ctx);
+     ctx.code.End();  // $dispatch
+     ctx.code.U8(Op::Unreachable);
++    if (ctx.reg_cache.exit_depth != 0) {
++        ctx.code.End();  // shared exit
++        ctx.code.return_override = nullptr;
++        ctx.code.tail_return_override = nullptr;
++        ctx.code.before_exit = nullptr;
++        EmitCommitCycles(ctx);
++        EmitFlushRegCache(ctx);
++        if (ctx.table_imported) {
++            ctx.code.LocalGet(ctx.reg_cache.exit_target);
++            ctx.code.If();
++            ctx.code.LocalGet(kParamState);
++            ctx.code.LocalGet(kParamEctx);
++            ctx.code.LocalGet(ctx.reg_cache.exit_target);
++            ctx.code.ReturnCallIndirect(ctx.Type({{ValType::I32, ValType::I32}, {ValType::I32}}));
++            ctx.code.End();
++        }
++        ctx.code.LocalGet(ctx.reg_cache.exit_result);
++        ctx.code.Return();
++    }
++    TeardownRegisterCache(ctx);
+ }
+
+ }  // namespace Dynarmic::Backend::Wasm
+--- a/src/dynarmic/backend/wasm/wasm_binary.h
++++ b/src/dynarmic/backend/wasm/wasm_binary.h
+@@ -571,6 +571,10 @@
+     std::function<void(u32 func)> before_call;
+     std::function<void(u32 func)> after_call;
+     std::function<void()> before_exit;  // return / return_call_indirect
++    // Optional structured exits. Overrides consume the original operands and
++    // terminate the path; otherwise the ordinary coherence hook remains active.
++    std::function<void()> return_override;
++    std::function<void(u32 type, u32 table)> tail_return_override;
+
+     void Call(u32 func) {
+         if (before_call) before_call(func);
+@@ -586,6 +590,7 @@
+         if (after_call) after_call(~0u);
+     }
+     void ReturnCallIndirect(u32 type, u32 table = 0) {
++        if (tail_return_override) { tail_return_override(type, table); return; }
+         if (before_exit) before_exit();
+         U8(Op::ReturnCallIndirect);
+         ULEB(type);
+@@ -605,6 +610,7 @@
+     void BrIf(u32 label) { U8(Op::BrIf); ULEB(label); }
+     void BrTable(const std::vector<u32>& targets, u32 default_target);
+     void Return() {
++        if (return_override) { return_override(); return; }
+         if (before_exit) before_exit();
+         U8(Op::Return);
+     }

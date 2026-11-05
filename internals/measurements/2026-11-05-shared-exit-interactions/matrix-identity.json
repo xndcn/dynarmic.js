@@ -1,0 +1,278 @@
+{
+  "variants": {
+    "inline-base": {
+      "source": {
+        "src/dynarmic/backend/wasm/emit_context.h": "06ed0c8f265602f9cd8965fdd2e03b55852939ac5cf700250c83ce744cf6d0e4",
+        "src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp": "7551c69ee5021bd554667d0712d11ff5dae6d16c705580811cd082f9c8624338",
+        "src/dynarmic/backend/wasm/emit_wasm_terminal.cpp": "20abbd8702dc10b4c4d18b04548c7b781e329c544cf735e357389b21f8401034",
+        "src/dynarmic/backend/wasm/wasm_binary.h": "eb7b5c944b3ce8b2ee829453587a93cd486dfe3a2becd455e895da8db14c2bfb",
+        "src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp": "3605558919585388bdb976407fd40e28ea14188cb32e31d69b131aa6cffbca86",
+        "src/dynarmic/backend/wasm/emit_wasm_memory.cpp": "ad00a0b68912b748dd7d843bd470161c7e35cfb5c0b697925de2637ce498132a"
+      },
+      "generator": "8fa2e4ad1cee4722131cf8d531d3acf263e1df7198513385202e3bdb48075f20",
+      "modules": {
+        "tail-target.wasm": "9b23a92a4d217c5230c7f59af5e1feeb835f8c941ea2fc2cdeaef5107a622ea1",
+        "constant-memory.wasm": "64e54d3483513aa95563e5d4504b501b0d2efd5f8192d8d83224dec18553bd48",
+        "no-flags.wasm": "ddbe38e103570253c68eb640cdb1976e45b9e277fe1413ee6cd65134c8b57458",
+        "dynamic-memory.wasm": "46d19f99f0a29cd92de3c7b2b5fd2a98fe3e6f6b32fa9d1c6d111fd46e20016d",
+        "flags.wasm": "701bcb92038681dd0b778ceda6c245721bd109d515042e8856297709f968934e",
+        "manifest.json": "c85e6a2a37a98d627a0d141ae34ac327f49fdcd10ff090572980166c0b4e8cae",
+        "tail-exits.wasm": "e3af39a0f762bfe5e9733e22e71bab33549ed86bf397362fd63e2d7cfac4cfdc",
+        "normal-exits.wasm": "71079c305fe3553f4e1ad2e2407c94dbbbc116e9de89b8ec79bb52a0ba681f80"
+      }
+    },
+    "inline-i32": {
+      "source": {
+        "src/dynarmic/backend/wasm/emit_context.h": "06ed0c8f265602f9cd8965fdd2e03b55852939ac5cf700250c83ce744cf6d0e4",
+        "src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp": "7551c69ee5021bd554667d0712d11ff5dae6d16c705580811cd082f9c8624338",
+        "src/dynarmic/backend/wasm/emit_wasm_terminal.cpp": "20abbd8702dc10b4c4d18b04548c7b781e329c544cf735e357389b21f8401034",
+        "src/dynarmic/backend/wasm/wasm_binary.h": "eb7b5c944b3ce8b2ee829453587a93cd486dfe3a2becd455e895da8db14c2bfb",
+        "src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp": "88300569efa3c8dfa5b41b0c58f477bae637110f050050741fe3732f3f643063",
+        "src/dynarmic/backend/wasm/emit_wasm_memory.cpp": "ad00a0b68912b748dd7d843bd470161c7e35cfb5c0b697925de2637ce498132a"
+      },
+      "generator": "2d6c6063ba9b16109e756ad52c7995c8fc1dec1cfbaea5a1a78eaa44ba99a4c1",
+      "modules": {
+        "tail-target.wasm": "9b23a92a4d217c5230c7f59af5e1feeb835f8c941ea2fc2cdeaef5107a622ea1",
+        "constant-memory.wasm": "64e54d3483513aa95563e5d4504b501b0d2efd5f8192d8d83224dec18553bd48",
+        "no-flags.wasm": "ddbe38e103570253c68eb640cdb1976e45b9e277fe1413ee6cd65134c8b57458",
+        "dynamic-memory.wasm": "46d19f99f0a29cd92de3c7b2b5fd2a98fe3e6f6b32fa9d1c6d111fd46e20016d",
+        "flags.wasm": "ba3b18b6e92692e00860d0f185c4b3d01b91ed25e9dfdab24170884889b94c83",
+        "manifest.json": "f8b7f8f7e5bbddd43208fe2710423a4ef5364cd1410dd2a5b814dcd36cc78f48",
+        "tail-exits.wasm": "e3af39a0f762bfe5e9733e22e71bab33549ed86bf397362fd63e2d7cfac4cfdc",
+        "normal-exits.wasm": "71079c305fe3553f4e1ad2e2407c94dbbbc116e9de89b8ec79bb52a0ba681f80"
+      }
+    },
+    "inline-constant": {
+      "source": {
+        "src/dynarmic/backend/wasm/emit_context.h": "06ed0c8f265602f9cd8965fdd2e03b55852939ac5cf700250c83ce744cf6d0e4",
+        "src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp": "7551c69ee5021bd554667d0712d11ff5dae6d16c705580811cd082f9c8624338",
+        "src/dynarmic/backend/wasm/emit_wasm_terminal.cpp": "20abbd8702dc10b4c4d18b04548c7b781e329c544cf735e357389b21f8401034",
+        "src/dynarmic/backend/wasm/wasm_binary.h": "eb7b5c944b3ce8b2ee829453587a93cd486dfe3a2becd455e895da8db14c2bfb",
+        "src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp": "3605558919585388bdb976407fd40e28ea14188cb32e31d69b131aa6cffbca86",
+        "src/dynarmic/backend/wasm/emit_wasm_memory.cpp": "e2e0f5546728b05bfa859aa0281539a4795cfb86038a991df3b66e9d3e438856"
+      },
+      "generator": "3a6a1c3882dbaf2973b899df887fb25ccc09f00d265ac872232eb0206b8be068",
+      "modules": {
+        "tail-target.wasm": "9b23a92a4d217c5230c7f59af5e1feeb835f8c941ea2fc2cdeaef5107a622ea1",
+        "constant-memory.wasm": "975615dbff686a69ad090abe14f4fcd3b7007f5adf764215785169908f582486",
+        "no-flags.wasm": "ddbe38e103570253c68eb640cdb1976e45b9e277fe1413ee6cd65134c8b57458",
+        "dynamic-memory.wasm": "46d19f99f0a29cd92de3c7b2b5fd2a98fe3e6f6b32fa9d1c6d111fd46e20016d",
+        "flags.wasm": "701bcb92038681dd0b778ceda6c245721bd109d515042e8856297709f968934e",
+        "manifest.json": "20a67a7cbc702f845ab0e162b27179c15cd738c9ecf53e7ac67efa5a3152c6fb",
+        "tail-exits.wasm": "e3af39a0f762bfe5e9733e22e71bab33549ed86bf397362fd63e2d7cfac4cfdc",
+        "normal-exits.wasm": "71079c305fe3553f4e1ad2e2407c94dbbbc116e9de89b8ec79bb52a0ba681f80"
+      }
+    },
+    "inline-tee": {
+      "source": {
+        "src/dynarmic/backend/wasm/emit_context.h": "06ed0c8f265602f9cd8965fdd2e03b55852939ac5cf700250c83ce744cf6d0e4",
+        "src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp": "7551c69ee5021bd554667d0712d11ff5dae6d16c705580811cd082f9c8624338",
+        "src/dynarmic/backend/wasm/emit_wasm_terminal.cpp": "20abbd8702dc10b4c4d18b04548c7b781e329c544cf735e357389b21f8401034",
+        "src/dynarmic/backend/wasm/wasm_binary.h": "01e308721f090ca164058192f1f523d5cb3e9b038a8eedad91df60fefdb0281b",
+        "src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp": "3605558919585388bdb976407fd40e28ea14188cb32e31d69b131aa6cffbca86",
+        "src/dynarmic/backend/wasm/emit_wasm_memory.cpp": "ad00a0b68912b748dd7d843bd470161c7e35cfb5c0b697925de2637ce498132a"
+      },
+      "generator": "bb57820621d499a2912c8b1c5b2a5d5097fdbb78f5ca343e5ac619e16be7e3c6",
+      "modules": {
+        "tail-target.wasm": "9b23a92a4d217c5230c7f59af5e1feeb835f8c941ea2fc2cdeaef5107a622ea1",
+        "constant-memory.wasm": "26015ffd0877a5934736d1d9bfdfd58617eb4a553df1462213b8ed993b1fb5ea",
+        "no-flags.wasm": "5ce784c8c9ca8557447e64308f35f04f21bdeca94887cfe1f9c9ad4f31c7e5f1",
+        "dynamic-memory.wasm": "bfce9b703e4e39004e06fc05132ecc042346bc290f77578dddf1bf7ff330e97e",
+        "flags.wasm": "0f867fae4ad897cad4e8d18862113488cd68d7bf6799cb1f305f3417f64a340d",
+        "manifest.json": "43a039b4402b88f74c902c3ad2042cc03291389bab13551445b69aec5a0c6fb1",
+        "tail-exits.wasm": "6d82990679183271f91595438a872ba0678865a863403ea0ecde7b95cef5f368",
+        "normal-exits.wasm": "f5c072bc51e7a5c2cdb45899be163429c6219f2f9404448561a62e8fb5463413"
+      }
+    },
+    "shared-base": {
+      "source": {
+        "src/dynarmic/backend/wasm/emit_context.h": "8c95f114f6759daad9769ea6d4fa52ed1a8182e57e7dd60e8a2d6bef741a22cc",
+        "src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp": "d7073c9998c9b0dfe7be5c5ddd347d632caf9ef0b0e10d4f965316d1be10e818",
+        "src/dynarmic/backend/wasm/emit_wasm_terminal.cpp": "20abbd8702dc10b4c4d18b04548c7b781e329c544cf735e357389b21f8401034",
+        "src/dynarmic/backend/wasm/wasm_binary.h": "00d5434bc7dd5364d40a575f67b98e9c7965bc55803f35332e821c94eb8c2960",
+        "src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp": "3605558919585388bdb976407fd40e28ea14188cb32e31d69b131aa6cffbca86",
+        "src/dynarmic/backend/wasm/emit_wasm_memory.cpp": "ad00a0b68912b748dd7d843bd470161c7e35cfb5c0b697925de2637ce498132a"
+      },
+      "generator": "afc74a3ef578ce60226f80cf5a4c5702ab0fd27c33e0c63e2baefe06ec8f8b0c",
+      "modules": {
+        "tail-target.wasm": "9b23a92a4d217c5230c7f59af5e1feeb835f8c941ea2fc2cdeaef5107a622ea1",
+        "constant-memory.wasm": "f18997f41a4c11110457eb1fb9f8d8a0097133f7e10caf96f7d5343b25d6b2b6",
+        "no-flags.wasm": "c496ccb32e217a2c351836680591c56a673750ac008bb0c16fe1eb6df52b8e49",
+        "dynamic-memory.wasm": "4bfb51c187c58122ecd6a31d9546337528e1037b4f0c438830db79e137dcd92f",
+        "flags.wasm": "175f12ce199f8bceda4cf6cfb9123d24cb775043ed616e9cbea30daee9386688",
+        "manifest.json": "462b25effae26393c9d04bcffeb774ce826d6fc0c2f5c0eaa0c09d83cf8385a8",
+        "tail-exits.wasm": "ba0373991c24a4582e9623d59e56789f96a9ac16f559e221ab0d23531678e142",
+        "normal-exits.wasm": "6c2b92b3270f2b96574471fea86e9af5258650517f0a0dcc2927485179991f77"
+      }
+    },
+    "shared-i32": {
+      "source": {
+        "src/dynarmic/backend/wasm/emit_context.h": "8c95f114f6759daad9769ea6d4fa52ed1a8182e57e7dd60e8a2d6bef741a22cc",
+        "src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp": "d7073c9998c9b0dfe7be5c5ddd347d632caf9ef0b0e10d4f965316d1be10e818",
+        "src/dynarmic/backend/wasm/emit_wasm_terminal.cpp": "20abbd8702dc10b4c4d18b04548c7b781e329c544cf735e357389b21f8401034",
+        "src/dynarmic/backend/wasm/wasm_binary.h": "00d5434bc7dd5364d40a575f67b98e9c7965bc55803f35332e821c94eb8c2960",
+        "src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp": "88300569efa3c8dfa5b41b0c58f477bae637110f050050741fe3732f3f643063",
+        "src/dynarmic/backend/wasm/emit_wasm_memory.cpp": "ad00a0b68912b748dd7d843bd470161c7e35cfb5c0b697925de2637ce498132a"
+      },
+      "generator": "1b7519add978a0773780d5af1fca0fa69ffdec659cc8f002043dce0ccbab463d",
+      "modules": {
+        "tail-target.wasm": "9b23a92a4d217c5230c7f59af5e1feeb835f8c941ea2fc2cdeaef5107a622ea1",
+        "constant-memory.wasm": "f18997f41a4c11110457eb1fb9f8d8a0097133f7e10caf96f7d5343b25d6b2b6",
+        "no-flags.wasm": "c496ccb32e217a2c351836680591c56a673750ac008bb0c16fe1eb6df52b8e49",
+        "dynamic-memory.wasm": "4bfb51c187c58122ecd6a31d9546337528e1037b4f0c438830db79e137dcd92f",
+        "flags.wasm": "644c4ae342ff96ab99c5361b7c710ca11f38706be48d5f2691439f0194bf8f64",
+        "manifest.json": "4fdb5e6557114b6b6da825e00695550c4e614a333504a9fde4e6d8dc98162ae9",
+        "tail-exits.wasm": "ba0373991c24a4582e9623d59e56789f96a9ac16f559e221ab0d23531678e142",
+        "normal-exits.wasm": "6c2b92b3270f2b96574471fea86e9af5258650517f0a0dcc2927485179991f77"
+      }
+    },
+    "shared-constant": {
+      "source": {
+        "src/dynarmic/backend/wasm/emit_context.h": "8c95f114f6759daad9769ea6d4fa52ed1a8182e57e7dd60e8a2d6bef741a22cc",
+        "src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp": "d7073c9998c9b0dfe7be5c5ddd347d632caf9ef0b0e10d4f965316d1be10e818",
+        "src/dynarmic/backend/wasm/emit_wasm_terminal.cpp": "20abbd8702dc10b4c4d18b04548c7b781e329c544cf735e357389b21f8401034",
+        "src/dynarmic/backend/wasm/wasm_binary.h": "00d5434bc7dd5364d40a575f67b98e9c7965bc55803f35332e821c94eb8c2960",
+        "src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp": "3605558919585388bdb976407fd40e28ea14188cb32e31d69b131aa6cffbca86",
+        "src/dynarmic/backend/wasm/emit_wasm_memory.cpp": "e2e0f5546728b05bfa859aa0281539a4795cfb86038a991df3b66e9d3e438856"
+      },
+      "generator": "1bec8750c8919f3a35a05279094ca6854ef53aa25de3fe9cacb26a61628e3ec0",
+      "modules": {
+        "tail-target.wasm": "9b23a92a4d217c5230c7f59af5e1feeb835f8c941ea2fc2cdeaef5107a622ea1",
+        "constant-memory.wasm": "eb579ce81b713b7e129ab41c0226a99852952587058b44a45e5f0c94089326c7",
+        "no-flags.wasm": "c496ccb32e217a2c351836680591c56a673750ac008bb0c16fe1eb6df52b8e49",
+        "dynamic-memory.wasm": "4bfb51c187c58122ecd6a31d9546337528e1037b4f0c438830db79e137dcd92f",
+        "flags.wasm": "175f12ce199f8bceda4cf6cfb9123d24cb775043ed616e9cbea30daee9386688",
+        "manifest.json": "ba1604663625dac8366a3ce11e8bd33a259fda4dbf993a4d37929ca194bbd2b7",
+        "tail-exits.wasm": "ba0373991c24a4582e9623d59e56789f96a9ac16f559e221ab0d23531678e142",
+        "normal-exits.wasm": "6c2b92b3270f2b96574471fea86e9af5258650517f0a0dcc2927485179991f77"
+      }
+    },
+    "shared-tee": {
+      "source": {
+        "src/dynarmic/backend/wasm/emit_context.h": "8c95f114f6759daad9769ea6d4fa52ed1a8182e57e7dd60e8a2d6bef741a22cc",
+        "src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp": "d7073c9998c9b0dfe7be5c5ddd347d632caf9ef0b0e10d4f965316d1be10e818",
+        "src/dynarmic/backend/wasm/emit_wasm_terminal.cpp": "20abbd8702dc10b4c4d18b04548c7b781e329c544cf735e357389b21f8401034",
+        "src/dynarmic/backend/wasm/wasm_binary.h": "68059ae9f5612968d775a7d75a6db7f9a5ab368cb39cabd813bb819e22c2d58e",
+        "src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp": "3605558919585388bdb976407fd40e28ea14188cb32e31d69b131aa6cffbca86",
+        "src/dynarmic/backend/wasm/emit_wasm_memory.cpp": "ad00a0b68912b748dd7d843bd470161c7e35cfb5c0b697925de2637ce498132a"
+      },
+      "generator": "6ec7107c4acef1e2d713a2343c914986b5b4f24d369d0d8a564178a426aa3301",
+      "modules": {
+        "tail-target.wasm": "9b23a92a4d217c5230c7f59af5e1feeb835f8c941ea2fc2cdeaef5107a622ea1",
+        "constant-memory.wasm": "8303cb2a5130b7d91b14ad0dc403c5d5e8653fc6eb05f1bf1d0ff55884ca8c88",
+        "no-flags.wasm": "b4769ac6a7fb6dc6ddda730c8a56809a7b7d1fdf89a3552e9af428d17de9a555",
+        "dynamic-memory.wasm": "3b094d476f4a7ca1b64d192ff758e3b1e361c431fdd661aa49b7ce9365052159",
+        "flags.wasm": "76d1b6ee4eecaa8914ac634817bf25e0c8348bdf761e9fa06467a70fdef648cb",
+        "manifest.json": "aff0b3e1ed880dcdd93749906cff00d839047b26ad85ecbfae26846aac8c661c",
+        "tail-exits.wasm": "8856b7e07a3b11ded3b3f22d9fc136d7c6dceeba51c0d7af944a215e83de9d15",
+        "normal-exits.wasm": "a8bb5140b01b260344012c9fb329e1453a1676061f89c8e72dea252b2a81c8a5"
+      }
+    },
+    "tail-base": {
+      "source": {
+        "src/dynarmic/backend/wasm/emit_context.h": "08cbec07997fe92b2daeaecbfa572fecc11e437f7a54d37944a4c5b774b3f11a",
+        "src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp": "7f82c9092e227dfe9581088a9f9010f1be61fcaecedffa42d5ff29fcd05b8232",
+        "src/dynarmic/backend/wasm/emit_wasm_terminal.cpp": "f89cdc3ebf1f90c43441c5a88958a1d81294eccb1d09a7bf4e6d55c79f9bc1d8",
+        "src/dynarmic/backend/wasm/wasm_binary.h": "eb7b5c944b3ce8b2ee829453587a93cd486dfe3a2becd455e895da8db14c2bfb",
+        "src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp": "3605558919585388bdb976407fd40e28ea14188cb32e31d69b131aa6cffbca86",
+        "src/dynarmic/backend/wasm/emit_wasm_memory.cpp": "ad00a0b68912b748dd7d843bd470161c7e35cfb5c0b697925de2637ce498132a"
+      },
+      "generator": "ebf83f727ac3f8a6d39a27a121ee10c81c1234d1089834bd0ac97ebfc68007ca",
+      "modules": {
+        "tail-target.wasm": "9b23a92a4d217c5230c7f59af5e1feeb835f8c941ea2fc2cdeaef5107a622ea1",
+        "constant-memory.wasm": "74600b2f8af5c46a9599356c07dc91302cba39b93ae5ab784bf01acc7c7e3fd0",
+        "no-flags.wasm": "5d4b8a85ce6c04c8108689459d27957870c7861c657b0370005051d1032f153e",
+        "dynamic-memory.wasm": "366f0cbdcbb9a848572c0d6fd3a953d38001e65536883734a06d45e2820e342c",
+        "flags.wasm": "8283ca555d8e2a5971df31768dd6c963d883b8574ba22475b1d0d12268c09316",
+        "manifest.json": "6b953dee656be950e5e4ed62e3b44e0cb6e9423d4b8ad5022c902106be9dab1b",
+        "tail-exits.wasm": "656aea0df2723933540a638a2eae7dde8d1e34bba0c0efe9ba020aba3151932d",
+        "normal-exits.wasm": "46b29d0695efa44575d10c41711fd12528e0f2628abe097372df2ef937f0141c"
+      }
+    },
+    "tail-i32": {
+      "source": {
+        "src/dynarmic/backend/wasm/emit_context.h": "08cbec07997fe92b2daeaecbfa572fecc11e437f7a54d37944a4c5b774b3f11a",
+        "src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp": "7f82c9092e227dfe9581088a9f9010f1be61fcaecedffa42d5ff29fcd05b8232",
+        "src/dynarmic/backend/wasm/emit_wasm_terminal.cpp": "f89cdc3ebf1f90c43441c5a88958a1d81294eccb1d09a7bf4e6d55c79f9bc1d8",
+        "src/dynarmic/backend/wasm/wasm_binary.h": "eb7b5c944b3ce8b2ee829453587a93cd486dfe3a2becd455e895da8db14c2bfb",
+        "src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp": "88300569efa3c8dfa5b41b0c58f477bae637110f050050741fe3732f3f643063",
+        "src/dynarmic/backend/wasm/emit_wasm_memory.cpp": "ad00a0b68912b748dd7d843bd470161c7e35cfb5c0b697925de2637ce498132a"
+      },
+      "generator": "cebea531b280e071d2855d212f03909bb59f07ee50f1a9567a60e272ac33039b",
+      "modules": {
+        "tail-target.wasm": "9b23a92a4d217c5230c7f59af5e1feeb835f8c941ea2fc2cdeaef5107a622ea1",
+        "constant-memory.wasm": "74600b2f8af5c46a9599356c07dc91302cba39b93ae5ab784bf01acc7c7e3fd0",
+        "no-flags.wasm": "5d4b8a85ce6c04c8108689459d27957870c7861c657b0370005051d1032f153e",
+        "dynamic-memory.wasm": "366f0cbdcbb9a848572c0d6fd3a953d38001e65536883734a06d45e2820e342c",
+        "flags.wasm": "48ebb8052fdcb3efa04d183dd72a7010545750b2b226513eb14860c3e5a41a2d",
+        "manifest.json": "f056b438e08cfc28b8dded0115019ce1863270edadd09daa884fd30b2b250730",
+        "tail-exits.wasm": "656aea0df2723933540a638a2eae7dde8d1e34bba0c0efe9ba020aba3151932d",
+        "normal-exits.wasm": "46b29d0695efa44575d10c41711fd12528e0f2628abe097372df2ef937f0141c"
+      }
+    },
+    "tail-constant": {
+      "source": {
+        "src/dynarmic/backend/wasm/emit_context.h": "08cbec07997fe92b2daeaecbfa572fecc11e437f7a54d37944a4c5b774b3f11a",
+        "src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp": "7f82c9092e227dfe9581088a9f9010f1be61fcaecedffa42d5ff29fcd05b8232",
+        "src/dynarmic/backend/wasm/emit_wasm_terminal.cpp": "f89cdc3ebf1f90c43441c5a88958a1d81294eccb1d09a7bf4e6d55c79f9bc1d8",
+        "src/dynarmic/backend/wasm/wasm_binary.h": "eb7b5c944b3ce8b2ee829453587a93cd486dfe3a2becd455e895da8db14c2bfb",
+        "src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp": "3605558919585388bdb976407fd40e28ea14188cb32e31d69b131aa6cffbca86",
+        "src/dynarmic/backend/wasm/emit_wasm_memory.cpp": "e2e0f5546728b05bfa859aa0281539a4795cfb86038a991df3b66e9d3e438856"
+      },
+      "generator": "d7c6a540b31511faa2f453637fe7a57b9c8cf24d05098a4178e4410e721bd972",
+      "modules": {
+        "tail-target.wasm": "9b23a92a4d217c5230c7f59af5e1feeb835f8c941ea2fc2cdeaef5107a622ea1",
+        "constant-memory.wasm": "93f82de7cdd5426ee4f0aaf103f5f8e258ba2aaa42294460ca15900a8ebb7e06",
+        "no-flags.wasm": "5d4b8a85ce6c04c8108689459d27957870c7861c657b0370005051d1032f153e",
+        "dynamic-memory.wasm": "366f0cbdcbb9a848572c0d6fd3a953d38001e65536883734a06d45e2820e342c",
+        "flags.wasm": "8283ca555d8e2a5971df31768dd6c963d883b8574ba22475b1d0d12268c09316",
+        "manifest.json": "bf24025d6dd9f98c897f815c3c70497c27c0ef553d0311543861d1c3ae8feb94",
+        "tail-exits.wasm": "656aea0df2723933540a638a2eae7dde8d1e34bba0c0efe9ba020aba3151932d",
+        "normal-exits.wasm": "46b29d0695efa44575d10c41711fd12528e0f2628abe097372df2ef937f0141c"
+      }
+    },
+    "tail-tee": {
+      "source": {
+        "src/dynarmic/backend/wasm/emit_context.h": "08cbec07997fe92b2daeaecbfa572fecc11e437f7a54d37944a4c5b774b3f11a",
+        "src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp": "7f82c9092e227dfe9581088a9f9010f1be61fcaecedffa42d5ff29fcd05b8232",
+        "src/dynarmic/backend/wasm/emit_wasm_terminal.cpp": "f89cdc3ebf1f90c43441c5a88958a1d81294eccb1d09a7bf4e6d55c79f9bc1d8",
+        "src/dynarmic/backend/wasm/wasm_binary.h": "01e308721f090ca164058192f1f523d5cb3e9b038a8eedad91df60fefdb0281b",
+        "src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp": "3605558919585388bdb976407fd40e28ea14188cb32e31d69b131aa6cffbca86",
+        "src/dynarmic/backend/wasm/emit_wasm_memory.cpp": "ad00a0b68912b748dd7d843bd470161c7e35cfb5c0b697925de2637ce498132a"
+      },
+      "generator": "3bde1de12fd1ca27b881b2718924d91af775b12e8e13313dff4a932aad82ef13",
+      "modules": {
+        "tail-target.wasm": "9b23a92a4d217c5230c7f59af5e1feeb835f8c941ea2fc2cdeaef5107a622ea1",
+        "constant-memory.wasm": "ebddf1fad4910e6f2138ee5b2675a853cf135ba796a7295a527bcb75d5638603",
+        "no-flags.wasm": "4642e48a9ab40b77939ce932a23ae7787bf98f0c559c9f1ce007fc7100de9af3",
+        "dynamic-memory.wasm": "c42532906bf24ddfeaf63567a6c47bc0478f7f0c814e8be3372ce41e3317db68",
+        "flags.wasm": "1e6650dc413fb37e17984293cc8e3d3849a5d65c0c5dec81eb52de6db030612c",
+        "manifest.json": "834ecb883ede6f5e4d40bdf07ef764c226fab52ed625c67c98077c04b5503533",
+        "tail-exits.wasm": "a422f3c48e3e87305240e7eaa4082f3baa9af11a2a1d583175a67c70d80eab3c",
+        "normal-exits.wasm": "e593a5259429b9806af4568de35b44d31d09d21e75b728192db18e5fe953cd44"
+      }
+    },
+    "shared-all": {
+      "source": {
+        "src/dynarmic/backend/wasm/emit_context.h": "8c95f114f6759daad9769ea6d4fa52ed1a8182e57e7dd60e8a2d6bef741a22cc",
+        "src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp": "d7073c9998c9b0dfe7be5c5ddd347d632caf9ef0b0e10d4f965316d1be10e818",
+        "src/dynarmic/backend/wasm/emit_wasm_terminal.cpp": "20abbd8702dc10b4c4d18b04548c7b781e329c544cf735e357389b21f8401034",
+        "src/dynarmic/backend/wasm/wasm_binary.h": "68059ae9f5612968d775a7d75a6db7f9a5ab368cb39cabd813bb819e22c2d58e",
+        "src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp": "88300569efa3c8dfa5b41b0c58f477bae637110f050050741fe3732f3f643063",
+        "src/dynarmic/backend/wasm/emit_wasm_memory.cpp": "e2e0f5546728b05bfa859aa0281539a4795cfb86038a991df3b66e9d3e438856"
+      },
+      "generator": "08c73af4f9cc5ff82bfac78455f514336ac5d1052eeebc495bbc851f95f0039e",
+      "modules": {
+        "tail-target.wasm": "9b23a92a4d217c5230c7f59af5e1feeb835f8c941ea2fc2cdeaef5107a622ea1",
+        "constant-memory.wasm": "998f6dd32e11ed1ae98c6c45ef4d45aef3cff609550e94e8ca7f2e087c55cb1c",
+        "no-flags.wasm": "b4769ac6a7fb6dc6ddda730c8a56809a7b7d1fdf89a3552e9af428d17de9a555",
+        "dynamic-memory.wasm": "3b094d476f4a7ca1b64d192ff758e3b1e361c431fdd661aa49b7ce9365052159",
+        "flags.wasm": "70975c593fddad1cbb92455710b969576a190f6d56a281b07172d8b145a9d0be",
+        "manifest.json": "e14a9a588dd5ff85bf5710e437446bad1fa07a2f2759af1eff702ee2e8cc5b6a",
+        "tail-exits.wasm": "8856b7e07a3b11ded3b3f22d9fc136d7c6dceeba51c0d7af944a215e83de9d15",
+        "normal-exits.wasm": "a8bb5140b01b260344012c9fb329e1453a1676061f89c8e72dea252b2a81c8a5"
+      }
+    }
+  },
+  "status": "complete"
+}

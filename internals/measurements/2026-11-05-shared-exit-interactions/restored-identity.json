@@ -1,0 +1,18 @@
+{
+  "default/tail-target.wasm": true,
+  "default/constant-memory.wasm": true,
+  "default/no-flags.wasm": true,
+  "default/dynamic-memory.wasm": true,
+  "default/flags.wasm": true,
+  "default/manifest.json": true,
+  "default/tail-exits.wasm": true,
+  "default/normal-exits.wasm": true,
+  "region/tail-target.wasm": true,
+  "region/constant-memory.wasm": true,
+  "region/no-flags.wasm": true,
+  "region/dynamic-memory.wasm": true,
+  "region/flags.wasm": true,
+  "region/manifest.json": true,
+  "region/tail-exits.wasm": true,
+  "region/normal-exits.wasm": true
+}

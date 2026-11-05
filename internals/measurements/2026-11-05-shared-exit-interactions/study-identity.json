@@ -1,0 +1,10 @@
+{
+  "head": "f7b350e9e1b71b9c23c89032af848e5eca3fe8c3",
+  "files": {
+    "tests/tools/emission_probe.cpp": "8279c95482328e9393f1843223f83b4bb71cf2c7cb75e720288823503c0d0017",
+    "internals/measurements/2026-11-05-shared-exit-interactions/probe.mjs": "e1a0253aaf7a489ca38b67cdefa7fd146b04cd3a43d562b59582e894ff2fc6a3",
+    "internals/measurements/2026-11-05-shared-exit-interactions/collect-matrix.py": "576a25478aac980345962c8c7d665a07c07782f5c4b24dea11043e9eb756099b"
+  },
+  "experimentalBackendFilesRestored": true,
+  "preExistingPatchUnchanged": true
+}

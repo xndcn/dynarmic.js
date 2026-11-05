@@ -1,5 +1,6 @@
 // Emit deterministic synthetic modules for independent emission ablations.
-// Usage: emission_probe <output-directory>; timing driver lives with evidence.
+// Usage: emission_probe <output-directory> [region]; timing driver lives with evidence.
+#include <cstring>
 #include <filesystem>
 #include <fstream>
 #include <stdexcept>
@@ -23,7 +24,8 @@ A32::LocationDescriptor Location(u32 pc) { return {pc, {}, {}}; }
 constexpr u32 boundary = 0x3000, pages = 0x4000, slots = 0x5000;
 }
 int main(int argc, char** argv) {
-    if (argc != 2) return 2;
+    if (argc != 2 && !(argc == 3 && std::strcmp(argv[2], "region") == 0)) return 2;
+    const bool region_ops = argc == 3;
     const std::filesystem::path out{argv[1]};
     std::filesystem::create_directories(out);
     std::ofstream manifest{out / "manifest.json"};
@@ -37,8 +39,9 @@ int main(int argc, char** argv) {
         config.boundary_state = reinterpret_cast<const BoundaryState*>(static_cast<uptr>(boundary));
         std::vector<IR::Block> blocks;
         const bool region = name == "tail-exits" || name == "normal-exits";
-        const u32 count = region ? 16 : 1;
-        if (region) {
+        const bool op_region = region_ops && name != "tail-target" && !region;
+        const u32 count = region ? 16 : op_region ? 2 : 1;
+        if (region || op_region) {
             config.enable_region_multi_entry = true;
             config.enable_cycle_counting = true;
             config.link_slots_base = slots;
@@ -47,6 +50,10 @@ int main(int argc, char** argv) {
             blocks.emplace_back(Location(0x1000 + i * 4));
             auto& block = blocks.back();
             Emitter ir{block, Location(0x1000 + i * 4), A32::ArchVersion::v8};
+            if (op_region && i == 1) {
+                ir.SetTerm(IR::Term::ReturnToDispatch{});
+                continue;
+            }
             if (region) {
                 ir.SetRegister(A32::Reg::R0, ir.Add(ir.GetRegister(A32::Reg::R0), ir.Imm32(1)));
                 block.CycleCount() = 1;
@@ -73,7 +80,10 @@ int main(int argc, char** argv) {
                     } else if (name != "tail-target") result = ir.Add(result, operand);
                 }
                 ir.SetRegister(A32::Reg::R0, result);
-                ir.SetTerm(IR::Term::ReturnToDispatch{});
+                if (op_region) {
+                    block.CycleCount() = 1;
+                    ir.SetTerm(IR::Term::LinkBlockFast{Location(0x1004)});
+                } else ir.SetTerm(IR::Term::ReturnToDispatch{});
                 if (name.ends_with("memory")) config.page_table_base = pages;
             }
         }
