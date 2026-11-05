@@ -3,6 +3,8 @@ const MAX_MEMORY = 256 * 1024 * 1024;
 const DEFAULT_MEMORY = 16 * 1024 * 1024;
 const MAX_TICKS = 0x7fffffff;
 const DEFAULT_TICKS = 1_000_000;
+// Private dj_create mask. Existing callers using 0/1 keep their meaning.
+const OPTIMIZATION_BITS = Object.freeze({regionMultiEntry: 1, sharedExit: 2, constantMemory: 4});
 const REASONS = ['halted', 'svc', 'budget', 'memory-fault', 'unsupported-instruction', 'exception', 'step'];
 
 function integer(value, name, maximum, minimum = 0) {
@@ -32,11 +34,17 @@ export async function createEmulator(options = {}) {
     throw new TypeError('architecture must be "a32" or "a64"');
   const optimizations = options.optimizations === undefined ? {} : object(options.optimizations, 'optimizations');
   for (const name of Object.keys(optimizations)) {
-    if (name !== 'regionMultiEntry') throw new TypeError(`Unknown optimization: ${name}`);
+    if (!Object.hasOwn(OPTIMIZATION_BITS, name)) throw new TypeError(`Unknown optimization: ${name}`);
   }
-  // Read before awaiting initialization so caller mutations cannot change the policy.
-  const regionMultiEntry = optimizations.regionMultiEntry === undefined ? false : optimizations.regionMultiEntry;
-  if (typeof regionMultiEntry !== 'boolean') throw new TypeError('optimizations.regionMultiEntry must be a boolean');
+  // Snapshot every switch before the first await; caller mutations cannot
+  // change compilation policy while the runtime is initializing.
+  let optimizationMask = 0;
+  for (const [name, bit] of Object.entries(OPTIMIZATION_BITS)) {
+    const value = optimizations[name];
+    const enabled = value === undefined ? false : value;
+    if (typeof enabled !== 'boolean') throw new TypeError(`optimizations.${name} must be a boolean`);
+    if (enabled) optimizationMask |= bit;
+  }
   const memorySize = integer(options.memorySize === undefined ? DEFAULT_MEMORY : options.memorySize, 'memorySize', MAX_MEMORY, MIN_MEMORY);
   if (memorySize % 4096 !== 0) throw new RangeError('memorySize must be a multiple of 4096 bytes');
   if (options.wasmURL !== undefined && options.wasmBinary !== undefined)
@@ -67,7 +75,7 @@ export async function createEmulator(options = {}) {
   }
   let runtime = await createRuntime(wasmBinary === undefined ? {} : {wasmBinary});
   try {
-    if (runtime._dj_create(architecture === 'a32' ? 0 : 1, memorySize, Number(regionMultiEntry)) !== 0)
+    if (runtime._dj_create(architecture === 'a32' ? 0 : 1, memorySize, optimizationMask) !== 0)
       throw new Error('Unable to create the dynarmic.js CPU');
   } catch (error) {
     runtime._dj_destroy();

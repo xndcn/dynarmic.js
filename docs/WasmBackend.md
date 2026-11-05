@@ -149,6 +149,35 @@ skips the normal optimization pipeline. Setting `DYN_DUMP_DIR` for an Emscripten
 host records emitted modules, but disables valid benchmark collection because
 it adds instrumentation.
 
+## Optional emission policies
+
+C++ embedders can select two independent Wasm emission flags through
+`A32::UserConfig::optimizations` / `A64::UserConfig::optimizations`:
+
+```cpp
+config.optimizations |= Dynarmic::OptimizationFlag::WasmRegionMultiEntry |
+                        Dynarmic::OptimizationFlag::WasmSharedExit |
+                        Dynarmic::OptimizationFlag::WasmConstantMemory;
+```
+
+| Flag | Scope |
+| --- | --- |
+| `WasmSharedExit` | Complete shared return/tail-call epilogues for A32/Thumb multi-entry fallback regions; also requires `WasmRegionMultiEntry`, cycle counting and a live `BoundaryState` |
+| `WasmConstantMemory` | Immediate A32 page-table addresses, preserving live pointer loads, pointer masks, null/protection callbacks and cross-page thunks; excludes flat windows |
+
+Both emission flags are excluded from `default_optimizations`. Explicitly choosing
+`all_safe_optimizations` includes them; safety does not imply a speedup on every
+engine. Other backends and ineligible instruction/layout paths ignore these
+flags. Configuration is fixed at JIT construction; recreate the JIT to change it.
+For shared exits, follow the boundary lifetime and cycle-counting contract in
+[Embedding](Embedding.md).
+
+The JavaScript factory exposes the corresponding default-off `sharedExit` and
+`constantMemory` booleans. Shared exits trade fewer copies of state submission
+for branches and extra locals. The
+[shared-exit study](../internals/measurements/2026-11-05-shared-exit-interactions/README.md)
+records individual and combined costs. Opt in using application measurements.
+
 See [tests/README.md](../tests/README.md) for test entry points and
 [CONTRIBUTING.md](../CONTRIBUTING.md) for semantic and performance evidence
 requirements. The original design narrative and dated optimization history are

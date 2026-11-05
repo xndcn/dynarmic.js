@@ -107,7 +107,7 @@ void EmitReadFastmem(EmitContext& ctx, IR::Inst* inst, const char* name, ValType
     auto args = ctx.reg_alloc.GetArgumentInfo(inst);
     const u32 dst = ctx.reg_alloc.DefineLocal(ctx.code, inst);
 
-    if (ctx.emit_conf.flat_limit == 0 && args[1].IsImmediate()) {
+    if (ctx.emit_conf.enable_constant_memory && ctx.emit_conf.flat_limit == 0 && args[1].IsImmediate()) {
         const u32 address = args[1].GetImmediateU32();
         const u32 width = load_op == Op::I32Load8U ? 1 : load_op == Op::I32Load16U ? 2 : load_op == Op::I64Load ? 8 : 4;
         if ((address & kPageMask) <= (1u << kPageBits) - width) {
@@ -185,7 +185,7 @@ void EmitWriteThunk(EmitContext& ctx, IR::Inst* inst, const char* name, ValType 
 void EmitWriteFastmem(EmitContext& ctx, IR::Inst* inst, const char* name, ValType value_type, u8 store_op) {
     auto args = ctx.reg_alloc.GetArgumentInfo(inst);
 
-    if (ctx.emit_conf.flat_limit == 0 && args[1].IsImmediate()) {
+    if (ctx.emit_conf.enable_constant_memory && ctx.emit_conf.flat_limit == 0 && args[1].IsImmediate()) {
         const u32 address = args[1].GetImmediateU32();
         const u32 width = store_op == Op::I32Store8 ? 1 : store_op == Op::I32Store16 ? 2 : store_op == Op::I64Store ? 8 : 4;
         if ((address & kPageMask) <= (1u << kPageBits) - width) {

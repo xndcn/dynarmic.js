@@ -1,5 +1,7 @@
 // Emit deterministic synthetic modules for independent emission ablations.
-// Usage: emission_probe <output-directory> [region]; timing driver lives with evidence.
+// Emission mask: bit 0 = shared exits, bit 1 = constant-address memory.
+// Usage: emission_probe <output-directory> [region|single] [emission-mask]; timing driver lives with evidence.
+#include <charconv>
 #include <cstring>
 #include <filesystem>
 #include <fstream>
@@ -24,8 +26,15 @@ A32::LocationDescriptor Location(u32 pc) { return {pc, {}, {}}; }
 constexpr u32 boundary = 0x3000, pages = 0x4000, slots = 0x5000;
 }
 int main(int argc, char** argv) {
-    if (argc != 2 && !(argc == 3 && std::strcmp(argv[2], "region") == 0)) return 2;
-    const bool region_ops = argc == 3;
+    if (argc < 2 || argc > 4) return 2;
+    if (argc >= 3 && std::strcmp(argv[2], "region") != 0 && std::strcmp(argv[2], "single") != 0) return 2;
+    const bool region_ops = argc >= 3 && std::strcmp(argv[2], "region") == 0;
+    u32 emission_mask = 0;
+    if (argc == 4) {
+        const auto end = argv[3] + std::strlen(argv[3]);
+        const auto parsed = std::from_chars(argv[3], end, emission_mask);
+        if (parsed.ec != std::errc{} || parsed.ptr != end || emission_mask > 3) return 2;
+    }
     const std::filesystem::path out{argv[1]};
     std::filesystem::create_directories(out);
     std::ofstream manifest{out / "manifest.json"};
@@ -36,6 +45,8 @@ int main(int argc, char** argv) {
     bool first = true;
     for (const std::string name : {"flags", "no-flags", "constant-memory", "dynamic-memory", "tail-exits", "normal-exits", "tail-target"}) {
         EmitConfig config{false, true};
+        config.enable_shared_exit = (emission_mask & 1) != 0;
+        config.enable_constant_memory = (emission_mask & 2) != 0;
         config.boundary_state = reinterpret_cast<const BoundaryState*>(static_cast<uptr>(boundary));
         std::vector<IR::Block> blocks;
         const bool region = name == "tail-exits" || name == "normal-exits";

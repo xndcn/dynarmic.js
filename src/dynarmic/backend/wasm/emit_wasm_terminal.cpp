@@ -409,11 +409,38 @@ void EmitCond(EmitContext& ctx, IR::Cond cond) {
 // Terminals
 // ---------------------------------------------------------------------------
 
+void EmitReturn(EmitContext& ctx) {
+    if (ctx.reg_cache.exit_depth == 0) {
+        ctx.code.Return();
+        return;
+    }
+    ctx.code.LocalSet(ctx.reg_cache.exit_result);
+    ctx.code.I32Const(0);
+    ctx.code.LocalSet(ctx.reg_cache.exit_target);
+    // Deferred NZCV belongs to this source block, not the common epilogue.
+    if (ctx.flags.active) EmitMaterializeDeferredFlags(ctx);
+    ctx.code.Br(ctx.code.Depth() - ctx.reg_cache.exit_depth);
+}
+
+void EmitReturnCallIndirect(EmitContext& ctx, u32 type, u32 table) {
+    if (ctx.reg_cache.exit_depth == 0) {
+        ctx.code.ReturnCallIndirect(type, table);
+        return;
+    }
+    ASSERT(table == 0 && type == ctx.Type({{ValType::I32, ValType::I32}, {ValType::I32}}));
+    // Region chains pass the unchanged state and execution-context parameters.
+    ctx.code.LocalSet(ctx.reg_cache.exit_target);
+    ctx.code.U8(Op::Drop);
+    ctx.code.U8(Op::Drop);
+    if (ctx.flags.active) EmitMaterializeDeferredFlags(ctx);
+    ctx.code.Br(ctx.code.Depth() - ctx.reg_cache.exit_depth);
+}
+
 namespace {
 
 void EmitReturnToDispatch(EmitContext& ctx) {
     ctx.code.I32Const(0);
-    ctx.code.Return();
+    EmitReturn(ctx);
 }
 
 struct TerminalVisitor {
@@ -444,7 +471,7 @@ struct TerminalVisitor {
             ctx.code.I64Const(static_cast<s64>(A64::LocationDescriptor{term.next}.PC()));
             ctx.code.I32Const(static_cast<s32>(term.num_instructions));
             ctx.code.Call(fn);
-            ctx.code.Return();
+            EmitReturn(ctx);
             return;
         }
         // (state, ectx, next_low, next_high, num_instructions) -> halt bits
@@ -456,7 +483,7 @@ struct TerminalVisitor {
         ctx.code.I32Const(static_cast<s32>(static_cast<u32>(term.next.Value() >> 32)));
         ctx.code.I32Const(static_cast<s32>(term.num_instructions));
         ctx.code.Call(fn);
-        ctx.code.Return();
+        EmitReturn(ctx);
     }
 
     void operator()(const IR::Term::ReturnToDispatch&) {
@@ -785,7 +812,7 @@ struct TerminalVisitor {
             ctx.code.LocalGet(kParamState);
             ctx.code.LocalGet(kParamEctx);
             ctx.code.LocalGet(idx);
-            ctx.code.ReturnCallIndirect(block_ty, 0);
+            EmitReturnCallIndirect(ctx, block_ty);
         }
         ctx.code.Else();
         {
@@ -925,7 +952,7 @@ struct TerminalVisitor {
                 ctx.code.LocalGet(kParamState);
                 ctx.code.LocalGet(kParamEctx);
                 ctx.code.LocalGet(idx);
-                ctx.code.ReturnCallIndirect(block_ty, 0);
+                EmitReturnCallIndirect(ctx, block_ty);
             }
             ctx.code.Else();
             {
@@ -1018,7 +1045,7 @@ struct TerminalVisitor {
         ctx.code.LocalGet(kParamState);
         ctx.code.LocalGet(kParamEctx);
         ctx.code.LocalGet(idx);
-        ctx.code.ReturnCallIndirect(block_ty, 0);
+        EmitReturnCallIndirect(ctx, block_ty);
         ctx.code.End();
         // miss
         ctx.code.LocalGet(kParamEctx);
@@ -1053,7 +1080,7 @@ struct TerminalVisitor {
         ctx.code.BrIf(0);
         ctx.code.LocalGet(kParamEctx);
         ctx.code.Load(Op::I32Load, offsetof(ExecutionContext, halt_reason), 2);
-        ctx.code.Return();
+        EmitReturn(ctx);
         ctx.code.End();
         boost::apply_visitor(*this, term.else_);
     }

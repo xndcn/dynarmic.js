@@ -1,7 +1,7 @@
 import {createEmulator} from 'dynarmic.js';
 import type {OptimizationOptions} from 'dynarmic.js';
 
-const optimizations: OptimizationOptions = {regionMultiEntry: true};
+const optimizations: OptimizationOptions = {regionMultiEntry: true, sharedExit: true, constantMemory: true};
 const shared = await createEmulator({architecture: 'a32', optimizations});
 shared.setRegister(0, 42);
 shared.dispose();
@@ -11,6 +11,10 @@ shared64.dispose();
 await createEmulator({optimizations: {regionMultiEntry: false}});
 // @ts-expect-error Optimization switches are booleans.
 await createEmulator({optimizations: {regionMultiEntry: 1}});
+// @ts-expect-error Emission switches are booleans.
+await createEmulator({optimizations: {constantMemory: 1}});
+// @ts-expect-error Emission switches cannot use null.
+await createEmulator({optimizations: {sharedExit: null}});
 // @ts-expect-error Unknown optimization names are rejected.
 await createEmulator({optimizations: {regionMultiEntries: true}});
 

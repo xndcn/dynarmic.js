@@ -1,3 +1,5 @@
+#include <initializer_list>
+
 #include <dynarmic/interface/A32/a32.h>
 #include <dynarmic/interface/A32/config.h>
 #include <dynarmic/interface/A64/a64.h>
@@ -57,6 +59,17 @@ int main() {
     if (!a32.HasOptimization(OptimizationFlag::WasmRegionMultiEntry)) return 1;
     a32.optimizations = Dynarmic::no_optimizations;
     if (a32.HasOptimization(OptimizationFlag::WasmRegionMultiEntry)) return 1;
+    for (const auto flag : {OptimizationFlag::WasmSharedExit, OptimizationFlag::WasmConstantMemory}) {
+        a32.optimizations = Dynarmic::default_optimizations;
+        if (a32.HasOptimization(flag)) return 1;
+        a32.optimizations |= flag;
+        if (!a32.HasOptimization(flag)) return 1;
+        a64.optimizations = Dynarmic::default_optimizations;
+        if (a64.HasOptimization(flag)) return 1;
+        a64.optimizations = Dynarmic::all_safe_optimizations;
+        if (!a64.HasOptimization(flag)) return 1;
+    }
+    a64.optimizations = Dynarmic::default_optimizations;
     a32.optimizations = Dynarmic::default_optimizations;
     a32.callbacks = &callbacks;
     a64.callbacks = &callbacks;

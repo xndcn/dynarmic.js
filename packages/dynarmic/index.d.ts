@@ -5,6 +5,10 @@ export type RegisterValue<A extends Architecture> = A extends 'a64' ? bigint : n
 export interface OptimizationOptions {
   /** Share ARM/Thumb/A64 region entries to reduce repeated compilation; may reduce warm throughput. Default: false. */
   regionMultiEntry?: boolean;
+  /** Share A32/Thumb multi-entry region exits. Requires regionMultiEntry; may reduce warm throughput. Default: false. */
+  sharedExit?: boolean;
+  /** Specialize immediate A32 page-table accesses; flat windows are unaffected. Default: false. */
+  constantMemory?: boolean;
 }
 
 export interface CreateEmulatorOptions<A extends Architecture = Architecture> {

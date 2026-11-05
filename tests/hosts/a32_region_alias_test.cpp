@@ -19,6 +19,8 @@
 using namespace Dynarmic;
 using namespace Dynarmic::Backend::Wasm;
 namespace {
+OptimizationFlag emission_options = no_optimizations;
+constexpr OptimizationFlag all_emission_options = OptimizationFlag::WasmSharedExit | OptimizationFlag::WasmConstantMemory;
 constexpr u32 base = 0x1000;
 constexpr u32 ram_size = 1 << 20;
 void Require(bool ok, const char* message) {
@@ -74,6 +76,7 @@ struct Harness {
     Harness(bool aliases = true, int mode = 0, bool cycles = true, bool board = true) {
         conf.callbacks = &callbacks;
         conf.enable_cycle_counting = cycles;
+        conf.optimizations |= emission_options;
         if (aliases) conf.optimizations |= OptimizationFlag::WasmRegionMultiEntry;
         if (mode) {
             pages = std::make_unique<std::array<u8*, A32::UserConfig::NUM_PAGE_TABLE_ENTRIES>>();
@@ -387,6 +390,7 @@ void BenchmarkLoop(bool aliases, int mode) {
 }
 } // namespace
 int main(int argc, char** argv) {
+    if (argc == 2 && std::strcmp(argv[1], "emission") == 0) emission_options = all_emission_options;
     if (argc == 3 && std::strcmp(argv[1], "literal") == 0) { BenchmarkLiteral(std::atoi(argv[2])); return 0; }
     if (argc == 5) { BenchmarkLoop(std::atoi(argv[1]), std::atoi(argv[2])); return 0; }
     if (argc == 4) { Benchmark(std::atoi(argv[1]), std::atoi(argv[2]), std::atoi(argv[3])); return 0; }

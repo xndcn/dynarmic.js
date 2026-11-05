@@ -33,6 +33,7 @@ int main(int argc, char** argv) {
                 }
                 ir.SetTerm(IR::Term::ReturnToDispatch{});
                 Backend::Wasm::EmitConfig config{false, true};
+                config.enable_constant_memory = true;
                 Backend::Wasm::BoundaryState boundary{};
                 config.boundary_state = &boundary;
                 config.page_table_base = 0x2000;

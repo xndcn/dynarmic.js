@@ -52,8 +52,23 @@ entries share generated code, reducing repeated compilation. It is **off by
 default** because warm execution can regress. The host supplies the necessary
 cycle counting and boundary state. Omitting `optimizations`, passing `{}`, or
 setting `regionMultiEntry: false` preserves the ordinary construction path.
-The choice is fixed at creation; create a new emulator to change it. Non-boolean
-values and unknown optimization names reject the factory promise.
+The independent emission switches `sharedExit` and `constantMemory` also default
+to `false`. For example:
+
+```js
+const cpu = await createEmulator({
+  architecture: 'a32',
+  optimizations: {regionMultiEntry: true, sharedExit: true, constantMemory: true},
+});
+```
+
+`sharedExit` applies to A32/Thumb multi-entry fallback regions, so it also needs
+`regionMultiEntry`. `constantMemory` applies
+to immediate A32 page-table addresses; the package's flat RAM window is unaffected.
+Flags are ignored outside their applicable instructions/layouts. All choices are
+fixed at creation; create a new emulator to change them. Non-boolean values and
+unknown names reject the factory promise. See the [option table](../packages/dynarmic/README.md#optimization-options)
+for scope. Smaller generated modules do not guarantee better warm throughput.
 
 | Method | Contract |
 | --- | --- |

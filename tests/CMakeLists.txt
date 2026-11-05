@@ -43,6 +43,9 @@ if (EMSCRIPTEN)
             set_tests_properties("runtime_${host}" PROPERTIES
                 LABELS runtime TIMEOUT 120)
         endforeach()
+        add_test(NAME runtime_a32_emission_options
+            COMMAND "${DYNARMIC_JS_NODE}" "$<TARGET_FILE:a32_region_alias_test>" emission)
+        set_tests_properties(runtime_a32_emission_options PROPERTIES LABELS runtime TIMEOUT 120)
     endif()
 else()
     add_executable(arm_decoder_test unit/arm_decoder_test.cpp)
@@ -50,6 +53,7 @@ else()
     add_test(NAME arm_decoder COMMAND arm_decoder_test)
     add_executable(address_space_test unit/address_space_test.cpp)
     target_link_libraries(address_space_test PRIVATE dynarmic merry::mcl)
+    add_test(NAME emission_options COMMAND address_space_test emission_options)
     add_test(NAME address_space COMMAND address_space_test)
     add_executable(region_plan_test unit/region_plan_test.cpp
         ../src/dynarmic/backend/wasm/region_plan.cpp)

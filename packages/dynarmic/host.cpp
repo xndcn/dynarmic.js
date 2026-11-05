@@ -87,7 +87,16 @@ private:
 struct Machine {
     explicit Machine(u32 architecture, u32 size) : arch(architecture), ram(size) {}
 
-    void Initialize(bool region_multi_entry) {
+    void Initialize(u32 optimization_mask) {
+        constexpr std::array<OptimizationFlag, 3> flags{
+            OptimizationFlag::WasmRegionMultiEntry, OptimizationFlag::WasmSharedExit,
+            OptimizationFlag::WasmConstantMemory,
+        };
+        auto optimizations = default_optimizations;
+        for (u32 i = 0; i < flags.size(); ++i) {
+            if (optimization_mask & (1u << i)) optimizations |= flags[i];
+        }
+        const bool region_multi_entry = (optimization_mask & 1) != 0;
         if (arch == 0) {
             pages32 = std::make_unique<std::array<u8*, A32::UserConfig::NUM_PAGE_TABLE_ENTRIES>>();
             for (size_t page = 0; page < ram.size() / 4096; ++page) (*pages32)[page] = ram.data() + page * 4096;
@@ -95,10 +104,10 @@ struct Machine {
             config.callbacks = &callbacks32;
             config.global_monitor = &monitor;
             config.enable_cycle_counting = true;
+            config.optimizations = optimizations;
             config.page_table = pages32.get();
             config.fastmem_pointer = reinterpret_cast<uintptr_t>(ram.data());
             if (region_multi_entry) {
-                config.optimizations |= OptimizationFlag::WasmRegionMultiEntry;
                 jit32 = Backend::Wasm::CreateA32Jit(config, &boundary);
             } else {
                 jit32 = std::make_unique<A32::Jit>(config);
@@ -111,12 +120,12 @@ struct Machine {
             config.callbacks = &callbacks64;
             config.global_monitor = &monitor;
             config.enable_cycle_counting = true;
+            config.optimizations = optimizations;
             config.page_table = pages64.data();
             config.page_table_address_space_bits = 32;
             config.silently_mirror_page_table = false;
             config.fastmem_pointer = reinterpret_cast<uintptr_t>(ram.data());
             if (region_multi_entry) {
-                config.optimizations |= OptimizationFlag::WasmRegionMultiEntry;
                 jit64 = Backend::Wasm::CreateA64Jit(config, &boundary);
             } else {
                 jit64 = std::make_unique<A64::Jit>(config);
@@ -241,11 +250,11 @@ std::unique_ptr<Machine> machine;
 } // namespace
 
 extern "C" {
-EMSCRIPTEN_KEEPALIVE int dj_create(u32 arch, u32 ram_bytes, u32 region_multi_entry) {
-    if (machine || arch > 1 || region_multi_entry > 1 ||
+EMSCRIPTEN_KEEPALIVE int dj_create(u32 arch, u32 ram_bytes, u32 optimization_mask) {
+    if (machine || arch > 1 || (optimization_mask & ~0x7u) != 0 ||
         ram_bytes < 65536 || ram_bytes > 268435456 || ram_bytes % 4096) return 1;
     auto next = std::make_unique<Machine>(arch, ram_bytes);
-    next->Initialize(region_multi_entry != 0);
+    next->Initialize(optimization_mask);
     machine = std::move(next);
     return 0;
 }

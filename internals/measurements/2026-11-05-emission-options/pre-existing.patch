@@ -1,0 +1,36 @@
+diff --git a/docs/Embedding.md b/docs/Embedding.md
+index b78fb66..6c443e2 100644
+--- a/docs/Embedding.md
++++ b/docs/Embedding.md
+@@ -180,8 +180,11 @@ synchronously inside that Worker.
+ Your Content Security Policy must permit the Worker and WebAssembly
+ compilation; on browsers supporting it, `wasm-unsafe-eval` controls Wasm
+ compilation without enabling JavaScript string evaluation. Test the actual
+-policy and browser combination. The current runtime uses unshared memory and
+-does not require cross-origin isolation for `SharedArrayBuffer`.
++policy and browser combination. Ordinary builds use unshared memory and do not
++require cross-origin isolation. Hosts compiled with `-pthread` use shared memory;
++generated block imports match that sharing kind, and browser hosts then require
++cross-origin isolation. Each JIT remains confined to its owning thread; sharing
++the host heap does not make a JIT instance concurrently callable.
+ 
+ Treat browser demo timings as observations from that engine and workload.
+ Compile-time statistics and optional profile counters are documented in
+diff --git a/src/dynarmic/backend/wasm/emit_wasm.cpp b/src/dynarmic/backend/wasm/emit_wasm.cpp
+index 6c6a0b8..72957ed 100644
+--- a/src/dynarmic/backend/wasm/emit_wasm.cpp
++++ b/src/dynarmic/backend/wasm/emit_wasm.cpp
+@@ -491,7 +491,13 @@ EmittedBlockInfo EmitWASM(std::vector<IR::Block> blocks, const EmitConfig& emit_
+     // Module skeleton: shared memory; the entry function is registered after
+     // emission (below) so that all function imports are already known and its
+     // index is final (imports occupy the lowest function indices).
++#ifdef __EMSCRIPTEN_PTHREADS__
++    // A generated module must declare the same sharing kind as its host heap.
++    // The wasm32 maximum admits hosts with a smaller configured maximum too.
++    mod.ImportMemory(kImportModule, kMemoryImport, {1, 65536, true});
++#else
+     mod.ImportMemory(kImportModule, kMemoryImport, {1, std::nullopt});
++#endif
+     bool any_pop_rsb = false;
+     bool any_fast_dispatch = false;
+     bool any_host_call = false;

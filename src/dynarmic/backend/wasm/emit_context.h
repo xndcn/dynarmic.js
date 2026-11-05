@@ -132,6 +132,9 @@ struct EmitContext {
         // 1 after a host call that requested a halt, so the next back-edge
         // leaves).
         u32 budget = 0;
+        u32 exit_depth = 0;
+        u32 exit_result = 0;
+        u32 exit_target = 0;
         u32 gpr_base = 0;
         std::array<u32, 16> local{};
         std::array<bool, 16> cached{};

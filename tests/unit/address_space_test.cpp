@@ -12,6 +12,8 @@
 #include <boost/icl/interval_set.hpp>
 
 #include "dynarmic/backend/wasm/address_space.h"
+#include "dynarmic/backend/wasm/a32_address_space.h"
+#include "dynarmic/backend/wasm/a64_address_space.h"
 #include "dynarmic/ir/terminal.h"
 
 namespace Dynarmic::Backend::Wasm {
@@ -19,6 +21,7 @@ namespace Dynarmic::Backend::Wasm {
 // Compile-time-only access for cache ownership tests. No execution or emission
 // hook is added to AddressSpace; the aliases below model future cache states.
 struct AddressSpaceTestAccess {
+    static EmitConfig Config(const AddressSpace& space) { return space.MakeEmitConfig(); }
     using Entry = AddressSpace::BlockEntry;
     using EntryPtr = std::shared_ptr<Entry>;
     using EntryMap = decltype(AddressSpace::block_entries);
@@ -382,9 +385,35 @@ void TestDestruction() {
     Require(observation.expired(), "cache destruction and the final owner must release once");
 }
 
+void TestEmissionOptions() {
+    using namespace Dynarmic;
+    using namespace Dynarmic::Backend::Wasm;
+    const OptimizationFlag flags[]{OptimizationFlag::WasmRegionMultiEntry, OptimizationFlag::WasmSharedExit,
+        OptimizationFlag::WasmConstantMemory};
+    BoundaryState boundary{};
+    for (u32 mask = 0; mask < 8; ++mask) {
+        auto optimizations = default_optimizations;
+        for (u32 i = 0; i < 3; ++i) if (mask & (1u << i)) optimizations |= flags[i];
+        A32::UserConfig a32;
+        A64::UserConfig a64;
+        a32.optimizations = a64.optimizations = optimizations;
+        a32.enable_cycle_counting = a64.enable_cycle_counting = true;
+        A32AddressSpace space32{a32, nullptr, nullptr, nullptr, &boundary};
+        A64AddressSpace space64{a64, nullptr, nullptr, nullptr, false, &boundary};
+        const auto config = TestAccess::Config(space32);
+        Require(config.enable_region_multi_entry == bool(mask & 1), "region flag mapping");
+        Require(config.enable_shared_exit == bool(mask & 2), "shared exit flag mapping");
+        Require(config.enable_constant_memory == bool(mask & 4), "constant memory flag mapping");
+        const auto config64 = TestAccess::Config(space64);
+        Require(config64.enable_region_multi_entry == bool(mask & 1), "A64 region flag mapping");
+        Require(!config64.enable_shared_exit && !config64.enable_constant_memory, "A64 must ignore A32 emission flags");
+    }
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
+    if (argc == 1 || std::string_view{argv[1]} == "emission_options") TestEmissionOptions();
     if (argc == 1 || std::string_view{argv[1]} == "region_limits") {
         TestBoundaryRegionLimits();
         TestSharedSelectionStopsAtCachedEntry();
