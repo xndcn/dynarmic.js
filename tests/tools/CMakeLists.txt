@@ -1,5 +1,5 @@
 # Native debugging tools (see the header comment of each source).
-foreach(tool block_dump a32_decode region_corpus)
+foreach(tool block_dump a32_decode region_corpus emission_probe)
     add_executable(${tool} ${tool}.cpp)
     target_link_libraries(${tool} PRIVATE dynarmic merry::mcl fmt::fmt Boost::boost)
 endforeach()

@@ -1,0 +1,374 @@
+{
+  "fixedGate": false,
+  "fixed": [
+    {
+      "name": "memory-thunk",
+      "beforeMs": 5.09472250000001,
+      "afterMs": 5.126535000000018,
+      "pairedTimeRatio": 1.0023589985789552,
+      "pairedTimeCI95": [
+        0.7337488361459208,
+        1.2749362698360875
+      ],
+      "throughputRatio": 0.9937945415373134,
+      "byteRatio": 1.0,
+      "compileRatio": 1.0446976749886931,
+      "gate": true
+    },
+    {
+      "name": "memory-page-table",
+      "beforeMs": 0.9075429999999969,
+      "afterMs": 0.9117674999999963,
+      "pairedTimeRatio": 1.0031651512851216,
+      "pairedTimeCI95": [
+        0.9799293530990826,
+        1.0241254359660552
+      ],
+      "throughputRatio": 0.9953666916182037,
+      "byteRatio": 1.0,
+      "compileRatio": 1.0064290470097303,
+      "gate": true
+    },
+    {
+      "name": "memory-flat-window",
+      "beforeMs": 0.5764774999999958,
+      "afterMs": 0.5579224999999965,
+      "pairedTimeRatio": 0.9852128854155798,
+      "pairedTimeCI95": [
+        0.8930533745860466,
+        1.0017861024988197
+      ],
+      "throughputRatio": 1.0332573072424924,
+      "byteRatio": 1.0,
+      "compileRatio": 0.9938723622026663,
+      "gate": true
+    },
+    {
+      "name": "call-return",
+      "beforeMs": 6.4437920000000055,
+      "afterMs": 6.484355500000007,
+      "pairedTimeRatio": 1.0081088928006334,
+      "pairedTimeCI95": [
+        0.9970376355049422,
+        1.089222456636088
+      ],
+      "throughputRatio": 0.99374440528438,
+      "byteRatio": 1.0,
+      "compileRatio": 1.1088080911248468,
+      "gate": true
+    },
+    {
+      "name": "a64-memory-thunk",
+      "beforeMs": 6.417501500000014,
+      "afterMs": 6.002374500000002,
+      "pairedTimeRatio": 1.0117015013143709,
+      "pairedTimeCI95": [
+        0.9388393695920526,
+        1.258138965910943
+      ],
+      "throughputRatio": 1.0691604630800715,
+      "byteRatio": 1.0,
+      "compileRatio": 1.0172683675382908,
+      "gate": true
+    },
+    {
+      "name": "a64-memory-page-table",
+      "beforeMs": 0.9824694999999934,
+      "afterMs": 0.9712260000000015,
+      "pairedTimeRatio": 0.9931543867791806,
+      "pairedTimeCI95": [
+        0.9824013060570532,
+        0.9964595571506744
+      ],
+      "throughputRatio": 1.0115766052391428,
+      "byteRatio": 1.0,
+      "compileRatio": 1.0129847078550596,
+      "gate": true
+    },
+    {
+      "name": "a64-memory-flat-window",
+      "beforeMs": 0.559078999999997,
+      "afterMs": 0.5556835000000007,
+      "pairedTimeRatio": 0.9953329883697789,
+      "pairedTimeCI95": [
+        0.9712094350816564,
+        1.0102207711863944
+      ],
+      "throughputRatio": 1.0061104927535123,
+      "byteRatio": 1.0,
+      "compileRatio": 1.00461319037162,
+      "gate": true
+    },
+    {
+      "name": "a64-neon",
+      "beforeMs": 0.4643755000000169,
+      "afterMs": 0.4625600000000105,
+      "pairedTimeRatio": 0.9969310621140851,
+      "pairedTimeCI95": [
+        0.9797777348957796,
+        1.021227023402182
+      ],
+      "throughputRatio": 1.0039248962296923,
+      "byteRatio": 1.0,
+      "compileRatio": 1.0337976754135694,
+      "gate": true
+    },
+    {
+      "name": "a64-scalar",
+      "beforeMs": 0.44518999999999664,
+      "afterMs": 0.4590870000000109,
+      "pairedTimeRatio": 1.0177721664352042,
+      "pairedTimeCI95": [
+        1.0050074812594232,
+        1.0524695090645537
+      ],
+      "throughputRatio": 0.9697290491780124,
+      "byteRatio": 1.0,
+      "compileRatio": 1.0344052334098062,
+      "gate": true
+    },
+    {
+      "name": "thumb-memory-thunk",
+      "beforeMs": 0.08317050000000847,
+      "afterMs": 0.08322899999999578,
+      "pairedTimeRatio": 1.0003805687453071,
+      "pairedTimeCI95": [
+        0.9799521716963112,
+        1.0230096979976995
+      ],
+      "throughputRatio": 0.9992971199943852,
+      "byteRatio": 1.0,
+      "compileRatio": 1.0429310160297725,
+      "gate": true
+    },
+    {
+      "name": "thumb-memory-page-table",
+      "beforeMs": 0.012643000000004179,
+      "afterMs": 0.018018499999996607,
+      "pairedTimeRatio": 1.0298397254918719,
+      "pairedTimeCI95": [
+        0.9999999999994066,
+        1.685496006481843
+      ],
+      "throughputRatio": 0.7016677303885762,
+      "byteRatio": 1.0,
+      "compileRatio": 1.0317139592910103,
+      "gate": false
+    },
+    {
+      "name": "thumb-memory-flat-window",
+      "beforeMs": 0.014814499999999953,
+      "afterMs": 0.012768000000001223,
+      "pairedTimeRatio": 1.015488827392732,
+      "pairedTimeCI95": [
+        0.7666422590809283,
+        1.1563202185315322
+      ],
+      "throughputRatio": 1.1602835213031433,
+      "byteRatio": 1.0,
+      "compileRatio": 1.0021868414148138,
+      "gate": true
+    }
+  ],
+  "regions": [
+    {
+      "name": "arm-chain",
+      "beforeMs": 5.565081,
+      "afterMs": 5.41305175,
+      "pairedTimeRatio": 0.967377587301524,
+      "pairedTimeCI95": [
+        0.9059681729998276,
+        1.1965269258915423
+      ],
+      "pairedColdRatio": 1.1191756831504351,
+      "beforeBytes": 16679,
+      "afterBytes": 13423,
+      "byteRatio": 0.80478445949997
+    },
+    {
+      "name": "arm-boundaries",
+      "beforeMs": 35.951021,
+      "afterMs": 36.56629675,
+      "pairedTimeRatio": 1.0098057177529336,
+      "pairedTimeCI95": [
+        0.957168942024013,
+        1.0528370595884295
+      ],
+      "pairedColdRatio": 1.1103268936021577,
+      "beforeBytes": 16679,
+      "afterBytes": 13423,
+      "byteRatio": 0.80478445949997
+    },
+    {
+      "name": "thumb-chain",
+      "beforeMs": 7.7857515,
+      "afterMs": 9.0271635,
+      "pairedTimeRatio": 1.1009012240703826,
+      "pairedTimeCI95": [
+        0.9133859335398413,
+        1.2983740094939444
+      ],
+      "pairedColdRatio": 1.003803899459965,
+      "beforeBytes": 14340,
+      "afterBytes": 11940,
+      "byteRatio": 0.8326359832635983
+    },
+    {
+      "name": "thumb-boundaries",
+      "beforeMs": 37.9454695,
+      "afterMs": 41.6657275,
+      "pairedTimeRatio": 1.0940696787503796,
+      "pairedTimeCI95": [
+        1.0365815402402905,
+        1.1711643372091531
+      ],
+      "pairedColdRatio": 0.9981336708352101,
+      "beforeBytes": 14340,
+      "afterBytes": 11940,
+      "byteRatio": 0.8326359832635983
+    },
+    {
+      "name": "arm-memory-0",
+      "beforeMs": 8.37678125,
+      "afterMs": 8.407337250000001,
+      "pairedTimeRatio": 1.0051801613072868,
+      "pairedTimeCI95": [
+        0.9604066193999159,
+        1.1490226965478443
+      ],
+      "pairedColdRatio": 1.0595420855423212,
+      "beforeBytes": 11994,
+      "afterBytes": 8535,
+      "byteRatio": 0.7116058029014507
+    },
+    {
+      "name": "arm-memory-1",
+      "beforeMs": 2.457597,
+      "afterMs": 2.1307015,
+      "pairedTimeRatio": 0.8695414250021241,
+      "pairedTimeCI95": [
+        0.5305676147389768,
+        1.337529320607728
+      ],
+      "pairedColdRatio": 1.029268823807808,
+      "beforeBytes": 12332,
+      "afterBytes": 8727,
+      "byteRatio": 0.7076710995783327
+    },
+    {
+      "name": "arm-memory-2",
+      "beforeMs": 1.75379475,
+      "afterMs": 1.5526517499999999,
+      "pairedTimeRatio": 0.8925596804662637,
+      "pairedTimeCI95": [
+        0.8761851832711636,
+        0.8994589652340217
+      ],
+      "pairedColdRatio": 1.0360713151523275,
+      "beforeBytes": 12140,
+      "afterBytes": 8665,
+      "byteRatio": 0.7137561779242174
+    },
+    {
+      "name": "a64-chain",
+      "beforeMs": 5.8325847500000005,
+      "afterMs": 5.128679999999999,
+      "pairedTimeRatio": 0.9459335827416259,
+      "pairedTimeCI95": [
+        0.6320293081244933,
+        1.11139085618538
+      ],
+      "pairedColdRatio": 0.9981031857612057,
+      "beforeBytes": 7910,
+      "afterBytes": 7345,
+      "byteRatio": 0.9285714285714286
+    },
+    {
+      "name": "a64-boundaries",
+      "beforeMs": 28.750149750000002,
+      "afterMs": 30.064436,
+      "pairedTimeRatio": 1.0662327992240552,
+      "pairedTimeCI95": [
+        0.973164399167312,
+        1.1048889397485713
+      ],
+      "pairedColdRatio": 0.9947014065158202,
+      "beforeBytes": 7910,
+      "afterBytes": 7345,
+      "byteRatio": 0.9285714285714286
+    },
+    {
+      "name": "a64-memory-0",
+      "beforeMs": 7.892121749999999,
+      "afterMs": 7.986017499999999,
+      "pairedTimeRatio": 1.011774615655741,
+      "pairedTimeCI95": [
+        0.9922289787407785,
+        1.1622778384177854
+      ],
+      "pairedColdRatio": 1.0176422495445256,
+      "beforeBytes": 3566,
+      "afterBytes": 3419,
+      "byteRatio": 0.9587773415591699
+    },
+    {
+      "name": "a64-memory-1",
+      "beforeMs": 1.330307,
+      "afterMs": 1.3345897500000001,
+      "pairedTimeRatio": 0.9992133194770896,
+      "pairedTimeCI95": [
+        0.9746355369333811,
+        1.0086731641169961
+      ],
+      "pairedColdRatio": 0.9997162553709467,
+      "beforeBytes": 3912,
+      "afterBytes": 3753,
+      "byteRatio": 0.9593558282208589
+    },
+    {
+      "name": "a64-memory-2",
+      "beforeMs": 0.845852,
+      "afterMs": 0.84541975,
+      "pairedTimeRatio": 0.9980112118016,
+      "pairedTimeCI95": [
+        0.9782234839388937,
+        1.0148123694559452
+      ],
+      "pairedColdRatio": 1.0077620261765667,
+      "beforeBytes": 3714,
+      "afterBytes": 3555,
+      "byteRatio": 0.9571890145395799
+    },
+    {
+      "name": "a64-scalar",
+      "beforeMs": 0.7504485,
+      "afterMs": 0.748704,
+      "pairedTimeRatio": 1.0006213883640394,
+      "pairedTimeCI95": [
+        0.9892258869885544,
+        1.0137600517582344
+      ],
+      "pairedColdRatio": 0.9974539349651192,
+      "beforeBytes": 2103,
+      "afterBytes": 1988,
+      "byteRatio": 0.9453162149310509
+    },
+    {
+      "name": "a64-neon",
+      "beforeMs": 0.7511052500000001,
+      "afterMs": 0.7502385,
+      "pairedTimeRatio": 1.0042939046427533,
+      "pairedTimeCI95": [
+        0.9894928578555781,
+        1.0252382029180755
+      ],
+      "pairedColdRatio": 1.0096076015932955,
+      "beforeBytes": 2450,
+      "afterBytes": 2319,
+      "byteRatio": 0.946530612244898
+    }
+  ],
+  "interval": "10000 percentile bootstrap resamples of per-round time ratios; process pair is the sampling unit; local screening only",
+  "fixedProcesses": 600,
+  "regionProcesses": 280
+}

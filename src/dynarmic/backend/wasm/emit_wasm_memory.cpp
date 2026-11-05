@@ -82,11 +82,51 @@ void EmitReadThunk(EmitContext& ctx, IR::Inst* inst, const char* name, ValType r
     ctx.code.LocalSet(dst);
 }
 
+// Literal and absolute addresses already have a known page and offset. Keep
+// the page pointer dynamic (unmapping, permissions and MMIO can still change),
+// but resolve page containment and indexing during compilation.
+void EmitConstantPage(EmitContext& ctx, u32 address) {
+    ctx.code.I32Const(static_cast<s32>(ctx.emit_conf.page_table_base));
+    ctx.code.Load(Op::I32Load, (address >> kPageBits) * 4, 2);
+    if (ctx.emit_conf.page_table_pointer_mask_bits > 0) {
+        const u32 mask = ~((1u << ctx.emit_conf.page_table_pointer_mask_bits) - 1);
+        ctx.code.I32Const(static_cast<s32>(mask));
+        ctx.code.U8(Op::I32And);
+    }
+}
+
+void EmitConstantAddress(EmitContext& ctx, u32 pointer, u32 address) {
+    ctx.code.LocalGet(pointer);
+    ctx.code.I32Const(static_cast<s32>(ctx.emit_conf.absolute_offset_page_table ? address : address & kPageMask));
+    ctx.code.U8(Op::I32Add);
+}
+
 // Read with inline fastmem: fast path loads from shared linear memory via the
 // page table, slow path (null page entry) calls the host thunk.
 void EmitReadFastmem(EmitContext& ctx, IR::Inst* inst, const char* name, ValType result_type, u8 load_op) {
     auto args = ctx.reg_alloc.GetArgumentInfo(inst);
     const u32 dst = ctx.reg_alloc.DefineLocal(ctx.code, inst);
+
+    if (ctx.emit_conf.enable_constant_memory && ctx.emit_conf.flat_limit == 0 && args[1].IsImmediate()) {
+        const u32 address = args[1].GetImmediateU32();
+        const u32 width = load_op == Op::I32Load8U ? 1 : load_op == Op::I32Load16U ? 2 : load_op == Op::I64Load ? 8 : 4;
+        if ((address & kPageMask) <= (1u << kPageBits) - width) {
+            const u32 tp = ctx.Temp(ValType::I32);
+            EmitConstantPage(ctx, address);
+            ctx.code.LocalTee(tp);
+            ctx.code.If({{result_type}});
+            EmitConstantAddress(ctx, tp, address);
+            ctx.code.Load(load_op, 0, 0);
+            ctx.code.Else();
+            EmitReadThunkCall(ctx, args[1], name, result_type);
+            ctx.code.End();
+        } else {
+            EmitReadThunkCall(ctx, args[1], name, result_type);
+        }
+        ctx.code.LocalSet(dst);
+        return;
+    }
+
     const u32 tv = ctx.Temp(ValType::I32);
     const u32 tp = ctx.Temp(ValType::I32);
 
@@ -144,6 +184,27 @@ void EmitWriteThunk(EmitContext& ctx, IR::Inst* inst, const char* name, ValType 
 
 void EmitWriteFastmem(EmitContext& ctx, IR::Inst* inst, const char* name, ValType value_type, u8 store_op) {
     auto args = ctx.reg_alloc.GetArgumentInfo(inst);
+
+    if (ctx.emit_conf.enable_constant_memory && ctx.emit_conf.flat_limit == 0 && args[1].IsImmediate()) {
+        const u32 address = args[1].GetImmediateU32();
+        const u32 width = store_op == Op::I32Store8 ? 1 : store_op == Op::I32Store16 ? 2 : store_op == Op::I64Store ? 8 : 4;
+        if ((address & kPageMask) <= (1u << kPageBits) - width) {
+            const u32 tp = ctx.Temp(ValType::I32);
+            EmitConstantPage(ctx, address);
+            ctx.code.LocalTee(tp);
+            ctx.code.If();
+            EmitConstantAddress(ctx, tp, address);
+            EmitPush(ctx.code, ctx.reg_alloc, args[2]);
+            ctx.code.Store(store_op, 0, 0);
+            ctx.code.Else();
+            EmitWriteThunkCall(ctx, args[1], args[2], name, value_type);
+            ctx.code.End();
+        } else {
+            EmitWriteThunkCall(ctx, args[1], args[2], name, value_type);
+        }
+        return;
+    }
+
     const u32 tv = ctx.Temp(ValType::I32);
     const u32 tp = ctx.Temp(ValType::I32);
 

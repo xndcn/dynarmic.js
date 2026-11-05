@@ -112,6 +112,7 @@ try {
         limit / 2n + 1n, 0x12345678n, mask ^ 0x12345678n];
       const shift = name.includes('Shift') || name.startsWith('Rotate');
       function scalarCheck(a, b, carry) {
+        if (test.carry >= 0) carry = test.carry;
         let value, cout = 0, overflow = false, nzcv = 0;
         if (name.startsWith('Add') || name.startsWith('Sub')) {
           const sub = name.startsWith('Sub');
@@ -156,8 +157,9 @@ try {
         const got = bits === 64 ? dv.getBigUint64(reg(6), true) : BigInt(dv.getUint32(reg(6), true));
         const context = `${test.name} a=${a.toString(16)} b=${b.toString(16)} c=${carry}`;
         assert.equal(got, value, `${context}: result`);
-        if (flags === 'nzcv') assert.equal(dv.getUint32(state, true), nzcv, `${context}: NZCV`);
-        const expectedQ = flags === 'overflow' ? +overflow : shift && bits === 32 ? cout : 0;
+        if (flags === 'nzcv' || flags === 'all') assert.equal(dv.getUint32(state, true), nzcv, `${context}: NZCV`);
+        if (flags === 'all') assert.equal(dv.getUint32(reg(8), true), cout, `${context}: carry`);
+        const expectedQ = flags === 'overflow' || flags === 'all' ? +overflow : shift && bits === 32 ? cout : 0;
         assert.equal(dv.getUint32(state + manifest.q, true), expectedQ << 27, `${context}: carry/overflow`);
         assert.equal(dv.getUint32(state + manifest.fpsr, true), 0x00400015, `${context}: FPSR`);
         ++checks;

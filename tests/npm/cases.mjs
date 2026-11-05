@@ -156,6 +156,13 @@ export async function exercise(createEmulator, options = {}) {
     await rejects(() => createEmulator({...options, memorySize: 65536, optimizations}), 'invalid optimizations');
   }
   checks.push('invalid optimization types and names reject');
+  for (const name of ['sharedExit', 'constantMemory']) {
+    for (const value of [1, null, 'true']) {
+      await rejects(() => createEmulator({...options, memorySize: 65536, optimizations: {[name]: value}}), `invalid ${name}`);
+    }
+  }
+  await checkEmissionOptions(createEmulator, options);
+  checks.push('independent emission options: default/false byte identity, all four combinations, option snapshots and ARM/Thumb/A64 flags');
   await checkRegionSharing(createEmulator, options);
   checks.push('ARM/Thumb/A64 sharing compiles one module, reuses interior entries, and invalidates aliases');
   const a = await createEmulator({...options, memorySize: 65536});
@@ -230,5 +237,55 @@ async function checkRegionSharing(createEmulator, options) {
       }
     }
     equal(coldCounts[0], coldCounts[1], 'default and explicit false must compile the same blocks');
+  }
+}
+
+async function checkEmissionOptions(createEmulator, options) {
+  const names = ['sharedExit', 'constantMemory'];
+  const allFalse = Object.fromEntries(names.map(name => [name, false]));
+  const setups = [{}, allFalse, ...Array.from({length: 3}, (_, n) =>
+    Object.fromEntries(names.map((name, i) => [name, Boolean((n + 1) & (1 << i))])))];
+  let baseline, plainSize;
+  for (const [kind, settings] of [...setups.map(s => ['arm', s]), ['thumb', Object.fromEntries(names.map(n => [n, true]))],
+                                  ['a64', Object.fromEntries(names.map(n => [n, true]))]]) {
+    const is64 = kind === 'a64', thumb = kind === 'thumb';
+    const optimizations = {regionMultiEntry: true, ...settings};
+    const pending = createEmulator({...options, architecture: is64 ? 'a64' : 'a32', memorySize: 65536, optimizations});
+    // No later property read may change the policy after the factory returns.
+    for (const name of ['regionMultiEntry', ...names]) optimizations[name] = 'mutated after creation';
+    const cpu = await pending;
+    const Original = WebAssembly.Module, generated = [];
+    try {
+      const code = thumb ? Uint8Array.of(1, 0x30, 0xff, 0xe7, 0x52, 0x41, 7, 0xdf)
+        : is64 ? words(0x31000400, 0x14000001, 0x1a020042, 0xd40000e1)
+        : words(0xe2900001, 0xeaffffff, 0xe2a22000, 0xef000007);
+      cpu.writeMemory(0x1000, code);
+      cpu.setRegister(0, is64 ? 0xffffffffn : 0xffffffff);
+      cpu.setRegister(2, is64 ? 0n : 0);
+      if (!is64) cpu.setStatus(thumb ? 0x3f : 0x1f);
+      cpu.setPC(is64 ? 0x1000n : 0x1000);
+      WebAssembly.Module = new Proxy(Original, {construct(target, args) {
+        generated.push(Array.from(new Uint8Array(args[0])));
+        return Reflect.construct(target, args);
+      }});
+      equal(cpu.run().svc, 7, `${kind}: emission SVC`);
+      equal(cpu.getRegister(0), is64 ? 0n : 0, `${kind}: emission wrapped result`);
+      equal(cpu.getRegister(2), is64 ? 1n : 1, `${kind}: emission carry result`);
+      equal(cpu.getStatus() >>> 28, thumb ? 0 : 6, `${kind}: emission NZCV`);
+      if (kind === 'arm') {
+        const signature = JSON.stringify(generated);
+        const size = generated.reduce((n, bytes) => n + bytes.length, 0);
+        if (!baseline) { baseline = signature; plainSize = size; }
+        else if (names.every(n => !settings[n])) equal(signature, baseline, 'omitted/false emission options must emit identical modules');
+        if (names.filter(n => settings[n]).length === 1 && !settings.constantMemory && size === plainSize)
+          throw new Error('requested emission option did not change generated module size');
+      }
+      cpu.clearCache();
+      cpu.setRegister(0, is64 ? 0xffffffffn : 0xffffffff);
+      cpu.setRegister(2, is64 ? 0n : 0);
+      cpu.setPC(is64 ? 0x1000n : 0x1000);
+      equal(cpu.run().svc, 7, `${kind}: emission recompile`);
+      equal(cpu.getRegister(2), is64 ? 1n : 1, `${kind}: emission recompiled carry`);
+    } finally { WebAssembly.Module = Original; cpu.dispose(); }
   }
 }

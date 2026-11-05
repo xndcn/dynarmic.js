@@ -1,0 +1,142 @@
+[
+  {
+    "mode": "liftoff",
+    "variant": "baseline",
+    "name": "tail-exits",
+    "instructionBytes": 12200,
+    "log": "disassembly/liftoff-baseline-tail-exits.log"
+  },
+  {
+    "mode": "liftoff",
+    "variant": "tail-only",
+    "name": "tail-exits",
+    "instructionBytes": 10088,
+    "log": "disassembly/liftoff-tail-only-tail-exits.log"
+  },
+  {
+    "mode": "liftoff",
+    "variant": "baseline",
+    "name": "normal-exits",
+    "instructionBytes": 4252,
+    "log": "disassembly/liftoff-baseline-normal-exits.log"
+  },
+  {
+    "mode": "liftoff",
+    "variant": "tail-only",
+    "name": "normal-exits",
+    "instructionBytes": 4252,
+    "log": "disassembly/liftoff-tail-only-normal-exits.log"
+  },
+  {
+    "mode": "liftoff",
+    "variant": "baseline",
+    "name": "flags",
+    "instructionBytes": 15036,
+    "log": "disassembly/liftoff-baseline-flags.log"
+  },
+  {
+    "mode": "liftoff",
+    "variant": "i32",
+    "name": "flags",
+    "instructionBytes": 14324,
+    "log": "disassembly/liftoff-i32-flags.log"
+  },
+  {
+    "mode": "liftoff",
+    "variant": "tee",
+    "name": "flags",
+    "instructionBytes": 15036,
+    "log": "disassembly/liftoff-tee-flags.log"
+  },
+  {
+    "mode": "liftoff",
+    "variant": "baseline",
+    "name": "constant-memory",
+    "instructionBytes": 25084,
+    "log": "disassembly/liftoff-baseline-constant-memory.log"
+  },
+  {
+    "mode": "liftoff",
+    "variant": "constant",
+    "name": "constant-memory",
+    "instructionBytes": 15840,
+    "log": "disassembly/liftoff-constant-constant-memory.log"
+  },
+  {
+    "mode": "liftoff",
+    "variant": "tee",
+    "name": "constant-memory",
+    "instructionBytes": 25084,
+    "log": "disassembly/liftoff-tee-constant-memory.log"
+  },
+  {
+    "mode": "turbofan",
+    "variant": "baseline",
+    "name": "tail-exits",
+    "instructionBytes": 7664,
+    "log": "disassembly/turbofan-baseline-tail-exits.log"
+  },
+  {
+    "mode": "turbofan",
+    "variant": "tail-only",
+    "name": "tail-exits",
+    "instructionBytes": 6448,
+    "log": "disassembly/turbofan-tail-only-tail-exits.log"
+  },
+  {
+    "mode": "turbofan",
+    "variant": "baseline",
+    "name": "normal-exits",
+    "instructionBytes": 2432,
+    "log": "disassembly/turbofan-baseline-normal-exits.log"
+  },
+  {
+    "mode": "turbofan",
+    "variant": "tail-only",
+    "name": "normal-exits",
+    "instructionBytes": 2432,
+    "log": "disassembly/turbofan-tail-only-normal-exits.log"
+  },
+  {
+    "mode": "turbofan",
+    "variant": "baseline",
+    "name": "flags",
+    "instructionBytes": 10720,
+    "log": "disassembly/turbofan-baseline-flags.log"
+  },
+  {
+    "mode": "turbofan",
+    "variant": "i32",
+    "name": "flags",
+    "instructionBytes": 10904,
+    "log": "disassembly/turbofan-i32-flags.log"
+  },
+  {
+    "mode": "turbofan",
+    "variant": "tee",
+    "name": "flags",
+    "instructionBytes": 10720,
+    "log": "disassembly/turbofan-tee-flags.log"
+  },
+  {
+    "mode": "turbofan",
+    "variant": "baseline",
+    "name": "constant-memory",
+    "instructionBytes": 11096,
+    "log": "disassembly/turbofan-baseline-constant-memory.log"
+  },
+  {
+    "mode": "turbofan",
+    "variant": "constant",
+    "name": "constant-memory",
+    "instructionBytes": 11096,
+    "log": "disassembly/turbofan-constant-constant-memory.log"
+  },
+  {
+    "mode": "turbofan",
+    "variant": "tee",
+    "name": "constant-memory",
+    "instructionBytes": 11096,
+    "log": "disassembly/turbofan-tee-constant-memory.log"
+  }
+]

@@ -159,6 +159,8 @@ EmitConfig A32AddressSpace::MakeEmitConfig() const {
         .frontend = Frontend::A32,
         .enable_region_multi_entry = conf.HasOptimization(OptimizationFlag::WasmRegionMultiEntry) &&
                                          boundary_state != nullptr && conf.enable_cycle_counting,
+        .enable_shared_exit = conf.HasOptimization(OptimizationFlag::WasmSharedExit),
+        .enable_constant_memory = conf.HasOptimization(OptimizationFlag::WasmConstantMemory),
     };
 }
 

@@ -110,6 +110,10 @@ struct EmitConfig {
     // Reuse every region block through a shared full-descriptor selector.
     bool enable_region_multi_entry = false;
 
+    // Independent emission policies. All are opt-in and fixed per JIT.
+    bool enable_shared_exit = false;     // A32/Thumb multi-entry fallback regions
+    bool enable_constant_memory = false; // immediate A32 page-table addresses
+
     // A64 page table geometry (A64::UserConfig): the table has
     // 2^(page_table_address_space_bits - 12) entries; with silently_mirror the
     // upper vaddr bits are ignored, otherwise an out-of-range vaddr takes the
@@ -178,6 +182,11 @@ void EmitEndNzcvStore(EmitContext& ctx);
 // Emits the block-entry condition check: blocks whose entry_cond is not AL
 // divert to their cond_fail location when the condition does not hold.
 void EmitCondPrelude(EmitContext& ctx);
+
+// Return helpers consume the ordinary block result / tail-call operands.
+// Eligible regions route them through the optional shared coherence barrier.
+void EmitReturn(EmitContext& ctx);
+void EmitReturnCallIndirect(EmitContext& ctx, u32 type, u32 table = 0);
 
 // Emits the block terminal (shared by both frontends).
 void EmitTerminal(EmitContext& ctx);

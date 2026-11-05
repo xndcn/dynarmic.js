@@ -1,0 +1,140 @@
+diff --git a/src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp b/src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp
+index 0797650..ce62320 100644
+--- a/src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp
++++ b/src/dynarmic/backend/wasm/emit_wasm_data_processing.cpp
+@@ -653,28 +653,42 @@ void EmitIR<IR::Opcode::Add32>(EmitContext& ctx, IR::Inst* inst) {
+         return;
+     }
+ 
+-    // Full path: compute in i64 to extract carry.
+-    const u32 sum = ctx.Temp(ValType::I64);
+-    EmitPush(code, ctx.reg_alloc, args[0]);
+-    code.U8(Op::I64ExtendI32U);
+-    EmitPush(code, ctx.reg_alloc, args[1]);
+-    code.U8(Op::I64ExtendI32U);
+-    code.U8(Op::I64Add);
+-    EmitPush(code, ctx.reg_alloc, args[2]);
+-    code.U8(Op::I64ExtendI32U);
+-    code.U8(Op::I64Add);
+-    code.LocalSet(sum);
+-
+-    code.LocalGet(sum);
+-    code.U8(Op::I32WrapI64);
+-    code.LocalSet(dst);
+-
++    // With fixed carry-in and live carry flags, stay in i32. The no-flags
++    // path above and dynamic ADC/SBC below keep their existing emission.
+     const u32 carry = ctx.Temp(ValType::I32);
+-    code.LocalGet(sum);
+-    code.I64Const(32);
+-    code.U8(Op::I64ShrU);
+-    code.U8(Op::I32WrapI64);
+-    code.LocalSet(carry);
++    if (args[2].IsImmediate() && args[2].GetImmediateU1() == false) {
++        EmitPush(code, ctx.reg_alloc, args[0]);
++        EmitPush(code, ctx.reg_alloc, args[1]);
++        code.U8(Op::I32Add);
++        code.LocalSet(dst);
++        code.LocalGet(dst);
++        EmitPush(code, ctx.reg_alloc, args[0]);
++        code.U8(Op::I32LtU);
++        code.LocalSet(carry);
++    } else {
++        // Full path: compute in i64 to extract carry.
++        const u32 sum = ctx.Temp(ValType::I64);
++        EmitPush(code, ctx.reg_alloc, args[0]);
++        code.U8(Op::I64ExtendI32U);
++        EmitPush(code, ctx.reg_alloc, args[1]);
++        code.U8(Op::I64ExtendI32U);
++        code.U8(Op::I64Add);
++        EmitPush(code, ctx.reg_alloc, args[2]);
++        code.U8(Op::I64ExtendI32U);
++        code.U8(Op::I64Add);
++        code.LocalSet(sum);
++
++        code.LocalGet(sum);
++        code.U8(Op::I32WrapI64);
++        code.LocalSet(dst);
++
++        code.LocalGet(sum);
++        code.I64Const(32);
++        code.U8(Op::I64ShrU);
++        code.U8(Op::I32WrapI64);
++        code.LocalSet(carry);
++
++    }
+ 
+     const u32 overflow = ctx.Temp(ValType::I32);
+     EmitOverflow32Add(code,
+@@ -845,32 +859,46 @@ void EmitIR<IR::Opcode::Sub32>(EmitContext& ctx, IR::Inst* inst) {
+         return;
+     }
+ 
+-    // Full path: t = zext(a) - zext(b) - (1 - c); borrow = t < 0 (bit63)
+-    const u32 diff = ctx.Temp(ValType::I64);
+-    EmitPush(code, ctx.reg_alloc, args[0]);
+-    code.U8(Op::I64ExtendI32U);
+-    EmitPush(code, ctx.reg_alloc, args[1]);
+-    code.U8(Op::I64ExtendI32U);
+-    code.U8(Op::I64Sub);
+-    EmitPush(code, ctx.reg_alloc, args[2]);
+-    code.U8(Op::I64ExtendI32U);
+-    code.U8(Op::I64Add);
+-    code.I64Const(-1);
+-    code.U8(Op::I64Add);
+-    code.LocalSet(diff);
+-
+-    code.LocalGet(diff);
+-    code.U8(Op::I32WrapI64);
+-    code.LocalSet(dst);
+-
++    // With fixed carry-in and live carry flags, stay in i32. The no-flags
++    // path above and dynamic ADC/SBC below keep their existing emission.
+     const u32 carry = ctx.Temp(ValType::I32);
+-    code.LocalGet(diff);
+-    code.I64Const(63);
+-    code.U8(Op::I64ShrU);
+-    code.U8(Op::I32WrapI64);
+-    code.I32Const(1);
+-    code.U8(Op::I32Xor);  // carry = NOT borrow
+-    code.LocalSet(carry);
++    if (args[2].IsImmediate() && args[2].GetImmediateU1() == true) {
++        EmitPush(code, ctx.reg_alloc, args[0]);
++        EmitPush(code, ctx.reg_alloc, args[1]);
++        code.U8(Op::I32Sub);
++        code.LocalSet(dst);
++        EmitPush(code, ctx.reg_alloc, args[0]);
++        EmitPush(code, ctx.reg_alloc, args[1]);
++        code.U8(Op::I32GeU);
++        code.LocalSet(carry);
++    } else {
++        // Full path: t = zext(a) - zext(b) - (1 - c); borrow = t < 0 (bit63)
++        const u32 diff = ctx.Temp(ValType::I64);
++        EmitPush(code, ctx.reg_alloc, args[0]);
++        code.U8(Op::I64ExtendI32U);
++        EmitPush(code, ctx.reg_alloc, args[1]);
++        code.U8(Op::I64ExtendI32U);
++        code.U8(Op::I64Sub);
++        EmitPush(code, ctx.reg_alloc, args[2]);
++        code.U8(Op::I64ExtendI32U);
++        code.U8(Op::I64Add);
++        code.I64Const(-1);
++        code.U8(Op::I64Add);
++        code.LocalSet(diff);
++
++        code.LocalGet(diff);
++        code.U8(Op::I32WrapI64);
++        code.LocalSet(dst);
++
++        code.LocalGet(diff);
++        code.I64Const(63);
++        code.U8(Op::I64ShrU);
++        code.U8(Op::I32WrapI64);
++        code.I32Const(1);
++        code.U8(Op::I32Xor);  // carry = NOT borrow
++        code.LocalSet(carry);
++
++    }
+ 
+     const u32 overflow = ctx.Temp(ValType::I32);
+     EmitOverflow32Sub(code,

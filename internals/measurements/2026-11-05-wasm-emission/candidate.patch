@@ -1,0 +1,550 @@
+diff --git a/docs/Embedding.md b/docs/Embedding.md
+index b78fb66..6c443e2 100644
+--- a/docs/Embedding.md
++++ b/docs/Embedding.md
+@@ -180,8 +180,11 @@ synchronously inside that Worker.
+ Your Content Security Policy must permit the Worker and WebAssembly
+ compilation; on browsers supporting it, `wasm-unsafe-eval` controls Wasm
+ compilation without enabling JavaScript string evaluation. Test the actual
+-policy and browser combination. The current runtime uses unshared memory and
+-does not require cross-origin isolation for `SharedArrayBuffer`.
++policy and browser combination. Ordinary builds use unshared memory and do not
++require cross-origin isolation. Hosts compiled with `-pthread` use shared memory;
++generated block imports match that sharing kind, and browser hosts then require
++cross-origin isolation. Each JIT remains confined to its owning thread; sharing
++the host heap does not make a JIT instance concurrently callable.
+ 
+ Treat browser demo timings as observations from that engine and workload.
+ Compile-time statistics and optional profile counters are documented in
+diff --git a/docs/WasmBackend.md b/docs/WasmBackend.md
+index 0092332..bbec8df 100644
+--- a/docs/WasmBackend.md
++++ b/docs/WasmBackend.md
+@@ -78,6 +78,11 @@ return to the dispatcher. Returns to eligible internal continuation sites can
+ remain inside the region. Their RSB effects must match the equivalent external
+ call/return path.
+ 
++In board mode, calls omit speculative RSB writes because returns already use
++guarded dispatch by the full location descriptor. Internal returns likewise
++omit the unused RSB pop. The PushRSB IR operation remains available for finding
++region continuation sites; ordinary call/return speculation is unchanged.
++
+ A32 location changes also carry Thumb, endianness and IT state. A64 and A32
+ regions require compatible FP configuration. Single stepping uses separate
+ location descriptors and does not speculate a multi-block region.
+diff --git a/src/dynarmic/backend/wasm/emit_wasm.cpp b/src/dynarmic/backend/wasm/emit_wasm.cpp
+index 7cefda7..72957ed 100644
+--- a/src/dynarmic/backend/wasm/emit_wasm.cpp
++++ b/src/dynarmic/backend/wasm/emit_wasm.cpp
+@@ -164,6 +164,10 @@ void EmitIR<IR::Opcode::CallHostFunction>(EmitContext& ctx, IR::Inst* inst) {
+ 
+ template<>
+ void EmitIR<IR::Opcode::PushRSB>(EmitContext& ctx, IR::Inst* inst) {
++    // Board returns use guarded descriptor dispatch rather than RSB guesses.
++    // Keep the IR operation for region return-site discovery, but omit the
++    // speculative stack writes that board returns never read.
++    if (ctx.emit_conf.boundary_state != nullptr) return;
+     auto args = ctx.reg_alloc.GetArgumentInfo(inst);
+     ASSERT(args[0].IsImmediate());
+     const u64 descriptor = args[0].GetImmediateU64();
+@@ -487,7 +491,13 @@ EmittedBlockInfo EmitWASM(std::vector<IR::Block> blocks, const EmitConfig& emit_
+     // Module skeleton: shared memory; the entry function is registered after
+     // emission (below) so that all function imports are already known and its
+     // index is final (imports occupy the lowest function indices).
++#ifdef __EMSCRIPTEN_PTHREADS__
++    // A generated module must declare the same sharing kind as its host heap.
++    // The wasm32 maximum admits hosts with a smaller configured maximum too.
++    mod.ImportMemory(kImportModule, kMemoryImport, {1, 65536, true});
++#else
+     mod.ImportMemory(kImportModule, kMemoryImport, {1, std::nullopt});
++#endif
+     bool any_pop_rsb = false;
+     bool any_fast_dispatch = false;
+     bool any_host_call = false;
+diff --git a/src/dynarmic/backend/wasm/emit_wasm_terminal.cpp b/src/dynarmic/backend/wasm/emit_wasm_terminal.cpp
+index c6c103b..389f247 100644
+--- a/src/dynarmic/backend/wasm/emit_wasm_terminal.cpp
++++ b/src/dynarmic/backend/wasm/emit_wasm_terminal.cpp
+@@ -820,15 +820,17 @@ struct TerminalVisitor {
+             ctx.code.I64Const(static_cast<s64>(location.Value()));
+             ctx.code.U8(Op::I64Eq);
+             ctx.code.If();
+-            // rsb_top = (rsb_top - 1) & kRsbMask
+-            ctx.code.LocalGet(kParamEctx);
+-            ctx.code.LocalGet(kParamEctx);
+-            ctx.code.Load(Op::I32Load, offsetof(ExecutionContext, rsb_top), 2);
+-            ctx.code.I32Const(1);
+-            ctx.code.U8(Op::I32Sub);
+-            ctx.code.I32Const(static_cast<s32>(kRsbMask));
+-            ctx.code.U8(Op::I32And);
+-            ctx.code.Store(Op::I32Store, offsetof(ExecutionContext, rsb_top), 2);
++            if (ctx.emit_conf.boundary_state == nullptr) {
++                // rsb_top = (rsb_top - 1) & kRsbMask
++                ctx.code.LocalGet(kParamEctx);
++                ctx.code.LocalGet(kParamEctx);
++                ctx.code.Load(Op::I32Load, offsetof(ExecutionContext, rsb_top), 2);
++                ctx.code.I32Const(1);
++                ctx.code.U8(Op::I32Sub);
++                ctx.code.I32Const(static_cast<s32>(kRsbMask));
++                ctx.code.U8(Op::I32And);
++                ctx.code.Store(Op::I32Store, offsetof(ExecutionContext, rsb_top), 2);
++            }
+             EmitRegionEdge(site, location, false);
+             ctx.code.End();
+         }
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index 91f66b0..39e01af 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -119,7 +119,7 @@ else()
+     endif()
+     # IR-level tests: emit modules natively (the emitter alone, or hand-built
+     # IR blocks) for Node to instantiate and check.
+-    foreach(tool smoke_ir sat64_ir wasm_binary_test integer_edge_test vector_edge_test fp_edge_test memory_edge_test)
++    foreach(tool smoke_ir sat64_ir wasm_binary_test integer_edge_test vector_edge_test fp_edge_test memory_edge_test a32_memory_edge_test)
+         add_executable(${tool} ir/${tool}.cpp)
+         target_link_libraries(${tool} PRIVATE dynarmic merry::mcl fmt::fmt Boost::boost)
+     endforeach()
+@@ -144,7 +144,7 @@ else()
+                     -P "${CMAKE_CURRENT_SOURCE_DIR}/ir/run_emitted.cmake")
+             set_tests_properties("${suite}_wasm" PROPERTIES LABELS "ir;wasm" TIMEOUT 120)
+         endforeach()
+-        foreach(tool integer_edge_test vector_edge_test fp_edge_test memory_edge_test)
++        foreach(tool integer_edge_test vector_edge_test fp_edge_test memory_edge_test a32_memory_edge_test)
+             add_test(NAME ${tool} COMMAND "${DYNARMIC_JS_NODE}"
+                 "${CMAKE_CURRENT_SOURCE_DIR}/ir/${tool}.mjs" $<TARGET_FILE:${tool}>)
+         endforeach()
+diff --git a/tests/README.md b/tests/README.md
+index fabe971..8839d9a 100644
+--- a/tests/README.md
++++ b/tests/README.md
+@@ -29,6 +29,10 @@ CTest also runs the installed-package consumer and all native-emitted smoke,
+ saturating arithmetic, binary encoding and IR edge tests. The sanitizer build
+ runs the same suite, including its exported-library consumer.
+ 
++`node build-em/tests/jit_callbench.js board` runs the same checked call/return
++kernel with cycle-counted board regions and entry sharing. Omitting `board`
++keeps the ordinary RSB workload used by the fixed benchmark suite.
++
+ ## Full regression
+ 
+ Build both trees before running the end-to-end gate:
+diff --git a/tests/hosts/a32_region_alias_test.cpp b/tests/hosts/a32_region_alias_test.cpp
+index db1c23e..53ce820 100644
+--- a/tests/hosts/a32_region_alias_test.cpp
++++ b/tests/hosts/a32_region_alias_test.cpp
+@@ -281,6 +281,57 @@ void Benchmark(bool aliases, bool thumb, bool boundaries) {
+         Require(sample == 0 || h.stats.blocks == before.blocks, "warm compilation");
+     }
+ }
++void CheckRegisterExits() {
++    Harness h, reference(false, 0, false, false);
++    std::vector<u32> code;
++    for (u32 repeat = 0; repeat < 8; ++repeat) {
++        for (u32 reg = 0; reg < 13; ++reg)
++            code.push_back(0xe2800000 | reg << 16 | reg << 12 | (reg + 1));
++        code.insert(code.end(), {0xe150000e, 0x1a000000, 0xe2822005}); // cmp r0,lr; bne skip; add r2,#5
++    }
++    const u32 branch_pc = base + static_cast<u32>(code.size()) * 4;
++    code.push_back(0xea000000 | (((base - branch_pc - 8) >> 2) & 0xffffff));
++    for (Harness* backend : {&h, &reference}) {
++        std::memcpy(backend->callbacks.ram.data() + base, code.data(), code.size() * 4);
++        backend->state.regs[14] = 3;
++    }
++    auto step = CreateA32Jit(reference.conf, nullptr);
++    step->SetCpsr(h.state.Cpsr()); step->Regs() = h.state.regs; step->Regs()[15] = base;
++    for (const u64 budget : {1, 17, 33, 63, 7, 111, 513}) {
++        h.Run(h.state.regs[15] ? h.state.regs[15] : base, budget);
++        Require(h.callbacks.ticks >= budget, "register-exit budget not charged");
++        for (u64 i = 0; i < h.callbacks.ticks; ++i) step->Step();
++        Require(h.state.regs == step->Regs() && h.state.Cpsr() == step->Cpsr(),
++                "shared exit differs from instruction-by-instruction registers/flags");
++    }
++}
++void CheckNestedCalls() {
++    // push {r4,lr}; mov r4,r1; bl inner; add r0,r4; pop {r4,pc};
++    // inner: push {lr}; blx r3; adds r0,#1; pop {pc}
++    constexpr std::array<u32, 9> caller{0xe92d4010,0xe1a04001,0xeb000001,0xe0800004,
++        0xe8bd8010,0xe52de004,0xe12fff33,0xe2900001,0xe49df004};
++    for (const bool board : {false, true}) {
++        Harness h(true, 0, true, board);
++        std::memcpy(h.callbacks.ram.data() + base, caller.data(), sizeof(caller));
++        h.callbacks.Write<u32>(0x8000, 0xe2900002); // adds r0,#2
++        h.callbacks.Write<u32>(0x8004, 0xe12fff1e); // bx lr
++        h.callbacks.Write<u32>(0xf000, 0xef000000);
++        h.context.rsb_top = 7;
++        for (auto& entry : h.context.rsb) { entry.descriptor = 0xdeadbeefdeadbeefULL; entry.index = 0; }
++        for (u32 i = 0; i < 40; ++i) {
++            h.state.regs[0] = i; h.state.regs[1] = 7; h.state.regs[3] = 0x8000;
++            h.state.regs[4] = 0x12345678; h.state.regs[13] = 0xe000; h.state.regs[14] = 0xf000;
++            h.Run(base);
++            Require(h.state.regs[0] == i + 10 && h.state.regs[4] == 0x12345678 && h.state.regs[13] == 0xe000,
++                    "nested BL/BLX register/stack result");
++            if (board) {
++                Require(h.context.rsb_top == 7, "board call/return changed RSB top");
++                for (const auto& entry : h.context.rsb)
++                    Require(entry.descriptor == 0xdeadbeefdeadbeefULL && entry.index == 0, "board call wrote unused RSB");
++            }
++        }
++    }
++}
+ void BenchmarkLoop(bool aliases, int mode) {
+     Harness h(aliases, mode);
+     // Same independently checked nested memory workload as jit_bench, with
+@@ -317,5 +368,6 @@ int main(int argc, char** argv) {
+         CheckEndian(mode);
+     }
+     CheckDescriptor(); CheckIT(0); CheckIT(1); CheckOptInAndStep(); CheckBackwardAndReturn(); CheckDisabledHookFilter();
++    CheckRegisterExits(); CheckNestedCalls();
+     std::puts("PASS A32 shared entries: ARM/Thumb, memory modes, boundaries, IT/FPSCR/endian, stale selectors, invalidation, links, opt-in and Step");
+ }
+diff --git a/tests/hosts/a64_region_sharing_test.cpp b/tests/hosts/a64_region_sharing_test.cpp
+index 63747b9..4ddc4e4 100644
+--- a/tests/hosts/a64_region_sharing_test.cpp
++++ b/tests/hosts/a64_region_sharing_test.cpp
+@@ -210,11 +210,16 @@ void CheckReturnAndPruning() {
+     h.cb.Put(base + 4, 0x91001c00); // add x0,x0,#7
+     h.cb.Put(base + 8, 0xd4000001);
+     h.cb.Put(0x8000, 0xd2800123); h.cb.Put(0x8004, 0xd65f03c0); // mov x3,#9; ret
++    h.context.rsb_top = 7;
++    for (auto& entry : h.context.rsb) { entry.descriptor = 0xdeadbeefdeadbeefULL; entry.index = 0; }
+     for (int i = 0; i < 3; ++i) {
+         h.state.reg[0] = 0; h.Run(base);
+         Require(h.state.reg[0] == 7 && h.state.reg[3] == 9 && h.Ticks() == 5, "external call/return");
+         Require(h.space->Get(IR::LocationDescriptor{base}) == h.space->Get(IR::LocationDescriptor{base + 4}),
+                 "caller and return continuation must share an owner");
++        Require(h.context.rsb_top == 7, "board call/return changed RSB top");
++        for (const auto& entry : h.context.rsb)
++            Require(entry.descriptor == 0xdeadbeefdeadbeefULL && entry.index == 0, "board call wrote unused RSB");
+     }
+     std::vector<u8> filter(65536, 0);
+     filter[((base + 4) >> 1) & 0xffff] = 2;
+diff --git a/tests/hosts/jit_callbench.cpp b/tests/hosts/jit_callbench.cpp
+index 6efa1ec..fd9d6be 100644
+--- a/tests/hosts/jit_callbench.cpp
++++ b/tests/hosts/jit_callbench.cpp
+@@ -16,6 +16,7 @@
+ #include <cstdio>
+ #include <cstdlib>
+ #include <cstring>
++#include <memory>
+ #include <optional>
+ 
+ #include "benchmark.h"
+@@ -25,6 +26,9 @@
+ #include "dynarmic/interface/A32/a32.h"
+ #include "dynarmic/interface/A32/config.h"
+ #include "dynarmic/interface/exclusive_monitor.h"
++#ifdef __EMSCRIPTEN__
++#include "dynarmic/backend/wasm/a32_interface.h"
++#endif
+ 
+ 
+ using namespace Dynarmic;
+@@ -107,7 +111,12 @@ bool RunOnce(A32::Jit& jit, bool cold, int run_index) {
+ 
+ }  // namespace
+ 
+-int main() {
++int main(int argc, char** argv) {
++    const bool board = argc == 2 && std::strcmp(argv[1], "board") == 0;
++    if (argc > 2 || (argc == 2 && !board)) return 2;
++#ifndef __EMSCRIPTEN__
++    if (board) return 2;
++#endif
+     std::memcpy(g_ram.data() + kCodeBase, kCode.data(), sizeof(kCode));
+ 
+     static BenchCallbacks callbacks;
+@@ -117,13 +126,18 @@ int main() {
+     conf.callbacks = &callbacks;
+     conf.global_monitor = &monitor;
+     conf.processor_id = 0;
+-    conf.enable_cycle_counting = false;
+-
+-    A32::Jit jit{conf};
+-    if (!RunOnce(jit, true, 0)) return 1;
++    conf.enable_cycle_counting = board;
++#ifdef __EMSCRIPTEN__
++    if (board) conf.optimizations |= OptimizationFlag::WasmRegionMultiEntry;
++    Backend::Wasm::BoundaryState boundary{};
++    auto jit = board ? Backend::Wasm::CreateA32Jit(conf, &boundary) : std::make_unique<A32::Jit>(conf);
++#else
++    auto jit = std::make_unique<A32::Jit>(conf);
++#endif
++    if (!RunOnce(*jit, true, 0)) return 1;
+     // Allow the engine to optimize the same modules; preserve the JIT cache.
+     for (int i = 0; i < 8; ++i) {
+-        if (!RunOnce(jit, false, i + 1)) return 1;
++        if (!RunOnce(*jit, false, i + 1)) return 1;
+     }
+     std::puts("PASS");
+     return 0;
+diff --git a/tests/ir/integer_edge_test.cpp b/tests/ir/integer_edge_test.cpp
+index a9db701..a55a4ff 100644
+--- a/tests/ir/integer_edge_test.cpp
++++ b/tests/ir/integer_edge_test.cpp
+@@ -55,7 +55,10 @@ const Case cases[]{
+ 
+ size_t Write(const std::filesystem::path& dir, const char* name, IR::Block&& block) {
+     block.SetTerminal(IR::Term::ReturnToDispatch{});
+-    const auto emitted = Backend::Wasm::EmitWASM(std::move(block), {false, true});
++    Backend::Wasm::BoundaryState boundary{};
++    Backend::Wasm::EmitConfig config{false, true};
++    config.boundary_state = &boundary;  // Exercise arithmetic with a configured board boundary.
++    const auto emitted = Backend::Wasm::EmitWASM(std::move(block), config);
+     std::ofstream out{dir / (std::string{name} + ".wasm"), std::ios::binary};
+     out.write(reinterpret_cast<const char*>(emitted.module_bytes.data()),
+               static_cast<std::streamsize>(emitted.module_bytes.size()));
+@@ -109,37 +112,44 @@ int main(int argc, char** argv) {
+         const bool wide = op_name.ends_with("64");
+         const bool arithmetic = op_name.starts_with("Add") || op_name.starts_with("Sub");
+         const bool shift = op_name.find("Shift") != std::string::npos || op_name.starts_with("Rotate");
+-        for (const char* flags : {"none", "overflow", "nzcv"}) {
+-            if (!arithmetic && std::string{flags} != "none") continue;
+-            IR::Block block{location};
+-            TestEmitter ir{block, location, A32::ArchVersion::v8};
+-            const auto a_lo = ir.GetRegister(A32::Reg::R0), a_hi = ir.GetRegister(A32::Reg::R1);
+-            const auto b_lo = ir.GetRegister(A32::Reg::R2), b_hi = ir.GetRegister(A32::Reg::R3);
+-            const IR::Value a = wide ? IR::Value{ir.Pack2x32To1x64(a_lo, a_hi)} : IR::Value{a_lo};
+-            const IR::Value b = wide ? IR::Value{ir.Pack2x32To1x64(b_lo, b_hi)} : IR::Value{b_lo};
+-            const auto carry = ir.MostSignificantBit(ir.GetRegister(A32::Reg::R4));
+-            IR::Value result;
+-            if (arithmetic) {
+-                result = ir.Inst(test.op, a, b, carry);
+-                if (std::string{flags} == "overflow") ir.OrQFlag(ir.Inst<IR::U1>(IR::Opcode::GetOverflowFromOp, result));
+-                if (std::string{flags} == "nzcv") ir.SetCpsrNZCV(ir.Inst<IR::NZCV>(IR::Opcode::GetNZCVFromOp, result));
+-            } else if (shift) {
+-                const auto amount = ir.LeastSignificantByte(b_lo);
+-                result = wide ? ir.Inst(test.op, a, amount) : ir.Inst(test.op, a, amount, carry);
+-                if (!wide) ir.OrQFlag(ir.Inst<IR::U1>(IR::Opcode::GetCarryFromOp, result));
+-            } else {
+-                result = ir.Inst(test.op, a, b);
++        for (const int carry_mode : {-1, 0, 1}) {
++            if (carry_mode != -1 && (!arithmetic || wide)) continue;
++            for (const char* flags : {"none", "overflow", "nzcv", "all"}) {
++                if (!arithmetic && std::string{flags} != "none") continue;
++                IR::Block block{location};
++                TestEmitter ir{block, location, A32::ArchVersion::v8};
++                const auto a_lo = ir.GetRegister(A32::Reg::R0), a_hi = ir.GetRegister(A32::Reg::R1);
++                const auto b_lo = ir.GetRegister(A32::Reg::R2), b_hi = ir.GetRegister(A32::Reg::R3);
++                const IR::Value a = wide ? IR::Value{ir.Pack2x32To1x64(a_lo, a_hi)} : IR::Value{a_lo};
++                const IR::Value b = wide ? IR::Value{ir.Pack2x32To1x64(b_lo, b_hi)} : IR::Value{b_lo};
++                const auto carry = carry_mode < 0 ? ir.MostSignificantBit(ir.GetRegister(A32::Reg::R4)) : ir.Imm1(carry_mode != 0);
++                IR::Value result;
++                if (arithmetic) {
++                    result = ir.Inst(test.op, a, b, carry);
++                    if (std::string{flags} == "all") {
++                        const auto c = ir.Inst<IR::U1>(IR::Opcode::GetCarryFromOp, result);
++                        ir.SetRegister(A32::Reg::R8, IR::U32{ir.AddWithCarry(ir.Imm32(0), ir.Imm32(0), c)});
++                    }
++                    if (std::string{flags} == "overflow" || std::string{flags} == "all") ir.OrQFlag(ir.Inst<IR::U1>(IR::Opcode::GetOverflowFromOp, result));
++                    if (std::string{flags} == "nzcv" || std::string{flags} == "all") ir.SetCpsrNZCV(ir.Inst<IR::NZCV>(IR::Opcode::GetNZCVFromOp, result));
++                } else if (shift) {
++                    const auto amount = ir.LeastSignificantByte(b_lo);
++                    result = wide ? ir.Inst(test.op, a, amount) : ir.Inst(test.op, a, amount, carry);
++                    if (!wide) ir.OrQFlag(ir.Inst<IR::U1>(IR::Opcode::GetCarryFromOp, result));
++                } else {
++                    result = ir.Inst(test.op, a, b);
++                }
++                if (wide) {
++                    ir.SetRegister(A32::Reg::R6, ir.LeastSignificantWord(IR::U64{result}));
++                    ir.SetRegister(A32::Reg::R7, ir.MostSignificantWord(IR::U64{result}).result);
++                } else {
++                    ir.SetRegister(A32::Reg::R6, IR::U32{result});
++                }
++                const auto name = op_name + "_" + flags + "_c" + std::to_string(carry_mode);
++                const auto bytes = Write(dir, name.c_str(), std::move(block));
++                manifest << ",{\"name\":\"" << name << "\",\"scalar\":true,\"bits\":" << (wide ? 64 : 32)
++                         << ",\"carry\":" << carry_mode << ",\"bytes\":" << bytes << '}';
+             }
+-            if (wide) {
+-                ir.SetRegister(A32::Reg::R6, ir.LeastSignificantWord(IR::U64{result}));
+-                ir.SetRegister(A32::Reg::R7, ir.MostSignificantWord(IR::U64{result}).result);
+-            } else {
+-                ir.SetRegister(A32::Reg::R6, IR::U32{result});
+-            }
+-            const auto name = op_name + "_" + flags;
+-            const auto bytes = Write(dir, name.c_str(), std::move(block));
+-            manifest << ",{\"name\":\"" << name << "\",\"scalar\":true,\"bits\":" << (wide ? 64 : 32)
+-                     << ",\"bytes\":" << bytes << '}';
+         }
+     }
+     // One dependency chain per packed saturation opcode; inputs remain dynamic.
+diff --git a/tests/ir/integer_edge_test.mjs b/tests/ir/integer_edge_test.mjs
+index 55e0384..5547f7b 100644
+--- a/tests/ir/integer_edge_test.mjs
++++ b/tests/ir/integer_edge_test.mjs
+@@ -112,6 +112,7 @@ try {
+         limit / 2n + 1n, 0x12345678n, mask ^ 0x12345678n];
+       const shift = name.includes('Shift') || name.startsWith('Rotate');
+       function scalarCheck(a, b, carry) {
++        if (test.carry >= 0) carry = test.carry;
+         let value, cout = 0, overflow = false, nzcv = 0;
+         if (name.startsWith('Add') || name.startsWith('Sub')) {
+           const sub = name.startsWith('Sub');
+@@ -156,8 +157,9 @@ try {
+         const got = bits === 64 ? dv.getBigUint64(reg(6), true) : BigInt(dv.getUint32(reg(6), true));
+         const context = `${test.name} a=${a.toString(16)} b=${b.toString(16)} c=${carry}`;
+         assert.equal(got, value, `${context}: result`);
+-        if (flags === 'nzcv') assert.equal(dv.getUint32(state, true), nzcv, `${context}: NZCV`);
+-        const expectedQ = flags === 'overflow' ? +overflow : shift && bits === 32 ? cout : 0;
++        if (flags === 'nzcv' || flags === 'all') assert.equal(dv.getUint32(state, true), nzcv, `${context}: NZCV`);
++        if (flags === 'all') assert.equal(dv.getUint32(reg(8), true), cout, `${context}: carry`);
++        const expectedQ = flags === 'overflow' || flags === 'all' ? +overflow : shift && bits === 32 ? cout : 0;
+         assert.equal(dv.getUint32(state + manifest.q, true), expectedQ << 27, `${context}: carry/overflow`);
+         assert.equal(dv.getUint32(state + manifest.fpsr, true), 0x00400015, `${context}: FPSR`);
+         ++checks;
+diff --git a/tests/regress.sh b/tests/regress.sh
+index f354385..74c3e99 100755
+--- a/tests/regress.sh
++++ b/tests/regress.sh
+@@ -137,7 +137,7 @@ logged "$NATIVE/tests/arm_decoder_test" || bad arm_decoder
+ logged "$NATIVE/tests/smoke_ir" smoke.wasm >/dev/null 2>&1 && node "$ROOT/tests/ir/smoke.mjs" smoke.wasm >/dev/null || bad smoke_ir
+ logged "$NATIVE/tests/sat64_ir" sat64.wasm >/dev/null && node "$ROOT/tests/ir/sat64.mjs" sat64.wasm >/dev/null || bad sat64_ir
+ logged "$NATIVE/tests/wasm_binary_test" . >/dev/null && node "$ROOT/tests/ir/wasm_binary_test.mjs" . >/dev/null || bad wasm_binary_test
+-for test in integer_edge_test vector_edge_test fp_edge_test memory_edge_test; do
++for test in integer_edge_test vector_edge_test fp_edge_test memory_edge_test a32_memory_edge_test; do
+     node "$ROOT/tests/ir/$test.mjs" "$NATIVE/tests/$test" || bad "$test"
+ done
+ 
+diff --git a/tests/ir/a32_memory_edge_test.cpp b/tests/ir/a32_memory_edge_test.cpp
+new file mode 100644
+index 0000000..84a2003
+--- /dev/null
++++ b/tests/ir/a32_memory_edge_test.cpp
+@@ -0,0 +1,52 @@
++// This file is part of Dynarmic.
++// Licensed under the MIT License. See LICENSE in the project root.
++// Constant-address memory modules, checked with an independent byte oracle.
++#include <cstdio>
++#include <fstream>
++#include <string>
++
++#include "dynarmic/backend/wasm/a32_jitstate.h"
++#include "dynarmic/backend/wasm/emit_wasm.h"
++#include "dynarmic/frontend/A32/a32_ir_emitter.h"
++#include "dynarmic/interface/A32/arch_version.h"
++#include "dynarmic/ir/basic_block.h"
++#include "dynarmic/ir/terminal.h"
++
++using namespace Dynarmic;
++
++int main(int argc, char** argv) {
++    if (argc != 2) return 2;
++    for (const unsigned width : {1u, 2u, 4u, 8u}) {
++        for (unsigned flags = 0; flags < 4; ++flags) {
++            for (unsigned crossing = 0; crossing < 4; ++crossing) {
++                const A32::LocationDescriptor location{0x1000, {}, {}};
++                IR::Block block{location};
++                A32::IREmitter ir{block, location, A32::ArchVersion::v8};
++                const auto source = ir.Imm32((crossing & 1) ? 0x1fff : 0x1001);
++                const auto destination = ir.Imm32((crossing & 2) ? 0x3fff : 0x3001);
++                constexpr auto acc = IR::AccType::NORMAL;
++                switch (width) {
++                case 1: ir.WriteMemory8(destination, ir.ReadMemory8(source, acc), acc); break;
++                case 2: ir.WriteMemory16(destination, ir.ReadMemory16(source, acc), acc); break;
++                case 4: ir.WriteMemory32(destination, ir.ReadMemory32(source, acc), acc); break;
++                case 8: ir.WriteMemory64(destination, ir.ReadMemory64(source, acc), acc); break;
++                }
++                ir.SetTerm(IR::Term::ReturnToDispatch{});
++                Backend::Wasm::EmitConfig config{false, true};
++                Backend::Wasm::BoundaryState boundary{};
++                config.boundary_state = &boundary;
++                config.page_table_base = 0x2000;
++                config.absolute_offset_page_table = (flags & 1) != 0;
++                config.page_table_pointer_mask_bits = (flags & 2) ? 2 : 0;
++                const auto emitted = Backend::Wasm::EmitWASM(std::move(block), config);
++                const auto name = "/memory_" + std::to_string(width) + "_" +
++                                  std::to_string(flags) + "_" + std::to_string(crossing) + ".wasm";
++                std::ofstream out{std::string{argv[1]} + name, std::ios::binary};
++                out.write(reinterpret_cast<const char*>(emitted.module_bytes.data()),
++                          static_cast<std::streamsize>(emitted.module_bytes.size()));
++                if (!out.good()) return 1;
++            }
++        }
++    }
++    std::puts("{}");
++}
+diff --git a/tests/ir/a32_memory_edge_test.mjs b/tests/ir/a32_memory_edge_test.mjs
+new file mode 100644
+index 0000000..3da724e
+--- /dev/null
++++ b/tests/ir/a32_memory_edge_test.mjs
+@@ -0,0 +1,77 @@
++// This file is part of Dynarmic.
++// Licensed under the MIT License. See LICENSE in the project root.
++import assert from 'node:assert/strict';
++import {execFileSync} from 'node:child_process';
++import {mkdtempSync, readFileSync, rmSync} from 'node:fs';
++import {tmpdir} from 'node:os';
++import {join, resolve} from 'node:path';
++
++const directory = mkdtempSync(join(tmpdir(), 'dynarmic-a32-memory-'));
++let checks = 0;
++try {
++    execFileSync(resolve(process.argv[2]), [directory]);
++    for (const width of [1, 2, 4, 8]) for (let flags = 0; flags < 4; ++flags) for (let crossing = 0; crossing < 4; ++crossing) {
++        const absolute = Boolean(flags & 1), tags = flags & 2 ? 3 : 0;
++        const source = crossing & 1 ? 0x1fff : 0x1001;
++        const destination = crossing & 2 ? 0x3fff : 0x3001;
++        const memory = new WebAssembly.Memory({initial: 2});
++        const heap = new Uint8Array(memory.buffer), view = new DataView(memory.buffer);
++        const pages = new Map([[1, 0x4000], [2, 0x8000], [3, 0xa000], [4, 0xc000]]);
++        const update = page => view.setUint32(0x2000 + page * 4,
++            (absolute ? pages.get(page) - page * 4096 : pages.get(page)) | tags, true);
++        for (const page of pages.keys()) update(page);
++        const byte = address => {
++            const pointer = pages.get(address >>> 12);
++            if (pointer === undefined) throw Error('unmapped reference page');
++            return pointer + (address & 4095);
++        };
++        let reads = [], writes = [], protectedWrite = false;
++        const read = (_state, _context, address) => {
++            reads.push(address);
++            let value = 0n;
++            for (let i = 0; i < width; ++i) value |= BigInt(heap[byte(address + i)]) << BigInt(i * 8);
++            return width === 8 ? value : Number(value);
++        };
++        const write = (_state, _context, address, value) => {
++            writes.push(address);
++            if (protectedWrite) throw Error('write protected');
++            for (let i = 0; i < width; ++i) heap[byte(address + i)] = Number(BigInt(value) >> BigInt(i * 8) & 255n);
++        };
++        const module = new WebAssembly.Module(readFileSync(join(directory, `memory_${width}_${flags}_${crossing}.wasm`)));
++        const instance = new WebAssembly.Instance(module, {e: {
++            m: memory, [`read${width * 8}`]: read, [`write${width * 8}`]: write,
++        }});
++        const run = (forceSlow = false) => {
++            const expected = Array.from({length: width}, (_, i) => (i * 43 + checks + 129) & 255);
++            heap.fill(0xcd, 0x5000, 0x6000); heap.fill(0xcd, 0xb000, 0xc000);
++            expected.forEach((value, i) => { heap[byte(source + i)] = value; heap[byte(destination + i)] = 0; });
++            reads = []; writes = [];
++            assert.equal(instance.exports.f(0, 0x1000), 0);
++            assert.deepEqual(Array.from({length: width}, (_, i) => heap[byte(destination + i)]), expected);
++            assert.deepEqual(reads, forceSlow || (source & 4095) + width > 4096 ? [source] : []);
++            assert.deepEqual(writes, forceSlow || (destination & 4095) + width > 4096 ? [destination] : []);
++            assert(heap.subarray(0xb000, 0xc000).every(value => value === 0xcd));
++            ++checks;
++        };
++        run();
++        // Reuse the same compiled function after changing both live mappings.
++        pages.set(1, 0x6000); pages.set(3, 0xe000); update(1); update(3);
++        run();
++        // Tagged null entries route MMIO/observers/protection through callbacks.
++        view.setUint32(0x2004, tags, true); view.setUint32(0x200c, tags, true);
++        run(true);
++        protectedWrite = true;
++        assert.throws(() => instance.exports.f(0, 0x1000), /write protected/);
++        protectedWrite = false;
++        if (width > 1 && crossing & 1) {
++            pages.delete(2);
++            assert.throws(() => instance.exports.f(0, 0x1000), /unmapped reference page/);
++        } else if (width > 1 && crossing & 2) {
++            pages.delete(4);
++            assert.throws(() => instance.exports.f(0, 0x1000), /unmapped reference page/);
++        }
++    }
++    console.log(`PASS A32 constant memory: ${checks} byte-reference cases, remapping, observers and faults`);
++} finally {
++    rmSync(directory, {recursive: true, force: true});
++}

@@ -1,0 +1,197 @@
+{
+  "fixedGate": false,
+  "fixed": [
+    {
+      "name": "memory-thunk",
+      "beforeMs": 5.152489499999994,
+      "afterMs": 6.452023499999996,
+      "pairedTimeRatio": 1.0101382835955646,
+      "pairedTimeCI95": [
+        0.991027885606944,
+        1.0457785007005667
+      ],
+      "throughputRatio": 0.7985850485510473,
+      "byteRatio": 1,
+      "compileRatio": 1.0024583982146988,
+      "gate": false
+    },
+    {
+      "name": "memory-page-table",
+      "beforeMs": 0.8994534999999999,
+      "afterMs": 0.9020790000000005,
+      "pairedTimeRatio": 1.0051339489370266,
+      "pairedTimeCI95": [
+        0.9890803496862558,
+        1.0344329907165153
+      ],
+      "throughputRatio": 0.9970895010303968,
+      "byteRatio": 1,
+      "compileRatio": 0.9775484132289731,
+      "gate": true
+    },
+    {
+      "name": "memory-flat-window",
+      "beforeMs": 0.5642560000000074,
+      "afterMs": 0.575752499999993,
+      "pairedTimeRatio": 1.0138864838646893,
+      "pairedTimeCI95": [
+        0.9528292606813809,
+        1.0509406457429882
+      ],
+      "throughputRatio": 0.9800322187051109,
+      "byteRatio": 1,
+      "compileRatio": 0.9900038836212175,
+      "gate": true
+    },
+    {
+      "name": "call-return",
+      "beforeMs": 6.479109999999999,
+      "afterMs": 6.464597499999996,
+      "pairedTimeRatio": 0.9991724552903503,
+      "pairedTimeCI95": [
+        0.9881474023828439,
+        1.009594724267549
+      ],
+      "throughputRatio": 1.0022449193472605,
+      "byteRatio": 1,
+      "compileRatio": 0.999491294179926,
+      "gate": true
+    },
+    {
+      "name": "a64-memory-thunk",
+      "beforeMs": 6.387774499999992,
+      "afterMs": 4.0476639999999975,
+      "pairedTimeRatio": 0.9648499325281296,
+      "pairedTimeCI95": [
+        0.6134548112178981,
+        1.0085537110059222
+      ],
+      "throughputRatio": 1.5781385263203653,
+      "byteRatio": 1,
+      "compileRatio": 0.9927805312422022,
+      "gate": true
+    },
+    {
+      "name": "a64-memory-page-table",
+      "beforeMs": 0.9784870000000012,
+      "afterMs": 0.9789320000000004,
+      "pairedTimeRatio": 0.988407641182612,
+      "pairedTimeCI95": [
+        0.975346928546794,
+        1.0239543294903068
+      ],
+      "throughputRatio": 0.9995454229711573,
+      "byteRatio": 1,
+      "compileRatio": 0.9892017791894067,
+      "gate": true
+    },
+    {
+      "name": "a64-memory-flat-window",
+      "beforeMs": 0.5563474999999869,
+      "afterMs": 0.5557924999999955,
+      "pairedTimeRatio": 1.0026028881287756,
+      "pairedTimeCI95": [
+        0.9895616582546459,
+        1.0183030858704658
+      ],
+      "throughputRatio": 1.0009985741081275,
+      "byteRatio": 1,
+      "compileRatio": 1.0007130645653266,
+      "gate": true
+    },
+    {
+      "name": "a64-neon",
+      "beforeMs": 0.4612535000000122,
+      "afterMs": 0.46256200000000547,
+      "pairedTimeRatio": 1.0025913127989106,
+      "pairedTimeCI95": [
+        0.9929602109405689,
+        1.0197229261287708
+      ],
+      "throughputRatio": 0.9971711900242707,
+      "byteRatio": 1,
+      "compileRatio": 0.9999497907929885,
+      "gate": true
+    },
+    {
+      "name": "a64-scalar",
+      "beforeMs": 0.4564474999999959,
+      "afterMs": 0.45269400000000815,
+      "pairedTimeRatio": 1.0105768156201633,
+      "pairedTimeCI95": [
+        0.9871686718755381,
+        1.0437654438319646
+      ],
+      "throughputRatio": 1.008291472827092,
+      "byteRatio": 1,
+      "compileRatio": 0.999265491918792,
+      "gate": true
+    },
+    {
+      "name": "thumb-memory-thunk",
+      "beforeMs": 0.0848464999999976,
+      "afterMs": 0.08329849999999794,
+      "pairedTimeRatio": 0.9930797729924148,
+      "pairedTimeCI95": [
+        0.9775889356071672,
+        1.0057290157441767
+      ],
+      "throughputRatio": 1.0185837680150267,
+      "byteRatio": 1,
+      "compileRatio": 0.9980046459695299,
+      "gate": true
+    },
+    {
+      "name": "thumb-memory-page-table",
+      "beforeMs": 0.012247999999999593,
+      "afterMs": 0.017250000000004206,
+      "pairedTimeRatio": 1.095436929039743,
+      "pairedTimeCI95": [
+        0.9965886118606697,
+        1.6266529083556116
+      ],
+      "throughputRatio": 0.7100289855070496,
+      "byteRatio": 1,
+      "compileRatio": 1.018207831825266,
+      "gate": false
+    },
+    {
+      "name": "thumb-memory-flat-window",
+      "beforeMs": 0.011929000000002077,
+      "afterMs": 0.012515999999997973,
+      "pairedTimeRatio": 0.9967763014594676,
+      "pairedTimeCI95": [
+        0.9305893201443245,
+        1.0865054906889886
+      ],
+      "throughputRatio": 0.9531000319594127,
+      "byteRatio": 1,
+      "compileRatio": 1.0016161122221374,
+      "gate": true
+    }
+  ],
+  "boardCalls": {
+    "before": {
+      "warmMs": 11.049684500000005,
+      "coldMs": 23.642261,
+      "bytes": 2953
+    },
+    "after": {
+      "warmMs": 8.47844700000001,
+      "coldMs": 23.868699,
+      "bytes": 2714
+    },
+    "pairedTimeRatio": 0.8803310884796097,
+    "pairedTimeCI95": [
+      0.7639215444182023,
+      0.940973900822066
+    ],
+    "byteRatio": 0.9190653572637996
+  },
+  "failedCases": [
+    "memory-thunk",
+    "thumb-memory-page-table"
+  ],
+  "decision": "RSB-only board candidate; functional checks pass and board calls improve, but the default performance gate is not passed.",
+  "interval": "10000 percentile bootstrap resamples of per-round ratios, process pair as sampling unit; local screening, not steady-state certification"
+}

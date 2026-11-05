@@ -55,7 +55,10 @@ const Case cases[]{
 
 size_t Write(const std::filesystem::path& dir, const char* name, IR::Block&& block) {
     block.SetTerminal(IR::Term::ReturnToDispatch{});
-    const auto emitted = Backend::Wasm::EmitWASM(std::move(block), {false, true});
+    Backend::Wasm::BoundaryState boundary{};
+    Backend::Wasm::EmitConfig config{false, true};
+    config.boundary_state = &boundary;  // Exercise arithmetic with a configured board boundary.
+    const auto emitted = Backend::Wasm::EmitWASM(std::move(block), config);
     std::ofstream out{dir / (std::string{name} + ".wasm"), std::ios::binary};
     out.write(reinterpret_cast<const char*>(emitted.module_bytes.data()),
               static_cast<std::streamsize>(emitted.module_bytes.size()));
@@ -109,37 +112,44 @@ int main(int argc, char** argv) {
         const bool wide = op_name.ends_with("64");
         const bool arithmetic = op_name.starts_with("Add") || op_name.starts_with("Sub");
         const bool shift = op_name.find("Shift") != std::string::npos || op_name.starts_with("Rotate");
-        for (const char* flags : {"none", "overflow", "nzcv"}) {
-            if (!arithmetic && std::string{flags} != "none") continue;
-            IR::Block block{location};
-            TestEmitter ir{block, location, A32::ArchVersion::v8};
-            const auto a_lo = ir.GetRegister(A32::Reg::R0), a_hi = ir.GetRegister(A32::Reg::R1);
-            const auto b_lo = ir.GetRegister(A32::Reg::R2), b_hi = ir.GetRegister(A32::Reg::R3);
-            const IR::Value a = wide ? IR::Value{ir.Pack2x32To1x64(a_lo, a_hi)} : IR::Value{a_lo};
-            const IR::Value b = wide ? IR::Value{ir.Pack2x32To1x64(b_lo, b_hi)} : IR::Value{b_lo};
-            const auto carry = ir.MostSignificantBit(ir.GetRegister(A32::Reg::R4));
-            IR::Value result;
-            if (arithmetic) {
-                result = ir.Inst(test.op, a, b, carry);
-                if (std::string{flags} == "overflow") ir.OrQFlag(ir.Inst<IR::U1>(IR::Opcode::GetOverflowFromOp, result));
-                if (std::string{flags} == "nzcv") ir.SetCpsrNZCV(ir.Inst<IR::NZCV>(IR::Opcode::GetNZCVFromOp, result));
-            } else if (shift) {
-                const auto amount = ir.LeastSignificantByte(b_lo);
-                result = wide ? ir.Inst(test.op, a, amount) : ir.Inst(test.op, a, amount, carry);
-                if (!wide) ir.OrQFlag(ir.Inst<IR::U1>(IR::Opcode::GetCarryFromOp, result));
-            } else {
-                result = ir.Inst(test.op, a, b);
+        for (const int carry_mode : {-1, 0, 1}) {
+            if (carry_mode != -1 && (!arithmetic || wide)) continue;
+            for (const char* flags : {"none", "overflow", "nzcv", "all"}) {
+                if (!arithmetic && std::string{flags} != "none") continue;
+                IR::Block block{location};
+                TestEmitter ir{block, location, A32::ArchVersion::v8};
+                const auto a_lo = ir.GetRegister(A32::Reg::R0), a_hi = ir.GetRegister(A32::Reg::R1);
+                const auto b_lo = ir.GetRegister(A32::Reg::R2), b_hi = ir.GetRegister(A32::Reg::R3);
+                const IR::Value a = wide ? IR::Value{ir.Pack2x32To1x64(a_lo, a_hi)} : IR::Value{a_lo};
+                const IR::Value b = wide ? IR::Value{ir.Pack2x32To1x64(b_lo, b_hi)} : IR::Value{b_lo};
+                const auto carry = carry_mode < 0 ? ir.MostSignificantBit(ir.GetRegister(A32::Reg::R4)) : ir.Imm1(carry_mode != 0);
+                IR::Value result;
+                if (arithmetic) {
+                    result = ir.Inst(test.op, a, b, carry);
+                    if (std::string{flags} == "all") {
+                        const auto c = ir.Inst<IR::U1>(IR::Opcode::GetCarryFromOp, result);
+                        ir.SetRegister(A32::Reg::R8, IR::U32{ir.AddWithCarry(ir.Imm32(0), ir.Imm32(0), c)});
+                    }
+                    if (std::string{flags} == "overflow" || std::string{flags} == "all") ir.OrQFlag(ir.Inst<IR::U1>(IR::Opcode::GetOverflowFromOp, result));
+                    if (std::string{flags} == "nzcv" || std::string{flags} == "all") ir.SetCpsrNZCV(ir.Inst<IR::NZCV>(IR::Opcode::GetNZCVFromOp, result));
+                } else if (shift) {
+                    const auto amount = ir.LeastSignificantByte(b_lo);
+                    result = wide ? ir.Inst(test.op, a, amount) : ir.Inst(test.op, a, amount, carry);
+                    if (!wide) ir.OrQFlag(ir.Inst<IR::U1>(IR::Opcode::GetCarryFromOp, result));
+                } else {
+                    result = ir.Inst(test.op, a, b);
+                }
+                if (wide) {
+                    ir.SetRegister(A32::Reg::R6, ir.LeastSignificantWord(IR::U64{result}));
+                    ir.SetRegister(A32::Reg::R7, ir.MostSignificantWord(IR::U64{result}).result);
+                } else {
+                    ir.SetRegister(A32::Reg::R6, IR::U32{result});
+                }
+                const auto name = op_name + "_" + flags + "_c" + std::to_string(carry_mode);
+                const auto bytes = Write(dir, name.c_str(), std::move(block));
+                manifest << ",{\"name\":\"" << name << "\",\"scalar\":true,\"bits\":" << (wide ? 64 : 32)
+                         << ",\"carry\":" << carry_mode << ",\"bytes\":" << bytes << '}';
             }
-            if (wide) {
-                ir.SetRegister(A32::Reg::R6, ir.LeastSignificantWord(IR::U64{result}));
-                ir.SetRegister(A32::Reg::R7, ir.MostSignificantWord(IR::U64{result}).result);
-            } else {
-                ir.SetRegister(A32::Reg::R6, IR::U32{result});
-            }
-            const auto name = op_name + "_" + flags;
-            const auto bytes = Write(dir, name.c_str(), std::move(block));
-            manifest << ",{\"name\":\"" << name << "\",\"scalar\":true,\"bits\":" << (wide ? 64 : 32)
-                     << ",\"bytes\":" << bytes << '}';
         }
     }
     // One dependency chain per packed saturation opcode; inputs remain dynamic.

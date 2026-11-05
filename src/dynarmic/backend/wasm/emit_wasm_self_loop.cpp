@@ -621,7 +621,7 @@ void EmitRegionEntrySelector(EmitContext& ctx) {
     }
     // A stale or mismatched descriptor must never execute another entry.
     ctx.code.I32Const(0);
-    ctx.code.Return();
+    EmitReturn(ctx);
     ctx.code.End();
 }
 
@@ -643,6 +643,14 @@ void EmitBeginRegion(EmitContext& ctx) {
         region.next = ctx.code.AddLocals(1, ValType::I32);
         ctx.code.I32Const(static_cast<s32>(region.entry));
         ctx.code.LocalSet(region.next);
+    }
+
+    if (ctx.emit_conf.enable_shared_exit && all_entries && multi_entry && ctx.emit_conf.frontend == Frontend::A32) {
+        auto& rc = ctx.reg_cache;
+        rc.exit_result = ctx.code.AddLocals(1, ValType::I32);
+        rc.exit_target = ctx.code.AddLocals(1, ValType::I32);
+        ctx.code.Block();
+        rc.exit_depth = ctx.code.Depth();
     }
 
     const u32 n = static_cast<u32>(region.blocks.size());
@@ -725,9 +733,26 @@ void EmitEndRegionSelfLoop(EmitContext& ctx) {
 }
 
 void EmitEndRegion(EmitContext& ctx) {
-    TeardownRegisterCache(ctx);
     ctx.code.End();  // $dispatch
     ctx.code.U8(Op::Unreachable);
+    if (ctx.reg_cache.exit_depth != 0) {
+        ctx.code.End();  // shared exit
+        ctx.code.before_exit = nullptr;
+        EmitCommitCycles(ctx);
+        EmitFlushRegCache(ctx);
+        if (ctx.table_imported) {
+            ctx.code.LocalGet(ctx.reg_cache.exit_target);
+            ctx.code.If();
+            ctx.code.LocalGet(kParamState);
+            ctx.code.LocalGet(kParamEctx);
+            ctx.code.LocalGet(ctx.reg_cache.exit_target);
+            ctx.code.ReturnCallIndirect(ctx.Type({{ValType::I32, ValType::I32}, {ValType::I32}}));
+            ctx.code.End();
+        }
+        ctx.code.LocalGet(ctx.reg_cache.exit_result);
+        ctx.code.Return();
+    }
+    TeardownRegisterCache(ctx);
 }
 
 }  // namespace Dynarmic::Backend::Wasm

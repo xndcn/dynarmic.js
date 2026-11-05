@@ -1,0 +1,26 @@
+Expose independent, default-off shared exits and constant-address memory.
+
+--- a/src/dynarmic/interface/optimization_flags.h
++++ b/src/dynarmic/interface/optimization_flags.h
+@@ -38,6 +38,12 @@
+     /// and a live Wasm BoundaryState. Other backends ignore this flag.
+     WasmRegionMultiEntry = 0x00200000,
+ 
++    /// Share normal and tail-call exits of A32/Thumb multi-entry Wasm regions.
++    /// Requires WasmRegionMultiEntry; other region layouts/backends ignore it.
++    WasmSharedExit = 0x00400000,
++    /// Specialize immediate A32 page-table accesses; live mappings stay dynamic.
++    WasmConstantMemory = 0x00800000,
++
+     /// This is an UNSAFE optimization that reduces accuracy of fused multiply-add operations.
+     /// This unfuses fused instructions to improve performance on host CPUs without FMA support.
+     Unsafe_UnfuseFMA = 0x00010000,
+@@ -59,7 +65,7 @@
+ constexpr OptimizationFlag no_optimizations = static_cast<OptimizationFlag>(0);
+ // Safety classification is independent of the default performance policy.
+ constexpr OptimizationFlag default_optimizations = static_cast<OptimizationFlag>(0x0000FFFF);
+-constexpr OptimizationFlag all_safe_optimizations = static_cast<OptimizationFlag>(0x0020FFFF);
++constexpr OptimizationFlag all_safe_optimizations = static_cast<OptimizationFlag>(0x00E0FFFF);
+ 
+ constexpr OptimizationFlag operator~(OptimizationFlag f) {
+     return static_cast<OptimizationFlag>(~static_cast<std::uint32_t>(f));

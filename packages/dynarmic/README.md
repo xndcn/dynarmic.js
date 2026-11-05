@@ -99,11 +99,25 @@ const cpu = await createEmulator({
 cpu.dispose();
 ```
 
-`regionMultiEntry` defaults to `false`. Sharing can reduce repeated compilation,
-but can slow warm execution, so measure it with your workload. The choice is
-fixed when creating the emulator. The host manages the required boundary state.
-Unknown optimization names and non-boolean values reject initialization.
-Use the same option with `architecture: 'a64'` for AArch64 guests.
+All optimization switches default to `false` and are fixed when creating an
+instance. Unknown names and non-boolean values reject initialization.
+
+| JavaScript option | Applies to | Effect |
+| --- | --- | --- |
+| `regionMultiEntry` | ARM/Thumb/A64 | Share compiled regions across internal entry points |
+| `sharedExit` | ARM/Thumb multi-entry regions | Share register/cycle submission at normal and tail-call exits; requires `regionMultiEntry` |
+| `constantMemory` | ARM/Thumb page-table accesses | Specialize immediate addresses while retaining live page mappings and callbacks |
+
+For example, `optimizations: {regionMultiEntry: true, sharedExit: true, constantMemory: true}`
+selects those policies independently. Create a new instance to change them.
+Flags do nothing when their applicable instruction, memory path or region layout
+is absent. The package's flat RAM window already bypasses page-table lookups, so
+`constantMemory` does not change that path. The host manages cycle counting and
+boundary state for `regionMultiEntry`.
+
+These policies can reduce emitted input or compilation work while slowing warm
+execution. Choose flags using your workload and engine; enabling every flag is
+not a performance recommendation.
 
 ## Contract and limitations
 

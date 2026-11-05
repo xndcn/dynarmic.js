@@ -210,11 +210,16 @@ void CheckReturnAndPruning() {
     h.cb.Put(base + 4, 0x91001c00); // add x0,x0,#7
     h.cb.Put(base + 8, 0xd4000001);
     h.cb.Put(0x8000, 0xd2800123); h.cb.Put(0x8004, 0xd65f03c0); // mov x3,#9; ret
+    h.context.rsb_top = 7;
+    for (auto& entry : h.context.rsb) { entry.descriptor = 0xdeadbeefdeadbeefULL; entry.index = 0; }
     for (int i = 0; i < 3; ++i) {
         h.state.reg[0] = 0; h.Run(base);
         Require(h.state.reg[0] == 7 && h.state.reg[3] == 9 && h.Ticks() == 5, "external call/return");
         Require(h.space->Get(IR::LocationDescriptor{base}) == h.space->Get(IR::LocationDescriptor{base + 4}),
                 "caller and return continuation must share an owner");
+        Require(h.context.rsb_top == 7, "board call/return changed RSB top");
+        for (const auto& entry : h.context.rsb)
+            Require(entry.descriptor == 0xdeadbeefdeadbeefULL && entry.index == 0, "board call wrote unused RSB");
     }
     std::vector<u8> filter(65536, 0);
     filter[((base + 4) >> 1) & 0xffff] = 2;

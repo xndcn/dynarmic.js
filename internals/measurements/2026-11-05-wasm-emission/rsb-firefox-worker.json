@@ -1,0 +1,12 @@
+{
+  "schema": "dynarmic.js/firefox-smoke-v1",
+  "mode": "worker",
+  "startedAt": "2026-11-05T03:32:01.612Z",
+  "browser": "/usr/bin/firefox",
+  "directory": "/home/xiong/workspace/dynarmic.js/build-em/examples/browser/dist",
+  "outcome": "pass",
+  "status": "PASS|PASS — both guests match the native reference.|PASS · matches reference|PASS · matches reference|lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n|lcg   = 2932257054\nsieve = 283146\npi*1e6 = 3141592\n",
+  "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:157.0) Gecko/20100101 Firefox/157.0",
+  "report": null,
+  "finishedAt": "2026-11-05T03:32:04.881Z"
+}

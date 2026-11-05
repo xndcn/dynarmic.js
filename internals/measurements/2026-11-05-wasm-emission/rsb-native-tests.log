@@ -1,0 +1,59 @@
+Test project /home/xiong/workspace/dynarmic.js/build-native-region-sharing
+      Start 12: regression_artifacts
+      Start 15: benchmark_protocol
+      Start 14: browser_host_contract
+      Start 11: browser_manifest
+ 1/24 Test #11: browser_manifest .....................   Passed    5.10 sec
+      Start 10: a64_region_focus_cmake_integration
+ 2/24 Test #10: a64_region_focus_cmake_integration ...   Passed    2.01 sec
+      Start 13: fuzz_campaign_contract
+ 3/24 Test #14: browser_host_contract ................   Passed    7.42 sec
+      Start 19: integer_edge_test
+ 4/24 Test #13: fuzz_campaign_contract ...............   Passed    1.57 sec
+      Start  9: install_consumer
+ 5/24 Test #19: integer_edge_test ....................   Passed    1.43 sec
+      Start 20: vector_edge_test
+ 6/24 Test #20: vector_edge_test .....................   Passed    1.33 sec
+      Start 22: memory_edge_test
+ 7/24 Test #22: memory_edge_test .....................   Passed    0.31 sec
+      Start 17: sat64_wasm
+ 8/24 Test #17: sat64_wasm ...........................   Passed    0.15 sec
+      Start 21: fp_edge_test
+ 9/24 Test  #9: install_consumer .....................   Passed    1.98 sec
+      Start 24: region_corpus
+10/24 Test #21: fp_edge_test .........................   Passed    0.16 sec
+      Start  3: region_plan
+11/24 Test  #3: region_plan ..........................   Passed    0.14 sec
+      Start 23: a32_memory_edge_test
+12/24 Test #23: a32_memory_edge_test .................   Passed    0.11 sec
+      Start  1: arm_decoder
+13/24 Test  #1: arm_decoder ..........................   Passed    0.18 sec
+      Start 16: smoke_wasm
+14/24 Test #24: region_corpus ........................   Passed    0.69 sec
+      Start 18: wasm_binary_test_wasm
+15/24 Test #16: smoke_wasm ...........................   Passed    0.13 sec
+      Start  5: region_selector_focus
+16/24 Test  #5: region_selector_focus ................   Passed    0.02 sec
+      Start  7: a64_region_focus_cmake_grammar
+17/24 Test  #7: a64_region_focus_cmake_grammar .......   Passed    0.01 sec
+      Start  2: address_space
+18/24 Test  #2: address_space ........................   Passed    0.01 sec
+      Start  6: a64_region_focus
+19/24 Test  #6: a64_region_focus .....................   Passed    0.01 sec
+      Start  4: region_selector
+20/24 Test  #4: region_selector ......................   Passed    0.01 sec
+      Start  8: region_diagnostics
+21/24 Test  #8: region_diagnostics ...................   Passed    0.00 sec
+22/24 Test #18: wasm_binary_test_wasm ................   Passed    0.10 sec
+23/24 Test #15: benchmark_protocol ...................   Passed   17.35 sec
+24/24 Test #12: regression_artifacts .................   Passed   27.71 sec
+
+100% tests passed, 0 tests failed out of 24
+
+Label Time Summary:
+infrastructure    =  27.71 sec*proc (1 test)
+ir                =   0.38 sec*proc (3 tests)
+packaging         =   1.98 sec*proc (1 test)
+wasm              =   0.38 sec*proc (3 tests)
+
+Total Test time (real) =  27.71 sec

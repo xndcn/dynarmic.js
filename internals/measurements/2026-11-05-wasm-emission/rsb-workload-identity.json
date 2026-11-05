@@ -1,0 +1,8 @@
+{
+  "runOnceUnchanged": true,
+  "guestWordsUnchanged": true,
+  "onlyMainSelectsBoardPolicy": true,
+  "hostSourceSha256": "0e653cf8d5c67be07dcbc9ab67046c565ca221f8ae8d2e0568912465cd871999",
+  "portableRebuildBinaryIdentical": true,
+  "wasmPreprocessingUnchangedAfterNativeGuards": true
+}
