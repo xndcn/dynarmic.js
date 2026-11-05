@@ -1,0 +1,17 @@
+{
+  "onlyBackendChange": [
+    "src/dynarmic/backend/wasm/emit_wasm_memory.cpp"
+  ],
+  "preExistingPatchUnchanged": true,
+  "workloadSha256": {
+    "tests/hosts/a32_region_alias_test.cpp": "7287b0ea1c92f8ed0601dd23ef0a88c9f1d5fd777d05ef0ec16986078997574b",
+    "tests/tools/emission_probe.cpp": "6448b051a518ab61464e1655b27317da982749efe0a343701730ac3a3292748d"
+  },
+  "nativeTests": "24/24",
+  "wasmTests": "11/11",
+  "corpus": "6/6",
+  "chromiumWorker": 33,
+  "guestProcesses": 540,
+  "hostDefaultAndLiteralProcesses": 600,
+  "hostTierDiagnosticProcesses": 200
+}

@@ -1,0 +1,48 @@
+diff --git a/src/dynarmic/backend/wasm/wasm_binary.h b/src/dynarmic/backend/wasm/wasm_binary.h
+index 7ce85f8..84b7703 100644
+--- a/src/dynarmic/backend/wasm/wasm_binary.h
++++ b/src/dynarmic/backend/wasm/wasm_binary.h
+@@ -542,7 +542,7 @@ public:
+     u32 AddLocals(u32 count, ValType type);
+ 
+     const std::vector<u8>& Body() const { return body; }
+-    std::vector<u8>& Body() { return body; }
++    std::vector<u8>& Body() { folding_allowed = false; last_set_end = 0; return body; }
+ 
+     // Emit helpers
+     void U8(u8 v) { body.push_back(v); }
+@@ -555,8 +555,22 @@ public:
+     void F32Const(u32 bits) { U8(Op::F32Const); Raw32(bits); }
+     void F64Const(u64 bits) { U8(Op::F64Const); Raw64(bits); }
+ 
+-    void LocalGet(u32 i) { U8(Op::LocalGet); ULEB(i); }
+-    void LocalSet(u32 i) { U8(Op::LocalSet); ULEB(i); }
++    void LocalGet(u32 i) {
++        // A contiguous set/get consumes and reproduces the same stack value.
++        // Fold only a recorded instruction boundary, never raw byte patterns.
++        if (folding_allowed && last_set_end == body.size() && last_set_end != 0 && last_set_local == i) {
++            body[last_set_start] = Op::LocalTee;
++            last_set_end = 0;
++            return;
++        }
++        U8(Op::LocalGet); ULEB(i);
++    }
++    void LocalSet(u32 i) {
++        last_set_start = body.size();
++        U8(Op::LocalSet); ULEB(i);
++        last_set_end = body.size();
++        last_set_local = i;
++    }
+     void LocalTee(u32 i) { U8(Op::LocalTee); ULEB(i); }
+     void GlobalGet(u32 i) { U8(Op::GlobalGet); ULEB(i); }
+     void GlobalSet(u32 i) { U8(Op::GlobalSet); ULEB(i); }
+@@ -624,6 +638,9 @@ private:
+     u32 param_count;
+     u32 depth = 0;
+     std::vector<u8> body;
++    bool folding_allowed = true;
++    size_t last_set_start = 0, last_set_end = 0;
++    u32 last_set_local = 0;
+     // Local declarations as (count, type) runs
+     std::vector<std::pair<u32, ValType>> local_runs;
+ };

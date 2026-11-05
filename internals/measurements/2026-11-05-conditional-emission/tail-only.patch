@@ -1,0 +1,119 @@
+diff --git a/src/dynarmic/backend/wasm/emit_context.h b/src/dynarmic/backend/wasm/emit_context.h
+index e69abfa..635f7bc 100644
+--- a/src/dynarmic/backend/wasm/emit_context.h
++++ b/src/dynarmic/backend/wasm/emit_context.h
+@@ -68,6 +68,8 @@ struct EmitContext {
+         u32 next = 0;            // i32 local selecting the br_table target
+         u32 dispatch_depth = 0;  // FuncBody::Depth() inside the dispatch loop
+         bool self_loop_open = false;  // the current block runs in its own loop (reg_cache.loop_depth)
++        u32 tail_exit_depth = 0;
++        bool tail_exit_used = false;
+         // Blocks that are return addresses of calls (PushRSB) made in the
+         // region: returns (PopRSBHint / FastDispatchHint) try them first.
+         std::vector<u32> return_sites;
+diff --git a/src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp b/src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp
+index 58574bf..47361d6 100644
+--- a/src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp
++++ b/src/dynarmic/backend/wasm/emit_wasm_self_loop.cpp
+@@ -645,6 +645,13 @@ void EmitBeginRegion(EmitContext& ctx) {
+         ctx.code.LocalSet(region.next);
+     }
+ 
++    // Ordinary returns keep their inline coherence barrier. Only tail calls
++    // leave through this result block; they pass the function-table index.
++    if (ctx.emit_conf.frontend == Frontend::A32 && ctx.emit_conf.boundary_state != nullptr && ctx.table_imported) {
++        ctx.code.Block({{ValType::I32}});
++        region.tail_exit_depth = ctx.code.Depth();
++    }
++
+     const u32 n = static_cast<u32>(region.blocks.size());
+     region.label_depth.assign(n, 0);
+     ctx.code.Loop();
+@@ -725,9 +732,23 @@ void EmitEndRegionSelfLoop(EmitContext& ctx) {
+ }
+ 
+ void EmitEndRegion(EmitContext& ctx) {
+-    TeardownRegisterCache(ctx);
+     ctx.code.End();  // $dispatch
+     ctx.code.U8(Op::Unreachable);
++    if (ctx.region.tail_exit_depth != 0) {
++        ctx.code.End();
++        if (ctx.region.tail_exit_used) {
++            const u32 target = ctx.code.AddLocals(1, ValType::I32);
++            ctx.code.LocalSet(target);
++            ctx.code.LocalGet(kParamState);
++            ctx.code.LocalGet(kParamEctx);
++            ctx.code.LocalGet(target);
++            const u32 type = ctx.Type({{ValType::I32, ValType::I32}, {ValType::I32}});
++            ctx.code.ReturnCallIndirect(type);
++        } else {
++            ctx.code.U8(Op::Unreachable);
++        }
++    }
++    TeardownRegisterCache(ctx);
+ }
+ 
+ }  // namespace Dynarmic::Backend::Wasm
+diff --git a/src/dynarmic/backend/wasm/emit_wasm_terminal.cpp b/src/dynarmic/backend/wasm/emit_wasm_terminal.cpp
+index 389f247..13bada3 100644
+--- a/src/dynarmic/backend/wasm/emit_wasm_terminal.cpp
++++ b/src/dynarmic/backend/wasm/emit_wasm_terminal.cpp
+@@ -418,6 +418,22 @@ void EmitReturnToDispatch(EmitContext& ctx) {
+ 
+ struct TerminalVisitor {
+     EmitContext& ctx;
++
++    void EmitTailTransfer(u32 type, u32 index) {
++        if (ctx.region.tail_exit_depth != 0) {
++            // Deferred flags belong to the source block, whose producer is
++            // no longer active when the shared epilogue is emitted.
++            if (ctx.flags.active) EmitMaterializeDeferredFlags(ctx);
++            ctx.code.LocalGet(index);
++            ctx.code.Br(ctx.code.Depth() - ctx.region.tail_exit_depth);
++            ctx.region.tail_exit_used = true;
++            return;
++        }
++        ctx.code.LocalGet(kParamState);
++        ctx.code.LocalGet(kParamEctx);
++        ctx.code.LocalGet(index);
++        ctx.code.ReturnCallIndirect(type);
++    }
+     // Index of the next chaining slot: ctx.next_link_slot, preorder over the
+     // terminal tree, matching CountLinkBlockFastTerminals.
+     u32& next_link_slot = ctx.next_link_slot;
+@@ -782,10 +798,7 @@ struct TerminalVisitor {
+                 EmitRegionTransfer(ctx, exit, target);
+             }
+ #endif
+-            ctx.code.LocalGet(kParamState);
+-            ctx.code.LocalGet(kParamEctx);
+-            ctx.code.LocalGet(idx);
+-            ctx.code.ReturnCallIndirect(block_ty, 0);
++            EmitTailTransfer(block_ty, idx);
+         }
+         ctx.code.Else();
+         {
+@@ -922,10 +935,7 @@ struct TerminalVisitor {
+                     EmitRegionTransfer(ctx, exit, transfer_target);
+                 }
+ #endif
+-                ctx.code.LocalGet(kParamState);
+-                ctx.code.LocalGet(kParamEctx);
+-                ctx.code.LocalGet(idx);
+-                ctx.code.ReturnCallIndirect(block_ty, 0);
++                EmitTailTransfer(block_ty, idx);
+             }
+             ctx.code.Else();
+             {
+@@ -1015,10 +1025,7 @@ struct TerminalVisitor {
+             EmitRegionTransfer(ctx, exit, cur);
+         }
+ #endif
+-        ctx.code.LocalGet(kParamState);
+-        ctx.code.LocalGet(kParamEctx);
+-        ctx.code.LocalGet(idx);
+-        ctx.code.ReturnCallIndirect(block_ty, 0);
++        EmitTailTransfer(block_ty, idx);
+         ctx.code.End();
+         // miss
+         ctx.code.LocalGet(kParamEctx);

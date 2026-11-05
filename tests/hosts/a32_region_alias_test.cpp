@@ -332,6 +332,32 @@ void CheckNestedCalls() {
         }
     }
 }
+// Literal load and constant store survive frontend optimization because the
+// callbacks do not mark the literal page read-only. Run through the real JIT.
+void BenchmarkLiteral(int mode) {
+    Harness h(true, mode);
+    constexpr std::array<u32, 7> code{
+        0xe59f20f8, 0xe0800002, 0xe3a01901, 0xe5810000,
+        0xe2544001, 0x1afffff9, 0xef000000,
+    };
+    constexpr u32 repeats = 1 << 18;
+    constexpr u32 instructions = repeats * 6 + 1;
+    std::memcpy(h.callbacks.ram.data() + base, code.data(), sizeof(code));
+    h.callbacks.Write<u32>(base + 0x100, 3);
+    for (u32 sample = 0; sample < 9; ++sample) {
+        h.state.regs[0] = 0;
+        h.state.regs[4] = repeats;
+        const auto before = h.stats;
+        const double start = emscripten_get_now();
+        h.Run(base);
+        const double ms = emscripten_get_now() - start;
+        Require(h.state.regs[0] == repeats * 3 && h.callbacks.Read<u32>(0x4000) == repeats * 3 &&
+                    h.callbacks.ticks == instructions, "literal result/store/ticks");
+        std::printf("REGION_SAMPLE {\"sample\":%u,\"ms\":%.9f,\"blocks\":%.0f,\"bytes\":%.0f,\"instructions\":%u}\n",
+                    sample, ms, h.stats.blocks - before.blocks, h.stats.bytes - before.bytes, instructions);
+        Require(sample == 0 || h.stats.blocks == before.blocks, "warm literal compilation");
+    }
+}
 void BenchmarkLoop(bool aliases, int mode) {
     Harness h(aliases, mode);
     // Same independently checked nested memory workload as jit_bench, with
@@ -361,6 +387,7 @@ void BenchmarkLoop(bool aliases, int mode) {
 }
 } // namespace
 int main(int argc, char** argv) {
+    if (argc == 3 && std::strcmp(argv[1], "literal") == 0) { BenchmarkLiteral(std::atoi(argv[2])); return 0; }
     if (argc == 5) { BenchmarkLoop(std::atoi(argv[1]), std::atoi(argv[2])); return 0; }
     if (argc == 4) { Benchmark(std::atoi(argv[1]), std::atoi(argv[2]), std::atoi(argv[3])); return 0; }
     for (int mode : {0,1,2}) {

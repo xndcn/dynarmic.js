@@ -1,0 +1,34 @@
+{
+  "tail-target.wasm": {
+    "equal": true,
+    "sha256": "9b23a92a4d217c5230c7f59af5e1feeb835f8c941ea2fc2cdeaef5107a622ea1"
+  },
+  "constant-memory.wasm": {
+    "equal": true,
+    "sha256": "fcba86d012639b7eb478b4e4200e4b5a7eec8ac994d46278518635b2eac187ad"
+  },
+  "no-flags.wasm": {
+    "equal": true,
+    "sha256": "1ffd7d738a4d3567c99672409950795079a1b66de6cea0100c74179e174c7c52"
+  },
+  "dynamic-memory.wasm": {
+    "equal": true,
+    "sha256": "3aa71913f0da12e86f0cabae62656b3d726d8ed9618b64a4af1466627f6c6fbd"
+  },
+  "flags.wasm": {
+    "equal": true,
+    "sha256": "f0f936942a1b459cefa1e3c37a8c225a3c97bc42325789571794ce7fcbecaf65"
+  },
+  "manifest.json": {
+    "equal": true,
+    "sha256": "55d02e053103fd77dbe250c6f3880a939783e10afbdaa78ef90b266e46426828"
+  },
+  "tail-exits.wasm": {
+    "equal": true,
+    "sha256": "e3af39a0f762bfe5e9733e22e71bab33549ed86bf397362fd63e2d7cfac4cfdc"
+  },
+  "normal-exits.wasm": {
+    "equal": true,
+    "sha256": "71079c305fe3553f4e1ad2e2407c94dbbbc116e9de89b8ec79bb52a0ba681f80"
+  }
+}
